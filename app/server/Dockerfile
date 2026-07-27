@@ -43,12 +43,32 @@ RUN npm ci --omit=dev
 # -----------------------------------------------------------------------------
 COPY . .
 
+# -----------------------------
+# Create a non-root user and group
+# -----------------------------
+RUN addgroup -S appgroup && \
+    adduser -S appuser -G appgroup
+
+# -----------------------------
+# Give ownership of application files
+# to the new user
+# -----------------------------
+RUN chown -R appuser:appgroup /app
+
+# -----------------------------
+# Switch from root to appuser
+# -----------------------------
+USER appuser
+
 # -----------------------------------------------------------------------------
 # Documentation
 # Tells anyone reading the image that this application listens on port 5000.
 # EXPOSE does NOT publish the port.
 # -----------------------------------------------------------------------------
 EXPOSE 5000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+CMD node -e "require('http').get('http://localhost:5000/health',r=>process.exit(r.statusCode===200?0:1))"
 
 # -----------------------------------------------------------------------------
 # Default Command

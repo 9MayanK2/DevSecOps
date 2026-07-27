@@ -21,6 +21,11 @@ app.use(
 
 // Routes
 app.use('/', homeRoutes);
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "UP"
+    });
+});
 app.use('/user/auth', userRoutes);
 
 // Error Handler
@@ -37,7 +42,7 @@ app.use((error, req, res) => {
 getConnection();
 
 // Start Server
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT,'0.0.0.0', () => {
     console.log(
         'Server is running on port: ' + process.env.PORT
     );
