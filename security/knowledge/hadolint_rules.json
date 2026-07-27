@@ -1,0 +1,22 @@
+{
+    "DL3002": {
+        "title": "Container running as root",
+        "recommendation": "Create a non-root user and switch to it using the USER instruction.",
+        "impact": "Running containers as root increases the impact of container compromise.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3002"
+    },
+
+    "DL3008": {
+        "title": "Pin package versions",
+        "recommendation": "Specify package versions instead of installing the latest available version.",
+        "impact": "Improves reproducibility and reduces unexpected package updates.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3008"
+    },
+
+    "DL3059": {
+        "title": "Multiple RUN instructions",
+        "recommendation": "Combine consecutive RUN instructions to reduce image layers.",
+        "impact": "Produces smaller images and improves Docker layer caching.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3059"
+    }
+}
