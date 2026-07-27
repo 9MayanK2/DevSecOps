@@ -1,5 +1,5 @@
 const apis = () => {
-  const local = 'http://localhost:5000/';
+  const local = process.env.REACT_APP_API_URL || "http://localhost:5000";;
 
   const list = {
     registerUser: `${local}user/auth/register`,            // Fixed double slashes
