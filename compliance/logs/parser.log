@@ -1,0 +1,89 @@
+2026-07-28 02:08:22 | INFO | Searching for Hadolint reports...
+2026-07-28 02:08:22 | INFO | ============================================================
+2026-07-28 02:08:22 | INFO | Starting Hadolint Parser
+2026-07-28 02:08:22 | INFO | Input Report : compliance/reports/hadolint/frontend_20260728_000639.json
+2026-07-28 02:08:22 | INFO | Output Report : compliance/normalized/hadolint/frontend_20260728_000639_normalized.json
+2026-07-28 02:08:22 | INFO | Status        : FAIL
+2026-07-28 02:08:22 | INFO | Findings      : 1
+2026-07-28 02:08:22 | INFO | Duration      : 0.00 seconds
+2026-07-28 02:08:22 | INFO | Finished Hadolint Parser
+2026-07-28 02:08:22 | INFO | ============================================================
+2026-07-28 02:08:22 | INFO | All Hadolint reports normalized successfully.
+2026-07-28 02:21:30 | INFO | Searching for Hadolint reports...
+2026-07-28 02:21:30 | INFO | ============================================================
+2026-07-28 02:21:30 | INFO | Starting Hadolint Parser
+2026-07-28 02:21:30 | INFO | Input Report : compliance/reports/hadolint/frontend_20260728_000639.json
+2026-07-28 02:21:30 | INFO | Output Report : compliance/normalized/hadolint/frontend_20260728_000639_normalized.json
+2026-07-28 02:21:30 | INFO | Status        : FAIL
+2026-07-28 02:21:30 | INFO | Findings      : 1
+2026-07-28 02:21:30 | INFO | Duration      : 0.01 seconds
+2026-07-28 02:21:30 | INFO | Finished Hadolint Parser
+2026-07-28 02:21:30 | INFO | ============================================================
+2026-07-28 02:21:30 | INFO | All Hadolint reports normalized successfully.
+2026-07-28 02:33:02 | INFO | Searching Hadolint reports...
+2026-07-28 02:33:02 | INFO | ======================================================================
+2026-07-28 02:33:02 | INFO | Starting Hadolint Parser
+2026-07-28 02:33:02 | INFO | Input Report : compliance/reports/hadolint/frontend_20260728_000639.json
+2026-07-28 02:33:02 | INFO | Output Report : compliance/normalized/hadolint/frontend_20260728_000639_normalized.json
+2026-07-28 02:33:02 | INFO | Status        : FAIL
+2026-07-28 02:33:02 | INFO | Findings      : 1
+2026-07-28 02:33:02 | INFO | Critical      : 0
+2026-07-28 02:33:02 | INFO | High          : 0
+2026-07-28 02:33:02 | INFO | Medium        : 0
+2026-07-28 02:33:02 | INFO | Low           : 0
+2026-07-28 02:33:02 | INFO | Info          : 1
+2026-07-28 02:33:02 | INFO | Duration      : 0.02 seconds
+2026-07-28 02:33:02 | INFO | Finished Hadolint Parser
+2026-07-28 02:33:02 | INFO | ======================================================================
+2026-07-28 02:33:02 | INFO | All Hadolint reports processed successfully.
+2026-07-28 02:45:41 | INFO | Searching Hadolint reports...
+2026-07-28 02:45:41 | INFO | ======================================================================
+2026-07-28 02:45:41 | INFO | Starting Hadolint Parser
+2026-07-28 02:45:41 | INFO | Input Report : compliance/reports/hadolint/frontend_20260728_000639.json
+2026-07-28 02:45:41 | INFO | Output Report : compliance/normalized/hadolint/frontend_20260728_000639_normalized.json
+2026-07-28 02:45:41 | INFO | Status        : FAIL
+2026-07-28 02:45:41 | INFO | Findings      : 1
+2026-07-28 02:45:41 | INFO | Critical      : 0
+2026-07-28 02:45:41 | INFO | High          : 0
+2026-07-28 02:45:41 | INFO | Medium        : 0
+2026-07-28 02:45:41 | INFO | Low           : 0
+2026-07-28 02:45:41 | INFO | Info          : 1
+2026-07-28 02:45:41 | INFO | Duration      : 0.01 seconds
+2026-07-28 02:45:41 | INFO | Finished Hadolint Parser
+2026-07-28 02:45:41 | INFO | ======================================================================
+2026-07-28 02:45:41 | INFO | All Hadolint reports processed successfully.
+2026-07-28 02:45:41 | INFO | **********************************************************************
+2026-07-28 02:45:57 | INFO | Searching Hadolint reports...
+2026-07-28 02:45:57 | INFO | ======================================================================
+2026-07-28 02:45:57 | INFO | Starting Hadolint Parser
+2026-07-28 02:45:57 | INFO | Input Report : compliance/reports/hadolint/frontend_20260728_000639.json
+2026-07-28 02:45:57 | INFO | Output Report : compliance/normalized/hadolint/frontend_20260728_000639_normalized.json
+2026-07-28 02:45:57 | INFO | Status        : FAIL
+2026-07-28 02:45:57 | INFO | Findings      : 1
+2026-07-28 02:45:57 | INFO | Critical      : 0
+2026-07-28 02:45:57 | INFO | High          : 0
+2026-07-28 02:45:57 | INFO | Medium        : 0
+2026-07-28 02:45:57 | INFO | Low           : 0
+2026-07-28 02:45:57 | INFO | Info          : 1
+2026-07-28 02:45:57 | INFO | Duration      : 0.01 seconds
+2026-07-28 02:45:57 | INFO | Finished Hadolint Parser
+2026-07-28 02:45:57 | INFO | ======================================================================
+2026-07-28 02:45:57 | INFO | All Hadolint reports processed successfully.
+2026-07-28 02:45:57 | INFO | **********************************************************************
+2026-07-28 03:04:52 | INFO | Searching Hadolint reports...
+2026-07-28 03:04:52 | INFO | ======================================================================
+2026-07-28 03:04:52 | INFO | Starting Hadolint Parser
+2026-07-28 03:04:52 | INFO | Input Report : compliance/reports/hadolint/frontend_20260728_000639.json
+2026-07-28 03:04:52 | INFO | Output Report : compliance/normalized/hadolint/frontend_20260728_000639_normalized.json
+2026-07-28 03:04:52 | INFO | Status        : FAIL
+2026-07-28 03:04:52 | INFO | Findings      : 1
+2026-07-28 03:04:52 | INFO | Critical      : 0
+2026-07-28 03:04:52 | INFO | High          : 0
+2026-07-28 03:04:52 | INFO | Medium        : 0
+2026-07-28 03:04:52 | INFO | Low           : 0
+2026-07-28 03:04:52 | INFO | Info          : 1
+2026-07-28 03:04:52 | INFO | Duration      : 0.01 seconds
+2026-07-28 03:04:52 | INFO | Finished Hadolint Parser
+2026-07-28 03:04:52 | INFO | ======================================================================
+2026-07-28 03:04:52 | INFO | All Hadolint reports processed successfully.
+2026-07-28 03:04:52 | INFO | **********************************************************************
