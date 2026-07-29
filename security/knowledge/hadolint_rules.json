@@ -1,22 +1,410 @@
 {
+    "DL3000": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3000"
+    },
+    "DL3001": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3001"
+    },
     "DL3002": {
-        "title": "Container running as root",
-        "recommendation": "Create a non-root user and switch to it using the USER instruction.",
-        "impact": "Running containers as root increases the impact of container compromise.",
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
         "reference": "https://github.com/hadolint/hadolint/wiki/DL3002"
     },
-
+    "DL3003": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3003"
+    },
+    "DL3004": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3004"
+    },
+    "DL3005": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3005"
+    },
+    "DL3006": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3006"
+    },
+    "DL3007": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3007"
+    },
     "DL3008": {
-        "title": "Pin package versions",
-        "recommendation": "Specify package versions instead of installing the latest available version.",
-        "impact": "Improves reproducibility and reduces unexpected package updates.",
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
         "reference": "https://github.com/hadolint/hadolint/wiki/DL3008"
     },
-
+    "DL3009": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3009"
+    },
+    "DL3010": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3010"
+    },
+    "DL3011": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3011"
+    },
+    "DL3012": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3012"
+    },
+    "DL3013": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3013"
+    },
+    "DL3014": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3014"
+    },
+    "DL3015": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3015"
+    },
+    "DL3016": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3016"
+    },
+    "DL3017": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3017"
+    },
+    "DL3018": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3018"
+    },
+    "DL3019": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3019"
+    },
+    "DL3020": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3020"
+    },
+    "DL3021": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3021"
+    },
+    "DL3022": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3022"
+    },
+    "DL3023": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3023"
+    },
+    "DL3024": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3024"
+    },
+    "DL3025": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3025"
+    },
+    "DL3026": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3026"
+    },
+    "DL3027": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3027"
+    },
+    "DL3028": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3028"
+    },
+    "DL3029": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3029"
+    },
+    "DL3030": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3030"
+    },
+    "DL3031": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3031"
+    },
+    "DL3032": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3032"
+    },
+    "DL3033": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3033"
+    },
+    "DL3034": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3034"
+    },
+    "DL3035": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3035"
+    },
+    "DL3036": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3036"
+    },
+    "DL3037": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3037"
+    },
+    "DL3038": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3038"
+    },
+    "DL3039": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3039"
+    },
+    "DL3040": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3040"
+    },
+    "DL3041": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3041"
+    },
+    "DL3042": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3042"
+    },
+    "DL3043": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3043"
+    },
+    "DL3044": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3044"
+    },
+    "DL3045": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3045"
+    },
+    "DL3046": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3046"
+    },
+    "DL3047": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3047"
+    },
+    "DL3048": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3048"
+    },
+    "DL3049": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3049"
+    },
+    "DL3050": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3050"
+    },
+    "DL3051": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3051"
+    },
+    "DL3052": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3052"
+    },
+    "DL3053": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3053"
+    },
+    "DL3054": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3054"
+    },
+    "DL3055": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3055"
+    },
+    "DL3056": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3056"
+    },
+    "DL3057": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3057"
+    },
+    "DL3058": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL3058"
+    },
     "DL3059": {
-        "title": "Multiple RUN instructions",
-        "recommendation": "Combine consecutive RUN instructions to reduce image layers.",
-        "impact": "Produces smaller images and improves Docker layer caching.",
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
         "reference": "https://github.com/hadolint/hadolint/wiki/DL3059"
+    },
+    "DL4000": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4000"
+    },
+    "DL4001": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4001"
+    },
+    "DL4002": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4002"
+    },
+    "DL4003": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4003"
+    },
+    "DL4004": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4004"
+    },
+    "DL4005": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4005"
+    },
+    "DL4006": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4006"
+    },
+    "DL4007": {
+        "title": "TODO: Fill official Hadolint rule title",
+        "recommendation": "TODO: Add official remediation guidance.",
+        "impact": "TODO: Describe security or maintainability impact.",
+        "reference": "https://github.com/hadolint/hadolint/wiki/DL4007"
     }
 }

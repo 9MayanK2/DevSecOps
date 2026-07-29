@@ -1,37 +1,43 @@
-import os
-import time
-from datetime import datetime
+"""
+hadolint_parser.py
+
+Enterprise Hadolint Parser
+
+This parser converts Hadolint reports into the
+framework's normalized Finding objects.
+
+Responsibilities
+----------------
+✔ Parse Hadolint JSON
+✔ Normalize severity
+✔ Attach recommendations
+✔ Create Finding objects
+
+Everything else is handled by BaseParser.
+"""
+
+from __future__ import annotations
+
+from security.core.base_parser import BaseParser
+from security.core.parser_registry import registry
 
 from security.schemas.finding import Finding
-from security.schemas.report import Report
-from security.schemas.summary import Summary
 
-from security.parsers.parser_utils import (
-    load_json,
-    save_json,
-    dataclass_to_dict,
-)
-
-from security.core.logger import logger
-from security.core.metadata import generate_metadata
-from security.core.recommendation import get_recommendation
-
-from security.core.validator import (
-    validate_file_exists,
-    validate_json,
-    validate_list,
-)
-
-from security.core.severity import normalize_severity
-from security.core.status import STATUS_OPEN
-from security.core.categories import CATEGORY_CONTAINER
-from security.core.scanner_type import SCANNER_STATIC
+from security.common.logger import logger
+from security.common.recommendation import get_recommendation
+from security.common.severity import normalize_severity
+from security.common.status import STATUS_OPEN
+from security.common.categories import CATEGORY_CONTAINER
+from security.common.scanner_type import SCANNER_STATIC
 
 from security.config.config_loader import get
 
 
-TOOL_NAME = "Hadolint"
+############################################################
+# Configuration
+############################################################
 
+TOOL_NAME = "Hadolint"
 
 REPORT_DIR = get(
     "HADOLINT",
@@ -44,205 +50,326 @@ OUTPUT_DIR = get(
 )
 
 
-def parse_hadolint_report(input_file: str, output_file: str):
+############################################################
+# Hadolint Parser
+############################################################
 
-    start_time = time.perf_counter()
+class HadolintParser(BaseParser):
 
-    logger.info("=" * 70)
-    logger.info(f"Starting {TOOL_NAME} Parser")
-    logger.info(f"Input Report : {input_file}")
+    """
+    Enterprise Hadolint parser.
 
-    # --------------------------------------------------
-    # Validation
-    # --------------------------------------------------
+    BaseParser performs:
 
-    validate_file_exists(input_file)
+        ✔ Read report
+        ✔ Validate report
+        ✔ Metadata generation
+        ✔ Statistics
+        ✔ Report generation
+        ✔ Save report
+        ✔ Logging
 
-    validate_json(input_file)
+    This parser only converts Hadolint JSON
+    into normalized Finding objects.
+    """
 
-    raw_findings = load_json(input_file)
+    ########################################################
+    # Constructor
+    ########################################################
 
-    validate_list(raw_findings)
+    def __init__(self):
 
-    # --------------------------------------------------
-    # Initialization
-    # --------------------------------------------------
+        super().__init__(
 
-    findings = []
-
-    summary = Summary()
-
-    scan_time = datetime.utcnow().isoformat()
-
-    metadata = generate_metadata(TOOL_NAME)
-
-    # --------------------------------------------------
-    # Parse Findings
-    # --------------------------------------------------
-
-    for item in raw_findings:
-
-        severity = normalize_severity(
-            item.get("level")
-        )
-
-        rule = get_recommendation(
-            item.get("code")
-        )
-
-        finding = Finding(
-
-            tool=TOOL_NAME,
+            tool_name=TOOL_NAME,
 
             category=CATEGORY_CONTAINER,
 
-            rule_id=item.get("code"),
+            scanner_type=SCANNER_STATIC,
 
-            severity=severity,
+            input_directory=REPORT_DIR,
 
-            file=item.get("file"),
-
-            line=item.get("line"),
-
-            message=item.get("message"),
-
-            title=rule["title"],
-
-            recommendation=rule["recommendation"],
-
-            impact=rule["impact"],
-
-            reference=rule["reference"],
-
-            status=STATUS_OPEN,
-
-            scan_time=scan_time
+            output_directory=OUTPUT_DIR
 
         )
 
-        findings.append(finding)
+    ########################################################
+    # Extract Findings
+    ########################################################
 
-        summary.total += 1
+    def extract_findings(self):
+        """
+        Convert Hadolint JSON into
+        normalized Finding objects.
+        """
 
-        if severity == "CRITICAL":
-            summary.critical += 1
+        findings = []
 
-        elif severity == "HIGH":
-            summary.high += 1
+        ####################################################
+        # Empty Report
+        ####################################################
 
-        elif severity == "MEDIUM":
-            summary.medium += 1
+        if not self.raw_report:
 
-        elif severity == "LOW":
-            summary.low += 1
+            logger.warning(
 
-        else:
-            summary.info += 1
+                "Hadolint report is empty."
 
-    # --------------------------------------------------
-    # Overall Status
-    # --------------------------------------------------
+            )
 
-    overall_status = "PASS"
+            return findings
 
-    if summary.total > 0:
-        overall_status = "FAIL"
+        ####################################################
+        # Parse Every Finding
+        ####################################################
 
-    # --------------------------------------------------
-    # Build Report
-    # --------------------------------------------------
+        for item in self.raw_report:
 
-    report = Report(
+            ################################################
+            # Normalize Severity
+            ################################################
 
-        metadata=metadata,
+            severity = normalize_severity(
 
-        tool=TOOL_NAME,
+                item.get(
 
-        category=CATEGORY_CONTAINER,
+                    "level",
 
-        scanner_type=SCANNER_STATIC,
+                    "UNKNOWN"
 
-        scan_time=scan_time,
+                )
 
-        status=overall_status,
+            )
 
-        summary=summary,
+            ################################################
+            # Recommendation Database
+            ################################################
 
-        findings=findings
+            recommendation = get_recommendation(
 
-    )
+                TOOL_NAME,
+                item.get(
 
-    # --------------------------------------------------
-    # Save Report
-    # --------------------------------------------------
+                    "code",
 
-    save_json(
+                    ""
 
-        dataclass_to_dict(report),
+                )
 
-        output_file
+            )
+            ################################################
+            # Build Finding
+            ################################################
 
-    )
+            finding = Finding(
 
-    duration = time.perf_counter() - start_time
+                ################################################
+                # Framework
+                ################################################
 
-    # --------------------------------------------------
-    # Logging
-    # --------------------------------------------------
+                tool=TOOL_NAME,
 
-    logger.info(f"Output Report : {output_file}")
-    logger.info(f"Status        : {overall_status}")
-    logger.info(f"Findings      : {summary.total}")
-    logger.info(f"Critical      : {summary.critical}")
-    logger.info(f"High          : {summary.high}")
-    logger.info(f"Medium        : {summary.medium}")
-    logger.info(f"Low           : {summary.low}")
-    logger.info(f"Info          : {summary.info}")
-    logger.info(f"Duration      : {duration:.2f} seconds")
-    logger.info(f"Finished {TOOL_NAME} Parser")
-    logger.info("=" * 70)
+                category=CATEGORY_CONTAINER,
 
+                ################################################
+                # Rule Information
+                ################################################
+
+                rule_id=item.get(
+
+                    "code"
+
+                ),
+
+                title=recommendation.get(
+
+                    "title",
+
+                    item.get(
+
+                        "code",
+
+                        ""
+
+                    )
+
+                ),
+
+                ################################################
+                # Severity
+                ################################################
+
+                severity=severity,
+
+                ################################################
+                # Location
+                ################################################
+
+                file=item.get(
+
+                    "file"
+
+                ),
+
+                line=item.get(
+
+                    "line"
+
+                ),
+
+                ################################################
+                # Description
+                ################################################
+
+                message=item.get(
+
+                    "message"
+
+                ),
+
+                ################################################
+                # Recommendation
+                ################################################
+
+                recommendation=recommendation.get(
+
+                    "recommendation",
+
+                    "No recommendation available."
+
+                ),
+
+                impact=recommendation.get(
+
+                    "impact",
+
+                    ""
+
+                ),
+
+                reference=recommendation.get(
+
+                    "reference",
+
+                    ""
+
+                ),
+
+                ################################################
+                # Runtime
+                ################################################
+
+                status=STATUS_OPEN,
+
+                scan_time=self.scan_time
+
+            )
+
+            ################################################
+            # Add Finding
+            ################################################
+
+            findings.append(
+
+                finding
+
+            )
+
+        ####################################################
+        # Finished
+        ####################################################
+
+        logger.info(
+
+            f"Parsed {len(findings)} Hadolint findings."
+
+        )
+
+        return findings
+
+    ########################################################
+    # Lifecycle Hook
+    ########################################################
+
+    def before_parse(self):
+        """
+        Executed before parsing starts.
+
+        Future use:
+            - Load rule cache
+            - Download knowledge base
+            - Initialize database
+        """
+
+        logger.info(
+
+            f"[{TOOL_NAME}] Preparing parser..."
+
+        )
+
+    ########################################################
+    # Lifecycle Hook
+    ########################################################
+
+    def after_parse(self):
+        """
+        Executed after parsing completes.
+
+        Future use:
+            - Send notifications
+            - Push metrics
+            - Cleanup resources
+        """
+
+        logger.info(
+
+            f"[{TOOL_NAME}] Parser finished successfully."
+
+        )
+
+
+############################################################
+# Register Parser
+############################################################
+
+registry.register(
+
+    "hadolint",
+
+    HadolintParser
+
+)
+
+
+############################################################
+# Main
+############################################################
 
 def main():
 
-    os.makedirs(
-        OUTPUT_DIR,
-        exist_ok=True
+    logger.info(
+
+        "=" * 70
+
     )
-
-    logger.info("Searching Hadolint reports...")
-
-    report_files = sorted(
-        os.listdir(REPORT_DIR)
-    )
-
-    for report in report_files:
-
-        if not report.endswith(".json"):
-            continue
-
-        input_file = os.path.join(
-            REPORT_DIR,
-            report
-        )
-
-        output_file = os.path.join(
-            OUTPUT_DIR,
-            report.replace(
-                ".json",
-                "_normalized.json"
-            )
-        )
-
-        parse_hadolint_report(
-            input_file,
-            output_file
-        )
 
     logger.info(
-        "All Hadolint reports processed successfully."
+
+        "Starting Hadolint Parser"
+
     )
-    logger.info("*" * 70)
+
+    logger.info(
+
+        "=" * 70
+
+    )
+
+    parser = HadolintParser()
+
+    parser.run()
+
 
 if __name__ == "__main__":
+
     main()

@@ -1,0 +1,11 @@
+{
+    "CVE-2024-0001": {
+        "recommendation": "Upgrade to the latest patched package version.",
+        "priority": "Critical"
+    },
+
+    "CVE-2024-0002": {
+        "recommendation": "Update the vulnerable package.",
+        "priority": "High"
+    }
+}
