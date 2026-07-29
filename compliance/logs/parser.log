@@ -87,3 +87,107 @@
 2026-07-28 03:04:52 | INFO | ======================================================================
 2026-07-28 03:04:52 | INFO | All Hadolint reports processed successfully.
 2026-07-28 03:04:52 | INFO | **********************************************************************
+2026-07-29 22:12:53 | INFO | Registered parser: hadolint
+2026-07-29 22:12:53 | INFO | ======================================================================
+2026-07-29 22:12:53 | INFO | Starting Hadolint Parser
+2026-07-29 22:12:53 | INFO | ======================================================================
+2026-07-29 22:12:53 | INFO | [Hadolint] Preparing parser...
+2026-07-29 22:12:53 | INFO | ======================================================================
+2026-07-29 22:12:53 | INFO | Starting Hadolint Parser
+2026-07-29 22:12:53 | INFO | ======================================================================
+2026-07-29 22:12:53 | INFO | [Hadolint] Loading report...
+2026-07-29 22:12:53 | ERROR | [Hadolint] Parser failed.
+Traceback (most recent call last):
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 519, in run
+    self.execute()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 473, in execute
+    self.load_report()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 169, in load_report
+    self.raw_report = self.reader.latest_report()
+  File "/home/jaggu/Projects/DevSecOps/security/core/report_reader.py", line 114, in latest_report
+    raise ReportNotFoundError(
+security.core.exceptions.ReportNotFoundError: No reports found in compliance/reports/hadolint
+2026-07-29 22:20:02 | INFO | Registered parser: hadolint
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | Starting Hadolint Parser
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | [Hadolint] Preparing parser...
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | Starting Hadolint Parser
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | [Hadolint] Loading report...
+2026-07-29 22:20:02 | INFO | Latest report: frontend_20260729_221748.json
+2026-07-29 22:20:02 | INFO | Reading report: frontend_20260729_221748.json
+2026-07-29 22:20:02 | INFO | [Hadolint] Validating report...
+2026-07-29 22:20:02 | INFO | [Hadolint] Generating metadata...
+2026-07-29 22:20:02 | INFO | Loaded 66 rules for hadolint.
+2026-07-29 22:20:02 | INFO | Parsed 1 Hadolint findings.
+2026-07-29 22:20:02 | INFO | [Hadolint] Calculating statistics...
+2026-07-29 22:20:02 | INFO | [Hadolint] Building normalized report...
+2026-07-29 22:20:02 | INFO | [Hadolint] Saving report...
+2026-07-29 22:20:02 | INFO | Writing report: hadolint_20260729_222002_normalized.json
+2026-07-29 22:20:02 | INFO | Report written successfully: hadolint_20260729_222002_normalized.json
+2026-07-29 22:20:02 | INFO | [Hadolint] Report saved successfully.
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | Hadolint Scan Summary
+2026-07-29 22:20:02 | INFO | ----------------------------------------------------------------------
+2026-07-29 22:20:02 | INFO | Status         : PASS
+2026-07-29 22:20:02 | INFO | Total          : 1
+2026-07-29 22:20:02 | INFO | Critical       : 0
+2026-07-29 22:20:02 | INFO | High           : 0
+2026-07-29 22:20:02 | INFO | Medium         : 0
+2026-07-29 22:20:02 | INFO | Low            : 0
+2026-07-29 22:20:02 | INFO | Info           : 1
+2026-07-29 22:20:02 | INFO | Unknown        : 0
+2026-07-29 22:20:02 | INFO | Fixable        : 0
+2026-07-29 22:20:02 | INFO | Exploitable    : 0
+2026-07-29 22:20:02 | INFO | Compliance     : 100.0%
+2026-07-29 22:20:02 | INFO | Duration       : 0.02 sec
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | Hadolint Parser Completed
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | [Hadolint] Parser completed successfully.
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:20:02 | INFO | Hadolint Parser Finished
+2026-07-29 22:20:02 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | Registered parser: trivy
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | Starting Trivy Parser
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | [Trivy] Preparing parser...
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | Starting Trivy Parser
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | [Trivy] Loading report...
+2026-07-29 22:35:35 | INFO | Latest report: frontend_20260729_223054.json
+2026-07-29 22:35:35 | INFO | Reading report: frontend_20260729_223054.json
+2026-07-29 22:35:35 | INFO | [Trivy] Validating report...
+2026-07-29 22:35:35 | INFO | Parsed 0 Trivy findings.
+2026-07-29 22:35:35 | INFO | [Trivy] Calculating statistics...
+2026-07-29 22:35:35 | INFO | [Trivy] Building normalized report...
+2026-07-29 22:35:35 | INFO | [Trivy] Saving report...
+2026-07-29 22:35:35 | INFO | Writing report: trivy_20260729_223535_normalized.json
+2026-07-29 22:35:35 | INFO | Report written successfully: trivy_20260729_223535_normalized.json
+2026-07-29 22:35:35 | INFO | [Trivy] Report saved successfully.
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | Trivy Scan Summary
+2026-07-29 22:35:35 | INFO | ----------------------------------------------------------------------
+2026-07-29 22:35:35 | INFO | Status         : PASS
+2026-07-29 22:35:35 | INFO | Total          : 0
+2026-07-29 22:35:35 | INFO | Critical       : 0
+2026-07-29 22:35:35 | INFO | High           : 0
+2026-07-29 22:35:35 | INFO | Medium         : 0
+2026-07-29 22:35:35 | INFO | Low            : 0
+2026-07-29 22:35:35 | INFO | Info           : 0
+2026-07-29 22:35:35 | INFO | Unknown        : 0
+2026-07-29 22:35:35 | INFO | Fixable        : 0
+2026-07-29 22:35:35 | INFO | Exploitable    : 0
+2026-07-29 22:35:35 | INFO | Compliance     : 100.0%
+2026-07-29 22:35:35 | INFO | Duration       : 0.01 sec
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | Trivy Parser Completed
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | [Trivy] Parser completed successfully.
+2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-29 22:35:35 | INFO | Trivy Parser Finished
+2026-07-29 22:35:35 | INFO | ======================================================================
