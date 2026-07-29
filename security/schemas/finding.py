@@ -1,30 +1,93 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
+from typing import Optional
+
 
 @dataclass
 class Finding:
 
-    tool: str
+    ############################################################
+    # Common Fields
+    ############################################################
 
+    tool: str
     category: str
 
     rule_id: str
 
     severity: str
 
-    file: str
+    file: Optional[str]
 
-    line: int
+    line: Optional[int]
 
-    message: str
+    message: Optional[str]
 
-    title: str | None = None
+    recommendation: Optional[str]
 
-    recommendation: str | None = None
+    status: str
 
-    impact: str | None = None
+    scan_time: str
 
-    reference: str | None = None
+    ############################################################
+    # Vulnerability Information
+    ############################################################
 
-    status: str = "OPEN"
+    package_name: Optional[str] = None
 
-    scan_time: str = ""
+    installed_version: Optional[str] = None
+
+    fixed_version: Optional[str] = None
+
+    ############################################################
+    # Security Metadata
+    ############################################################
+
+    cvss_score: Optional[float] = None
+
+    cwe: Optional[str] = None
+
+    cve: Optional[str] = None
+
+    severity_source: Optional[str] = None
+
+    ############################################################
+    # Resource Information
+    ############################################################
+
+    target: Optional[str] = None
+
+    target_class: Optional[str] = None
+
+    target_type: Optional[str] = None
+
+    ############################################################
+    # Documentation
+    ############################################################
+
+    description: Optional[str] = None
+
+    primary_url: Optional[str] = None
+
+    references: Optional[list] = None
+
+    ############################################################
+    # Future Compliance Fields
+    ############################################################
+
+    compliance: Optional[list] = None
+
+    exploit_available: Optional[bool] = None
+
+    fix_available: Optional[bool] = None
+
+    epss_score: Optional[float] = None
+
+    kev: Optional[bool] = None
+
+    ############################################################
+    # Serialization
+    ############################################################
+
+    def to_dict(self):
+
+        return asdict(self)
