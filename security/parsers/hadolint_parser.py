@@ -3,17 +3,23 @@ hadolint_parser.py
 
 Enterprise Hadolint Parser
 
-This parser converts Hadolint reports into the
-framework's normalized Finding objects.
+Converts Hadolint JSON reports into normalized Finding objects.
 
-Responsibilities
-----------------
-✔ Parse Hadolint JSON
-✔ Normalize severity
-✔ Attach recommendations
-✔ Create Finding objects
+Framework Responsibilities
+--------------------------
+BaseParser handles:
+    ✔ Report loading
+    ✔ Validation
+    ✔ Metadata generation
+    ✔ Statistics
+    ✔ Report generation
+    ✔ Report writing
+    ✔ Logging
+    ✔ Error handling
 
-Everything else is handled by BaseParser.
+This parser only implements:
+    ✔ Hadolint finding extraction
+    ✔ Rule recommendation lookup
 """
 
 from __future__ import annotations
@@ -51,26 +57,12 @@ OUTPUT_DIR = get(
 
 
 ############################################################
-# Hadolint Parser
+# Parser
 ############################################################
 
 class HadolintParser(BaseParser):
-
     """
     Enterprise Hadolint parser.
-
-    BaseParser performs:
-
-        ✔ Read report
-        ✔ Validate report
-        ✔ Metadata generation
-        ✔ Statistics
-        ✔ Report generation
-        ✔ Save report
-        ✔ Logging
-
-    This parser only converts Hadolint JSON
-    into normalized Finding objects.
     """
 
     ########################################################
@@ -94,20 +86,71 @@ class HadolintParser(BaseParser):
         )
 
     ########################################################
+    # Helper : Rule Lookup
+    ########################################################
+
+    def build_rule(
+        self,
+        item: dict
+    ) -> dict:
+        """
+        Returns recommendation information
+        for a Hadolint rule.
+        """
+
+        rule = get_recommendation(
+
+            TOOL_NAME,
+
+            item.get(
+                "code",
+                ""
+            )
+
+        )
+
+        if rule is not None:
+
+            return rule
+
+        logger.warning(
+
+            f"No recommendation found for "
+
+            f"{item.get('code')}"
+
+        )
+
+        return {
+
+            "title":
+
+                item.get(
+                    "code",
+                    "Unknown Rule"
+                ),
+
+            "recommendation":
+
+                "No recommendation available.",
+
+            "impact":
+
+                None,
+
+            "reference":
+
+                None
+
+        }
+
+    ########################################################
     # Extract Findings
     ########################################################
 
     def extract_findings(self):
-        """
-        Convert Hadolint JSON into
-        normalized Finding objects.
-        """
 
         findings = []
-
-        ####################################################
-        # Empty Report
-        ####################################################
 
         if not self.raw_report:
 
@@ -119,14 +162,9 @@ class HadolintParser(BaseParser):
 
             return findings
 
-        ####################################################
-        # Parse Every Finding
-        ####################################################
-
         for item in self.raw_report:
-
-            ################################################
-            # Normalize Severity
+                        ################################################
+            # Severity
             ################################################
 
             severity = normalize_severity(
@@ -142,21 +180,15 @@ class HadolintParser(BaseParser):
             )
 
             ################################################
-            # Recommendation Database
+            # Recommendation
             ################################################
 
-            recommendation = get_recommendation(
+            rule = self.build_rule(
 
-                TOOL_NAME,
-                item.get(
-
-                    "code",
-
-                    ""
-
-                )
+                item
 
             )
+
             ################################################
             # Build Finding
             ################################################
@@ -164,7 +196,7 @@ class HadolintParser(BaseParser):
             finding = Finding(
 
                 ################################################
-                # Framework
+                # Framework Fields
                 ################################################
 
                 tool=TOOL_NAME,
@@ -177,21 +209,9 @@ class HadolintParser(BaseParser):
 
                 rule_id=item.get(
 
-                    "code"
+                    "code",
 
-                ),
-
-                title=recommendation.get(
-
-                    "title",
-
-                    item.get(
-
-                        "code",
-
-                        ""
-
-                    )
+                    ""
 
                 ),
 
@@ -218,7 +238,7 @@ class HadolintParser(BaseParser):
                 ),
 
                 ################################################
-                # Description
+                # Message
                 ################################################
 
                 message=item.get(
@@ -231,27 +251,9 @@ class HadolintParser(BaseParser):
                 # Recommendation
                 ################################################
 
-                recommendation=recommendation.get(
+                recommendation=rule.get(
 
-                    "recommendation",
-
-                    "No recommendation available."
-
-                ),
-
-                impact=recommendation.get(
-
-                    "impact",
-
-                    ""
-
-                ),
-
-                reference=recommendation.get(
-
-                    "reference",
-
-                    ""
+                    "recommendation"
 
                 ),
 
@@ -261,12 +263,88 @@ class HadolintParser(BaseParser):
 
                 status=STATUS_OPEN,
 
-                scan_time=self.scan_time
+                scan_time=self.scan_time,
+
+                ################################################
+                # Package Information
+                ################################################
+
+                package_name=None,
+
+                installed_version=None,
+
+                fixed_version=None,
+
+                ################################################
+                # Vulnerability Metadata
+                ################################################
+
+                cvss_score=None,
+
+                cwe=None,
+
+                cve=None,
+
+                severity_source="Hadolint",
+
+                ################################################
+                # Resource Information
+                ################################################
+
+                target=item.get(
+
+                    "file"
+
+                ),
+
+                target_class="Dockerfile",
+
+                target_type="Container",
+
+                ################################################
+                # Documentation
+                ################################################
+
+                description=rule.get(
+
+                    "impact"
+
+                ),
+
+                primary_url=rule.get(
+
+                    "reference"
+
+                ),
+
+                references=[
+
+                    rule["reference"]
+
+                ] if rule.get(
+
+                    "reference"
+
+                ) else [],
+
+                ################################################
+                # Future Enterprise Fields
+                ################################################
+
+                compliance=[],
+
+                exploit_available=False,
+
+                fix_available=False,
+
+                epss_score=None,
+
+                kev=False
 
             )
 
             ################################################
-            # Add Finding
+            # Store Finding
             ################################################
 
             findings.append(
@@ -288,42 +366,36 @@ class HadolintParser(BaseParser):
         return findings
 
     ########################################################
-    # Lifecycle Hook
+    # Before Parse Hook
     ########################################################
 
     def before_parse(self):
-        """
-        Executed before parsing starts.
-
-        Future use:
-            - Load rule cache
-            - Download knowledge base
-            - Initialize database
-        """
 
         logger.info(
 
             f"[{TOOL_NAME}] Preparing parser..."
 
         )
-
-    ########################################################
-    # Lifecycle Hook
+        ########################################################
+    # After Parse Hook
     ########################################################
 
     def after_parse(self):
         """
         Executed after parsing completes.
 
-        Future use:
-            - Send notifications
-            - Push metrics
-            - Cleanup resources
+        Future Uses
+        -----------
+        • Push findings to database
+        • Generate HTML/PDF reports
+        • Send Slack/Teams notifications
+        • Upload normalized report to dashboard
+        • Export metrics to Prometheus
         """
 
         logger.info(
 
-            f"[{TOOL_NAME}] Parser finished successfully."
+            f"[{TOOL_NAME}] Parser completed successfully."
 
         )
 
@@ -346,12 +418,11 @@ registry.register(
 ############################################################
 
 def main():
+    """
+    Standalone entry point.
+    """
 
-    logger.info(
-
-        "=" * 70
-
-    )
+    logger.info("=" * 70)
 
     logger.info(
 
@@ -359,16 +430,26 @@ def main():
 
     )
 
-    logger.info(
-
-        "=" * 70
-
-    )
+    logger.info("=" * 70)
 
     parser = HadolintParser()
 
     parser.run()
 
+    logger.info("=" * 70)
+
+    logger.info(
+
+        "Hadolint Parser Finished"
+
+    )
+
+    logger.info("=" * 70)
+
+
+############################################################
+# Script Entry
+############################################################
 
 if __name__ == "__main__":
 

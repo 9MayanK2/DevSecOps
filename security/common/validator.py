@@ -3,8 +3,25 @@ validator.py
 
 Enterprise Validation Utilities
 
-Reusable validation functions used across
+Reusable validation functions shared across
 all security parsers.
+
+Current Support
+---------------
+✔ File validation
+✔ Directory validation
+✔ JSON validation
+✔ Report validation
+✔ Required key validation
+✔ Trivy validation
+✔ Hadolint validation
+
+Future
+------
+✔ SARIF
+✔ XML
+✔ YAML
+✔ CycloneDX
 """
 
 from __future__ import annotations
@@ -18,29 +35,37 @@ from security.core.exceptions import (
     InvalidReportError,
 )
 
-
 ############################################################
 # File Validation
 ############################################################
 
-def validate_file_exists(path: str | Path) -> None:
+def validate_file_exists(path: str | Path) -> Path:
     """
-    Ensure a report file exists.
+    Ensure file exists.
     """
 
     path = Path(path)
 
     if not path.exists():
+
         raise FileNotFoundError(
             f"Report not found: {path}"
         )
+
+    if not path.is_file():
+
+        raise ValidationError(
+            f"{path} is not a file."
+        )
+
+    return path
 
 
 ############################################################
 # Directory Validation
 ############################################################
 
-def validate_directory(path: str | Path) -> None:
+def validate_directory(path: str | Path) -> Path:
     """
     Ensure directory exists.
     """
@@ -59,17 +84,54 @@ def validate_directory(path: str | Path) -> None:
             f"{path} is not a directory."
         )
 
+    return path
+
+
+############################################################
+# File Extension Validation
+############################################################
+
+def validate_extension(
+    path: str | Path,
+    extensions: Iterable[str],
+) -> None:
+    """
+    Validate file extension.
+    """
+
+    path = Path(path)
+
+    allowed = {
+        ext.lower()
+        for ext in extensions
+    }
+
+    if path.suffix.lower() not in allowed:
+
+        raise ValidationError(
+
+            f"Unsupported file type: "
+
+            f"{path.suffix}"
+
+        )
+
 
 ############################################################
 # JSON Validation
 ############################################################
 
-def validate_json(path: str | Path) -> None:
+def validate_json(path: str | Path) -> dict | list:
     """
-    Ensure a file contains valid JSON.
+    Validate and return JSON.
     """
 
-    validate_file_exists(path)
+    path = validate_file_exists(path)
+
+    validate_extension(
+        path,
+        [".json"],
+    )
 
     try:
 
@@ -79,7 +141,7 @@ def validate_json(path: str | Path) -> None:
             encoding="utf-8"
         ) as fp:
 
-            json.load(fp)
+            return json.load(fp)
 
     except json.JSONDecodeError as ex:
 
@@ -89,13 +151,10 @@ def validate_json(path: str | Path) -> None:
 
 
 ############################################################
-# Dictionary Validation
+# Type Validation
 ############################################################
 
 def validate_dict(data: Any) -> None:
-    """
-    Ensure report is a dictionary.
-    """
 
     if not isinstance(data, dict):
 
@@ -104,14 +163,7 @@ def validate_dict(data: Any) -> None:
         )
 
 
-############################################################
-# List Validation
-############################################################
-
 def validate_list(data: Any) -> None:
-    """
-    Ensure report is a list.
-    """
 
     if not isinstance(data, list):
 
@@ -125,9 +177,6 @@ def validate_list(data: Any) -> None:
 ############################################################
 
 def validate_not_empty(data: Any) -> None:
-    """
-    Ensure report contains data.
-    """
 
     if data is None:
 
@@ -153,7 +202,7 @@ def validate_required_keys(
     keys: Iterable[str],
 ) -> None:
     """
-    Ensure required keys exist.
+    Validate required keys.
     """
 
     validate_dict(data)
@@ -180,30 +229,43 @@ def validate_required_keys(
 
 
 ############################################################
-# Generic Report Validation
+# Report Validation
 ############################################################
 
 def validate_report(data: Any) -> None:
     """
-    Generic validation used by BaseParser.
-
-    Accepts dictionary or list reports.
+    Generic report validation.
     """
 
     validate_not_empty(data)
 
     if not isinstance(
-
         data,
-
-        (dict, list)
-
+        (dict, list),
     ):
 
         raise ValidationError(
-
             "Unsupported report format."
+        )
 
+
+############################################################
+# Report Collection Validation
+############################################################
+
+def validate_report_collection(
+    reports: list,
+) -> None:
+    """
+    Validate a collection of reports.
+    """
+
+    validate_list(reports)
+
+    if len(reports) == 0:
+
+        raise ValidationError(
+            "No reports found."
         )
 
 
@@ -211,21 +273,18 @@ def validate_report(data: Any) -> None:
 # Trivy Validation
 ############################################################
 
-def validate_trivy_report(data: dict) -> None:
+def validate_trivy_report(
+    data: dict,
+) -> None:
     """
-    Validate minimum Trivy structure.
+    Validate Trivy report.
     """
 
     validate_required_keys(
-
         data,
-
         [
-
             "Results",
-
-        ]
-
+        ],
     )
 
 
@@ -233,7 +292,9 @@ def validate_trivy_report(data: dict) -> None:
 # Hadolint Validation
 ############################################################
 
-def validate_hadolint_report(data: list) -> None:
+def validate_hadolint_report(
+    data: list,
+) -> None:
     """
     Validate Hadolint report.
     """
@@ -241,3 +302,42 @@ def validate_hadolint_report(data: list) -> None:
     validate_list(data)
 
     validate_not_empty(data)
+
+
+############################################################
+# Future Validators
+############################################################
+
+def validate_semgrep_report(data: dict) -> None:
+    """
+    Placeholder for Semgrep validation.
+    """
+    pass
+
+
+def validate_bandit_report(data: dict) -> None:
+    """
+    Placeholder for Bandit validation.
+    """
+    pass
+
+
+def validate_gitleaks_report(data: dict) -> None:
+    """
+    Placeholder for Gitleaks validation.
+    """
+    pass
+
+
+def validate_checkov_report(data: dict) -> None:
+    """
+    Placeholder for Checkov validation.
+    """
+    pass
+
+
+def validate_zap_report(data: dict) -> None:
+    """
+    Placeholder for OWASP ZAP validation.
+    """
+    pass
