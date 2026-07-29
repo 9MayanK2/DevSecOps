@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.72.0"
   },
-  "ReportID": "019faed2-e260-710e-a026-c7db3459c475",
-  "CreatedAt": "2026-07-29T17:01:23.93607183Z",
+  "ReportID": "019faf6a-078c-749c-b6d0-2621d415f4c3",
+  "CreatedAt": "2026-07-29T19:46:29.38830636Z",
   "ArtifactID": "sha256:32bfc859ae5dc0f84a1294135a65644e916fde009882b5d05e2e62a2c7e9d17d",
   "ArtifactName": "hopegivers-backend:latest",
   "ArtifactType": "container_image",
@@ -7811,6 +7811,8 @@
             "https://access.redhat.com/errata/RHSA-2026:39868",
             "https://access.redhat.com/errata/RHSA-2026:41928",
             "https://access.redhat.com/errata/RHSA-2026:41947",
+            "https://access.redhat.com/errata/RHSA-2026:44237",
+            "https://access.redhat.com/errata/RHSA-2026:44263",
             "https://access.redhat.com/errata/RHSA-2026:44267",
             "https://access.redhat.com/security/cve/CVE-2026-42338",
             "https://bugzilla.redhat.com/2476810",
@@ -7863,7 +7865,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2026-42338"
           ],
           "PublishedDate": "2026-05-12T20:16:41.13Z",
-          "LastModifiedDate": "2026-07-28T13:18:31.567Z"
+          "LastModifiedDate": "2026-07-29T13:18:34.66Z"
         },
         {
           "VulnerabilityID": "GHSA-664h-wqgq-64gw",

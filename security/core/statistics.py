@@ -45,7 +45,7 @@ class Statistics:
 
         summary.scanned_targets = 1
 
-        summary.scanned_packages = summary.total
+        summary.scanned_packages = 0
 
         summary.scanned_files = Statistics.unique_files(findings)
 
@@ -126,7 +126,7 @@ class Statistics:
 
             finding,
 
-            "cvss",
+            "cvss_score",
 
             None
 
@@ -191,6 +191,8 @@ class Statistics:
             - summary.critical
 
             - summary.high
+
+            - summary.medium
 
         )
 

@@ -122,27 +122,11 @@ class HadolintParser(BaseParser):
         )
 
         return {
-
-            "title":
-
-                item.get(
-                    "code",
-                    "Unknown Rule"
-                ),
-
-            "recommendation":
-
-                "No recommendation available.",
-
-            "impact":
-
-                None,
-
-            "reference":
-
-                None
-
-        }
+    "title": item.get("code", "Unknown Rule"),
+    "description": item.get("message", ""),
+    "recommendation": "No recommendation available.",
+    "reference": None
+    }
 
     ########################################################
     # Extract Findings
@@ -285,7 +269,7 @@ class HadolintParser(BaseParser):
 
                 cve=None,
 
-                severity_source="Hadolint",
+                severity_source=TOOL_NAME,
 
                 ################################################
                 # Resource Information
@@ -305,27 +289,10 @@ class HadolintParser(BaseParser):
                 # Documentation
                 ################################################
 
-                description=rule.get(
+                description = rule.get("description"),
 
-                    "impact"
-
-                ),
-
-                primary_url=rule.get(
-
-                    "reference"
-
-                ),
-
-                references=[
-
-                    rule["reference"]
-
-                ] if rule.get(
-
-                    "reference"
-
-                ) else [],
+                primary_url=rule.get("references", [0]),
+                references = rule.get("references", []),
 
                 ################################################
                 # Future Enterprise Fields

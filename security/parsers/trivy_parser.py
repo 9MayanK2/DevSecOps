@@ -96,9 +96,7 @@ class TrivyParser(BaseParser):
 
     def build_metadata(self):
 
-        metadata = generate_metadata(
-            self.tool_name
-        )
+        metadata = super().build_metadata()
 
         metadata_section = self.raw_report.get(
             "Metadata",
@@ -359,18 +357,10 @@ class TrivyParser(BaseParser):
 
                     line=None,
 
-                    message=(
-
-                        vulnerability.get(
-                            "Title"
-                        )
-
-                        or
-
-                        vulnerability.get(
-                            "Description"
-                        )
-
+                    message = (
+                        vulnerability.get("Title")
+                        or vulnerability.get("PkgName")
+                        or "No title available"
                     ),
 
                     recommendation=rule.get(
@@ -405,12 +395,11 @@ class TrivyParser(BaseParser):
 
                     cve=vulnerability_id,
 
-                    cwe=vulnerability.get(
-                        "PrimaryURL"
-                    ),
+                    cwe = vulnerability.get("CweIDs"),
 
-                    severity_source=vulnerability.get(
-                        "SeveritySource"
+                    severity_source = (
+                        vulnerability.get("SeveritySource")
+                        or TOOL_NAME
                     ),
 
                     ################################################
@@ -428,7 +417,7 @@ class TrivyParser(BaseParser):
                     ################################################
 
                     description=rule.get(
-                        "impact"
+                        "description"
                     )
 
                     or

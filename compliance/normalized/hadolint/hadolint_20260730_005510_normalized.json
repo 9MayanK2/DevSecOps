@@ -2,7 +2,7 @@
     "tool": "Hadolint",
     "category": "Container Security",
     "scanner_type": "Static",
-    "scan_time": "2026-07-29T16:50:02.481973",
+    "scan_time": "2026-07-29T19:25:10.540364",
     "status": "PASS",
     "summary": {
         "total": 1,
@@ -16,7 +16,7 @@
         "exploitable": 0,
         "suppressed": 0,
         "scanned_targets": 1,
-        "scanned_packages": 1,
+        "scanned_packages": 0,
         "scanned_files": 1,
         "passed_checks": 0,
         "failed_checks": 0,
@@ -33,9 +33,9 @@
         "os_version": "6.8.0-134-generic",
         "python_version": "3.10.12",
         "git_branch": "features",
-        "git_commit": "4e5c785",
-        "scan_id": "HADOLINT-20260729165002-2F85A9",
-        "generated_at": "2026-07-29T16:50:02.493946"
+        "git_commit": "f35fa02",
+        "scan_id": "HADOLINT-20260729192510-FE07A5",
+        "generated_at": "2026-07-29T19:25:10.539857"
     },
     "findings": [
         {
@@ -48,7 +48,7 @@
             "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
             "recommendation": "Include a standardized image creation timestamp.",
             "status": "OPEN",
-            "scan_time": "2026-07-29T16:50:02.481973",
+            "scan_time": null,
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -59,8 +59,8 @@
             "target": "/workspace/app/client/Dockerfile",
             "target_class": "Dockerfile",
             "target_type": "Container",
-            "description": "Improves auditability and release tracking.",
-            "primary_url": "https://github.com/hadolint/hadolint/wiki/DL3059",
+            "description": "Multiple consecutive RUN instructions increase the number of image layers and can make Dockerfiles harder to maintain.",
+            "primary_url": null,
             "references": [
                 "https://github.com/hadolint/hadolint/wiki/DL3059"
             ],

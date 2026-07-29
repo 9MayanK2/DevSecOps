@@ -191,3 +191,342 @@ security.core.exceptions.ReportNotFoundError: No reports found in compliance/rep
 2026-07-29 22:35:35 | INFO | ======================================================================
 2026-07-29 22:35:35 | INFO | Trivy Parser Finished
 2026-07-29 22:35:35 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | Registered parser: hadolint
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | Starting Hadolint Parser
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | [Hadolint] Preparing parser...
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | Starting Hadolint Parser
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | [Hadolint] Loading report...
+2026-07-30 00:30:43 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 00:30:43 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 00:30:43 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 00:30:43 | INFO | [Hadolint] Validating report...
+2026-07-30 00:30:43 | INFO | [Hadolint] Generating metadata...
+2026-07-30 00:30:43 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 00:30:43 | INFO | Parsed 1 Hadolint findings.
+2026-07-30 00:30:43 | INFO | [Hadolint] Calculating statistics...
+2026-07-30 00:30:43 | INFO | [Hadolint] Building normalized report...
+2026-07-30 00:30:43 | INFO | [Hadolint] Saving report...
+2026-07-30 00:30:43 | INFO | Writing report: hadolint_20260730_003043_normalized.json
+2026-07-30 00:30:43 | INFO | Report written successfully: hadolint_20260730_003043_normalized.json
+2026-07-30 00:30:43 | INFO | [Hadolint] Report saved successfully.
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | Hadolint Scan Summary
+2026-07-30 00:30:43 | INFO | ----------------------------------------------------------------------
+2026-07-30 00:30:43 | INFO | Status         : PASS
+2026-07-30 00:30:43 | INFO | Total          : 1
+2026-07-30 00:30:43 | INFO | Critical       : 0
+2026-07-30 00:30:43 | INFO | High           : 0
+2026-07-30 00:30:43 | INFO | Medium         : 0
+2026-07-30 00:30:43 | INFO | Low            : 0
+2026-07-30 00:30:43 | INFO | Info           : 1
+2026-07-30 00:30:43 | INFO | Unknown        : 0
+2026-07-30 00:30:43 | INFO | Fixable        : 0
+2026-07-30 00:30:43 | INFO | Exploitable    : 0
+2026-07-30 00:30:43 | INFO | Compliance     : 100.0%
+2026-07-30 00:30:43 | INFO | Duration       : 0.01 sec
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | Hadolint Parser Completed
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | [Hadolint] Parser completed successfully.
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:30:43 | INFO | Hadolint Parser Finished
+2026-07-30 00:30:43 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | Registered parser: hadolint
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | Starting Hadolint Parser
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | [Hadolint] Preparing parser...
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | Starting Hadolint Parser
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | [Hadolint] Loading report...
+2026-07-30 00:44:45 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 00:44:45 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 00:44:45 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 00:44:45 | INFO | [Hadolint] Validating report...
+2026-07-30 00:44:45 | INFO | [Hadolint] Generating metadata...
+2026-07-30 00:44:45 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 00:44:45 | INFO | Parsed 1 Hadolint findings.
+2026-07-30 00:44:45 | INFO | [Hadolint] Calculating statistics...
+2026-07-30 00:44:45 | INFO | [Hadolint] Building normalized report...
+2026-07-30 00:44:45 | INFO | [Hadolint] Saving report...
+2026-07-30 00:44:45 | INFO | Writing report: hadolint_20260730_004445_normalized.json
+2026-07-30 00:44:45 | INFO | Report written successfully: hadolint_20260730_004445_normalized.json
+2026-07-30 00:44:45 | INFO | [Hadolint] Report saved successfully.
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | Hadolint Scan Summary
+2026-07-30 00:44:45 | INFO | ----------------------------------------------------------------------
+2026-07-30 00:44:45 | INFO | Status         : PASS
+2026-07-30 00:44:45 | INFO | Total          : 1
+2026-07-30 00:44:45 | INFO | Critical       : 0
+2026-07-30 00:44:45 | INFO | High           : 0
+2026-07-30 00:44:45 | INFO | Medium         : 0
+2026-07-30 00:44:45 | INFO | Low            : 0
+2026-07-30 00:44:45 | INFO | Info           : 1
+2026-07-30 00:44:45 | INFO | Unknown        : 0
+2026-07-30 00:44:45 | INFO | Fixable        : 0
+2026-07-30 00:44:45 | INFO | Exploitable    : 0
+2026-07-30 00:44:45 | INFO | Compliance     : 100.0%
+2026-07-30 00:44:45 | INFO | Duration       : 0.01 sec
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | Hadolint Parser Completed
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | [Hadolint] Parser completed successfully.
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:44:45 | INFO | Hadolint Parser Finished
+2026-07-30 00:44:45 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | Registered parser: hadolint
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | Starting Hadolint Parser
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | [Hadolint] Preparing parser...
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | Starting Hadolint Parser
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | [Hadolint] Loading report...
+2026-07-30 00:55:10 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 00:55:10 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 00:55:10 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 00:55:10 | INFO | [Hadolint] Validating report...
+2026-07-30 00:55:10 | INFO | [Hadolint] Generating metadata...
+2026-07-30 00:55:10 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 00:55:10 | INFO | Parsed 1 Hadolint findings.
+2026-07-30 00:55:10 | INFO | [Hadolint] Calculating statistics...
+2026-07-30 00:55:10 | INFO | [Hadolint] Building normalized report...
+2026-07-30 00:55:10 | INFO | [Hadolint] Saving report...
+2026-07-30 00:55:10 | INFO | Writing report: hadolint_20260730_005510_normalized.json
+2026-07-30 00:55:10 | INFO | Report written successfully: hadolint_20260730_005510_normalized.json
+2026-07-30 00:55:10 | INFO | [Hadolint] Report saved successfully.
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | Hadolint Scan Summary
+2026-07-30 00:55:10 | INFO | ----------------------------------------------------------------------
+2026-07-30 00:55:10 | INFO | Status         : PASS
+2026-07-30 00:55:10 | INFO | Total          : 1
+2026-07-30 00:55:10 | INFO | Critical       : 0
+2026-07-30 00:55:10 | INFO | High           : 0
+2026-07-30 00:55:10 | INFO | Medium         : 0
+2026-07-30 00:55:10 | INFO | Low            : 0
+2026-07-30 00:55:10 | INFO | Info           : 1
+2026-07-30 00:55:10 | INFO | Unknown        : 0
+2026-07-30 00:55:10 | INFO | Fixable        : 0
+2026-07-30 00:55:10 | INFO | Exploitable    : 0
+2026-07-30 00:55:10 | INFO | Compliance     : 100.0%
+2026-07-30 00:55:10 | INFO | Duration       : 0.01 sec
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | Hadolint Parser Completed
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | [Hadolint] Parser completed successfully.
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 00:55:10 | INFO | Hadolint Parser Finished
+2026-07-30 00:55:10 | INFO | ======================================================================
+2026-07-30 01:03:03 | INFO | Registered parser: hadolint
+2026-07-30 01:03:03 | INFO | ======================================================================
+2026-07-30 01:03:03 | INFO | Starting Hadolint Parser
+2026-07-30 01:03:03 | INFO | ======================================================================
+2026-07-30 01:03:03 | INFO | [Hadolint] Preparing parser...
+2026-07-30 01:03:03 | INFO | ======================================================================
+2026-07-30 01:03:03 | INFO | Starting Hadolint Parser
+2026-07-30 01:03:03 | INFO | ======================================================================
+2026-07-30 01:03:03 | INFO | [Hadolint] Loading report...
+2026-07-30 01:03:03 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 01:03:03 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 01:03:03 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 01:03:03 | INFO | [Hadolint] Validating report...
+2026-07-30 01:03:03 | INFO | [Hadolint] Generating metadata...
+2026-07-30 01:03:03 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 01:03:03 | ERROR | [Hadolint] Parser failed.
+Traceback (most recent call last):
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 522, in run
+    self.execute()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 486, in execute
+    self.findings = self.extract_findings()
+  File "/home/jaggu/Projects/DevSecOps/security/parsers/hadolint_parser.py", line 250, in extract_findings
+    scan_time=scan_time,
+NameError: name 'scan_time' is not defined
+2026-07-30 01:04:29 | INFO | Registered parser: hadolint
+2026-07-30 01:04:29 | INFO | ======================================================================
+2026-07-30 01:04:29 | INFO | Starting Hadolint Parser
+2026-07-30 01:04:29 | INFO | ======================================================================
+2026-07-30 01:04:29 | INFO | [Hadolint] Preparing parser...
+2026-07-30 01:04:29 | INFO | ======================================================================
+2026-07-30 01:04:29 | INFO | Starting Hadolint Parser
+2026-07-30 01:04:29 | INFO | ======================================================================
+2026-07-30 01:04:29 | INFO | [Hadolint] Loading report...
+2026-07-30 01:04:29 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 01:04:29 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 01:04:29 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 01:04:29 | INFO | [Hadolint] Validating report...
+2026-07-30 01:04:29 | INFO | [Hadolint] Generating metadata...
+2026-07-30 01:04:29 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 01:04:29 | ERROR | [Hadolint] Parser failed.
+Traceback (most recent call last):
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 522, in run
+    self.execute()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 486, in execute
+    self.findings = self.extract_findings()
+  File "/home/jaggu/Projects/DevSecOps/security/parsers/hadolint_parser.py", line 250, in extract_findings
+    scan_time=self.scan_metadata["scan_time"],
+AttributeError: 'HadolintParser' object has no attribute 'scan_metadata'
+2026-07-30 01:05:09 | INFO | Registered parser: hadolint
+2026-07-30 01:05:09 | INFO | ======================================================================
+2026-07-30 01:05:09 | INFO | Starting Hadolint Parser
+2026-07-30 01:05:09 | INFO | ======================================================================
+2026-07-30 01:05:09 | INFO | [Hadolint] Preparing parser...
+2026-07-30 01:05:09 | INFO | ======================================================================
+2026-07-30 01:05:09 | INFO | Starting Hadolint Parser
+2026-07-30 01:05:09 | INFO | ======================================================================
+2026-07-30 01:05:09 | INFO | [Hadolint] Loading report...
+2026-07-30 01:05:09 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 01:05:09 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 01:05:09 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 01:05:09 | INFO | [Hadolint] Validating report...
+2026-07-30 01:05:09 | INFO | [Hadolint] Generating metadata...
+2026-07-30 01:05:09 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 01:05:09 | ERROR | [Hadolint] Parser failed.
+Traceback (most recent call last):
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 522, in run
+    self.execute()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 486, in execute
+    self.findings = self.extract_findings()
+  File "/home/jaggu/Projects/DevSecOps/security/parsers/hadolint_parser.py", line 250, in extract_findings
+    scan_time=self.report.get("scan_time"),
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-07-30 01:05:53 | INFO | Registered parser: hadolint
+2026-07-30 01:05:53 | INFO | ======================================================================
+2026-07-30 01:05:53 | INFO | Starting Hadolint Parser
+2026-07-30 01:05:53 | INFO | ======================================================================
+2026-07-30 01:05:53 | INFO | [Hadolint] Preparing parser...
+2026-07-30 01:05:53 | INFO | ======================================================================
+2026-07-30 01:05:53 | INFO | Starting Hadolint Parser
+2026-07-30 01:05:53 | INFO | ======================================================================
+2026-07-30 01:05:53 | INFO | [Hadolint] Loading report...
+2026-07-30 01:05:53 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 01:05:53 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 01:05:53 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 01:05:53 | INFO | [Hadolint] Validating report...
+2026-07-30 01:05:53 | INFO | [Hadolint] Generating metadata...
+2026-07-30 01:05:53 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 01:05:53 | ERROR | [Hadolint] Parser failed.
+Traceback (most recent call last):
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 522, in run
+    self.execute()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 486, in execute
+    self.findings = self.extract_findings()
+  File "/home/jaggu/Projects/DevSecOps/security/parsers/hadolint_parser.py", line 294, in extract_findings
+    primary_url=references[0] if references else None,
+NameError: name 'references' is not defined
+2026-07-30 01:08:28 | INFO | Registered parser: hadolint
+2026-07-30 01:08:28 | INFO | ======================================================================
+2026-07-30 01:08:28 | INFO | Starting Hadolint Parser
+2026-07-30 01:08:28 | INFO | ======================================================================
+2026-07-30 01:08:28 | INFO | [Hadolint] Preparing parser...
+2026-07-30 01:08:28 | INFO | ======================================================================
+2026-07-30 01:08:28 | INFO | Starting Hadolint Parser
+2026-07-30 01:08:28 | INFO | ======================================================================
+2026-07-30 01:08:28 | INFO | [Hadolint] Loading report...
+2026-07-30 01:08:28 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 01:08:28 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 01:08:28 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 01:08:28 | INFO | [Hadolint] Validating report...
+2026-07-30 01:08:28 | INFO | [Hadolint] Generating metadata...
+2026-07-30 01:08:28 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 01:08:28 | ERROR | [Hadolint] Parser failed.
+Traceback (most recent call last):
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 522, in run
+    self.execute()
+  File "/home/jaggu/Projects/DevSecOps/security/core/base_parser.py", line 486, in execute
+    self.findings = self.extract_findings()
+  File "/home/jaggu/Projects/DevSecOps/security/parsers/hadolint_parser.py", line 294, in extract_findings
+    primary_url=references[0] if references else None,
+NameError: name 'references' is not defined
+2026-07-30 01:11:05 | INFO | Registered parser: hadolint
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | Starting Hadolint Parser
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | [Hadolint] Preparing parser...
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | Starting Hadolint Parser
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | [Hadolint] Loading report...
+2026-07-30 01:11:05 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/hadolint/frontend_20260730_002432.json
+2026-07-30 01:11:05 | INFO | Reading report: frontend_20260730_002432.json
+2026-07-30 01:11:05 | INFO | Successfully loaded frontend_20260730_002432.json
+2026-07-30 01:11:05 | INFO | [Hadolint] Validating report...
+2026-07-30 01:11:05 | INFO | [Hadolint] Generating metadata...
+2026-07-30 01:11:05 | INFO | Loaded 66 rules for hadolint.
+2026-07-30 01:11:05 | INFO | Parsed 1 Hadolint findings.
+2026-07-30 01:11:05 | INFO | [Hadolint] Calculating statistics...
+2026-07-30 01:11:05 | INFO | [Hadolint] Building normalized report...
+2026-07-30 01:11:05 | INFO | [Hadolint] Saving report...
+2026-07-30 01:11:05 | INFO | Writing report: hadolint_20260730_011105_normalized.json
+2026-07-30 01:11:05 | INFO | Report written successfully: hadolint_20260730_011105_normalized.json
+2026-07-30 01:11:05 | INFO | [Hadolint] Report saved successfully.
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | Hadolint Scan Summary
+2026-07-30 01:11:05 | INFO | ----------------------------------------------------------------------
+2026-07-30 01:11:05 | INFO | Status         : PASS
+2026-07-30 01:11:05 | INFO | Total          : 1
+2026-07-30 01:11:05 | INFO | Critical       : 0
+2026-07-30 01:11:05 | INFO | High           : 0
+2026-07-30 01:11:05 | INFO | Medium         : 0
+2026-07-30 01:11:05 | INFO | Low            : 0
+2026-07-30 01:11:05 | INFO | Info           : 1
+2026-07-30 01:11:05 | INFO | Unknown        : 0
+2026-07-30 01:11:05 | INFO | Fixable        : 0
+2026-07-30 01:11:05 | INFO | Exploitable    : 0
+2026-07-30 01:11:05 | INFO | Compliance     : 100.0%
+2026-07-30 01:11:05 | INFO | Duration       : 0.02 sec
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | Hadolint Parser Completed
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | [Hadolint] Parser completed successfully.
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:11:05 | INFO | Hadolint Parser Finished
+2026-07-30 01:11:05 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | Registered parser: trivy
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | Starting Trivy Parser
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | [Trivy] Preparing parser...
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | Starting Trivy Parser
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | [Trivy] Loading report...
+2026-07-30 01:17:45 | INFO | Using report: /home/jaggu/Projects/DevSecOps/compliance/reports/trivy/frontend_20260730_011516.json
+2026-07-30 01:17:45 | INFO | Reading report: frontend_20260730_011516.json
+2026-07-30 01:17:45 | INFO | Successfully loaded frontend_20260730_011516.json
+2026-07-30 01:17:45 | INFO | [Trivy] Validating report...
+2026-07-30 01:17:45 | INFO | [Trivy] Generating metadata...
+2026-07-30 01:17:45 | INFO | Parsed 0 Trivy findings.
+2026-07-30 01:17:45 | INFO | [Trivy] Calculating statistics...
+2026-07-30 01:17:45 | INFO | [Trivy] Building normalized report...
+2026-07-30 01:17:45 | INFO | [Trivy] Saving report...
+2026-07-30 01:17:45 | INFO | Writing report: trivy_20260730_011745_normalized.json
+2026-07-30 01:17:45 | INFO | Report written successfully: trivy_20260730_011745_normalized.json
+2026-07-30 01:17:45 | INFO | [Trivy] Report saved successfully.
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | Trivy Scan Summary
+2026-07-30 01:17:45 | INFO | ----------------------------------------------------------------------
+2026-07-30 01:17:45 | INFO | Status         : PASS
+2026-07-30 01:17:45 | INFO | Total          : 0
+2026-07-30 01:17:45 | INFO | Critical       : 0
+2026-07-30 01:17:45 | INFO | High           : 0
+2026-07-30 01:17:45 | INFO | Medium         : 0
+2026-07-30 01:17:45 | INFO | Low            : 0
+2026-07-30 01:17:45 | INFO | Info           : 0
+2026-07-30 01:17:45 | INFO | Unknown        : 0
+2026-07-30 01:17:45 | INFO | Fixable        : 0
+2026-07-30 01:17:45 | INFO | Exploitable    : 0
+2026-07-30 01:17:45 | INFO | Compliance     : 100.0%
+2026-07-30 01:17:45 | INFO | Duration       : 0.01 sec
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | Trivy Parser Completed
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | [Trivy] Parser completed successfully.
+2026-07-30 01:17:45 | INFO | ======================================================================
+2026-07-30 01:17:45 | INFO | Trivy Parser Finished
+2026-07-30 01:17:45 | INFO | ======================================================================
