@@ -169,7 +169,7 @@ def get_recommendation(
 
     rules = load_rule_database(scanner)
 
-    return rules.get(rule_id, DEFAULT_RULE.copy())
+    return rules.get(rule_id)
 
 ############################################################
 # Automatic Recommendation Builder
@@ -216,10 +216,10 @@ def build_generic_recommendation(
         refs = []
 
     return {
-    "title": title or "Security Finding",
-    "description": description,
-    "recommendation": recommendation,
-    "references": references or ([reference] if reference else [])
+        "title": title or "Security Finding",
+        "description": description or "No description available.",
+        "recommendation": recommendation,
+        "references": refs
     }
 ############################################################
 # Unified Recommendation API
