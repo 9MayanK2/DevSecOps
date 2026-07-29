@@ -251,6 +251,9 @@ class BaseParser(ABC):
         if self.summary.high > 0:
             return "FAIL"
 
+        if self.summary.medium > 0:
+            return "WARN"
+
         return "PASS"
 
     ############################################################
@@ -474,8 +477,6 @@ class BaseParser(ABC):
 
         self.validate()
 
-        self.build_scan_time()
-
         self.build_metadata()
 
         ########################################################
@@ -483,6 +484,8 @@ class BaseParser(ABC):
         ########################################################
 
         self.findings = self.extract_findings()
+
+        self.build_scan_time()
 
         ########################################################
         # Framework Steps

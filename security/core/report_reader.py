@@ -83,7 +83,13 @@ class ReportReader:
 
             ) as fp:
 
-                return json.load(fp)
+                data = json.load(fp)
+
+                logger.info(
+                f"Successfully loaded {report_file.name}"
+                )
+
+                return data
 
         except json.JSONDecodeError as ex:
 
@@ -100,13 +106,9 @@ class ReportReader:
     def latest_report(self):
 
         reports = sorted(
-
             self.report_directory.glob("*.json"),
-
             key=lambda file: file.stat().st_mtime,
-
-            reverse=True
-
+            reverse=True,
         )
 
         if not reports:
@@ -118,9 +120,7 @@ class ReportReader:
             )
 
         logger.info(
-
-            f"Latest report: {reports[0].name}"
-
+            f"Using report: {reports[0].resolve()}"
         )
 
         return self.read_json(

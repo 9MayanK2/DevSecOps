@@ -44,7 +44,7 @@ class Finding:
 
     cvss_score: Optional[float] = None
 
-    cwe: Optional[str] = None
+    cwe: Optional[list[str]] = None
 
     cve: Optional[str] = None
 
@@ -68,7 +68,7 @@ class Finding:
 
     primary_url: Optional[str] = None
 
-    references: Optional[list] = None
+    references: list[str] | None = None
 
     ############################################################
     # Future Compliance Fields
@@ -91,3 +91,4 @@ class Finding:
     def to_dict(self):
 
         return asdict(self)
+

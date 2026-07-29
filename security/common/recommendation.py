@@ -46,17 +46,10 @@ _RULE_CACHE: Dict[str, dict] = {}
 ############################################################
 
 DEFAULT_RULE = {
-
     "title": "Security Finding",
-
-    "recommendation":
-        "Review the finding manually.",
-
-    "impact":
-        "Unknown",
-
-    "reference": None
-
+    "description": "No description available.",
+    "recommendation": "Review the finding manually.",
+    "references": []
 }
 
 ############################################################
@@ -176,7 +169,7 @@ def get_recommendation(
 
     rules = load_rule_database(scanner)
 
-    return rules.get(rule_id)
+    return rules.get(rule_id, DEFAULT_RULE.copy())
 
 ############################################################
 # Automatic Recommendation Builder
@@ -215,30 +208,18 @@ def build_generic_recommendation(
 
         recommendation = default_recommendation
 
-    reference = (
-
-        references[0]
-
-        if references
-
-        else default_reference
-
-    )
+    if references:
+        refs = references
+    elif default_reference:
+        refs = [default_reference]
+    else:
+        refs = []
 
     return {
-
-        "title":
-            title or "Security Finding",
-
-        "recommendation":
-            recommendation,
-
-        "impact":
-            description,
-
-        "reference":
-            reference
-
+    "title": title or "Security Finding",
+    "description": description,
+    "recommendation": recommendation,
+    "references": references or ([reference] if reference else [])
     }
 ############################################################
 # Unified Recommendation API
@@ -272,17 +253,10 @@ def resolve_recommendation(
     if local_rule:
 
         return {
-            "title":
-                local_rule.get("title", title),
-
-            "recommendation":
-                local_rule.get("recommendation"),
-
-            "impact":
-                local_rule.get("impact", description),
-
-            "reference":
-                local_rule.get("reference"),
+            "title": local_rule.get("title", title),
+            "description": local_rule.get("description", description),
+            "recommendation": local_rule.get("recommendation"),
+            "references": local_rule.get("references", [])
         }
 
     generic = build_generic_recommendation(
