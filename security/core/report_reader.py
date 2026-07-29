@@ -106,7 +106,7 @@ class ReportReader:
     def latest_report(self):
 
         reports = sorted(
-            self.report_directory.glob("*.json"),
+            [f for f in self.report_directory.glob("*.json") if "_normalized" not in f.name],
             key=lambda file: file.stat().st_mtime,
             reverse=True,
         )
@@ -128,6 +128,43 @@ class ReportReader:
             reports[0].name
 
         )
+
+    ###########################################################
+    # Read Latest Raw Reports (By Target Prefix)
+    ###########################################################
+
+    def latest_raw_reports(self):
+        """
+        Discovers the latest raw (un-normalized) report for each target prefix
+        (e.g., 'backend_*.json', 'frontend_*.json').
+
+        Returns:
+            List[Tuple[str, Any]]: List of (filename, report_data) tuples.
+        """
+        raw_reports = [
+            f for f in self.report_directory.glob("*.json")
+            if "_normalized" not in f.name
+        ]
+
+        if not raw_reports:
+            raise ReportNotFoundError(
+                f"No raw reports found in {self.report_directory}"
+            )
+
+        grouped = {}
+        for rpath in raw_reports:
+            filename = rpath.name
+            prefix = filename.split("_")[0] if "_" in filename else "default"
+            mtime = rpath.stat().st_mtime
+            if prefix not in grouped or mtime > grouped[prefix][0]:
+                grouped[prefix] = (mtime, filename)
+
+        results = []
+        for prefix, (mtime, filename) in grouped.items():
+            data = self.read_json(filename)
+            results.append((filename, data))
+
+        return results
 
     ###########################################################
     # Read All Reports

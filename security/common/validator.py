@@ -301,8 +301,6 @@ def validate_hadolint_report(
 
     validate_list(data)
 
-    validate_not_empty(data)
-
 
 ############################################################
 # Future Validators

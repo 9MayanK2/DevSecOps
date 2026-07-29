@@ -118,6 +118,10 @@ class BaseParser(ABC):
 
         self.raw_report: Any = None
 
+        self.raw_reports: list[tuple[str, Any]] = []
+
+        self.current_filename: str | None = None
+
         self.findings: List[Finding] = []
 
         self.summary: Summary | None = None
@@ -148,27 +152,35 @@ class BaseParser(ABC):
     ) -> Any:
 
         """
-        Load report.
+        Load report(s).
 
         If filename is None,
-        latest report is loaded.
+        all latest raw reports (by target prefix) are loaded.
         """
 
         logger.info(
-            f"[{self.tool_name}] Loading report..."
+            f"[{self.tool_name}] Loading report(s)..."
         )
 
         if filename:
 
-            self.raw_report = self.reader.read_json(
+            data = self.reader.read_json(
                 filename
             )
 
+            self.raw_reports = [(filename, data)]
+
+            self.raw_report = data
+
         else:
 
-            self.raw_report = self.reader.latest_report()
+            self.raw_reports = self.reader.latest_raw_reports()
 
-        return self.raw_report
+            if self.raw_reports:
+
+                self.raw_report = self.raw_reports[0][1]
+
+        return self.raw_reports
 
     ############################################################
     # Validation
@@ -292,15 +304,25 @@ class BaseParser(ABC):
     # Output Filename
     ############################################################
 
-    def output_filename(self) -> str:
+    def output_filename(self, source_filename: str | None = None) -> str:
 
         timestamp = datetime.now().strftime(
             "%Y%m%d_%H%M%S"
         )
 
+        target_prefix = ""
+        src_name = source_filename or self.current_filename
+        if src_name:
+            base = Path(src_name).stem.replace("_normalized", "")
+            parts = base.split("_")
+            if parts[0] in ("backend", "frontend"):
+                target_prefix = f"_{parts[0]}"
+
         return (
 
             f"{self.tool_name.lower()}"
+
+            f"{target_prefix}"
 
             f"_{timestamp}"
 
@@ -312,7 +334,7 @@ class BaseParser(ABC):
     # Save Report
     ############################################################
 
-    def save_report(self) -> None:
+    def save_report(self, filename: str | None = None) -> None:
 
         logger.info(
             f"[{self.tool_name}] Saving report..."
@@ -322,7 +344,7 @@ class BaseParser(ABC):
 
             self.report,
 
-            self.output_filename()
+            self.output_filename(filename or self.current_filename)
 
         )
 
@@ -473,29 +495,43 @@ class BaseParser(ABC):
         # Framework Steps
         ########################################################
 
-        self.load_report()
+        if not self.raw_reports:
 
-        self.validate()
+            self.load_report()
 
-        self.build_metadata()
+        all_findings = []
 
-        ########################################################
-        # Child Parser
-        ########################################################
+        for filename, data in self.raw_reports:
 
-        self.findings = self.extract_findings()
+            self.current_filename = filename
 
-        self.build_scan_time()
+            self.raw_report = data
 
-        ########################################################
-        # Framework Steps
-        ########################################################
+            logger.info(
+
+                f"[{self.tool_name}] Processing {filename}..."
+
+            )
+
+            self.validate()
+
+            self.build_metadata()
+
+            self.findings = self.extract_findings()
+
+            all_findings.extend(self.findings)
+
+            self.build_scan_time()
+
+            self.build_summary()
+
+            self.build_report()
+
+            self.save_report(filename)
+
+        self.findings = all_findings
 
         self.build_summary()
-
-        self.build_report()
-
-        self.save_report()
 
         self.stop_timer()
 

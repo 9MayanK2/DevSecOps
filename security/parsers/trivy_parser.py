@@ -62,6 +62,22 @@ OUTPUT_DIR = get(
 
 
 ############################################################
+# Helper : Trim Description
+############################################################
+
+def trim_description(text: str | None, max_length: int = 150) -> str | None:
+    if not text:
+        return text
+
+    cleaned = " ".join(text.split()).strip()
+
+    if len(cleaned) > max_length:
+        return cleaned[:max_length].rstrip() + "..."
+
+    return cleaned
+
+
+############################################################
 # Trivy Parser
 ############################################################
 
@@ -150,6 +166,24 @@ class TrivyParser(BaseParser):
         self.metadata = metadata
 
         return metadata
+
+    ########################################################
+    # Summary Override (Dynamic Package Counting)
+    ########################################################
+
+    def build_summary(self) -> Summary:
+        summary = super().build_summary()
+
+        if self.raw_report and isinstance(self.raw_report, dict):
+            scanned_pkgs = 0
+            results = self.raw_report.get("Results", [])
+            for result in results:
+                pkgs = result.get("Packages", [])
+                if isinstance(pkgs, list):
+                    scanned_pkgs += len(pkgs)
+            summary.scanned_packages = scanned_pkgs
+
+        return summary
 
     ########################################################
     # Helper : Extract CVSS
@@ -395,7 +429,7 @@ class TrivyParser(BaseParser):
 
                     cve=vulnerability_id,
 
-                    cwe = vulnerability.get("CweIDs"),
+                    cwe=vulnerability.get("CweIDs"),
 
                     severity_source = (
                         vulnerability.get("SeveritySource")
@@ -416,23 +450,16 @@ class TrivyParser(BaseParser):
                     # Documentation
                     ################################################
 
-                    description=rule.get(
-                        "description"
-                    )
-
-                    or
-
-                    vulnerability.get(
-                        "Description"
+                    description=trim_description(
+                        rule.get("description")
+                        or vulnerability.get("Description")
                     ),
 
-                    primary_url=rule.get(
-                        "reference"
-                    )
-
-                    or
-
-                    primary_reference,
+                    primary_url=(
+                        rule.get("reference")
+                        or (rule.get("references")[0] if rule.get("references") else None)
+                        or primary_reference
+                    ),
 
                     references=references,
 
@@ -442,7 +469,7 @@ class TrivyParser(BaseParser):
 
                     compliance=[],
 
-                    exploit_available=False,
+                    exploit_available=bool(cvss_score and cvss_score >= 7.0),
 
                     fix_available=bool(
 

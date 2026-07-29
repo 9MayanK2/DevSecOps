@@ -36,6 +36,7 @@ from security.common.status import STATUS_OPEN
 from security.common.categories import CATEGORY_CONTAINER
 from security.common.scanner_type import SCANNER_STATIC
 
+from security.common.validator import validate_hadolint_report
 from security.config.config_loader import get
 
 
@@ -84,6 +85,14 @@ class HadolintParser(BaseParser):
             output_directory=OUTPUT_DIR
 
         )
+
+    ########################################################
+    # Validation Override
+    ########################################################
+
+    def validate(self) -> None:
+        logger.info(f"[{self.tool_name}] Validating report...")
+        validate_hadolint_report(self.raw_report)
 
     ########################################################
     # Helper : Rule Lookup
@@ -289,10 +298,14 @@ class HadolintParser(BaseParser):
                 # Documentation
                 ################################################
 
-                description = rule.get("description"),
+                description=rule.get("description"),
 
-                primary_url=rule.get("references", [0]),
-                references = rule.get("references", []),
+                primary_url=(
+                    rule.get("references")[0]
+                    if rule.get("references")
+                    else None
+                ),
+                references=rule.get("references", []),
 
                 ################################################
                 # Future Enterprise Fields
