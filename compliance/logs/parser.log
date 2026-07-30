@@ -112,3 +112,182 @@
 2026-07-30 03:29:58 | INFO | ======================================================================
 2026-07-30 03:29:58 | INFO | Hadolint Parser Finished
 2026-07-30 03:29:58 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | Registered parser: gitleaks
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | Starting Gitleaks Parser
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | [Gitleaks] Preparing parser...
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | Starting Gitleaks Parser
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | [Gitleaks] Loading report(s)...
+2026-07-30 15:00:30 | INFO | Reading report: gitleaks_20260730_145959.json
+2026-07-30 15:00:30 | INFO | Successfully loaded gitleaks_20260730_145959.json
+2026-07-30 15:00:30 | INFO | [Gitleaks] Processing gitleaks_20260730_145959.json...
+2026-07-30 15:00:30 | INFO | [Gitleaks] Validating report...
+2026-07-30 15:00:30 | INFO | [Gitleaks] Generating metadata...
+2026-07-30 15:00:30 | INFO | Loaded 8 rules for gitleaks.
+2026-07-30 15:00:30 | INFO | Parsed 3 Gitleaks findings.
+2026-07-30 15:00:30 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:00:30 | INFO | [Gitleaks] Building normalized report...
+2026-07-30 15:00:30 | INFO | [Gitleaks] Saving report...
+2026-07-30 15:00:30 | INFO | Writing report: gitleaks_20260730_150030_normalized.json
+2026-07-30 15:00:30 | INFO | Report written successfully: gitleaks_20260730_150030_normalized.json
+2026-07-30 15:00:30 | INFO | [Gitleaks] Report saved successfully.
+2026-07-30 15:00:30 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | Gitleaks Scan Summary
+2026-07-30 15:00:30 | INFO | ----------------------------------------------------------------------
+2026-07-30 15:00:30 | INFO | Status         : FAIL
+2026-07-30 15:00:30 | INFO | Total          : 3
+2026-07-30 15:00:30 | INFO | Critical       : 0
+2026-07-30 15:00:30 | INFO | High           : 3
+2026-07-30 15:00:30 | INFO | Medium         : 0
+2026-07-30 15:00:30 | INFO | Low            : 0
+2026-07-30 15:00:30 | INFO | Info           : 0
+2026-07-30 15:00:30 | INFO | Unknown        : 0
+2026-07-30 15:00:30 | INFO | Fixable        : 0
+2026-07-30 15:00:30 | INFO | Exploitable    : 0
+2026-07-30 15:00:30 | INFO | Compliance     : 0.0%
+2026-07-30 15:00:30 | INFO | Duration       : 0.01 sec
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | Gitleaks Parser Completed
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | [Gitleaks] Parser completed successfully.
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:30 | INFO | Gitleaks Parser Finished
+2026-07-30 15:00:30 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | Registered parser: gitleaks
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | Starting Gitleaks Parser
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | [Gitleaks] Preparing parser...
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | Starting Gitleaks Parser
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | [Gitleaks] Loading report(s)...
+2026-07-30 15:00:47 | INFO | Reading report: gitleaks_20260730_150042.json
+2026-07-30 15:00:47 | INFO | Successfully loaded gitleaks_20260730_150042.json
+2026-07-30 15:00:47 | INFO | [Gitleaks] Processing gitleaks_20260730_150042.json...
+2026-07-30 15:00:47 | INFO | [Gitleaks] Validating report...
+2026-07-30 15:00:47 | INFO | [Gitleaks] Generating metadata...
+2026-07-30 15:00:47 | INFO | Loaded 8 rules for gitleaks.
+2026-07-30 15:00:47 | INFO | Parsed 5 Gitleaks findings.
+2026-07-30 15:00:47 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:00:47 | INFO | [Gitleaks] Building normalized report...
+2026-07-30 15:00:47 | INFO | [Gitleaks] Saving report...
+2026-07-30 15:00:47 | INFO | Writing report: gitleaks_20260730_150047_normalized.json
+2026-07-30 15:00:47 | INFO | Report written successfully: gitleaks_20260730_150047_normalized.json
+2026-07-30 15:00:47 | INFO | [Gitleaks] Report saved successfully.
+2026-07-30 15:00:47 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | Gitleaks Scan Summary
+2026-07-30 15:00:47 | INFO | ----------------------------------------------------------------------
+2026-07-30 15:00:47 | INFO | Status         : FAIL
+2026-07-30 15:00:47 | INFO | Total          : 5
+2026-07-30 15:00:47 | INFO | Critical       : 0
+2026-07-30 15:00:47 | INFO | High           : 5
+2026-07-30 15:00:47 | INFO | Medium         : 0
+2026-07-30 15:00:47 | INFO | Low            : 0
+2026-07-30 15:00:47 | INFO | Info           : 0
+2026-07-30 15:00:47 | INFO | Unknown        : 0
+2026-07-30 15:00:47 | INFO | Fixable        : 0
+2026-07-30 15:00:47 | INFO | Exploitable    : 0
+2026-07-30 15:00:47 | INFO | Compliance     : 0.0%
+2026-07-30 15:00:47 | INFO | Duration       : 0.01 sec
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | Gitleaks Parser Completed
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | [Gitleaks] Parser completed successfully.
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:00:47 | INFO | Gitleaks Parser Finished
+2026-07-30 15:00:47 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | Registered parser: gitleaks
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | Starting Gitleaks Parser
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | [Gitleaks] Preparing parser...
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | Starting Gitleaks Parser
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | [Gitleaks] Loading report(s)...
+2026-07-30 15:01:25 | INFO | Reading report: gitleaks_20260730_150119.json
+2026-07-30 15:01:25 | INFO | Successfully loaded gitleaks_20260730_150119.json
+2026-07-30 15:01:25 | INFO | [Gitleaks] Processing gitleaks_20260730_150119.json...
+2026-07-30 15:01:25 | INFO | [Gitleaks] Validating report...
+2026-07-30 15:01:25 | INFO | [Gitleaks] Generating metadata...
+2026-07-30 15:01:25 | INFO | Loaded 8 rules for gitleaks.
+2026-07-30 15:01:25 | INFO | Parsed 1 Gitleaks findings.
+2026-07-30 15:01:25 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:01:25 | INFO | [Gitleaks] Building normalized report...
+2026-07-30 15:01:25 | INFO | [Gitleaks] Saving report...
+2026-07-30 15:01:25 | INFO | Writing report: gitleaks_20260730_150125_normalized.json
+2026-07-30 15:01:25 | INFO | Report written successfully: gitleaks_20260730_150125_normalized.json
+2026-07-30 15:01:25 | INFO | [Gitleaks] Report saved successfully.
+2026-07-30 15:01:25 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | Gitleaks Scan Summary
+2026-07-30 15:01:25 | INFO | ----------------------------------------------------------------------
+2026-07-30 15:01:25 | INFO | Status         : FAIL
+2026-07-30 15:01:25 | INFO | Total          : 1
+2026-07-30 15:01:25 | INFO | Critical       : 0
+2026-07-30 15:01:25 | INFO | High           : 1
+2026-07-30 15:01:25 | INFO | Medium         : 0
+2026-07-30 15:01:25 | INFO | Low            : 0
+2026-07-30 15:01:25 | INFO | Info           : 0
+2026-07-30 15:01:25 | INFO | Unknown        : 0
+2026-07-30 15:01:25 | INFO | Fixable        : 0
+2026-07-30 15:01:25 | INFO | Exploitable    : 0
+2026-07-30 15:01:25 | INFO | Compliance     : 0.0%
+2026-07-30 15:01:25 | INFO | Duration       : 0.01 sec
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | Gitleaks Parser Completed
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | [Gitleaks] Parser completed successfully.
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:01:25 | INFO | Gitleaks Parser Finished
+2026-07-30 15:01:25 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | Registered parser: gitleaks
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | Starting Gitleaks Parser
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | [Gitleaks] Preparing parser...
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | Starting Gitleaks Parser
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | [Gitleaks] Loading report(s)...
+2026-07-30 15:12:27 | INFO | Reading report: gitleaks_20260730_151226.json
+2026-07-30 15:12:27 | INFO | Successfully loaded gitleaks_20260730_151226.json
+2026-07-30 15:12:27 | INFO | [Gitleaks] Processing gitleaks_20260730_151226.json...
+2026-07-30 15:12:27 | INFO | [Gitleaks] Validating report...
+2026-07-30 15:12:27 | INFO | [Gitleaks] Generating metadata...
+2026-07-30 15:12:27 | WARNING | Gitleaks report is empty.
+2026-07-30 15:12:27 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:12:27 | INFO | [Gitleaks] Building normalized report...
+2026-07-30 15:12:27 | INFO | [Gitleaks] Saving report...
+2026-07-30 15:12:27 | INFO | Writing report: gitleaks_20260730_151227_normalized.json
+2026-07-30 15:12:27 | INFO | Report written successfully: gitleaks_20260730_151227_normalized.json
+2026-07-30 15:12:27 | INFO | [Gitleaks] Report saved successfully.
+2026-07-30 15:12:27 | INFO | [Gitleaks] Calculating statistics...
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | Gitleaks Scan Summary
+2026-07-30 15:12:27 | INFO | ----------------------------------------------------------------------
+2026-07-30 15:12:27 | INFO | Status         : PASS
+2026-07-30 15:12:27 | INFO | Total          : 0
+2026-07-30 15:12:27 | INFO | Critical       : 0
+2026-07-30 15:12:27 | INFO | High           : 0
+2026-07-30 15:12:27 | INFO | Medium         : 0
+2026-07-30 15:12:27 | INFO | Low            : 0
+2026-07-30 15:12:27 | INFO | Info           : 0
+2026-07-30 15:12:27 | INFO | Unknown        : 0
+2026-07-30 15:12:27 | INFO | Fixable        : 0
+2026-07-30 15:12:27 | INFO | Exploitable    : 0
+2026-07-30 15:12:27 | INFO | Compliance     : 100.0%
+2026-07-30 15:12:27 | INFO | Duration       : 0.01 sec
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | Gitleaks Parser Completed
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | [Gitleaks] Parser completed successfully.
+2026-07-30 15:12:27 | INFO | ======================================================================
+2026-07-30 15:12:27 | INFO | Gitleaks Parser Finished
+2026-07-30 15:12:27 | INFO | ======================================================================

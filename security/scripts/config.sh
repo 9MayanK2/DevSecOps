@@ -26,6 +26,9 @@ HADOLINT_IMAGE="hadolint/hadolint:latest"
 
 TRIVY_IMAGE="aquasec/trivy:latest"
 
+GITLEAKS_IMAGE="zricethezav/gitleaks:latest"
+
+
 ##################################################
 # Dockerfiles
 ##################################################
