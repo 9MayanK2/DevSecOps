@@ -320,11 +320,12 @@ def validate_bandit_report(data: dict) -> None:
     pass
 
 
-def validate_gitleaks_report(data: dict) -> None:
+def validate_gitleaks_report(data: list) -> None:
     """
-    Placeholder for Gitleaks validation.
+    Validate Gitleaks report.
     """
-    pass
+    validate_list(data)
+
 
 
 def validate_checkov_report(data: dict) -> None:
