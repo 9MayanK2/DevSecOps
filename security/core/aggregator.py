@@ -1,9 +1,8 @@
 """
 aggregator.py
 
-Enterprise DevSecOps Report Aggregator
-
-Aggregates all normalized target reports from all tools into compliance/master_reports/master_report.json.
+Enterprise DevSecOps Report Aggregator with Risk Engine Integration.
+Aggregates all normalized target reports into compliance/master_reports/master_report.json.
 """
 
 from __future__ import annotations
@@ -14,6 +13,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Set
 
 from security.common.logger import logger
+from security.core.risk_engine import RiskEngine
 
 NORMALIZED_DIR = Path("compliance/normalized")
 MASTER_DIR = Path("compliance/master_reports")
@@ -22,8 +22,8 @@ LATEST_MASTER_PATH = MASTER_DIR / "master_report.json"
 
 class Aggregator:
     """
-    Combines normalized scanner reports into a master aggregated security report
-    inside compliance/master_reports/master_report.json.
+    Combines normalized scanner reports into a master report inside compliance/master_reports/master_report.json
+    and evaluates risk via RiskEngine.
     """
 
     def __init__(self, normalized_dir: str | Path = NORMALIZED_DIR, master_dir: str | Path = MASTER_DIR):
@@ -43,7 +43,6 @@ class Aggregator:
         for subdir in self.normalized_dir.iterdir():
             if subdir.is_dir():
                 json_files = list(subdir.glob("*_normalized.json"))
-                # Group by prefix (e.g. trivy_backend, trivy_frontend, hadolint_backend, gitleaks)
                 grouped: Dict[str, Path] = {}
                 for fpath in json_files:
                     parts = fpath.name.split("_")
@@ -58,17 +57,12 @@ class Aggregator:
 
     def aggregate(self) -> dict:
         """
-        Reads normalized reports, deduplicates findings, and builds master report.
+        Reads normalized reports, deduplicates findings, runs Risk Engine, and builds master report.
         """
-        logger.info("Starting master report aggregation...")
+        logger.info("Starting master report aggregation with Risk Engine...")
         reports = self.collect_latest_reports()
 
         seen_keys: Set[str] = set()
-        total_critical = 0
-        total_high = 0
-        total_medium = 0
-        total_low = 0
-        total_info = 0
 
         for report_path in reports:
             try:
@@ -85,44 +79,35 @@ class Aggregator:
                     file_path = finding.get("file", "")
                     line = finding.get("line", "")
 
-                    # Unique finding key
                     key = f"{tool}:{rule_id}:{file_path}:{line}"
                     if key in seen_keys:
                         continue
                     seen_keys.add(key)
                     self.findings.append(finding)
 
-                    sev = (finding.get("severity") or "UNKNOWN").upper()
-                    if sev == "CRITICAL":
-                        total_critical += 1
-                    elif sev == "HIGH":
-                        total_high += 1
-                    elif sev == "MEDIUM":
-                        total_medium += 1
-                    elif sev == "LOW":
-                        total_low += 1
-                    elif sev == "INFO":
-                        total_info += 1
-
             except Exception as ex:
                 logger.error(f"Error reading report {report_path}: {ex}")
 
-        # Compute Compliance Score (100 - weighted penalty)
-        penalty = (total_critical * 25) + (total_high * 10) + (total_medium * 3) + (total_low * 1)
-        compliance_score = max(0.0, float(100 - penalty))
+        # Compute Risk & Summary metrics using RiskEngine
+        risk_engine = RiskEngine()
+        risk_summary = risk_engine.calculate_risk(self.findings)
 
         master_report = {
             "title": "Master DevSecOps Security Report",
             "generated_at": datetime.utcnow().isoformat(),
             "scanners_executed": sorted(self.scanners_run),
             "summary": {
-                "total_findings": len(self.findings),
-                "critical": total_critical,
-                "high": total_high,
-                "medium": total_medium,
-                "low": total_low,
-                "info": total_info,
-                "compliance_score": compliance_score
+                "total_findings": risk_summary["total_findings"],
+                "critical": risk_summary["critical"],
+                "high": risk_summary["high"],
+                "medium": risk_summary["medium"],
+                "low": risk_summary["low"],
+                "info": risk_summary["info"],
+                "compliance_score": risk_summary["compliance_score"]
+            },
+            "risk_summary": {
+                "total_risk_score": risk_summary["total_risk_score"],
+                "risk_level": risk_summary["risk_level"]
             },
             "findings": self.findings
         }
@@ -139,7 +124,7 @@ class Aggregator:
 def main():
     aggregator = Aggregator()
     master = aggregator.aggregate()
-    print(f"Aggregated {master['summary']['total_findings']} findings from {len(master['scanners_executed'])} scanners.")
+    print(f"Aggregated {master['summary']['total_findings']} findings. Risk Score: {master['risk_summary']['total_risk_score']}")
 
 
 if __name__ == "__main__":

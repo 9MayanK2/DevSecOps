@@ -1,22 +1,41 @@
 {
-    "title": "DevSecOps Enterprise Compliance Matrix",
-    "generated_at": "2026-07-30T13:15:48.961824",
+    "title": "DevSecOps Enterprise Advanced Compliance Matrix",
+    "generated_at": "2026-07-30T19:12:57.356275",
+    "overall_compliance_score": 77.8,
     "total_findings": 20,
-    "frameworks": {
+    "framework_summaries": {
         "owasp_top_10_2021": {
-            "A02:2021-Cryptographic Failures": 2,
-            "A06:2021-Vulnerable and Outdated Components": 18,
-            "A05:2021-Security Misconfiguration": 1
+            "total_controls_baseline": 10,
+            "controls_passed": 7,
+            "controls_failed": 3,
+            "compliance_percentage": 70.0,
+            "failed_controls_breakdown": {
+                "A02:2021-Cryptographic Failures": 2,
+                "A06:2021-Vulnerable and Outdated Components": 18,
+                "A05:2021-Security Misconfiguration": 1
+            }
         },
         "cis_benchmarks": {
-            "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-            "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 1,
-            "CIS Docker Benchmark 4.0 - Container Hardening": 18,
-            "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
+            "total_controls_baseline": 15,
+            "controls_passed": 11,
+            "controls_failed": 4,
+            "compliance_percentage": 73.3,
+            "failed_controls_breakdown": {
+                "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
+                "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 1,
+                "CIS Docker Benchmark 4.0 - Container Hardening": 18,
+                "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
+            }
         },
         "nist_sp_800_53": {
-            "IA-5 Authenticator Management": 2,
-            "CM-6 Configuration Settings": 19
+            "total_controls_baseline": 20,
+            "controls_passed": 18,
+            "controls_failed": 2,
+            "compliance_percentage": 90.0,
+            "failed_controls_breakdown": {
+                "IA-5 Authenticator Management": 2,
+                "CM-6 Configuration Settings": 19
+            }
         }
     }
 }

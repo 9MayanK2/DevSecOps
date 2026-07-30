@@ -2,7 +2,7 @@
     "tool": "Gitleaks",
     "category": "Secrets Detection",
     "scanner_type": "Static",
-    "scan_time": "2026-07-30T13:15:48.903992",
+    "scan_time": "2026-07-30T16:28:05.106774",
     "status": "FAIL",
     "summary": {
         "total": 2,
@@ -33,9 +33,9 @@
         "os_version": "6.8.0-136-generic",
         "python_version": "3.10.12",
         "git_branch": "features",
-        "git_commit": "6b6a065",
-        "scan_id": "GITLEAKS-20260730131548-528715",
-        "generated_at": "2026-07-30T13:15:48.903979"
+        "git_commit": "0814677",
+        "scan_id": "GITLEAKS-20260730162805-59ED65",
+        "generated_at": "2026-07-30T16:28:05.106750"
     },
     "findings": [
         {
@@ -48,7 +48,7 @@
             "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
             "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:15:48.903992",
+            "scan_time": "2026-07-30T16:28:05.106774",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -82,7 +82,7 @@
             "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
             "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:15:48.903992",
+            "scan_time": "2026-07-30T16:28:05.106774",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
