@@ -1,8 +1,8 @@
 {
-    "tool": "Gitleaks",
-    "category": "Secrets Detection",
+    "tool": "Trivy",
+    "category": "Container Security",
     "scanner_type": "Static",
-    "scan_time": "2026-07-30T09:42:27.829962",
+    "scan_time": "2026-07-30T13:02:54.295391",
     "status": "PASS",
     "summary": {
         "total": 0,
@@ -16,7 +16,7 @@
         "exploitable": 0,
         "suppressed": 0,
         "scanned_targets": 1,
-        "scanned_packages": 0,
+        "scanned_packages": 71,
         "scanned_files": 0,
         "passed_checks": 0,
         "failed_checks": 0,
@@ -24,18 +24,24 @@
     },
     "metadata": {
         "project_name": "HopeGivers",
-        "scanner": "Gitleaks",
+        "scanner": "Trivy",
         "scanner_version": "latest",
         "parser_version": "1.0.0",
         "hostname": "JagguDA",
         "username": "jaggu",
-        "operating_system": "Linux",
+        "operating_system": "alpine",
         "os_version": "6.8.0-136-generic",
         "python_version": "3.10.12",
         "git_branch": "features",
-        "git_commit": "6bd1aa4",
-        "scan_id": "GITLEAKS-20260730094227-FC3575",
-        "generated_at": "2026-07-30T09:42:27.829687"
+        "git_commit": "6b6a065",
+        "scan_id": "TRIVY-20260730130254-FE40AC",
+        "generated_at": "2026-07-30T13:02:54.295366",
+        "artifact_name": "hopegivers-frontend:latest",
+        "artifact_type": "container_image",
+        "artifact_id": "sha256:dff9cde00b454b6c19b81f0a346ed0f3b185241edc101bfbc1b3cfd5cff719c3",
+        "image_id": "sha256:ff2cfc27d561a34e3e5aca1989e3b63d329a1bfac13dd9bb3ba1863220f83240",
+        "image_size": 80077824,
+        "operating_system_version": "3.24.1"
     },
     "findings": []
 }

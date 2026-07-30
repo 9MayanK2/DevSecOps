@@ -24,7 +24,10 @@ This parser only implements:
 
 from __future__ import annotations
 
+from datetime import datetime
+
 from security.core.base_parser import BaseParser
+
 from security.core.parser_registry import registry
 
 from security.schemas.finding import Finding
@@ -199,6 +202,8 @@ class GitleaksParser(BaseParser):
 
             message = f"{item.get('Description', 'Secret detected.')} (Match: {masked_secret})"
 
+            scan_time_val = self.scan_time or datetime.utcnow().isoformat()
+
             finding = Finding(
 
                 tool=TOOL_NAME,
@@ -219,7 +224,8 @@ class GitleaksParser(BaseParser):
 
                 status=STATUS_OPEN,
 
-                scan_time=self.scan_time,
+                scan_time=scan_time_val,
+
 
                 package_name=None,
 

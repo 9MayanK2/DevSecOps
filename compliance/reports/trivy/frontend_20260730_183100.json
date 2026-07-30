@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.72.0"
   },
-  "ReportID": "019faf6a-f4a4-7ed7-9a49-e6f4afe40811",
-  "CreatedAt": "2026-07-29T19:47:30.084977102Z",
+  "ReportID": "019fb31e-e348-749a-ab55-6cd84dbac6b5",
+  "CreatedAt": "2026-07-30T13:02:53.768306983Z",
   "ArtifactID": "sha256:dff9cde00b454b6c19b81f0a346ed0f3b185241edc101bfbc1b3cfd5cff719c3",
   "ArtifactName": "hopegivers-frontend:latest",
   "ArtifactType": "container_image",

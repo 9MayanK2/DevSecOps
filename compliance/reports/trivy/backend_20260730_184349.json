@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.72.0"
   },
-  "ReportID": "019faf6a-078c-749c-b6d0-2621d415f4c3",
-  "CreatedAt": "2026-07-29T19:46:29.38830636Z",
+  "ReportID": "019fb329-d7e6-7375-93bc-623a08ab871c",
+  "CreatedAt": "2026-07-30T13:14:51.750230758Z",
   "ArtifactID": "sha256:32bfc859ae5dc0f84a1294135a65644e916fde009882b5d05e2e62a2c7e9d17d",
   "ArtifactName": "hopegivers-backend:latest",
   "ArtifactType": "container_image",
@@ -7527,8 +7527,10 @@
             "CWE-407"
           ],
           "VendorSeverity": {
+            "alma": 3,
             "ghsa": 3,
-            "redhat": 3
+            "redhat": 3,
+            "rocky": 3
           },
           "CVSS": {
             "ghsa": {
@@ -7543,7 +7545,19 @@
             }
           },
           "References": [
+            "https://access.redhat.com/errata/RHSA-2026:47060",
             "https://access.redhat.com/security/cve/CVE-2026-13149",
+            "https://bugzilla.redhat.com/2494813",
+            "https://bugzilla.redhat.com/2498116",
+            "https://bugzilla.redhat.com/2498120",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2494813",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2498116",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2498120",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13149",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-59873",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-59874",
+            "https://errata.almalinux.org/8/ALSA-2026-47060.html",
+            "https://errata.rockylinux.org/RLSA-2026:47060",
             "https://github.com/juliangruber/brace-expansion",
             "https://github.com/juliangruber/brace-expansion/commit/835d6be91201122d9adffb0c0c8c094189ace265",
             "https://github.com/juliangruber/brace-expansion/commit/c7e33ec13ac1a684c116720843ce24e208611754",
@@ -8172,9 +8186,11 @@
             "CWE-770"
           ],
           "VendorSeverity": {
+            "alma": 3,
             "ghsa": 4,
             "nvd": 3,
-            "redhat": 3
+            "redhat": 3,
+            "rocky": 3
           },
           "CVSS": {
             "ghsa": {
@@ -8193,7 +8209,19 @@
             }
           },
           "References": [
+            "https://access.redhat.com/errata/RHSA-2026:47060",
             "https://access.redhat.com/security/cve/CVE-2026-59873",
+            "https://bugzilla.redhat.com/2494813",
+            "https://bugzilla.redhat.com/2498116",
+            "https://bugzilla.redhat.com/2498120",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2494813",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2498116",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2498120",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13149",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-59873",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-59874",
+            "https://errata.almalinux.org/8/ALSA-2026-47060.html",
+            "https://errata.rockylinux.org/RLSA-2026:47060",
             "https://github.com/isaacs/node-tar",
             "https://github.com/isaacs/node-tar/commit/2812e9338665659b183aa7226518c307044957d3",
             "https://github.com/isaacs/node-tar/releases/tag/v7.5.19",
@@ -8238,9 +8266,11 @@
             "CWE-835"
           ],
           "VendorSeverity": {
+            "alma": 3,
             "ghsa": 3,
             "nvd": 3,
-            "redhat": 3
+            "redhat": 3,
+            "rocky": 3
           },
           "CVSS": {
             "ghsa": {
@@ -8259,7 +8289,19 @@
             }
           },
           "References": [
+            "https://access.redhat.com/errata/RHSA-2026:47060",
             "https://access.redhat.com/security/cve/CVE-2026-59874",
+            "https://bugzilla.redhat.com/2494813",
+            "https://bugzilla.redhat.com/2498116",
+            "https://bugzilla.redhat.com/2498120",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2494813",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2498116",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2498120",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-13149",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-59873",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-59874",
+            "https://errata.almalinux.org/8/ALSA-2026-47060.html",
+            "https://errata.rockylinux.org/RLSA-2026:47060",
             "https://github.com/isaacs/node-tar",
             "https://github.com/isaacs/node-tar/commit/9e78bf058b2c22dd4d52e00d8922d5c06fc2f7b5",
             "https://github.com/isaacs/node-tar/releases/tag/v7.5.18",

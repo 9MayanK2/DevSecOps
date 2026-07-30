@@ -1,0 +1,110 @@
+{
+    "tool": "Gitleaks",
+    "category": "Secrets Detection",
+    "scanner_type": "Static",
+    "scan_time": "2026-07-30T13:15:48.903992",
+    "status": "FAIL",
+    "summary": {
+        "total": 2,
+        "critical": 2,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "info": 0,
+        "unknown": 0,
+        "fixable": 0,
+        "exploitable": 0,
+        "suppressed": 0,
+        "scanned_targets": 1,
+        "scanned_packages": 0,
+        "scanned_files": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "compliance_score": 0.0
+    },
+    "metadata": {
+        "project_name": "HopeGivers",
+        "scanner": "Gitleaks",
+        "scanner_version": "latest",
+        "parser_version": "1.0.0",
+        "hostname": "JagguDA",
+        "username": "jaggu",
+        "operating_system": "Linux",
+        "os_version": "6.8.0-136-generic",
+        "python_version": "3.10.12",
+        "git_branch": "features",
+        "git_commit": "6b6a065",
+        "scan_id": "GITLEAKS-20260730131548-528715",
+        "generated_at": "2026-07-30T13:15:48.903979"
+    },
+    "findings": [
+        {
+            "tool": "Gitleaks",
+            "category": "Secrets Detection",
+            "rule_id": "aws-access-token",
+            "severity": "CRITICAL",
+            "file": "testing/gitleaks/test_secrets.txt",
+            "line": 1,
+            "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
+            "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
+            "status": "OPEN",
+            "scan_time": "2026-07-30T13:15:48.903992",
+            "package_name": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cvss_score": null,
+            "cwe": [
+                "CWE-798"
+            ],
+            "cve": null,
+            "severity_source": "Gitleaks",
+            "target": "testing/gitleaks/test_secrets.txt",
+            "target_class": "Secret",
+            "target_type": "Code/Config",
+            "description": "An AWS Access Key ID was detected in source code or configuration.",
+            "primary_url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html",
+            "references": [
+                "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html"
+            ],
+            "compliance": [],
+            "exploit_available": false,
+            "fix_available": false,
+            "epss_score": null,
+            "kev": false
+        },
+        {
+            "tool": "Gitleaks",
+            "category": "Secrets Detection",
+            "rule_id": "aws-access-token",
+            "severity": "CRITICAL",
+            "file": "testing/gitleaks/test_secrets.txt",
+            "line": 1,
+            "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
+            "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
+            "status": "OPEN",
+            "scan_time": "2026-07-30T13:15:48.903992",
+            "package_name": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cvss_score": null,
+            "cwe": [
+                "CWE-798"
+            ],
+            "cve": null,
+            "severity_source": "Gitleaks",
+            "target": "testing/gitleaks/test_secrets.txt",
+            "target_class": "Secret",
+            "target_type": "Code/Config",
+            "description": "An AWS Access Key ID was detected in source code or configuration.",
+            "primary_url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html",
+            "references": [
+                "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html"
+            ],
+            "compliance": [],
+            "exploit_available": false,
+            "fix_available": false,
+            "epss_score": null,
+            "kev": false
+        }
+    ]
+}
