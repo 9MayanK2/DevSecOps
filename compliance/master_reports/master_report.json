@@ -1,6 +1,6 @@
 {
     "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-07-30T13:15:48.961824",
+    "generated_at": "2026-07-30T19:12:57.356275",
     "scanners_executed": [
         "Gitleaks",
         "Hadolint",
@@ -13,7 +13,11 @@
         "medium": 9,
         "low": 0,
         "info": 1,
-        "compliance_score": 0.0
+        "compliance_score": 77.8
+    },
+    "risk_summary": {
+        "total_risk_score": 78,
+        "risk_level": "CRITICAL"
     },
     "findings": [
         {
@@ -26,7 +30,7 @@
             "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
             "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:15:48.903992",
+            "scan_time": "2026-07-30T16:28:05.106774",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -44,7 +48,18 @@
             "references": [
                 "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials",
+                    "nist": "IA-5 Authenticator Management"
+                },
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.12 - Rekey or Revoke Credentials",
+                    "nist": "IA-5 Authenticator Management"
+                }
+            ],
             "exploit_available": false,
             "fix_available": false,
             "epss_score": null,
@@ -60,7 +75,7 @@
             "message": "sigstore-core: @sigstore/core: Signature bypass due to incorrect encoding in preAuthEncoding",
             "recommendation": "Upgrade to version 3.2.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "@sigstore/core",
             "installed_version": "2.0.0",
             "fixed_version": "3.2.1",
@@ -85,7 +100,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-48758",
                 "https://www.cve.org/CVERecord?id=CVE-2026-48758"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -101,7 +122,7 @@
             "message": "Out-of-bounds Read in base64-url",
             "recommendation": "Upgrade to version 2.0.0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "base64-url",
             "installed_version": "1.2.1",
             "fixed_version": "2.0.0",
@@ -118,7 +139,13 @@
                 "https://hackerone.com/reports/321692",
                 "https://www.npmjs.com/advisories/660"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -134,7 +161,7 @@
             "message": "Out-of-bounds Read",
             "recommendation": "Upgrade to version >=2.0.0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "base64-url",
             "installed_version": "1.2.1",
             "fixed_version": ">=2.0.0",
@@ -150,7 +177,13 @@
             "references": [
                 "https://hackerone.com/reports/321692"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -166,7 +199,7 @@
             "message": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity",
             "recommendation": "Upgrade to version 5.0.7, 1.1.16, 2.1.2 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.2",
             "fixed_version": "5.0.7, 1.1.16, 2.1.2",
@@ -210,7 +243,13 @@
                 "https://www.cve.org/CVERecord?id=CVE-2026-13149",
                 "https://www.npmjs.com/package/brace-expansion"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -226,7 +265,7 @@
             "message": "brace-expansion through 5.0.7 is vulnerable to denial of service via m ...",
             "recommendation": "Upgrade to version 5.0.8 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.2",
             "fixed_version": "5.0.8",
@@ -249,7 +288,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-14257",
                 "https://www.npmjs.com/package/brace-expansion"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
@@ -265,7 +310,7 @@
             "message": "brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern",
             "recommendation": "Upgrade to version 5.0.5, 3.0.2, 2.0.3, 1.1.13 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.2",
             "fixed_version": "5.0.5, 3.0.2, 2.0.3, 1.1.13",
@@ -296,7 +341,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-33750",
                 "https://www.cve.org/CVERecord?id=CVE-2026-33750"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -312,7 +363,7 @@
             "message": "ip-address: ip-address: Cross-site scripting via improper HTML escaping of untrusted input",
             "recommendation": "Upgrade to version 10.1.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "ip-address",
             "installed_version": "10.1.0",
             "fixed_version": "10.1.1",
@@ -398,7 +449,13 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-42338.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42338"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -414,7 +471,7 @@
             "message": "Mongoose: Prototype pollution in mongoose update casting via __proto__-prefixed dotted path (Schema._getSchema/path getter)",
             "recommendation": "Upgrade to version 6.13.10, 7.8.10, 8.24.1, 9.7.2 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "mongoose",
             "installed_version": "8.23.0",
             "fixed_version": "6.13.10, 7.8.10, 8.24.1, 9.7.2",
@@ -437,7 +494,13 @@
                 "https://github.com/Automattic/mongoose/releases/tag/9.7.2",
                 "https://github.com/Automattic/mongoose/security/advisories/GHSA-664h-wqgq-64gw"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -453,7 +516,7 @@
             "message": "Nodemailer: Message-level raw option bypasses disableFileAccess/disableUrlAccess, enabling arbitrary file read and full-response SSRF in the delivered message",
             "recommendation": "Upgrade to version 9.0.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "nodemailer",
             "installed_version": "8.0.11",
             "fixed_version": "9.0.1",
@@ -470,7 +533,13 @@
                 "https://github.com/nodemailer/nodemailer",
                 "https://github.com/nodemailer/nodemailer/security/advisories/GHSA-p6gq-j5cr-w38f"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
@@ -486,7 +555,7 @@
             "message": "picomatch: Picomatch: Regular Expression Denial of Service via crafted extglob patterns",
             "recommendation": "Upgrade to version 4.0.4, 3.0.2, 2.3.2 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "picomatch",
             "installed_version": "4.0.3",
             "fixed_version": "4.0.4, 3.0.2, 2.3.2",
@@ -509,7 +578,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-33671",
                 "https://www.cve.org/CVERecord?id=CVE-2026-33671"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
@@ -525,7 +600,7 @@
             "message": "picomatch: Picomatch: Data integrity compromised via method injection with crafted POSIX bracket expressions",
             "recommendation": "Upgrade to version 4.0.4, 3.0.2, 2.3.2 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "picomatch",
             "installed_version": "4.0.3",
             "fixed_version": "4.0.4, 3.0.2, 2.3.2",
@@ -548,7 +623,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-33672",
                 "https://www.cve.org/CVERecord?id=CVE-2026-33672"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -564,7 +645,7 @@
             "message": "sigstore: Sigstore: Unauthorized certificates accepted due to ignored `certificateOIDs` verification option",
             "recommendation": "Upgrade to version 4.1.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "sigstore",
             "installed_version": "3.1.0",
             "fixed_version": "4.1.1",
@@ -590,7 +671,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-48815",
                 "https://www.cve.org/CVERecord?id=CVE-2026-48815"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
@@ -606,7 +693,7 @@
             "message": "tar: node-tar: Denial of Service via crafted gzip bomb",
             "recommendation": "Upgrade to version 7.5.19 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "tar",
             "installed_version": "7.5.11",
             "fixed_version": "7.5.19",
@@ -642,7 +729,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59873",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59873"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
@@ -658,7 +751,7 @@
             "message": "tar: Node-tar: Denial of Service via malformed tar archive header",
             "recommendation": "Upgrade to version 7.5.18 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "tar",
             "installed_version": "7.5.11",
             "fixed_version": "7.5.18",
@@ -694,7 +787,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59874",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59874"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
@@ -710,7 +809,7 @@
             "message": "node-tar: node-tar: File smuggling due to inconsistent tar archive parsing",
             "recommendation": "Upgrade to version 7.5.16 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "tar",
             "installed_version": "7.5.11",
             "fixed_version": "7.5.16",
@@ -732,7 +831,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-53655",
                 "https://www.cve.org/CVERecord?id=CVE-2026-53655"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -748,7 +853,7 @@
             "message": "node-tar: node-tar: Denial of Service due to incorrect PAX path handling",
             "recommendation": "Upgrade to version 7.5.18 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "tar",
             "installed_version": "7.5.11",
             "fixed_version": "7.5.18",
@@ -772,7 +877,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59871",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59871"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -788,7 +899,7 @@
             "message": "node-tar: node-tar: Denial of Service via crafted archive with NUL bytes in metadata",
             "recommendation": "Upgrade to version 7.5.17 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "tar",
             "installed_version": "7.5.11",
             "fixed_version": "7.5.17",
@@ -812,7 +923,13 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59875",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59875"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -828,7 +945,7 @@
             "message": "node-tar: Uncontrolled recursion in mapHas/filesFilter allows uncatchable stack-overflow DoS via crafted long-path tar with member selection",
             "recommendation": "Upgrade to version 7.5.21 or later.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:14:51.750230758Z",
+            "scan_time": "2026-07-30T16:26:23.590619647Z",
             "package_name": "tar",
             "installed_version": "7.5.11",
             "fixed_version": "7.5.21",
@@ -847,7 +964,13 @@
                 "https://github.com/isaacs/node-tar/releases/tag/v7.5.21",
                 "https://github.com/isaacs/node-tar/security/advisories/GHSA-r292-9mhp-454m"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
@@ -863,7 +986,7 @@
             "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
             "recommendation": "Include a standardized image creation timestamp.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T13:15:48.931310",
+            "scan_time": "2026-07-30T16:28:05.138838",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -879,11 +1002,52 @@
             "references": [
                 "https://github.com/hadolint/hadolint/wiki/DL3059"
             ],
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Docker Benchmark 4.6 - Healthcheck Instruction",
+                    "nist": "CM-6 Configuration Settings"
+                }
+            ],
             "exploit_available": false,
             "fix_available": false,
             "epss_score": null,
             "kev": false
         }
-    ]
+    ],
+    "compliance_summary": {
+        "owasp_top_10_2021": {
+            "total_controls_baseline": 10,
+            "controls_passed": 7,
+            "controls_failed": 3,
+            "compliance_percentage": 70.0,
+            "failed_controls_breakdown": {
+                "A02:2021-Cryptographic Failures": 2,
+                "A06:2021-Vulnerable and Outdated Components": 18,
+                "A05:2021-Security Misconfiguration": 1
+            }
+        },
+        "cis_benchmarks": {
+            "total_controls_baseline": 15,
+            "controls_passed": 11,
+            "controls_failed": 4,
+            "compliance_percentage": 73.3,
+            "failed_controls_breakdown": {
+                "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
+                "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 1,
+                "CIS Docker Benchmark 4.0 - Container Hardening": 18,
+                "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
+            }
+        },
+        "nist_sp_800_53": {
+            "total_controls_baseline": 20,
+            "controls_passed": 18,
+            "controls_failed": 2,
+            "compliance_percentage": 90.0,
+            "failed_controls_breakdown": {
+                "IA-5 Authenticator Management": 2,
+                "CM-6 Configuration Settings": 19
+            }
+        }
+    }
 }

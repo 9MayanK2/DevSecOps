@@ -3,6 +3,7 @@ database.py
 
 Cloud-Ready Database Persistence Layer for DevSecOps Framework.
 Supports Local SQLite & AWS EC2 / RDS PostgreSQL.
+Stores risk scores and risk levels in scans table.
 """
 
 from __future__ import annotations
@@ -70,6 +71,8 @@ class DatabaseManager:
                         medium_count INTEGER,
                         low_count INTEGER,
                         info_count INTEGER,
+                        total_risk_score INTEGER,
+                        risk_level TEXT,
                         compliance_score REAL,
                         verdict TEXT,
                         created_at TEXT
@@ -94,6 +97,14 @@ class DatabaseManager:
                         FOREIGN KEY(scan_id) REFERENCES scans(scan_id)
                     );
                 """)
+
+                # Add risk columns if existing table doesn't have them
+                try:
+                    cursor.execute("ALTER TABLE scans ADD COLUMN total_risk_score INTEGER DEFAULT 0;")
+                    cursor.execute("ALTER TABLE scans ADD COLUMN risk_level TEXT DEFAULT 'UNKNOWN';")
+                except Exception:
+                    pass
+
                 conn.commit()
 
     def save_master_report(self, master_report: dict, verdict: str = "UNKNOWN") -> str:
@@ -101,6 +112,7 @@ class DatabaseManager:
         Ingests master_report.json into database tables.
         """
         summary = master_report.get("summary", {})
+        risk_summary = master_report.get("risk_summary", {})
         now_iso = datetime.utcnow().isoformat()
         scan_id = f"SCAN-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
         scanners_str = json.dumps(master_report.get("scanners_executed", []))
@@ -111,8 +123,8 @@ class DatabaseManager:
                 INSERT INTO scans (
                     scan_id, scan_time, title, scanners_executed,
                     total_findings, critical_count, high_count, medium_count, low_count, info_count,
-                    compliance_score, verdict, created_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    total_risk_score, risk_level, compliance_score, verdict, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 scan_id,
                 master_report.get("generated_at", now_iso),
@@ -124,6 +136,8 @@ class DatabaseManager:
                 summary.get("medium", 0),
                 summary.get("low", 0),
                 summary.get("info", 0),
+                risk_summary.get("total_risk_score", 0),
+                risk_summary.get("risk_level", "UNKNOWN"),
                 summary.get("compliance_score", 100.0),
                 verdict,
                 now_iso

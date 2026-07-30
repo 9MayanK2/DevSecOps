@@ -27,7 +27,9 @@ from security.core.parser_registry import registry
 from security.core.aggregator import Aggregator
 from security.core.security_gate import SecurityGate
 from security.core.compliance_mapper import ComplianceMapper
+from security.core.report_generator import ReportGenerator
 from security.db.database import DatabaseManager
+
 
 
 
@@ -159,7 +161,15 @@ class SecurityOrchestrator:
         except Exception as ex:
             logger.warning(f"Compliance Mapper Warning: {ex}")
 
+        # Step 4: Generate Executive HTML & PDF Security Reports
+        try:
+            reporter = ReportGenerator()
+            reporter.generate_all(master_report)
+        except Exception as ex:
+            logger.warning(f"Report Generator Warning: {ex}")
+
         return master_report
+
 
 
     def stage_5_security_gate(self, master_report: dict) -> bool:
@@ -216,12 +226,31 @@ class SecurityOrchestrator:
 
 def main():
     parser = argparse.ArgumentParser(description="DevSecOps Security Orchestrator")
-    parser.add_argument("--tools", type=str, help="Comma-separated list of tools to run (e.g. gitleaks,hadolint)")
-    parser.add_argument("--stage", type=str, help="Comma-separated list of stages to run (preflight,scanners,parsers,aggregate,gate)")
+    parser.add_argument("intent", nargs="?", default="full", help="Intent profile (pre-build, post-build, gate, full)")
+    parser.add_argument("tool", nargs="?", default=None, help="Target tool (gitleaks, hadolint, trivy)")
+
+    # Legacy flags fallback for backwards compatibility
+    parser.add_argument("--tools", type=str, help="Comma-separated tools")
+    parser.add_argument("--stage", type=str, help="Comma-separated stages")
 
     args = parser.parse_args()
-    tools = [t.strip() for t in args.tools.split(",")] if args.tools else None
-    stages = [s.strip() for s in args.stage.split(",")] if args.stage else None
+
+    intent = args.intent.lower() if args.intent else "full"
+    tool = args.tool.lower() if args.tool else None
+
+    # Map Intent to internal framework execution plan
+    if intent in ["pre-build", "prebuild"]:
+        stages = ["preflight", "scanners", "parsers"]
+        tools = [tool] if tool else ["gitleaks", "hadolint"]
+    elif intent in ["post-build", "postbuild"]:
+        stages = ["scanners", "parsers"]
+        tools = [tool] if tool else ["trivy"]
+    elif intent in ["gate", "evaluate"]:
+        stages = ["aggregate", "gate"]
+        tools = None
+    else:
+        stages = [s.strip() for s in args.stage.split(",")] if args.stage else None
+        tools = [t.strip() for t in args.tools.split(",")] if args.tools else ([tool] if tool else None)
 
     orchestrator = SecurityOrchestrator(selected_tools=tools, selected_stages=stages)
     orchestrator.run()
@@ -229,3 +258,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
