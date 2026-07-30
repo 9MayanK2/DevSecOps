@@ -517,17 +517,18 @@ class BaseParser(ABC):
 
             self.build_metadata()
 
+            self.build_scan_time()
+
             self.findings = self.extract_findings()
 
             all_findings.extend(self.findings)
-
-            self.build_scan_time()
 
             self.build_summary()
 
             self.build_report()
 
             self.save_report(filename)
+
 
         self.findings = all_findings
 
