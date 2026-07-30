@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DevSecOps Security & Compliance Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #334155; padding-bottom: 15px; }
+        .title { font-size: 24px; font-weight: bold; color: #38bdf8; }
+        .badge { padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        .badge-critical { background: #991b1b; color: #fca5a5; }
+        .badge-high { background: #c2410c; color: #ffedd5; }
+        .badge-medium { background: #854d0e; color: #fef08a; }
+        .badge-low { background: #15803d; color: #bbf7d0; }
+        .badge-info { background: #1e40af; color: #bfdbfe; }
+        .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 25px 0; }
+        .card { background: #0f172a; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #334155; }
+        .card .val { font-size: 28px; font-weight: bold; margin-top: 5px; }
+        .fw-item { margin-bottom: 15px; }
+        .fw-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
+        .progress-bar { background: #334155; height: 10px; border-radius: 5px; overflow: hidden; }
+        .progress-fill { background: #38bdf8; height: 100%; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #334155; }
+        th { background: #0f172a; color: #94a3b8; }
+        code { font-family: monospace; background: #0f172a; padding: 2px 6px; border-radius: 4px; color: #e2e8f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">🛡️ DevSecOps Master Security Report</div>
+            <div class="badge" style="background:#ef4444; color:#fff;">Risk Level: CRITICAL</div>
+        </div>
+
+        <div class="cards">
+            <div class="card"><div>Total Findings</div><div class="val">20</div></div>
+            <div class="card"><div>Risk Score</div><div class="val">78 Pts</div></div>
+            <div class="card"><div>Compliance Score</div><div class="val">77.8%</div></div>
+            <div class="card"><div>Critical / High</div><div class="val" style="color:#ef4444;">2 / 8</div></div>
+        </div>
+
+        <h3>📜 Compliance Posture by Framework</h3>
+        
+            <div class="fw-item">
+                <div class="fw-header">
+                    <span>OWASP TOP 10 2021</span>
+                    <span>70.0% (7/10 Passed)</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 70.0%;"></div></div>
+            </div>
+            
+            <div class="fw-item">
+                <div class="fw-header">
+                    <span>CIS BENCHMARKS</span>
+                    <span>73.3% (11/15 Passed)</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 73.3%;"></div></div>
+            </div>
+            
+            <div class="fw-item">
+                <div class="fw-header">
+                    <span>NIST SP 800 53</span>
+                    <span>90.0% (18/20 Passed)</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 90.0%;"></div></div>
+            </div>
+            
+
+        <h3>🔍 Detailed Security Findings</h3>
+        <table>
+            <thead>
+                <tr><th>Severity</th><th>Tool</th><th>Rule ID</th><th>File / Location</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td><span class="badge badge-critical">CRITICAL</span></td>
+                <td><strong>Gitleaks</strong></td>
+                <td><code>aws-access-token</code></td>
+                <td><code>testing/gitleaks/test_secrets.txt:1</code></td>
+                <td>Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-48758</code></td>
+                <td><code>Node.js</code></td>
+                <td>sigstore-core: @sigstore/core: Signature bypass due to incorrect encoding in preAuthEncoding</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>GHSA-j4mr-9xw3-c9jx</code></td>
+                <td><code>Node.js</code></td>
+                <td>Out-of-bounds Read in base64-url</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>NSWG-ECO-434</code></td>
+                <td><code>Node.js</code></td>
+                <td>Out-of-bounds Read</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-13149</code></td>
+                <td><code>Node.js</code></td>
+                <td>brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-14257</code></td>
+                <td><code>Node.js</code></td>
+                <td>brace-expansion through 5.0.7 is vulnerable to denial of service via m ...</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-33750</code></td>
+                <td><code>Node.js</code></td>
+                <td>brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42338</code></td>
+                <td><code>Node.js</code></td>
+                <td>ip-address: ip-address: Cross-site scripting via improper HTML escaping of untrusted input</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>GHSA-664h-wqgq-64gw</code></td>
+                <td><code>Node.js</code></td>
+                <td>Mongoose: Prototype pollution in mongoose update casting via __proto__-prefixed dotted path (Schema._getSchema/path getter)</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>GHSA-p6gq-j5cr-w38f</code></td>
+                <td><code>Node.js</code></td>
+                <td>Nodemailer: Message-level raw option bypasses disableFileAccess/disableUrlAccess, enabling arbitrary file read and full-response SSRF in the delivered message</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-33671</code></td>
+                <td><code>Node.js</code></td>
+                <td>picomatch: Picomatch: Regular Expression Denial of Service via crafted extglob patterns</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-33672</code></td>
+                <td><code>Node.js</code></td>
+                <td>picomatch: Picomatch: Data integrity compromised via method injection with crafted POSIX bracket expressions</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-48815</code></td>
+                <td><code>Node.js</code></td>
+                <td>sigstore: Sigstore: Unauthorized certificates accepted due to ignored `certificateOIDs` verification option</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-critical">CRITICAL</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-59873</code></td>
+                <td><code>Node.js</code></td>
+                <td>tar: node-tar: Denial of Service via crafted gzip bomb</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-59874</code></td>
+                <td><code>Node.js</code></td>
+                <td>tar: Node-tar: Denial of Service via malformed tar archive header</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-53655</code></td>
+                <td><code>Node.js</code></td>
+                <td>node-tar: node-tar: File smuggling due to inconsistent tar archive parsing</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-59871</code></td>
+                <td><code>Node.js</code></td>
+                <td>node-tar: node-tar: Denial of Service due to incorrect PAX path handling</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-59875</code></td>
+                <td><code>Node.js</code></td>
+                <td>node-tar: node-tar: Denial of Service via crafted archive with NUL bytes in metadata</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>GHSA-r292-9mhp-454m</code></td>
+                <td><code>Node.js</code></td>
+                <td>node-tar: Uncontrolled recursion in mapHas/filesFilter allows uncatchable stack-overflow DoS via crafted long-path tar with member selection</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-info">INFO</span></td>
+                <td><strong>Hadolint</strong></td>
+                <td><code>DL3059</code></td>
+                <td><code>/workspace/app/client/Dockerfile:60</code></td>
+                <td>Multiple consecutive `RUN` instructions. Consider consolidation.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
