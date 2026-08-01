@@ -1,0 +1,48 @@
+{
+    "@version": "2.14.0",
+    "@generated": "2026-07-31T01:40:00.000000",
+    "site": [
+        {
+            "@name": "http://localhost:5000",
+            "@host": "localhost",
+            "@port": "5000",
+            "@ssl": "false",
+            "alerts": [
+                {
+                    "pluginid": "10021",
+                    "alertRef": "10021",
+                    "alert": "X-Content-Type-Options Header Missing",
+                    "name": "X-Content-Type-Options Header Missing",
+                    "riskcode": "1",
+                    "confidence": "2",
+                    "riskdesc": "Low (Medium)",
+                    "desc": "The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body.",
+                    "count": "1",
+                    "solution": "Ensure that the application/web server sets the X-Content-Type-Options header to 'nosniff' for all web pages.",
+                    "otherinfo": "This issue applies to any request where the X-Content-Type-Options header is missing.",
+                    "reference": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
+                    "cweid": "693",
+                    "wascid": "15",
+                    "sourceid": "1"
+                },
+                {
+                    "pluginid": "10038",
+                    "alertRef": "10038",
+                    "alert": "Content Security Policy (CSP) Header Not Set",
+                    "name": "Content Security Policy (CSP) Header Not Set",
+                    "riskcode": "2",
+                    "confidence": "2",
+                    "riskdesc": "Medium (High)",
+                    "desc": "Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks.",
+                    "count": "1",
+                    "solution": "Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.",
+                    "otherinfo": "Header not present on HTTP response.",
+                    "reference": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP",
+                    "cweid": "693",
+                    "wascid": "15",
+                    "sourceid": "1"
+                }
+            ]
+        }
+    ]
+}

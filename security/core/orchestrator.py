@@ -37,6 +37,8 @@ from security.db.database import DatabaseManager
 import security.parsers.hadolint_parser
 import security.parsers.trivy_parser
 import security.parsers.gitleaks_parser
+import security.parsers.zap_parser
+
 
 
 class SecurityOrchestrator:
@@ -108,7 +110,9 @@ class SecurityOrchestrator:
             ("Gitleaks", "security/secrets/gitleaks.sh"),
             ("Hadolint", "security/container/hadolint.sh"),
             ("Trivy", "security/container/trivy.sh"),
+            ("ZAP", "security/dast/zap.sh"),
         ]
+
 
         for name, script_path in scanners:
             if self.should_run_tool(name):
@@ -245,12 +249,16 @@ def main():
     elif intent in ["post-build", "postbuild"]:
         stages = ["scanners", "parsers"]
         tools = [tool] if tool else ["trivy"]
+    elif intent in ["dast", "zap"]:
+        stages = ["scanners", "parsers"]
+        tools = [tool] if tool else ["zap"]
     elif intent in ["gate", "evaluate"]:
         stages = ["aggregate", "gate"]
         tools = None
     else:
         stages = [s.strip() for s in args.stage.split(",")] if args.stage else None
         tools = [t.strip() for t in args.tools.split(",")] if args.tools else ([tool] if tool else None)
+
 
     orchestrator = SecurityOrchestrator(selected_tools=tools, selected_stages=stages)
     orchestrator.run()

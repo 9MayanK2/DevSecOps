@@ -10,6 +10,7 @@ enabled_tools:
   - gitleaks
   - trivy
   - hadolint
+  - zap
 
 risk_weights:
   critical: 10

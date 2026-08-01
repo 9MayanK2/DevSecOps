@@ -1,22 +1,23 @@
 {
     "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-07-30T19:12:57.356275",
+    "generated_at": "2026-07-30T20:14:40.537538",
     "scanners_executed": [
         "Gitleaks",
         "Hadolint",
-        "Trivy"
+        "Trivy",
+        "zap"
     ],
     "summary": {
-        "total_findings": 20,
+        "total_findings": 22,
         "critical": 2,
         "high": 8,
-        "medium": 9,
-        "low": 0,
+        "medium": 10,
+        "low": 1,
         "info": 1,
         "compliance_score": 77.8
     },
     "risk_summary": {
-        "total_risk_score": 78,
+        "total_risk_score": 81,
         "risk_level": "CRITICAL"
     },
     "findings": [
@@ -975,6 +976,70 @@
             "fix_available": true,
             "epss_score": null,
             "kev": false
+        },
+        {
+            "tool": "OWASP ZAP",
+            "category": "DAST Web Vulnerability",
+            "rule_id": "ZAP-10021",
+            "severity": "LOW",
+            "file": "X-Content-Type-Options Header Missing",
+            "line": null,
+            "message": "X-Content-Type-Options Header Missing - The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Ex",
+            "recommendation": "Ensure that the application/web server sets the X-Content-Type-Options header to 'nosniff' for all web pages.",
+            "status": "OPEN",
+            "scan_time": "2026-07-30T20:14:21.126122",
+            "package_name": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cvss_score": null,
+            "cwe": [
+                "CWE-693"
+            ],
+            "cve": null,
+            "severity_source": null,
+            "target": null,
+            "target_class": null,
+            "target_type": null,
+            "description": "The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body.",
+            "primary_url": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
+            "references": null,
+            "compliance": [],
+            "exploit_available": null,
+            "fix_available": null,
+            "epss_score": null,
+            "kev": null
+        },
+        {
+            "tool": "OWASP ZAP",
+            "category": "DAST Web Vulnerability",
+            "rule_id": "ZAP-10038",
+            "severity": "MEDIUM",
+            "file": "Content Security Policy (CSP) Header Not Set",
+            "line": null,
+            "message": "Content Security Policy (CSP) Header Not Set - Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, ",
+            "recommendation": "Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.",
+            "status": "OPEN",
+            "scan_time": "2026-07-30T20:14:21.126122",
+            "package_name": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cvss_score": null,
+            "cwe": [
+                "CWE-693"
+            ],
+            "cve": null,
+            "severity_source": null,
+            "target": null,
+            "target_class": null,
+            "target_type": null,
+            "description": "Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks.",
+            "primary_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP",
+            "references": null,
+            "compliance": [],
+            "exploit_available": null,
+            "fix_available": null,
+            "epss_score": null,
+            "kev": null
         },
         {
             "tool": "Hadolint",

@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        PROJECT_NAME = 'DevSecOps-MERN-Pipeline'
+        PROJECT_NAME = 'SentinelOps'
         PYTHONPATH   = '.'
     }
 
@@ -18,7 +18,28 @@ pipeline {
                 checkout scm
             }
         }
-
+	
+	stage('Generating Backend Environment') {
+	   steps {
+		echo '============Generating .env ===================='
+		withCredentials([
+                    string(credentialsId: 'MONGO_URL', variable: 'MONGO_URL'),
+                    string(credentialsId: 'JWT_SECRET', variable: 'JWT_SECRET'),
+                    string(credentialsId: 'EMAIL_USER', variable: 'EMAIL_USER'),
+                    string(credentialsId: 'EMAIL_PASS', variable: 'EMAIL_PASS')
+                ]){
+		sh '''
+                    cat > app/server/.env <<EOF
+PORT=5000
+MONGO_URL=${MONGO_URL}
+JWT_SECRET=${JWT_SECRET}
+EMAIL_USER=${EMAIL_USER}
+EMAIL_PASS=${EMAIL_PASS}
+EOF
+                    '''
+		}
+	   }
+	}
         stage('Pre-Build Security Gate (PR Check)') {
             parallel {
                 stage('Gitleaks Secrets Scan') {
@@ -50,9 +71,16 @@ pipeline {
             }
         }
 
+        stage('DAST Web Vulnerability Scan') {
+            steps {
+                echo '=== Stage 4: OWASP ZAP DAST Scanning Live Endpoints ==='
+                sh './security/run_pipeline.sh dast zap'
+            }
+        }
+
         stage('Orchestrator Gate, Risk Engine & Reporting') {
             steps {
-                echo '=== Stage 4: Orchestrator Gate Evaluation & HTML/PDF Report Generation ==='
+                echo '=== Stage 5: Orchestrator Gate Evaluation & HTML/PDF Report Generation ==='
                 sh './security/run_pipeline.sh gate'
             }
         }
