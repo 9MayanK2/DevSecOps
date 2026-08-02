@@ -37,14 +37,20 @@ fi
 
 echo "[INFO] Running OWASP ZAP DAST Baseline Scan..."
 
-# Run ZAP baseline scan against target URL
 docker run --rm \
-  --network="host" \
-  -v "$OUTPUT_DIR:/zap/wrk/:rw" \
-  "$ZAP_IMAGE" zap-baseline.py \
-  -t "$TARGET_URL" \
-  -J "zap_${TIMESTAMP}.json" \
-  -I || true
+    --network host \
+    --user "$(id -u):$(id -g)" \
+    -v "$OUTPUT_DIR:/zap/wrk" \
+    "$ZAP_IMAGE" \
+    zap-baseline.py \
+    -t "$TARGET_URL" \
+    -J "zap_${TIMESTAMP}.json" \
+    -I
+
+if [ ! -f "$RAW_REPORT" ]; then
+    echo "[ERROR] ZAP report was not generated."
+    exit 1
+fi
 
 echo "[SUCCESS] OWASP ZAP DAST Scan Completed."
 echo "Report Generated: $RAW_REPORT"

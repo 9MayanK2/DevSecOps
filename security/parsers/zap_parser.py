@@ -87,7 +87,7 @@ class ZapParser(BaseParser):
 
 
 # Register in ParserRegistry
-registry.register("zap", ZapParser())
+registry.register("zap", ZapParser)
 
 
 def main():
