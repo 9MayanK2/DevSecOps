@@ -13,15 +13,22 @@ pipeline {
 
     stages {
 
+        /********************************************************************
+         * Stage 1 : Checkout Source
+         ********************************************************************/
         stage('Checkout Source Code') {
             steps {
-                echo '========== CHECKOUT =========='
+                echo '========== CHECKOUT SOURCE =========='
                 checkout scm
             }
         }
 
+        /********************************************************************
+         * Stage 2 : Generate Backend Environment
+         ********************************************************************/
         stage('Generate Backend Environment') {
             steps {
+
                 echo '========== GENERATING .ENV =========='
 
                 withCredentials([
@@ -44,119 +51,198 @@ EOF
             }
         }
 
+        /********************************************************************
+         * Stage 3 : Cleanup Previous Build
+         ********************************************************************/
+        stage('Cleanup Previous Deployment') {
+            steps {
+
+                echo '========== CLEANUP =========='
+
+                sh '''
+                docker-compose down --remove-orphans || true
+                '''
+            }
+        }
+
+        /********************************************************************
+         * Stage 4 : Pre-Build Security
+         ********************************************************************/
         stage('Pre-Build Security Scans') {
 
             parallel {
 
-                stage('Gitleaks') {
+                stage('Gitleaks Secrets Scan') {
+
                     steps {
+
                         echo '========== GITLEAKS =========='
+
                         sh './security/run_pipeline.sh pre-build gitleaks'
                     }
                 }
 
-                stage('Hadolint') {
+                stage('Hadolint Dockerfile Scan') {
+
                     steps {
+
                         echo '========== HADOLINT =========='
+
                         sh './security/run_pipeline.sh pre-build hadolint'
                     }
                 }
             }
         }
 
+        /********************************************************************
+         * Stage 5 : Build Images
+         ********************************************************************/
         stage('Build Docker Images') {
-            steps {
-                echo '========== BUILD =========='
-                sh 'docker-compose build'
-            }
-        }
 
-        stage('Trivy Image Scan') {
             steps {
-                echo '========== TRIVY =========='
-                sh './security/run_pipeline.sh post-build trivy'
-            }
-        }
 
-        stage('Start MERN Application') {
-            steps {
-                echo '========== START APPLICATION =========='
-                sh 'docker-compose up -d'
-            }
-        }
-
-        stage('Application Health Check') {
-            steps {
-                echo '========== WAITING FOR BACKEND =========='
+                echo '========== BUILDING DOCKER IMAGES =========='
 
                 sh '''
-                timeout=120
-
-                until curl -f http://localhost:5000/health
-                do
-                    timeout=$((timeout-5))
-
-                    if [ $timeout -le 0 ]; then
-                        echo "Backend failed to start."
-                        exit 1
-                    fi
-
-                    sleep 5
-                done
+                docker-compose build
                 '''
             }
         }
 
-        stage('OWASP ZAP DAST Scan') {
+        /********************************************************************
+         * Stage 6 : Trivy Scan
+         ********************************************************************/
+        stage('Trivy Container Scan') {
+
             steps {
-                echo '========== OWASP ZAP =========='
-                sh './security/run_pipeline.sh dast zap'
+
+                echo '========== TRIVY =========='
+
+                sh '''
+                ./security/run_pipeline.sh post-build trivy
+                '''
             }
         }
 
-        stage('Generate Reports') {
+        /********************************************************************
+         * Stage 7 : Start Containers
+         ********************************************************************/
+        stage('Start MERN Application') {
+
             steps {
+
+                echo '========== STARTING APPLICATION =========='
+
+                sh '''
+                docker-compose up -d --force-recreate
+                '''
+            }
+        }
+
+        /********************************************************************
+         * Stage 8 : Health Check
+         ********************************************************************/
+        stage('Application Health Check') {
+
+            steps {
+
+                echo '========== WAITING FOR BACKEND =========='
+
+                sh '''
+                for i in {1..30}
+                do
+                    if curl -fs http://localhost:5000/health > /dev/null
+                    then
+                        echo "Backend is healthy."
+                        exit 0
+                    fi
+
+                    echo "Waiting for backend..."
+                    sleep 5
+                done
+
+                echo "Backend failed to start."
+                exit 1
+                '''
+            }
+        }
+
+        /********************************************************************
+         * Stage 9 : OWASP ZAP
+         ********************************************************************/
+        stage('OWASP ZAP DAST Scan') {
+
+            steps {
+
+                echo '========== OWASP ZAP =========='
+
+                sh '''
+                ./security/run_pipeline.sh dast zap
+                '''
+            }
+        }
+
+        /********************************************************************
+         * Stage 10 : Generate Reports
+         ********************************************************************/
+        stage('Generate Security Reports') {
+
+            steps {
+
                 echo '========== GENERATING REPORTS =========='
 
                 /*
-                 * Generates:
-                 *  - Master Report
-                 *  - Executive Report
-                 *  - HTML Report
-                 *  - PDF Report
-                 *  - Compliance Matrix
+                 * Report Only Mode
                  *
-                 * Does NOT enforce Security Gate.
+                 * Security Gate is intentionally disabled.
+                 * Pipeline should generate reports even if
+                 * vulnerabilities exist.
                  */
 
-                sh './security/run_pipeline.sh report'
+                sh '''
+                ./security/run_pipeline.sh report || true
+                '''
             }
         }
 
     }
 
+    /********************************************************************
+     * POST ACTIONS
+     ********************************************************************/
     post {
 
         always {
 
-            echo '========== STOPPING APPLICATION =========='
+            echo '========== CLEANING UP =========='
 
             sh '''
-            docker-compose down || true
+            docker-compose down --remove-orphans || true
             '''
 
             echo '========== ARCHIVING REPORTS =========='
 
             archiveArtifacts artifacts: 'compliance/reports/**/*', allowEmptyArchive: true
             archiveArtifacts artifacts: 'compliance/master_reports/**/*', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'compliance/logs/**/*', allowEmptyArchive: true
         }
 
         success {
-            echo '✅ SentinelOps Pipeline Completed Successfully.'
+
+            echo '''
+==================================================
+      SENTINELOPS PIPELINE COMPLETED
+==================================================
+            '''
         }
 
         failure {
-            echo '❌ SentinelOps Pipeline Failed.'
+
+            echo '''
+==================================================
+      SENTINELOPS PIPELINE FAILED
+==================================================
+            '''
         }
     }
 }
