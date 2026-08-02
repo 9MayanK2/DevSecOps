@@ -3,7 +3,7 @@
 # Use the official Node.js 22 Alpine image.
 # Alpine Linux is lightweight, resulting in a smaller image and fewer packages.
 # -----------------------------------------------------------------------------
-FROM node:22-alpine
+FROM node:20-alpine
 
 # -----------------------------------------------------------------------------
 # Working Directory
