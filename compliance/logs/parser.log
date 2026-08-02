@@ -1,1 +1,13 @@
 
+2026-08-02 18:48:17 | INFO | Registered parser: hadolint
+2026-08-02 18:48:17 | INFO | Registered parser: trivy
+2026-08-02 18:48:17 | INFO | Registered parser: gitleaks
+2026-08-02 18:48:17 | INFO | Registered parser: zap
+2026-08-02 18:48:17 | INFO | === STAGE 1: Pre-flight Checks ===
+2026-08-02 18:48:17 | INFO | Pre-flight Checks Passed.
+2026-08-02 18:48:17 | INFO | === STAGE 2: Running Scanners ===
+2026-08-02 18:48:17 | INFO | Running Gitleaks scanner (security/secrets/gitleaks.sh)...
+2026-08-02 18:48:22 | INFO | Gitleaks scanner completed successfully.
+2026-08-02 18:48:22 | INFO | Running Hadolint scanner (security/container/hadolint.sh)...
+2026-08-02 18:48:24 | WARNING | Hadolint scanner exited with code 1
+2026-08-02 18:48:24 | INFO | Running Trivy scanner (security/container/trivy.sh)...

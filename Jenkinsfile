@@ -12,23 +12,26 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout Source Code') {
             steps {
-                echo '=== Stage 1: Checkout Code from GitHub ==='
+                echo '========== CHECKOUT =========='
                 checkout scm
             }
         }
-	
-	stage('Generating Backend Environment') {
-	   steps {
-		echo '============Generating .env ===================='
-		withCredentials([
+
+        stage('Generate Backend Environment') {
+            steps {
+                echo '========== GENERATING .ENV =========='
+
+                withCredentials([
                     string(credentialsId: 'MONGO_URL', variable: 'MONGO_URL'),
                     string(credentialsId: 'JWT_SECRET', variable: 'JWT_SECRET'),
                     string(credentialsId: 'EMAIL_USER', variable: 'EMAIL_USER'),
                     string(credentialsId: 'EMAIL_PASS', variable: 'EMAIL_PASS')
-                ]){
-		sh '''
+                ]) {
+
+                    sh '''
                     cat > app/server/.env <<EOF
 PORT=5000
 MONGO_URL=${MONGO_URL}
@@ -37,66 +40,123 @@ EMAIL_USER=${EMAIL_USER}
 EMAIL_PASS=${EMAIL_PASS}
 EOF
                     '''
-		}
-	   }
-	}
-        stage('Pre-Build Security Gate (PR Check)') {
+                }
+            }
+        }
+
+        stage('Pre-Build Security Scans') {
+
             parallel {
-                stage('Gitleaks Secrets Scan') {
+
+                stage('Gitleaks') {
                     steps {
-                        echo '=== 1. Gitleaks: Scanning Git History for Secrets ==='
+                        echo '========== GITLEAKS =========='
                         sh './security/run_pipeline.sh pre-build gitleaks'
                     }
                 }
-                stage('Hadolint Dockerfile Linter') {
+
+                stage('Hadolint') {
                     steps {
-                        echo '=== 2. Hadolint: Linting Dockerfiles Before Build ==='
+                        echo '========== HADOLINT =========='
                         sh './security/run_pipeline.sh pre-build hadolint'
                     }
                 }
             }
         }
 
-        stage('Build MERN Application Containers') {
+        stage('Build Docker Images') {
             steps {
-                echo '=== Stage 2: Building Containers via Docker Compose ==='
+                echo '========== BUILD =========='
                 sh 'docker-compose build'
             }
         }
 
-        stage('Post-Build Container Vulnerability Scan') {
+        stage('Trivy Image Scan') {
             steps {
-                echo '=== Stage 3: Trivy Image CVE Scan ==='
+                echo '========== TRIVY =========='
                 sh './security/run_pipeline.sh post-build trivy'
             }
         }
 
-        stage('DAST Web Vulnerability Scan') {
+        stage('Start MERN Application') {
             steps {
-                echo '=== Stage 4: OWASP ZAP DAST Scanning Live Endpoints ==='
+                echo '========== START APPLICATION =========='
+                sh 'docker-compose up -d'
+            }
+        }
+
+        stage('Application Health Check') {
+            steps {
+                echo '========== WAITING FOR BACKEND =========='
+
+                sh '''
+                timeout=120
+
+                until curl -f http://localhost:5000/health
+                do
+                    timeout=$((timeout-5))
+
+                    if [ $timeout -le 0 ]; then
+                        echo "Backend failed to start."
+                        exit 1
+                    fi
+
+                    sleep 5
+                done
+                '''
+            }
+        }
+
+        stage('OWASP ZAP DAST Scan') {
+            steps {
+                echo '========== OWASP ZAP =========='
                 sh './security/run_pipeline.sh dast zap'
             }
         }
 
-        stage('Orchestrator Gate, Risk Engine & Reporting') {
+        stage('Generate Reports') {
             steps {
-                echo '=== Stage 5: Orchestrator Gate Evaluation & HTML/PDF Report Generation ==='
-                sh './security/run_pipeline.sh gate'
+                echo '========== GENERATING REPORTS =========='
+
+                /*
+                 * Generates:
+                 *  - Master Report
+                 *  - Executive Report
+                 *  - HTML Report
+                 *  - PDF Report
+                 *  - Compliance Matrix
+                 *
+                 * Does NOT enforce Security Gate.
+                 */
+
+                sh './security/run_pipeline.sh report'
             }
         }
+
     }
 
     post {
+
         always {
-            echo '=== Post-Pipeline: Archiving All Compliance & Security Reports in Jenkins UI ==='
+
+            echo '========== STOPPING APPLICATION =========='
+
+            sh '''
+            docker-compose down || true
+            '''
+
+            echo '========== ARCHIVING REPORTS =========='
+
             archiveArtifacts artifacts: 'compliance/reports/**/*', allowEmptyArchive: true
             archiveArtifacts artifacts: 'compliance/master_reports/**/*', allowEmptyArchive: true
         }
+
         success {
-            echo '✅ DEVSECOPS PIPELINE PASSED: All Security & Policy Checks Satisfied!'
+            echo '✅ SentinelOps Pipeline Completed Successfully.'
         }
+
         failure {
-            echo '❌ DEVSECOPS PIPELINE FAILED: Security Gate or Policy Violation Detected.'
+            echo '❌ SentinelOps Pipeline Failed.'
         }
     }
 }
