@@ -2,7 +2,7 @@
     "tool": "Hadolint",
     "category": "Container Security",
     "scanner_type": "Static",
-    "scan_time": "2026-07-30T16:28:05.138838",
+    "scan_time": "2026-08-03T19:42:41.194576",
     "status": "PASS",
     "summary": {
         "total": 1,
@@ -33,9 +33,9 @@
         "os_version": "6.8.0-136-generic",
         "python_version": "3.10.12",
         "git_branch": "features",
-        "git_commit": "0814677",
-        "scan_id": "HADOLINT-20260730162805-B3A79C",
-        "generated_at": "2026-07-30T16:28:05.138823"
+        "git_commit": "8198170",
+        "scan_id": "HADOLINT-20260803194241-56F802",
+        "generated_at": "2026-08-03T19:42:41.194562"
     },
     "findings": [
         {
@@ -48,7 +48,7 @@
             "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
             "recommendation": "Include a standardized image creation timestamp.",
             "status": "OPEN",
-            "scan_time": "2026-07-30T16:28:05.138838",
+            "scan_time": "2026-08-03T19:42:41.194576",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,

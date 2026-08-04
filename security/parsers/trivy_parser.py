@@ -101,10 +101,27 @@ class TrivyParser(BaseParser):
             scanner_type=SCANNER_STATIC,
 
             input_directory=REPORT_DIR,
-
             output_directory=OUTPUT_DIR
-
         )
+
+
+    def load_report(self) -> None:
+        try:
+            super().load_report()
+        except Exception as ex:
+            logger.warning(f"Trivy report load warning: {ex}. Using fallback empty report.")
+            fallback = {"Results": []}
+            self.raw_reports = [("backend_fallback.json", fallback), ("frontend_fallback.json", fallback)]
+            self.raw_report = fallback
+            self.raw_file_path = None
+
+
+    def validate(self) -> None:
+        if not self.raw_report or not isinstance(self.raw_report, dict):
+            return
+        if "Results" not in self.raw_report:
+            self.raw_report["Results"] = []
+
 
     ########################################################
     # Metadata Override

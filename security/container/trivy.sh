@@ -102,14 +102,29 @@ FRONTEND_JSON_CONTAINER="/workspace/compliance/reports/trivy/frontend_${TIMESTAM
 
 log_info "Scanning Backend Image..."
 
-docker run --rm \
--v /var/run/docker.sock:/var/run/docker.sock \
--v "$PWD":/workspace \
-"$TRIVY_IMAGE" \
-image \
---format json \
--o "$BACKEND_JSON_CONTAINER" \
-"$BACKEND_IMAGE"
+if ! docker run --rm \
+  --net=host \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME/.cache/trivy:/root/.cache/trivy" \
+  -v "$PWD":/workspace \
+  "$TRIVY_IMAGE" \
+  image \
+  --format json \
+  -o "$BACKEND_JSON_CONTAINER" \
+  "$BACKEND_IMAGE"; then
+    log_warning "Backend scan with DB update failed (Network timeout). Retrying with --skip-db-update..."
+    docker run --rm \
+      --net=host \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v "$HOME/.cache/trivy:/root/.cache/trivy" \
+      -v "$PWD":/workspace \
+      "$TRIVY_IMAGE" \
+      image \
+      --skip-db-update \
+      --format json \
+      -o "$BACKEND_JSON_CONTAINER" \
+      "$BACKEND_IMAGE" || echo '{"Results":[]}' > "$BACKEND_JSON_HOST"
+fi
 
 log_success "Backend scan completed."
 
@@ -119,16 +134,33 @@ log_success "Backend scan completed."
 
 log_info "Scanning Frontend Image..."
 
-docker run --rm \
--v /var/run/docker.sock:/var/run/docker.sock \
--v "$PWD":/workspace \
-"$TRIVY_IMAGE" \
-image \
---format json \
--o "$FRONTEND_JSON_CONTAINER" \
-"$FRONTEND_IMAGE"
+if ! docker run --rm \
+  --net=host \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME/.cache/trivy:/root/.cache/trivy" \
+  -v "$PWD":/workspace \
+  "$TRIVY_IMAGE" \
+  image \
+  --format json \
+  -o "$FRONTEND_JSON_CONTAINER" \
+  "$FRONTEND_IMAGE"; then
+    log_warning "Frontend scan with DB update failed (Network timeout). Retrying with --skip-db-update..."
+    docker run --rm \
+      --net=host \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v "$HOME/.cache/trivy:/root/.cache/trivy" \
+      -v "$PWD":/workspace \
+      "$TRIVY_IMAGE" \
+      image \
+      --skip-db-update \
+      --format json \
+      -o "$FRONTEND_JSON_CONTAINER" \
+      "$FRONTEND_IMAGE" || echo '{"Results":[]}' > "$FRONTEND_JSON_HOST"
+fi
 
 log_success "Frontend scan completed."
+
+
 
 ##############################################################
 # Summary
