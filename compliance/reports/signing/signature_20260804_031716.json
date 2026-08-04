@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-08-03T21:47:22Z",
+  "status": "SIGNED",
+  "key_file": "security/config/keys/cosign.key",
+  "signed_images": [
+    "hopegivers-backend:latest",
+    "hopegivers-frontend:latest"
+  ]
+}

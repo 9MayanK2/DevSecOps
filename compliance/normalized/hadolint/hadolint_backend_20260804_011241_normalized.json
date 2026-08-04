@@ -2,7 +2,7 @@
     "tool": "Hadolint",
     "category": "Container Security",
     "scanner_type": "Static",
-    "scan_time": "2026-07-30T16:28:05.126175",
+    "scan_time": "2026-08-03T19:42:41.207153",
     "status": "PASS",
     "summary": {
         "total": 0,
@@ -33,9 +33,9 @@
         "os_version": "6.8.0-136-generic",
         "python_version": "3.10.12",
         "git_branch": "features",
-        "git_commit": "0814677",
-        "scan_id": "HADOLINT-20260730162805-468907",
-        "generated_at": "2026-07-30T16:28:05.126158"
+        "git_commit": "8198170",
+        "scan_id": "HADOLINT-20260803194241-9BE774",
+        "generated_at": "2026-08-03T19:42:41.207131"
     },
     "findings": []
 }

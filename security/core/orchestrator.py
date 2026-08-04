@@ -220,17 +220,19 @@ class SecurityOrchestrator:
         self.stage_2_run_scanners()
         self.stage_3_run_parsers()
         master_report = self.stage_4_aggregate()
-        passed = self.stage_5_security_gate(master_report)
-
-        if passed:
-            sys.exit(0)
+        if self.should_run_stage("gate"):
+            passed = self.stage_5_security_gate(master_report)
+            if passed:
+                sys.exit(0)
+            else:
+                sys.exit(1)
         else:
-            sys.exit(1)
+            sys.exit(0)
 
 
 def main():
     parser = argparse.ArgumentParser(description="DevSecOps Security Orchestrator")
-    parser.add_argument("intent", nargs="?", default="full", help="Intent profile (pre-build, post-build, gate, full)")
+    parser.add_argument("intent", nargs="?", default="full", help="Intent profile (pre-build, post-build, report, gate, full)")
     parser.add_argument("tool", nargs="?", default=None, help="Target tool (gitleaks, hadolint, trivy)")
 
     # Legacy flags fallback for backwards compatibility
@@ -252,12 +254,25 @@ def main():
     elif intent in ["dast", "zap"]:
         stages = ["scanners", "parsers"]
         tools = [tool] if tool else ["zap"]
+    elif intent in ["report", "reports"]:
+        stages = ["aggregate"]
+        tools = None
     elif intent in ["gate", "evaluate"]:
         stages = ["aggregate", "gate"]
         tools = None
+    elif intent in ["sign", "signing"]:
+        import subprocess
+        res = subprocess.run(["bash", "security/signing/sign_images.sh"])
+        sys.exit(res.returncode)
+    elif intent in ["verify", "verification"]:
+        import subprocess
+        res = subprocess.run(["bash", "security/signing/verify_images.sh"])
+        sys.exit(res.returncode)
     else:
         stages = [s.strip() for s in args.stage.split(",")] if args.stage else None
         tools = [t.strip() for t in args.tools.split(",")] if args.tools else ([tool] if tool else None)
+
+
 
 
     orchestrator = SecurityOrchestrator(selected_tools=tools, selected_stages=stages)
