@@ -5,9 +5,7 @@ services:
       context: ./app/server
       dockerfile: Dockerfile
 
-    image: hopegivers-backend:latest
-
-    container_name: hopegivers-backend
+    image: sentinelops-backend:latest
 
     ports:
       - "5000:5000"
@@ -25,9 +23,7 @@ services:
       context: ./app/client
       dockerfile: Dockerfile
 
-    image: hopegivers-frontend:latest
-
-    container_name: hopegivers-frontend
+    image: sentinelops-frontend:latest
 
     ports:
       - "3000:8080"

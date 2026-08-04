@@ -7,8 +7,20 @@ pipeline {
     }
 
     environment {
-        PROJECT_NAME = 'SentinelOps'
-        PYTHONPATH   = '.'
+
+    PROJECT_NAME = "SentinelOps"
+
+    PYTHONPATH = "."
+
+    AWS_REGION = "us-east-1"
+    AWS_ACCOUNT_ID = "284064534086"
+
+    EKS_CLUSTER = "sentinelops-dev-eks"
+    IMAGE_TAG = "build-${BUILD_NUMBER}"
+    BACKEND_REPOSITORY = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/sentinelops-backend"
+    FRONTEND_REPOSITORY = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/sentinelops-frontend"
+    BACKEND_IMAGE = "${BACKEND_REPOSITORY}:${IMAGE_TAG}"
+    FRONTEND_IMAGE = "${FRONTEND_REPOSITORY}:${IMAGE_TAG}"
     }
 
     stages {
@@ -54,7 +66,10 @@ EOF
         stage('Cleanup Previous Deployment') {
             steps {
                 echo '========== CLEANUP =========='
-                sh 'docker-compose down --remove-orphans || true'
+                sh '''
+                docker-compose down --remove-orphans || true
+                docker image prune -f || true
+                '''
             }
         }
 
@@ -85,7 +100,22 @@ EOF
         stage('Build Docker Images') {
             steps {
                 echo '========== BUILDING DOCKER IMAGES =========='
-                sh 'docker-compose build'
+                sh '''
+                docker-compose build
+                echo "Tagging Backend..."
+
+                docker tag \
+                sentinelops-backend:latest \
+                sentinelops-backend:${IMAGE_TAG}
+
+                echo "Tagging Frontend..."
+
+                docker tag \
+                sentinelops-frontend:latest \
+                sentinelops-frontend:${IMAGE_TAG}
+
+                docker images
+                '''
             }
         }
 
@@ -185,12 +215,106 @@ EOF
         /********************************************************************
          * Stage 14 : Publish Images to Amazon ECR (Reserved)
          ********************************************************************/
-        stage('Publish Images to Amazon ECR') {
+        stage('Login to Amazon ECR') {
+
             steps {
-                echo '========== PUBLISHING TO AMAZON ECR =========='
+
                 sh '''
-                # Future implementation: AWS ECR Login & Docker Push
-                echo "[INFO] ECR Stage reserved for AWS integration."
+                aws ecr get-login-password \
+                --region ${AWS_REGION} | \
+                docker login \
+                --username AWS \
+                --password-stdin \
+                ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+                '''
+            }
+        }
+
+        /********************************************************************
+         * Stage 15 : Push Images to Amazon ECR (Reserved)
+         ********************************************************************/
+        stage('Push Images to Amazon ECR') {
+
+            steps {
+
+                sh '''
+
+                docker tag sentinelops-backend:${IMAGE_TAG} ${BACKEND_IMAGE}
+
+                docker tag sentinelops-frontend:${IMAGE_TAG} ${FRONTEND_IMAGE}
+
+                docker push ${BACKEND_IMAGE}
+
+                docker push ${FRONTEND_IMAGE}
+
+                docker tag sentinelops-backend:${IMAGE_TAG} ${BACKEND_REPOSITORY}:latest
+
+                docker tag sentinelops-frontend:${IMAGE_TAG} ${FRONTEND_REPOSITORY}:latest
+
+                docker push ${BACKEND_REPOSITORY}:latest
+
+                docker push ${FRONTEND_REPOSITORY}:latest
+
+                '''
+            }
+        }
+
+        stage('Verify Images in Amazon ECR') {
+
+            steps {
+
+                sh '''
+
+                aws ecr describe-images \
+                --repository-name sentinelops-backend \
+                --image-ids imageTag=${IMAGE_TAG}
+
+                aws ecr describe-images \
+                --repository-name sentinelops-frontend \
+                --image-ids imageTag=${IMAGE_TAG}
+
+                '''
+            }
+        }
+         /********************************************************************
+         * Stage 16 : Deploy to Amazon EKS (Reserved)
+         ********************************************************************/
+        
+        stage('Deploy to Amazon EKS') {
+
+            steps {
+
+                sh '''
+
+                aws eks update-kubeconfig \
+                --region ${AWS_REGION} \
+                --name ${EKS_CLUSTER}
+
+                bash deployment/deploy.sh ${IMAGE_TAG}
+
+                '''
+            }
+        }
+
+        /********************************************************************
+         * Stage 17 : Verify kubernetes to rollout
+         ********************************************************************/
+        
+        stage('Verify Kubernetes Rollout') {
+
+            steps {
+
+                sh '''
+
+                kubectl rollout status \
+                deployment/backend \
+                -n sentinelops \
+                --timeout=5m
+
+                kubectl rollout status deployment/frontend \
+                -n sentinelops \
+                --timeout=5m
+
                 '''
             }
         }
@@ -203,8 +327,12 @@ EOF
     post {
         always {
             echo '========== CLEANING UP =========='
-            sh 'docker-compose down --remove-orphans || true'
+            sh '''
 
+            docker-compose down --remove-orphans || true
+            docker image prune -f || true
+            
+            '''
             echo '========== ARCHIVING REPORTS & SIGNATURES =========='
             archiveArtifacts artifacts: 'compliance/reports/**/*', allowEmptyArchive: true
             archiveArtifacts artifacts: 'compliance/master_reports/**/*', allowEmptyArchive: true
@@ -221,6 +349,15 @@ EOF
         }
 
         failure {
+
+            echo '========== DEPLOYMENT FAILED =========='
+
+            sh '''
+            echo "Rolling back Kubernetes Deployment..."
+
+            bash deployment/rollback.sh || true
+            kubectl get pods -n sentinelops
+            '''
             echo '''
 ==================================================
       SENTINELOPS PIPELINE FAILED
