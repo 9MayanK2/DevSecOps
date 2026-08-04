@@ -35,6 +35,13 @@ pipeline {
             }
         }
 
+        stage('Install Python Dependencies') {
+            steps {
+                echo '========== INSTALLING PYTHON REQUIREMENTS =========='
+                sh 'pip3 install --user -r requirements.txt || pip install -r requirements.txt || true'
+            }
+        }
+
         /********************************************************************
          * Stage 2 : Generate Backend Environment
          ********************************************************************/

@@ -16,14 +16,20 @@ from typing import Dict, List, Any
 
 from security.common.logger import logger
 
-# Import ReportLab for native PDF generation
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import letter, A4
-from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, HRFlowable
-)
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.units import inch
+# Import ReportLab for native PDF generation (safe fallback if not installed)
+try:
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import letter, A4
+    from reportlab.platypus import (
+        SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, HRFlowable
+    )
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import inch
+    HAS_REPORTLAB = True
+except ImportError:
+    HAS_REPORTLAB = False
+    logger.warning("ReportLab library not found. Installing via 'pip install -r requirements.txt' will enable PDF report generation.")
+
 
 REPORTS_DIR = Path("compliance/reports/executive_reports")
 HTML_REPORT_PATH = REPORTS_DIR / "security_report.html"
@@ -154,6 +160,10 @@ class ReportGenerator:
         """
         Generates an audit-ready executive PDF report using ReportLab.
         """
+        if not HAS_REPORTLAB:
+            logger.warning("Skipping PDF generation because ReportLab is not installed.")
+            return PDF_REPORT_PATH
+
         summary = master_report.get("summary", {})
         risk_summary = master_report.get("risk_summary", {})
         compliance_summary = master_report.get("compliance_summary", {})

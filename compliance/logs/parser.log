@@ -1291,3 +1291,53 @@ security.core.exceptions.ReportNotFoundError: No raw reports found in compliance
 2026-08-04 22:50:40 | INFO | Registered parser: trivy
 2026-08-04 22:50:40 | INFO | Registered parser: gitleaks
 2026-08-04 22:50:40 | INFO | Registered parser: zap
+2026-08-05 00:59:52 | INFO | Registered parser: hadolint
+2026-08-05 00:59:52 | INFO | Registered parser: trivy
+2026-08-05 00:59:52 | INFO | Registered parser: gitleaks
+2026-08-05 00:59:52 | INFO | Registered parser: zap
+2026-08-05 00:59:52 | INFO | === STAGE 1: Pre-flight Checks ===
+2026-08-05 00:59:53 | INFO | Pre-flight Checks Passed.
+2026-08-05 00:59:53 | INFO | === STAGE 2: Running Scanners ===
+2026-08-05 00:59:53 | INFO | Running Gitleaks scanner (security/secrets/gitleaks.sh)...
+2026-08-05 01:00:00 | INFO | Gitleaks scanner completed successfully.
+2026-08-05 01:00:00 | INFO | === STAGE 3: Running Parsers ===
+2026-08-05 01:00:00 | INFO | Running parser for tool: gitleaks
+2026-08-05 01:00:00 | INFO | Running parser: gitleaks
+2026-08-05 01:00:00 | INFO | [Gitleaks] Preparing parser...
+2026-08-05 01:00:00 | INFO | ======================================================================
+2026-08-05 01:00:00 | INFO | Starting Gitleaks Parser
+2026-08-05 01:00:00 | INFO | ======================================================================
+2026-08-05 01:00:00 | INFO | [Gitleaks] Loading report(s)...
+2026-08-05 01:00:00 | INFO | Reading report: gitleaks_20260805_005954.json
+2026-08-05 01:00:00 | INFO | Successfully loaded gitleaks_20260805_005954.json
+2026-08-05 01:00:00 | INFO | [Gitleaks] Processing gitleaks_20260805_005954.json...
+2026-08-05 01:00:00 | INFO | [Gitleaks] Validating report...
+2026-08-05 01:00:00 | INFO | [Gitleaks] Generating metadata...
+2026-08-05 01:00:00 | INFO | Loaded 8 rules for gitleaks.
+2026-08-05 01:00:00 | INFO | Parsed 4 Gitleaks findings.
+2026-08-05 01:00:00 | INFO | [Gitleaks] Calculating statistics...
+2026-08-05 01:00:00 | INFO | [Gitleaks] Building normalized report...
+2026-08-05 01:00:00 | INFO | [Gitleaks] Saving report...
+2026-08-05 01:00:00 | INFO | Writing report: gitleaks_20260805_010000_normalized.json
+2026-08-05 01:00:00 | INFO | Report written successfully: gitleaks_20260805_010000_normalized.json
+2026-08-05 01:00:00 | INFO | [Gitleaks] Report saved successfully.
+2026-08-05 01:00:00 | INFO | [Gitleaks] Calculating statistics...
+2026-08-05 01:00:00 | INFO | ======================================================================
+2026-08-05 01:00:00 | INFO | Gitleaks Scan Summary
+2026-08-05 01:00:00 | INFO | ----------------------------------------------------------------------
+2026-08-05 01:00:00 | INFO | Status         : FAIL
+2026-08-05 01:00:00 | INFO | Total          : 4
+2026-08-05 01:00:00 | INFO | Critical       : 4
+2026-08-05 01:00:00 | INFO | High           : 0
+2026-08-05 01:00:00 | INFO | Medium         : 0
+2026-08-05 01:00:00 | INFO | Low            : 0
+2026-08-05 01:00:00 | INFO | Info           : 0
+2026-08-05 01:00:00 | INFO | Unknown        : 0
+2026-08-05 01:00:00 | INFO | Fixable        : 0
+2026-08-05 01:00:00 | INFO | Exploitable    : 0
+2026-08-05 01:00:00 | INFO | Compliance     : 0.0%
+2026-08-05 01:00:00 | INFO | Duration       : 0.03 sec
+2026-08-05 01:00:00 | INFO | ======================================================================
+2026-08-05 01:00:00 | INFO | Gitleaks Parser Completed
+2026-08-05 01:00:00 | INFO | ======================================================================
+2026-08-05 01:00:00 | INFO | [Gitleaks] Parser completed successfully.
