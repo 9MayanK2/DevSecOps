@@ -1,6 +1,6 @@
 {
     "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-08-04T17:09:30.826782",
+    "generated_at": "2026-08-04T17:20:24.645542",
     "scanners_executed": [
         "Gitleaks",
         "Hadolint",
@@ -8,8 +8,8 @@
         "zap"
     ],
     "summary": {
-        "total_findings": 51,
-        "critical": 2,
+        "total_findings": 52,
+        "critical": 3,
         "high": 20,
         "medium": 14,
         "low": 13,
@@ -17,10 +17,50 @@
         "compliance_score": 77.8
     },
     "risk_summary": {
-        "total_risk_score": 161,
+        "total_risk_score": 171,
         "risk_level": "CRITICAL"
     },
     "findings": [
+        {
+            "tool": "Gitleaks",
+            "category": "Secrets Detection",
+            "rule_id": "private-key",
+            "severity": "CRITICAL",
+            "file": "security/config/keys/cosign.key",
+            "line": 1,
+            "message": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: ---...---)",
+            "recommendation": "Immediately revoke and replace the compromised private key. Remove key files from source control and store in encrypted vault.",
+            "status": "OPEN",
+            "scan_time": "2026-08-04T17:19:54.392290",
+            "package_name": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cvss_score": null,
+            "cwe": [
+                "CWE-798"
+            ],
+            "cve": null,
+            "severity_source": "Gitleaks",
+            "target": "security/config/keys/cosign.key",
+            "target_class": "Secret",
+            "target_type": "Code/Config",
+            "description": "An unencrypted private key (RSA, SSH, PGP, etc.) was detected.",
+            "primary_url": "https://owasp.org/www-community/vulnerabilities/Use_of_hard-coded_cryptographic_key",
+            "references": [
+                "https://owasp.org/www-community/vulnerabilities/Use_of_hard-coded_cryptographic_key"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.12 - Rekey or Revoke Credentials",
+                    "nist": "IA-5 Authenticator Management"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": false,
+            "epss_score": null,
+            "kev": false
+        },
         {
             "tool": "Gitleaks",
             "category": "Secrets Detection",
@@ -31,7 +71,7 @@
             "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
             "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
             "status": "OPEN",
-            "scan_time": "2026-08-03T19:42:41.164114",
+            "scan_time": "2026-08-04T17:19:54.392290",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -3296,7 +3336,7 @@
             "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
             "recommendation": "Include a standardized image creation timestamp.",
             "status": "OPEN",
-            "scan_time": "2026-08-03T19:42:41.194576",
+            "scan_time": "2026-08-04T17:19:54.404258",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -3332,7 +3372,7 @@
             "controls_failed": 3,
             "compliance_percentage": 70.0,
             "failed_controls_breakdown": {
-                "A02:2021-Cryptographic Failures": 2,
+                "A02:2021-Cryptographic Failures": 3,
                 "A06:2021-Vulnerable and Outdated Components": 45,
                 "A05:2021-Security Misconfiguration": 1
             }
@@ -3343,8 +3383,8 @@
             "controls_failed": 4,
             "compliance_percentage": 73.3,
             "failed_controls_breakdown": {
+                "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 2,
                 "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-                "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 1,
                 "CIS Docker Benchmark 4.0 - Container Hardening": 45,
                 "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
             }
@@ -3355,7 +3395,7 @@
             "controls_failed": 2,
             "compliance_percentage": 90.0,
             "failed_controls_breakdown": {
-                "IA-5 Authenticator Management": 2,
+                "IA-5 Authenticator Management": 3,
                 "CM-6 Configuration Settings": 46
             }
         }
