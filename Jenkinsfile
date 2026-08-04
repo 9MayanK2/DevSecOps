@@ -74,7 +74,7 @@ EOF
             steps {
                 echo '========== CLEANUP =========='
                 sh '''
-                docker-compose down --remove-orphans || true
+                docker compose down --remove-orphans || true
                 docker image prune -f || true
                 '''
             }
@@ -108,7 +108,7 @@ EOF
             steps {
                 echo '========== BUILDING DOCKER IMAGES =========='
                 sh '''
-                docker-compose build
+                docker compose build
                 echo "Tagging Backend..."
 
                 docker tag \
@@ -142,7 +142,7 @@ EOF
         stage('Start MERN Application') {
             steps {
                 echo '========== STARTING APPLICATION =========='
-                sh 'docker-compose up -d --force-recreate'
+                sh 'docker compose up -d --force-recreate'
             }
         }
 
