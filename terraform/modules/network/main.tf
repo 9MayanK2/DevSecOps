@@ -28,11 +28,18 @@ resource "aws_subnet" "public_subnet_1" {
   map_public_ip_on_launch = true
 
   tags = {
+
     Name = "${var.project_name}-public-1"
+    Environment = var.environment
+    Project     = var.project_name
+
+
+    "kubernetes.io/role/elb" = "1"
+
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}-eks" = "shared"
   }
 }
 
-#Public Subnet 2 Block
 resource "aws_subnet" "public_subnet_2" {
 
   vpc_id                  = aws_vpc.main.id
@@ -41,7 +48,14 @@ resource "aws_subnet" "public_subnet_2" {
   map_public_ip_on_launch = true
 
   tags = {
+
     Name = "${var.project_name}-public-2"
+    Environment = var.environment
+    Project     = var.project_name
+
+    "kubernetes.io/role/elb" = "1"
+
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}-eks" = "shared"
   }
 }
 
@@ -53,7 +67,14 @@ resource "aws_subnet" "private_subnet_1" {
   availability_zone = var.availability_zone_1
 
   tags = {
+
     Name = "${var.project_name}-private-1"
+    Environment = var.environment
+    Project     = var.project_name
+
+    "kubernetes.io/role/internal-elb" = "1"
+
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}-eks" = "shared"
   }
 }
 
@@ -66,6 +87,12 @@ resource "aws_subnet" "private_subnet_2" {
 
   tags = {
     Name = "${var.project_name}-private-2"
+    Environment = var.environment
+    Project     = var.project_name
+
+    "kubernetes.io/role/internal-elb" = "1"
+
+    "kubernetes.io/cluster/${var.project_name}-${var.environment}-eks" = "shared"
   }
 }
 
@@ -152,8 +179,76 @@ resource "aws_security_group" "jenkins" {
   }
 
   tags = {
-
     Name = "${var.project_name}-${var.environment}-jenkins-sg"
-
   }
+}
+
+
+####################################################
+# Elastic IP for NAT Gateway
+####################################################
+
+resource "aws_eip" "nat" {
+
+  domain = "vpc"
+  tags = {
+    Name = "${var.project_name}-${var.environment}-nat-eip"
+  }
+  depends_on = [
+    aws_internet_gateway.igw
+  ]
+}
+
+####################################################
+# NAT Gateway
+####################################################
+
+resource "aws_nat_gateway" "main" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public_subnet_1.id
+  tags = {
+    Name = "${var.project_name}-${var.environment}-nat"
+  }
+  depends_on = [
+    aws_internet_gateway.igw
+  ]
+}
+
+####################################################
+# Private Route Table
+####################################################
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "${var.project_name}-${var.environment}-private-rt"
+  }
+}
+
+####################################################
+# Private Route
+####################################################
+
+resource "aws_route" "private_internet_access" {
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.main.id
+}
+
+####################################################
+# Private Subnet 1 Route Association
+####################################################
+
+resource "aws_route_table_association" "private_subnet_1" {
+  subnet_id      = aws_subnet.private_subnet_1.id
+  route_table_id = aws_route_table.private.id
+}
+
+####################################################
+# Private Subnet 2 Route Association
+####################################################
+
+resource "aws_route_table_association" "private_subnet_2" {
+  subnet_id      = aws_subnet.private_subnet_2.id
+  route_table_id = aws_route_table.private.id
 }
