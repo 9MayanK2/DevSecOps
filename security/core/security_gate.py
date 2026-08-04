@@ -79,7 +79,7 @@ class SecurityGate:
             logger.warning(f"Could not parse {self.policy_path}: {ex}. Using default policy.")
             return default_policy
 
-    def evaluate(self) -> bool:
+    def evaluate(self, soft_fail: bool = False) -> bool:
         """
         Evaluates metrics against policy.yaml and displays Executive Security & Risk Table.
         """
@@ -148,10 +148,14 @@ class SecurityGate:
         if passed:
             print(" VERDICT             : [ PASS ] Security Gate Passed Successfully!")
             print("=" * 70 + "\n")
+            return True
         else:
             print(" VERDICT             : [ FAIL ] Security Gate Failed!")
             for reason in reasons:
                 print(f"  ❌ {reason}")
             print("=" * 70 + "\n")
+            if soft_fail:
+                print(" ⚠️  [WARNING] SOFT-FAIL MODE ACTIVE: Gate failed policy checks, but returning Exit Code 0 for downstream pipeline testing.\n")
+                return True
+            return False
 
-        return passed

@@ -1071,3 +1071,21 @@ security.core.exceptions.ReportNotFoundError: No raw reports found in compliance
 2026-08-04 03:17:22 | INFO | Registered parser: trivy
 2026-08-04 03:17:22 | INFO | Registered parser: gitleaks
 2026-08-04 03:17:22 | INFO | Registered parser: zap
+2026-08-04 22:38:46 | INFO | Registered parser: hadolint
+2026-08-04 22:38:46 | INFO | Registered parser: trivy
+2026-08-04 22:38:46 | INFO | Registered parser: gitleaks
+2026-08-04 22:38:46 | INFO | Registered parser: zap
+2026-08-04 22:39:30 | INFO | Registered parser: hadolint
+2026-08-04 22:39:30 | INFO | Registered parser: trivy
+2026-08-04 22:39:30 | INFO | Registered parser: gitleaks
+2026-08-04 22:39:30 | INFO | Registered parser: zap
+2026-08-04 22:39:30 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-04 22:39:30 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-04 22:39:30 | INFO | Risk Engine Computed: Total Risk Score=161, Level=CRITICAL, Score=0.0%
+2026-08-04 22:39:30 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-04 22:39:30 | INFO | Processing Advanced Compliance Layer mappings...
+2026-08-04 22:39:30 | INFO | Saved advanced compliance matrix with Overall Compliance Score: 77.8% to compliance/reports/compliance/compliance_matrix.json
+2026-08-04 22:39:30 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-04 22:39:30 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-04 22:39:30 | INFO | Evaluating Security Gate policy from policy.yaml...
+2026-08-04 22:39:30 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260804170930)

@@ -1,6 +1,6 @@
 {
     "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-08-03T21:42:56.869452",
+    "generated_at": "2026-08-04T17:09:30.826782",
     "scanners_executed": [
         "Gitleaks",
         "Hadolint",

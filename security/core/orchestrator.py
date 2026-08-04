@@ -46,10 +46,11 @@ class SecurityOrchestrator:
     Master 5-Stage DevSecOps Security Orchestrator.
     """
 
-    def __init__(self, selected_tools: Optional[List[str]] = None, selected_stages: Optional[List[str]] = None):
+    def __init__(self, selected_tools: Optional[List[str]] = None, selected_stages: Optional[List[str]] = None, soft_fail: bool = False):
         self.project_root = Path.cwd()
-        self.selected_tools = [t.lower() for t in selected_tools] if selected_tools else []
-        self.selected_stages = [s.lower() for s in selected_stages] if selected_stages else []
+        self.selected_tools = [t.lower() for t in selected_tools] if selected_tools else None
+        self.selected_stages = [s.lower() for s in selected_stages] if selected_stages else None
+        self.soft_fail = soft_fail
 
     def should_run_tool(self, tool_name: str) -> bool:
         if not self.selected_tools:
@@ -176,17 +177,14 @@ class SecurityOrchestrator:
 
 
 
-    def stage_5_security_gate(self, master_report: dict) -> bool:
+    def stage_5_security_gate(self, master_report: Optional[Dict[str, Any]] = None) -> bool:
         """
-        Stage 5: Security Gate Evaluation.
-        Evaluates master report against security policy thresholds.
+        Stage 5: Security Gate Evaluation & Compliance Check.
         """
         if not self.should_run_stage("gate"):
             return True
 
-        logger.info("=== STAGE 5: Security Gate Evaluation ===")
-        if not master_report:
-            # If Stage 4 was skipped, read existing master_report.json from compliance/master_reports/
+        if master_report is None:
             master_file = self.project_root / "compliance/master_reports/master_report.json"
             if master_file.exists():
                 with open(master_file, "r", encoding="utf-8") as fp:
@@ -195,7 +193,7 @@ class SecurityOrchestrator:
                 master_report = Aggregator().aggregate()
 
         gate = SecurityGate(master_report)
-        passed = gate.evaluate()
+        passed = gate.evaluate(soft_fail=self.soft_fail)
 
         # Ingest into Database (SQLite for local, PostgreSQL for AWS EC2/RDS)
         try:
@@ -235,14 +233,16 @@ def main():
     parser.add_argument("intent", nargs="?", default="full", help="Intent profile (pre-build, post-build, report, gate, full)")
     parser.add_argument("tool", nargs="?", default=None, help="Target tool (gitleaks, hadolint, trivy)")
 
-    # Legacy flags fallback for backwards compatibility
+    # Legacy flags & options
     parser.add_argument("--tools", type=str, help="Comma-separated tools")
     parser.add_argument("--stage", type=str, help="Comma-separated stages")
+    parser.add_argument("--soft-fail", action="store_true", help="Soft fail mode (returns exit code 0 for development/testing)")
 
     args = parser.parse_args()
 
     intent = args.intent.lower() if args.intent else "full"
     tool = args.tool.lower() if args.tool else None
+    soft_fail = args.soft_fail or os.getenv("SOFT_FAIL", "false").lower() == "true" or os.getenv("ENFORCE_GATE", "true").lower() == "false"
 
     # Map Intent to internal framework execution plan
     if intent in ["pre-build", "prebuild"]:
@@ -272,11 +272,9 @@ def main():
         stages = [s.strip() for s in args.stage.split(",")] if args.stage else None
         tools = [t.strip() for t in args.tools.split(",")] if args.tools else ([tool] if tool else None)
 
-
-
-
-    orchestrator = SecurityOrchestrator(selected_tools=tools, selected_stages=stages)
+    orchestrator = SecurityOrchestrator(selected_tools=tools, selected_stages=stages, soft_fail=soft_fail)
     orchestrator.run()
+
 
 
 if __name__ == "__main__":
