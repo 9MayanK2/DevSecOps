@@ -1,8 +1,8 @@
 {
     "title": "DevSecOps Enterprise Advanced Compliance Matrix",
-    "generated_at": "2026-08-04T17:09:30.826782",
+    "generated_at": "2026-08-04T17:20:24.645542",
     "overall_compliance_score": 77.8,
-    "total_findings": 51,
+    "total_findings": 52,
     "framework_summaries": {
         "owasp_top_10_2021": {
             "total_controls_baseline": 10,
@@ -10,7 +10,7 @@
             "controls_failed": 3,
             "compliance_percentage": 70.0,
             "failed_controls_breakdown": {
-                "A02:2021-Cryptographic Failures": 2,
+                "A02:2021-Cryptographic Failures": 3,
                 "A06:2021-Vulnerable and Outdated Components": 45,
                 "A05:2021-Security Misconfiguration": 1
             }
@@ -21,8 +21,8 @@
             "controls_failed": 4,
             "compliance_percentage": 73.3,
             "failed_controls_breakdown": {
+                "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 2,
                 "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-                "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 1,
                 "CIS Docker Benchmark 4.0 - Container Hardening": 45,
                 "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
             }
@@ -33,7 +33,7 @@
             "controls_failed": 2,
             "compliance_percentage": 90.0,
             "failed_controls_breakdown": {
-                "IA-5 Authenticator Management": 2,
+                "IA-5 Authenticator Management": 3,
                 "CM-6 Configuration Settings": 46
             }
         }

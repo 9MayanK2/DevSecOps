@@ -15,6 +15,7 @@ Supports selective tool and stage execution via CLI arguments (--tools, --stage)
 
 from __future__ import annotations
 
+import os
 import sys
 import json
 import argparse

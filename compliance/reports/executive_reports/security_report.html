@@ -35,10 +35,10 @@
         </div>
 
         <div class="cards">
-            <div class="card"><div>Total Findings</div><div class="val">51</div></div>
-            <div class="card"><div>Risk Score</div><div class="val">161 Pts</div></div>
+            <div class="card"><div>Total Findings</div><div class="val">52</div></div>
+            <div class="card"><div>Risk Score</div><div class="val">171 Pts</div></div>
             <div class="card"><div>Compliance Score</div><div class="val">77.8%</div></div>
-            <div class="card"><div>Critical / High</div><div class="val" style="color:#ef4444;">2 / 20</div></div>
+            <div class="card"><div>Critical / High</div><div class="val" style="color:#ef4444;">3 / 20</div></div>
         </div>
 
         <h3>📜 Compliance Posture by Framework</h3>
@@ -75,6 +75,14 @@
             </thead>
             <tbody>
                 
+            <tr>
+                <td><span class="badge badge-critical">CRITICAL</span></td>
+                <td><strong>Gitleaks</strong></td>
+                <td><code>private-key</code></td>
+                <td><code>security/config/keys/cosign.key:1</code></td>
+                <td>Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: ---...---)</td>
+            </tr>
+            
             <tr>
                 <td><span class="badge badge-critical">CRITICAL</span></td>
                 <td><strong>Gitleaks</strong></td>
