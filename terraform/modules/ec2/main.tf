@@ -34,6 +34,42 @@ resource "aws_iam_role_policy_attachment" "ssm" {
 
 }
 
+####################################################
+# Amazon ECR Access
+####################################################
+
+resource "aws_iam_role_policy_attachment" "ecr_power_user" {
+
+  role = aws_iam_role.jenkins_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+
+}
+
+####################################################
+# Amazon EKS Access
+####################################################
+
+resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
+
+  role = aws_iam_role.jenkins_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+
+}
+
+####################################################
+# EKS kubectl Access
+####################################################
+
+resource "aws_iam_role_policy_attachment" "eks_service_policy" {
+
+  role = aws_iam_role.jenkins_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+
+}
+
 resource "aws_iam_instance_profile" "jenkins_profile" {
 
   name = "${var.project_name}-${var.environment}-instance-profile"

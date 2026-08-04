@@ -24,6 +24,7 @@ module "ec2" {
 
   project_name = var.project_name
   environment  = var.environment
+  aws_region   = var.aws_region
 
   ami_id        = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
