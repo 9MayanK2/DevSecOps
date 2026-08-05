@@ -2,8 +2,18 @@
 
 set -e
 
+NAMESPACE="sentinelops"
+
+echo "Waiting for Backend rollout..."
+
 kubectl rollout status deployment/backend \
--n sentinelops
+-n ${NAMESPACE} \
+--timeout=5m
+
+echo "Waiting for Frontend rollout..."
 
 kubectl rollout status deployment/frontend \
--n sentinelops
+-n ${NAMESPACE} \
+--timeout=5m
+
+echo "All Deployments Rolled Out Successfully."

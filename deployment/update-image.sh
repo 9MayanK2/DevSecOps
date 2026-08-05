@@ -4,16 +4,18 @@ set -e
 
 IMAGE_TAG="$1"
 
-ACCOUNT_ID="284064534086"
-
-REGION="us-east-1"
-
 NAMESPACE="sentinelops"
 
-kubectl set image deployment/backend \
-backend=${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/sentinelops-backend:${IMAGE_TAG} \
--n ${NAMESPACE}
+echo "========================================"
+echo "Deploying Image Tag : ${IMAGE_TAG}"
+echo "========================================"
 
-kubectl set image deployment/frontend \
-frontend=${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/sentinelops-frontend:${IMAGE_TAG} \
--n ${NAMESPACE}
+helm upgrade \
+--install sentinelops \
+helm/sentinelops \
+--namespace ${NAMESPACE} \
+--set backend.image.tag=${IMAGE_TAG} \
+--set frontend.image.tag=${IMAGE_TAG}
+
+echo
+echo "Helm Upgrade Completed."
