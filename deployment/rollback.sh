@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-kubectl rollout undo deployment/backend \
--n sentinelops
+set -e
 
-kubectl rollout undo deployment/frontend \
--n sentinelops
+NAMESPACE="sentinelops"
+
+echo "Rolling back Helm Release..."
+
+helm rollback sentinelops \
+--namespace ${NAMESPACE}
+
+echo "Rollback Completed."
+
+helm history sentinelops \
+--namespace ${NAMESPACE}
