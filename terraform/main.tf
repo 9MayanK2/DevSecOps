@@ -65,3 +65,26 @@ module "eks" {
   min_size     = var.min_size
   max_size     = var.max_size
 }
+
+module "rds" {
+  source = "./modules/rds"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  vpc_id = module.network.vpc_id
+
+  subnet_ids = [
+    module.network.private_subnet_1_id,
+    module.network.private_subnet_2_id
+  ]
+
+  allowed_security_group_ids = [
+    module.network.jenkins_security_group_id
+  ]
+
+  db_name        = var.db_name
+  db_username    = var.db_username
+  db_password    = var.db_password
+  instance_class = var.db_instance_class
+}

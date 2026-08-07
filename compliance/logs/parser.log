@@ -1341,3 +1341,45 @@ security.core.exceptions.ReportNotFoundError: No raw reports found in compliance
 2026-08-05 01:00:00 | INFO | Gitleaks Parser Completed
 2026-08-05 01:00:00 | INFO | ======================================================================
 2026-08-05 01:00:00 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-05 19:37:08 | INFO | Registered parser: hadolint
+2026-08-05 19:37:08 | INFO | Registered parser: trivy
+2026-08-05 19:37:08 | INFO | Registered parser: gitleaks
+2026-08-05 19:37:08 | INFO | Registered parser: zap
+2026-08-05 19:37:08 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-05 19:37:08 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-05 19:37:08 | INFO | Risk Engine Computed: Total Risk Score=171, Level=CRITICAL, Score=0.0%
+2026-08-05 19:37:08 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-05 19:37:08 | INFO | Processing Advanced Compliance Layer mappings...
+2026-08-05 19:37:08 | INFO | Saved advanced compliance matrix with Overall Compliance Score: 77.8% to compliance/reports/compliance/compliance_matrix.json
+2026-08-05 19:37:08 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-05 19:37:10 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-05 19:37:10 | INFO | Evaluating Security Gate policy from policy.yaml...
+2026-08-05 19:37:10 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260805140710)
+2026-08-06 00:11:37 | INFO | Registered parser: hadolint
+2026-08-06 00:11:37 | INFO | Registered parser: trivy
+2026-08-06 00:11:37 | INFO | Registered parser: gitleaks
+2026-08-06 00:11:37 | INFO | Registered parser: zap
+2026-08-06 00:11:37 | INFO | === STAGE 1: Pre-flight Checks ===
+2026-08-06 00:11:39 | INFO | Pre-flight Checks Passed.
+2026-08-06 00:11:39 | INFO | === STAGE 2: Running Scanners ===
+2026-08-06 00:11:39 | INFO | Running Gitleaks scanner (security/secrets/gitleaks.sh)...
+2026-08-06 00:11:56 | INFO | Gitleaks scanner completed successfully.
+2026-08-06 00:11:56 | INFO | Running Hadolint scanner (security/container/hadolint.sh)...
+2026-08-06 00:12:01 | WARNING | Hadolint scanner exited with code 1
+2026-08-06 00:12:01 | INFO | Running Trivy scanner (security/container/trivy.sh)...
+2026-08-06 00:12:02 | WARNING | Trivy scanner exited with code 1
+2026-08-06 00:12:02 | INFO | Running ZAP scanner (security/dast/zap.sh)...
+2026-08-06 10:15:20 | INFO | Registered parser: hadolint
+2026-08-06 10:15:20 | INFO | Registered parser: trivy
+2026-08-06 10:15:20 | INFO | Registered parser: gitleaks
+2026-08-06 10:15:20 | INFO | Registered parser: zap
+2026-08-06 10:15:20 | INFO | === STAGE 1: Pre-flight Checks ===
+2026-08-06 10:15:25 | INFO | Pre-flight Checks Passed.
+2026-08-06 10:15:25 | INFO | === STAGE 2: Running Scanners ===
+2026-08-06 10:15:25 | INFO | Running Gitleaks scanner (security/secrets/gitleaks.sh)...
+2026-08-06 10:15:48 | INFO | Gitleaks scanner completed successfully.
+2026-08-06 10:15:48 | INFO | Running Hadolint scanner (security/container/hadolint.sh)...
+2026-08-06 10:15:54 | WARNING | Hadolint scanner exited with code 1
+2026-08-06 10:15:54 | INFO | Running Trivy scanner (security/container/trivy.sh)...
+2026-08-06 10:15:55 | WARNING | Trivy scanner exited with code 1
+2026-08-06 10:15:55 | INFO | Running ZAP scanner (security/dast/zap.sh)...
