@@ -27,7 +27,7 @@ jobs:
 - parameters:
     reportDescription: ''
     reportDir: /zap/wrk/
-    reportFile: zap_20260804_023516.json
+    reportFile: zap_20260806_101555.json
     reportTitle: ZAP Scanning Report
     template: traditional-json
   type: report

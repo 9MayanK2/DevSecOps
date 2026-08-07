@@ -29,7 +29,7 @@ resource "aws_subnet" "public_subnet_1" {
 
   tags = {
 
-    Name = "${var.project_name}-public-1"
+    Name        = "${var.project_name}-public-1"
     Environment = var.environment
     Project     = var.project_name
 
@@ -49,7 +49,7 @@ resource "aws_subnet" "public_subnet_2" {
 
   tags = {
 
-    Name = "${var.project_name}-public-2"
+    Name        = "${var.project_name}-public-2"
     Environment = var.environment
     Project     = var.project_name
 
@@ -68,7 +68,7 @@ resource "aws_subnet" "private_subnet_1" {
 
   tags = {
 
-    Name = "${var.project_name}-private-1"
+    Name        = "${var.project_name}-private-1"
     Environment = var.environment
     Project     = var.project_name
 
@@ -86,7 +86,7 @@ resource "aws_subnet" "private_subnet_2" {
   availability_zone = var.availability_zone_2
 
   tags = {
-    Name = "${var.project_name}-private-2"
+    Name        = "${var.project_name}-private-2"
     Environment = var.environment
     Project     = var.project_name
 

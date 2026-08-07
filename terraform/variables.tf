@@ -79,3 +79,27 @@ variable "max_size" {
   type        = number
   default     = 3
 }
+
+variable "db_name" {
+  description = "Database Name for RDS MySQL"
+  type        = string
+  default     = "devsecops"
+}
+
+variable "db_username" {
+  description = "Database Master Username"
+  type        = string
+  default     = "admin"
+}
+
+variable "db_password" {
+  description = "Database Master Password"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_instance_class" {
+  description = "RDS Instance Class"
+  type        = string
+  default     = "db.t3.micro"
+}

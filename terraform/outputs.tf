@@ -32,3 +32,29 @@ output "configure_kubectl_command" {
   description = "Run this command to configure kubectl"
   value       = "aws eks update-kubeconfig --region ${var.aws_region} --name ${module.eks.cluster_name}"
 }
+
+output "rds_endpoint" {
+  description = "Amazon RDS MySQL Endpoint (host:port)"
+  value       = module.rds.db_instance_endpoint
+}
+
+output "rds_hostname" {
+  description = "Amazon RDS MySQL Hostname"
+  value       = module.rds.db_instance_address
+}
+
+output "rds_port" {
+  description = "Amazon RDS MySQL Port"
+  value       = module.rds.db_instance_port
+}
+
+output "rds_db_name" {
+  description = "Amazon RDS MySQL Database Name"
+  value       = module.rds.db_name
+}
+
+output "rds_username" {
+  description = "Amazon RDS MySQL Username"
+  value       = module.rds.db_username
+}
+
