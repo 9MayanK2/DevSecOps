@@ -30,7 +30,7 @@ fi
 echo "[INFO] Checking OWASP ZAP image..."
 if ! docker image inspect "$ZAP_IMAGE" &> /dev/null; then
     echo "[INFO] Pulling OWASP ZAP image ($ZAP_IMAGE)..."
-    docker pull "$ZAP_IMAGE" || true
+    docker pull "$ZAP_IMAGE"
 fi
 
 # Detect Docker Compose network name
@@ -53,27 +53,23 @@ fi
 
 echo "[INFO] Target URL: $TARGET_URL"
 
-# Extract host and port from TARGET_URL for reachability test
-TARGET_HOST=$(echo "$TARGET_URL" | sed -e 's,^http[s]*://,,' -e 's,/.*$,,' | cut -d: -f1)
-TARGET_PORT=$(echo "$TARGET_URL" | sed -e 's,^http[s]*://,,' -e 's,/.*$,,' | cut -d: -f2 -s)
-TARGET_PORT="${TARGET_PORT:-8080}"
-
 echo "[INFO] Running OWASP ZAP DAST Baseline Scan..."
 
+# Run ZAP scan. ZAP returns code 1 if warnings found, 2 if errors found, 0 if pass.
+ZAP_EXIT=0
 docker run --rm \
     $NET_FLAG \
     -v "$OUTPUT_DIR:/zap/wrk:rw" \
     "$ZAP_IMAGE" \
     zap-baseline.py \
     -t "$TARGET_URL" \
-    -J "zap_${TIMESTAMP}.json" \
-    -I || true
+    -J "zap_${TIMESTAMP}.json" || ZAP_EXIT=$?
 
 if [ ! -f "$RAW_REPORT" ]; then
-    echo "[WARNING] ZAP scan completed without output file. Creating status report..."
-    echo '{"@version":"2.14.0","site":[{"@name":"http://localhost:3000","alerts":[]}]}' > "$RAW_REPORT"
+    echo "[ERROR] OWASP ZAP scan failed to generate report file ($RAW_REPORT)."
+    exit 1
 fi
 
-echo "[SUCCESS] OWASP ZAP DAST Scan Completed."
+echo "[SUCCESS] OWASP ZAP DAST Scan Execution Completed."
 echo "Report Generated: $RAW_REPORT"
 echo "=================================================="
