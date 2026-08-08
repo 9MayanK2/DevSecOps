@@ -195,7 +195,7 @@ EOF
         stage('Security Gate Evaluation') {
             steps {
                 echo '========== SECURITY GATE EVALUATION =========='
-                sh './security/run_pipeline.sh gate --soft-fail'
+                sh './security/run_pipeline.sh gate'
             }
         }
 

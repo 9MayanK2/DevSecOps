@@ -2,7 +2,8 @@
 risk_engine.py
 
 Enterprise Risk Engine for DevSecOps Framework.
-Calculates weighted risk scores, risk levels (LOW/MEDIUM/HIGH/CRITICAL), and compliance posture.
+Calculates weighted risk scores, severity counts, and overall risk levels (LOW/MEDIUM/HIGH/CRITICAL).
+Decoupled from compliance scoring (which is evaluated independently by ComplianceMapper).
 """
 
 from __future__ import annotations
@@ -22,7 +23,7 @@ DEFAULT_RISK_WEIGHTS = {
 
 class RiskEngine:
     """
-    Evaluates findings and produces risk scores, risk levels, and compliance percentages.
+    Evaluates findings and produces risk scores, severity breakdowns, and overall threat levels.
     """
 
     def __init__(self, weights: Dict[str, int] | None = None):
@@ -30,7 +31,8 @@ class RiskEngine:
 
     def calculate_risk(self, findings: List[dict]) -> dict:
         """
-        Calculates total risk score, severity breakdown, overall risk level, and compliance score.
+        Calculates total risk score, severity breakdown, and overall risk level.
+        Risk calculation is decoupled from framework compliance scoring.
         """
         total_risk_score = 0
         critical_count = 0
@@ -67,13 +69,9 @@ class RiskEngine:
         else:
             risk_level = "CRITICAL"
 
-        # Compliance Score = max(0, 100 - (total_risk_score * 1.5))
-        compliance_score = max(0.0, float(100 - (total_risk_score * 1.5)))
-
         result = {
             "total_risk_score": total_risk_score,
             "risk_level": risk_level,
-            "compliance_score": round(compliance_score, 1),
             "total_findings": len(findings),
             "critical": critical_count,
             "high": high_count,
@@ -82,13 +80,13 @@ class RiskEngine:
             "info": info_count
         }
 
-        logger.info(f"Risk Engine Computed: Total Risk Score={total_risk_score}, Level={risk_level}, Score={compliance_score}%")
+        logger.info(f"Risk Engine Computed: Total Risk Score={total_risk_score}, Level={risk_level}")
         return result
 
 
 def main():
     engine = RiskEngine()
-    print("Risk Engine initialized.")
+    print("Decoupled Risk Engine initialized.")
 
 
 if __name__ == "__main__":

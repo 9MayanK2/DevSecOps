@@ -1,0 +1,255 @@
+"""
+generate_cwe_db.py
+
+Auto-generates a comprehensive CWE database mapping MITRE CWEs to:
+- OWASP Top 10 (2021)
+- NIST SP 800-53 Rev. 5 Controls
+- CIS Controls v8
+"""
+
+import json
+from pathlib import Path
+
+CWE_DB_PATH = Path("security/knowledge/cwe_database.json")
+
+CWE_MAPPINGS = {
+    "CWE-798": {
+        "name": "Use of Hard-coded Credentials",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.12 - Rekey or Revoke Credentials",
+        "nist": "IA-5 Authenticator Management"
+    },
+    "CWE-259": {
+        "name": "Use of Hard-coded Password",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.12 - Avoid Hardcoded Passwords",
+        "nist": "IA-5 Authenticator Management"
+    },
+    "CWE-79": {
+        "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-89": {
+        "name": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-20": {
+        "name": "Improper Input Validation",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-22": {
+        "name": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+        "owasp": "A01:2021-Broken Access Control",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "AC-3 Access Enforcement"
+    },
+    "CWE-78": {
+        "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-200": {
+        "name": "Exposure of Sensitive Information to an Unauthorized Actor",
+        "owasp": "A01:2021-Broken Access Control",
+        "cis": "CIS Controls v8 3.1 - Data Classification",
+        "nist": "SC-28 Protection of Information at Rest"
+    },
+    "CWE-269": {
+        "name": "Improper Privilege Management",
+        "owasp": "A01:2021-Broken Access Control",
+        "cis": "CIS Controls v8 5.2 - Access Control Management",
+        "nist": "AC-6 Least Privilege"
+    },
+    "CWE-287": {
+        "name": "Improper Authentication",
+        "owasp": "A07:2021-Identification and Authentication Failures",
+        "cis": "CIS Controls v8 6.1 - Multi-Factor Authentication",
+        "nist": "IA-2 Identification and Authentication"
+    },
+    "CWE-306": {
+        "name": "Missing Authentication for Critical Function",
+        "owasp": "A07:2021-Identification and Authentication Failures",
+        "cis": "CIS Controls v8 6.1 - Multi-Factor Authentication",
+        "nist": "IA-2 Identification and Authentication"
+    },
+    "CWE-862": {
+        "name": "Missing Authorization",
+        "owasp": "A01:2021-Broken Access Control",
+        "cis": "CIS Controls v8 5.2 - Access Control Management",
+        "nist": "AC-3 Access Enforcement"
+    },
+    "CWE-319": {
+        "name": "Cleartext Transmission of Sensitive Information",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit",
+        "nist": "SC-8 Transmission Confidentiality and Integrity"
+    },
+    "CWE-327": {
+        "name": "Use of a Broken or Risky Cryptographic Algorithm",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest",
+        "nist": "SC-13 Cryptographic Protection"
+    },
+    "CWE-400": {
+        "name": "Uncontrolled Resource Consumption",
+        "owasp": "A04:2021-Insecure Design",
+        "cis": "CIS Controls v8 13.1 - Network Architecture",
+        "nist": "SC-5 Denial of Service Protection"
+    },
+    "CWE-502": {
+        "name": "Deserialization of Untrusted Data",
+        "owasp": "A08:2021-Software and Data Integrity Failures",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-918": {
+        "name": "Server-Side Request Forgery (SSRF)",
+        "owasp": "A10:2021-Server-Side Request Forgery (SSRF)",
+        "cis": "CIS Controls v8 13.3 - Filter Network Traffic",
+        "nist": "SC-7 Boundary Protection"
+    },
+    "CWE-119": {
+        "name": "Improper Restriction of Operations within the Bounds of a Memory Buffer",
+        "owasp": "A06:2021-Vulnerable and Outdated Components",
+        "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+        "nist": "SI-2 Flaw Remediation"
+    },
+    "CWE-276": {
+        "name": "Incorrect Default Permissions",
+        "owasp": "A05:2021-Security Misconfiguration",
+        "cis": "CIS Controls v8 4.1 - Secure Configuration",
+        "nist": "CM-6 Configuration Settings"
+    },
+    "CWE-732": {
+        "name": "Incorrect Permission Assignment for Critical Resource",
+        "owasp": "A05:2021-Security Misconfiguration",
+        "cis": "CIS Controls v8 4.1 - Secure Configuration",
+        "nist": "CM-6 Configuration Settings"
+    },
+    "CWE-522": {
+        "name": "Insufficiently Protected Credentials",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.12 - Protect Credentials",
+        "nist": "IA-5 Authenticator Management"
+    },
+    "CWE-916": {
+        "name": "Use of Password Hash With Insufficient Computational Effort",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+        "nist": "IA-5 Authenticator Management"
+    },
+    "CWE-94": {
+        "name": "Improper Control of Generation of Code ('Code Injection')",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-125": {
+        "name": "Out-of-bounds Read",
+        "owasp": "A06:2021-Vulnerable and Outdated Components",
+        "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+        "nist": "SI-2 Flaw Remediation"
+    },
+    "CWE-787": {
+        "name": "Out-of-bounds Write",
+        "owasp": "A06:2021-Vulnerable and Outdated Components",
+        "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+        "nist": "SI-2 Flaw Remediation"
+    },
+    "CWE-416": {
+        "name": "Use After Free",
+        "owasp": "A06:2021-Vulnerable and Outdated Components",
+        "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+        "nist": "SI-2 Flaw Remediation"
+    },
+    "CWE-190": {
+        "name": "Integer Overflow or Wraparound",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-476": {
+        "name": "NULL Pointer Dereference",
+        "owasp": "A05:2021-Security Misconfiguration",
+        "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+        "nist": "SI-2 Flaw Remediation"
+    },
+    "CWE-611": {
+        "name": "Improper Restriction of XML External Entity Reference",
+        "owasp": "A05:2021-Security Misconfiguration",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-917": {
+        "name": "Improper Neutralization of Special Elements used in Expression Language Statement",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-1336": {
+        "name": "Improper Neutralization of Special Elements Used in a Template Engine",
+        "owasp": "A03:2021-Injection",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "SI-10 Information Input Validation"
+    },
+    "CWE-352": {
+        "name": "Cross-Site Request Forgery (CSRF)",
+        "owasp": "A01:2021-Broken Access Control",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "AC-3 Access Enforcement"
+    },
+    "CWE-601": {
+        "name": "URL Redirection to Untrusted Site ('Open Redirect')",
+        "owasp": "A01:2021-Broken Access Control",
+        "cis": "CIS Controls v8 16.1 - Application Software Security",
+        "nist": "AC-3 Access Enforcement"
+    },
+    "CWE-532": {
+        "name": "Insertion of Sensitive Information into Log File",
+        "owasp": "A09:2021-Security Logging and Monitoring Failures",
+        "cis": "CIS Controls v8 8.2 - Audit Log Management",
+        "nist": "AU-2 Event Logging"
+    },
+    "CWE-209": {
+        "name": "Generation of Error Message Containing Sensitive Information",
+        "owasp": "A05:2021-Security Misconfiguration",
+        "cis": "CIS Controls v8 4.1 - Secure Configuration",
+        "nist": "SI-11 Error Handling"
+    },
+    "CWE-295": {
+        "name": "Improper Certificate Validation",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit",
+        "nist": "SC-8 Transmission Confidentiality and Integrity"
+    },
+    "CWE-326": {
+        "name": "Inadequate Encryption Strength",
+        "owasp": "A02:2021-Cryptographic Failures",
+        "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+        "nist": "SC-13 Cryptographic Protection"
+    },
+    "CWE-1188": {
+        "name": "Insecure Default Initialization of Resource",
+        "owasp": "A05:2021-Security Misconfiguration",
+        "cis": "CIS Controls v8 4.1 - Secure Configuration",
+        "nist": "CM-6 Configuration Settings"
+    }
+}
+
+
+def generate_database():
+    CWE_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(CWE_DB_PATH, "w", encoding="utf-8") as fp:
+        json.dump(CWE_MAPPINGS, fp, indent=4)
+    print(f"✅ Generated auto CWE database with {len(CWE_MAPPINGS)} entries at {CWE_DB_PATH}")
+
+
+if __name__ == "__main__":
+    generate_database()

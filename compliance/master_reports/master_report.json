@@ -1,6 +1,6 @@
 {
     "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-08-05T14:07:08.286460",
+    "generated_at": "2026-08-08T19:24:10.609505",
     "scanners_executed": [
         "Gitleaks",
         "Hadolint",
@@ -14,7 +14,7 @@
         "medium": 14,
         "low": 13,
         "info": 2,
-        "compliance_score": 77.8
+        "compliance_score": 50.6
     },
     "risk_summary": {
         "total_risk_score": 171,
@@ -31,7 +31,7 @@
             "message": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: ---...---)",
             "recommendation": "Immediately revoke and replace the compromised private key. Remove key files from source control and store in encrypted vault.",
             "status": "OPEN",
-            "scan_time": "2026-08-04T17:19:54.392290",
+            "scan_time": "2026-08-04T19:30:00.733393",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -59,7 +59,10 @@
             "exploit_available": false,
             "fix_available": false,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 1/2 (CWE-798 Rule Match)"
+            ]
         },
         {
             "tool": "Gitleaks",
@@ -71,7 +74,7 @@
             "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
             "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
             "status": "OPEN",
-            "scan_time": "2026-08-04T17:19:54.392290",
+            "scan_time": "2026-08-04T19:30:00.733393",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -104,7 +107,11 @@
             "exploit_available": false,
             "fix_available": false,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 1 (Rule-ID Direct Match)",
+                "Layer 1/2 (CWE-798 Rule Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -199,14 +206,17 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-416 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -300,13 +310,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -398,13 +411,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -493,15 +509,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-476 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -594,13 +613,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -693,14 +715,17 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-125 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -792,13 +817,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -890,15 +918,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-476 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -989,15 +1020,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-476 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1089,13 +1123,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1185,15 +1222,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit",
+                    "nist": "SC-8 Transmission Confidentiality and Integrity"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-295 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1286,13 +1326,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1385,13 +1428,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1484,14 +1530,17 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-787 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1584,14 +1633,17 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-125 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1632,13 +1684,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1671,13 +1726,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1709,13 +1767,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1775,15 +1836,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-400 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1826,15 +1890,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-400 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1872,15 +1939,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-400 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1925,15 +1995,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-400 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -1979,15 +2052,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-400 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2031,13 +2107,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2079,15 +2158,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-400 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2125,15 +2207,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-78 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2233,15 +2318,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-79 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2297,13 +2385,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2342,13 +2433,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2404,13 +2498,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2449,13 +2546,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2488,13 +2588,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2536,13 +2639,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2596,13 +2702,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2668,15 +2777,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "AC-3 Access Enforcement"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-22 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2740,15 +2852,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "AC-3 Access Enforcement"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-352 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2812,15 +2927,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "AC-3 Access Enforcement"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-22 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2858,15 +2976,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "AC-3 Access Enforcement"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-22 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2906,15 +3027,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "AC-3 Access Enforcement"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-22 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -2951,15 +3075,18 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "AC-3 Access Enforcement"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-22 Open Standard DB Match)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -3013,13 +3140,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -3057,13 +3187,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -3103,13 +3236,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -3149,13 +3285,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Trivy",
@@ -3190,13 +3329,16 @@
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "CM-6 Configuration Settings"
+                    "nist": "SI-2 Flaw Remediation"
                 }
             ],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 4 (Container Security Heuristic Fallback)"
+            ]
         },
         {
             "tool": "OWASP ZAP",
@@ -3224,11 +3366,20 @@
             "description": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
             "primary_url": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP</p><p>https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html</p><p>https://www.w3.org/TR/CSP/</p><p>https://w3c.github.io/webappsec-csp/</p><p>https://web.dev/articles/csp</p><p>https://caniuse.com/#feat=contentsecuritypolicy</p><p>https://content-security-policy.com/</p>",
             "references": null,
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
+                }
+            ],
             "exploit_available": null,
             "fix_available": null,
             "epss_score": null,
-            "kev": null
+            "kev": null,
+            "compliance_layers": [
+                "Layer 4 (DAST Heuristic Fallback)"
+            ]
         },
         {
             "tool": "OWASP ZAP",
@@ -3256,11 +3407,20 @@
             "description": "<p>The response does not protect against 'ClickJacking' attacks. It should include either Content-Security-Policy with 'frame-ancestors' directive or X-Frame-Options.</p>",
             "primary_url": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</p>",
             "references": null,
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
+                }
+            ],
             "exploit_available": null,
             "fix_available": null,
             "epss_score": null,
-            "kev": null
+            "kev": null,
+            "compliance_layers": [
+                "Layer 4 (DAST Heuristic Fallback)"
+            ]
         },
         {
             "tool": "OWASP ZAP",
@@ -3288,11 +3448,20 @@
             "description": "<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>",
             "primary_url": "<p>https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)</p><p>https://owasp.org/www-community/Security_Headers</p>",
             "references": null,
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
+                }
+            ],
             "exploit_available": null,
             "fix_available": null,
             "epss_score": null,
-            "kev": null
+            "kev": null,
+            "compliance_layers": [
+                "Layer 4 (DAST Heuristic Fallback)"
+            ]
         },
         {
             "tool": "OWASP ZAP",
@@ -3320,11 +3489,20 @@
             "description": "<p>The application appears to be a modern web application. If you need to explore it automatically then the Ajax Spider may well be more effective than the standard one.</p>",
             "primary_url": "https://www.zaproxy.org/",
             "references": null,
-            "compliance": [],
+            "compliance": [
+                {
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
+                }
+            ],
             "exploit_available": null,
             "fix_available": null,
             "epss_score": null,
-            "kev": null
+            "kev": null,
+            "compliance_layers": [
+                "Layer 4 (DAST Heuristic Fallback)"
+            ]
         },
         {
             "tool": "Hadolint",
@@ -3362,41 +3540,56 @@
             "exploit_available": false,
             "fix_available": false,
             "epss_score": null,
-            "kev": false
+            "kev": false,
+            "compliance_layers": [
+                "Layer 1 (Rule-ID Direct Match)"
+            ]
         }
     ],
     "compliance_summary": {
         "owasp_top_10_2021": {
             "total_controls_baseline": 10,
-            "controls_passed": 7,
-            "controls_failed": 3,
-            "compliance_percentage": 70.0,
+            "controls_passed": 4,
+            "controls_failed": 6,
+            "compliance_percentage": 40.0,
             "failed_controls_breakdown": {
-                "A02:2021-Cryptographic Failures": 3,
-                "A06:2021-Vulnerable and Outdated Components": 45,
-                "A05:2021-Security Misconfiguration": 1
+                "A02:2021-Cryptographic Failures": 4,
+                "A06:2021-Vulnerable and Outdated Components": 27,
+                "A05:2021-Security Misconfiguration": 4,
+                "A04:2021-Insecure Design": 6,
+                "A03:2021-Injection": 6,
+                "A01:2021-Broken Access Control": 6
             }
         },
         "cis_benchmarks": {
             "total_controls_baseline": 15,
-            "controls_passed": 11,
-            "controls_failed": 4,
-            "compliance_percentage": 73.3,
+            "controls_passed": 7,
+            "controls_failed": 8,
+            "compliance_percentage": 46.7,
             "failed_controls_breakdown": {
                 "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 2,
                 "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-                "CIS Docker Benchmark 4.0 - Container Hardening": 45,
+                "CIS Controls v8 7.1 - Vulnerability Management": 7,
+                "CIS Docker Benchmark 4.0 - Container Hardening": 23,
+                "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit": 1,
+                "CIS Controls v8 13.1 - Network Architecture": 6,
+                "CIS Controls v8 16.1 - Application Software Security": 12,
                 "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
             }
         },
         "nist_sp_800_53": {
             "total_controls_baseline": 20,
-            "controls_passed": 18,
-            "controls_failed": 2,
-            "compliance_percentage": 90.0,
+            "controls_passed": 13,
+            "controls_failed": 7,
+            "compliance_percentage": 65.0,
             "failed_controls_breakdown": {
                 "IA-5 Authenticator Management": 3,
-                "CM-6 Configuration Settings": 46
+                "SI-2 Flaw Remediation": 30,
+                "SC-8 Transmission Confidentiality and Integrity": 1,
+                "SC-5 Denial of Service Protection": 6,
+                "SI-10 Information Input Validation": 6,
+                "AC-3 Access Enforcement": 6,
+                "CM-6 Configuration Settings": 1
             }
         }
     }

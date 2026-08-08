@@ -47,12 +47,10 @@ log_info "Checking Backend Docker image..."
 if ! docker image inspect "$BACKEND_IMAGE" >/dev/null 2>&1
 then
     log_error "Backend image not found."
-
     echo
     echo "Build it using:"
     echo "docker build -t hopegivers-backend:latest ./app/server"
     echo
-
     exit 1
 fi
 
@@ -65,12 +63,10 @@ log_info "Checking Frontend Docker image..."
 if ! docker image inspect "$FRONTEND_IMAGE" >/dev/null 2>&1
 then
     log_error "Frontend image not found."
-
     echo
     echo "Build it using:"
     echo "docker build -t hopegivers-frontend:latest ./app/client"
     echo
-
     exit 1
 fi
 
@@ -84,9 +80,7 @@ create_report_directory "$TRIVY_REPORT_DIR"
 # Timestamp
 ##############################################################
 
-TIMESTAMP=$(date +"%Y%m%d_%H%M%S"
-
-)
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 # Host paths
 BACKEND_JSON_HOST="$TRIVY_REPORT_DIR/backend_${TIMESTAMP}.json"
@@ -102,6 +96,7 @@ FRONTEND_JSON_CONTAINER="/workspace/compliance/reports/trivy/frontend_${TIMESTAM
 
 log_info "Scanning Backend Image..."
 
+BACKEND_SCAN_STATUS=0
 if ! docker run --rm \
   --net=host \
   -v /var/run/docker.sock:/var/run/docker.sock \
@@ -112,8 +107,8 @@ if ! docker run --rm \
   --format json \
   -o "$BACKEND_JSON_CONTAINER" \
   "$BACKEND_IMAGE"; then
-    log_warning "Backend scan with DB update failed (Network timeout). Retrying with --skip-db-update..."
-    docker run --rm \
+    log_warning "Backend scan with DB update failed. Retrying with --skip-db-update..."
+    if ! docker run --rm \
       --net=host \
       -v /var/run/docker.sock:/var/run/docker.sock \
       -v "$HOME/.cache/trivy:/root/.cache/trivy" \
@@ -123,10 +118,18 @@ if ! docker run --rm \
       --skip-db-update \
       --format json \
       -o "$BACKEND_JSON_CONTAINER" \
-      "$BACKEND_IMAGE" || echo '{"Results":[]}' > "$BACKEND_JSON_HOST"
+      "$BACKEND_IMAGE"; then
+        log_error "Backend Trivy scan failed completely."
+        BACKEND_SCAN_STATUS=1
+    fi
 fi
 
-log_success "Backend scan completed."
+if [ $BACKEND_SCAN_STATUS -eq 0 ]; then
+    log_success "Backend scan completed."
+else
+    log_error "Backend scan ended with errors."
+    exit 1
+fi
 
 ##############################################################
 # Frontend Scan
@@ -134,6 +137,7 @@ log_success "Backend scan completed."
 
 log_info "Scanning Frontend Image..."
 
+FRONTEND_SCAN_STATUS=0
 if ! docker run --rm \
   --net=host \
   -v /var/run/docker.sock:/var/run/docker.sock \
@@ -144,8 +148,8 @@ if ! docker run --rm \
   --format json \
   -o "$FRONTEND_JSON_CONTAINER" \
   "$FRONTEND_IMAGE"; then
-    log_warning "Frontend scan with DB update failed (Network timeout). Retrying with --skip-db-update..."
-    docker run --rm \
+    log_warning "Frontend scan with DB update failed. Retrying with --skip-db-update..."
+    if ! docker run --rm \
       --net=host \
       -v /var/run/docker.sock:/var/run/docker.sock \
       -v "$HOME/.cache/trivy:/root/.cache/trivy" \
@@ -155,12 +159,18 @@ if ! docker run --rm \
       --skip-db-update \
       --format json \
       -o "$FRONTEND_JSON_CONTAINER" \
-      "$FRONTEND_IMAGE" || echo '{"Results":[]}' > "$FRONTEND_JSON_HOST"
+      "$FRONTEND_IMAGE"; then
+        log_error "Frontend Trivy scan failed completely."
+        FRONTEND_SCAN_STATUS=1
+    fi
 fi
 
-log_success "Frontend scan completed."
-
-
+if [ $FRONTEND_SCAN_STATUS -eq 0 ]; then
+    log_success "Frontend scan completed."
+else
+    log_error "Frontend scan ended with errors."
+    exit 1
+fi
 
 ##############################################################
 # Summary
@@ -171,12 +181,8 @@ echo "=================================================="
 echo "           TRIVY SCAN COMPLETED"
 echo "=================================================="
 echo
-
 echo "Reports Generated:"
-echo
-
 echo "$BACKEND_JSON_HOST"
 echo "$FRONTEND_JSON_HOST"
-
 echo
 echo "=================================================="

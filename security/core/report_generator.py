@@ -38,7 +38,8 @@ PDF_REPORT_PATH = REPORTS_DIR / "security_report.pdf"
 
 class ReportGenerator:
     """
-    Generates HTML and PDF reports inside compliance/reports/executive_reports/.
+    Generates Executive HTML and PDF reports inside compliance/reports/executive_reports/.
+    Highlights the 4-Layer Universal Compliance Lookup System and Decoupled Risk Engine Metrics.
     """
 
     def __init__(self, reports_dir: str | Path = REPORTS_DIR):
@@ -65,6 +66,8 @@ class ReportGenerator:
             if f.get('line'):
                 file_loc += f":{f.get('line')}"
 
+            layers = ", ".join(f.get("compliance_layers", [])) or "Standard Layer"
+
             findings_rows += f"""
             <tr>
                 <td>{sev_badge}</td>
@@ -72,6 +75,7 @@ class ReportGenerator:
                 <td><code>{f.get('rule_id', 'N/A')}</code></td>
                 <td><code>{file_loc}</code></td>
                 <td>{f.get('message', 'N/A')}</td>
+                <td><small>{layers}</small></td>
             </tr>
             """
 
@@ -85,7 +89,7 @@ class ReportGenerator:
             <div class="fw-item">
                 <div class="fw-header">
                     <span>{fw_title}</span>
-                    <span>{pct}% ({passed}/{total} Passed)</span>
+                    <span>{pct}% ({passed}/{total} Controls Passed)</span>
                 </div>
                 <div class="progress-bar"><div class="progress-fill" style="width: {pct}%;"></div></div>
             </div>
@@ -95,12 +99,13 @@ class ReportGenerator:
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DevSecOps Security & Compliance Report</title>
+    <title>DevSecOps Security & Compliance Master Report</title>
     <style>
         body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }}
         .container {{ max-width: 1100px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }}
         .header {{ display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #334155; padding-bottom: 15px; }}
         .title {{ font-size: 24px; font-weight: bold; color: #38bdf8; }}
+        .subtitle {{ font-size: 13px; color: #94a3b8; margin-top: 4px; }}
         .badge {{ padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 13px; text-transform: uppercase; }}
         .badge-critical {{ background: #991b1b; color: #fca5a5; }}
         .badge-high {{ background: #c2410c; color: #ffedd5; }}
@@ -114,6 +119,7 @@ class ReportGenerator:
         .fw-header {{ display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }}
         .progress-bar {{ background: #334155; height: 10px; border-radius: 5px; overflow: hidden; }}
         .progress-fill {{ background: #38bdf8; height: 100%; }}
+        .system-info {{ background: #0f172a; padding: 15px; border-radius: 8px; border-left: 4px solid #38bdf8; font-size: 13px; margin: 20px 0; }}
         table {{ width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }}
         th, td {{ padding: 12px; text-align: left; border-bottom: 1px solid #334155; }}
         th {{ background: #0f172a; color: #94a3b8; }}
@@ -123,24 +129,31 @@ class ReportGenerator:
 <body>
     <div class="container">
         <div class="header">
-            <div class="title">🛡️ DevSecOps Master Security Report</div>
+            <div>
+                <div class="title">🛡️ DevSecOps Master Security & Compliance Report</div>
+                <div class="subtitle">Powered by 4-Layer Universal Compliance Lookup & Decoupled Risk Engine</div>
+            </div>
             <div class="badge" style="background:{risk_color}; color:#fff;">Risk Level: {risk_level}</div>
         </div>
 
         <div class="cards">
             <div class="card"><div>Total Findings</div><div class="val">{summary.get('total_findings', 0)}</div></div>
-            <div class="card"><div>Risk Score</div><div class="val">{risk_summary.get('total_risk_score', 0)} Pts</div></div>
-            <div class="card"><div>Compliance Score</div><div class="val">{summary.get('compliance_score', 0)}%</div></div>
+            <div class="card"><div>Total Risk Score</div><div class="val">{risk_summary.get('total_risk_score', 0)} Pts</div></div>
+            <div class="card"><div>Framework Compliance</div><div class="val" style="color:#38bdf8;">{summary.get('compliance_score', 0)}%</div></div>
             <div class="card"><div>Critical / High</div><div class="val" style="color:#ef4444;">{summary.get('critical', 0)} / {summary.get('high', 0)}</div></div>
+        </div>
+
+        <div class="system-info">
+            <strong>Architecture Note:</strong> Compliance mapping uses a 4-Layer Universal Engine (Layer 1: Rule-ID, Layer 2: Open Standards CWE DB, Layer 3: NVD API 2.0 Enrichment, Layer 4: Universal Category Fallback). Risk scoring is decoupled to reflect pure vulnerability threat density.
         </div>
 
         <h3>📜 Compliance Posture by Framework</h3>
         {framework_bars}
 
-        <h3>🔍 Detailed Security Findings</h3>
+        <h3>🔍 Detailed Security Findings & Compliance Layers</h3>
         <table>
             <thead>
-                <tr><th>Severity</th><th>Tool</th><th>Rule ID</th><th>File / Location</th><th>Description</th></tr>
+                <tr><th>Severity</th><th>Tool</th><th>Rule ID</th><th>File / Location</th><th>Description</th><th>Compliance Layer</th></tr>
             </thead>
             <tbody>
                 {findings_rows}
@@ -179,33 +192,32 @@ class ReportGenerator:
         )
 
         styles = getSampleStyleSheet()
-        normal_style = styles["Normal"]
 
         title_style = ParagraphStyle(
             "DocTitle",
             parent=styles["Heading1"],
-            fontSize=20,
-            leading=24,
+            fontSize=18,
+            leading=22,
             textColor=colors.HexColor("#0f172a"),
-            spaceAfter=10
+            spaceAfter=6
         )
 
         subtitle_style = ParagraphStyle(
             "SubTitle",
             parent=styles["Normal"],
-            fontSize=10,
+            fontSize=9,
             textColor=colors.HexColor("#475569"),
-            spaceAfter=15
+            spaceAfter=12
         )
 
         h2_style = ParagraphStyle(
             "SectionHeader",
             parent=styles["Heading2"],
-            fontSize=13,
-            leading=16,
+            fontSize=12,
+            leading=15,
             textColor=colors.HexColor("#1e293b"),
-            spaceBefore=12,
-            spaceAfter=8
+            spaceBefore=10,
+            spaceAfter=6
         )
 
         cell_style = ParagraphStyle(
@@ -231,7 +243,7 @@ class ReportGenerator:
         story.append(Paragraph("🛡️ DevSecOps Executive Security & Audit Report", title_style))
         gen_time = master_report.get("generated_at", datetime.utcnow().isoformat())
         story.append(Paragraph(f"Generated: {gen_time} | Scanners: {', '.join(master_report.get('scanners_executed', []))}", subtitle_style))
-        story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#cbd5e1"), spaceAfter=12))
+        story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#cbd5e1"), spaceAfter=10))
 
         # Executive Metrics Table
         risk_level = risk_summary.get("risk_level", "UNKNOWN")
@@ -240,7 +252,7 @@ class ReportGenerator:
                 Paragraph("<b>Total Findings</b>", cell_style),
                 Paragraph("<b>Total Risk Score</b>", cell_style),
                 Paragraph("<b>Overall Risk Level</b>", cell_style),
-                Paragraph("<b>Compliance Score</b>", cell_style)
+                Paragraph("<b>Framework Compliance Score</b>", cell_style)
             ],
             [
                 Paragraph(str(summary.get('total_findings', 0)), cell_style),
@@ -258,10 +270,10 @@ class ReportGenerator:
             ('PADDING', (0, 0), (-1, -1), 6)
         ]))
         story.append(t_metrics)
-        story.append(Spacer(1, 15))
+        story.append(Spacer(1, 10))
 
         # Compliance Framework Posture Section
-        story.append(Paragraph("📜 Framework Compliance Posture Breakdown", h2_style))
+        story.append(Paragraph("📜 4-Layer Universal Compliance Posture Breakdown", h2_style))
         comp_rows = [
             [
                 Paragraph("Framework", cell_header_style),
@@ -293,7 +305,7 @@ class ReportGenerator:
             ('PADDING', (0, 0), (-1, -1), 5)
         ]))
         story.append(t_comp)
-        story.append(Spacer(1, 15))
+        story.append(Spacer(1, 10))
 
         # Detailed Vulnerabilities Table
         story.append(Paragraph("🔍 Detailed Findings Inventory", h2_style))
