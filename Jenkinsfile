@@ -293,7 +293,7 @@ EOF
          /********************************************************************
          * Stage 16 : Deploy to Amazon EKS (Reserved)
          ********************************************************************/
-        
+
         stage('Deploy to Amazon EKS') {
 
             steps {
@@ -313,7 +313,7 @@ EOF
         /********************************************************************
          * Stage 17 : Verify kubernetes to rollout
          ********************************************************************/
-        
+
         stage('Verify Kubernetes Rollout') {
 
             steps {
@@ -345,7 +345,7 @@ EOF
 
             docker-compose down --remove-orphans || true
             docker image prune -f || true
-            
+
             '''
             echo '========== ARCHIVING REPORTS & SIGNATURES =========='
             archiveArtifacts artifacts: 'compliance/reports/**/*', allowEmptyArchive: true

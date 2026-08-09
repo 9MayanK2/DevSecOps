@@ -165,4 +165,3 @@ class SecurityGate:
                 print(" ⚠️  [WARNING] SOFT-FAIL MODE ACTIVE: Gate failed policy checks, but returning Exit Code 0 for downstream pipeline testing.\n")
                 return True
             return False
-
