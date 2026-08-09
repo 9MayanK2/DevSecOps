@@ -256,10 +256,10 @@ def main():
         stages = ["scanners", "parsers"]
         tools = [tool] if tool else ["zap"]
     elif intent in ["report", "reports"]:
-        stages = ["aggregate"]
+        stages = ["parsers", "aggregate"]
         tools = None
     elif intent in ["gate", "evaluate"]:
-        stages = ["aggregate", "gate"]
+        stages = ["parsers", "aggregate", "gate"]
         tools = None
     elif intent in ["sign", "signing"]:
         import subprocess

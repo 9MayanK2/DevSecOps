@@ -1,6 +1,6 @@
 {
     "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-08-08T19:24:10.609505",
+    "generated_at": "2026-08-08T20:20:01.492233",
     "scanners_executed": [
         "Gitleaks",
         "Hadolint",
@@ -8,16 +8,16 @@
         "zap"
     ],
     "summary": {
-        "total_findings": 52,
+        "total_findings": 67,
         "critical": 3,
-        "high": 20,
-        "medium": 14,
-        "low": 13,
+        "high": 21,
+        "medium": 18,
+        "low": 23,
         "info": 2,
-        "compliance_score": 50.6
+        "compliance_score": 32.2
     },
     "risk_summary": {
-        "total_risk_score": 171,
+        "total_risk_score": 194,
         "risk_level": "CRITICAL"
     },
     "findings": [
@@ -28,15 +28,16 @@
             "severity": "CRITICAL",
             "file": "security/config/keys/cosign.key",
             "line": 1,
-            "message": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: ---...---)",
+            "message": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: RED...TED)",
             "recommendation": "Immediately revoke and replace the compromised private key. Remove key files from source control and store in encrypted vault.",
             "status": "OPEN",
-            "scan_time": "2026-08-04T19:30:00.733393",
+            "scan_time": "2026-08-08T20:20:01.427076",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
             "cvss_score": null,
             "cwe": [
+                "CWE-312",
                 "CWE-798"
             ],
             "cve": null,
@@ -52,6 +53,16 @@
             "compliance": [
                 {
                     "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest",
+                    "nist": "IA-5 Authenticator Management"
+                },
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest",
+                    "nist": "SC-28 Protection of Information at Rest"
+                },
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
                     "cis": "CIS Controls v8 3.12 - Rekey or Revoke Credentials",
                     "nist": "IA-5 Authenticator Management"
                 }
@@ -61,7 +72,9 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 1/2 (CWE-798 Rule Match)"
+                "Layer 1 (private-key Rule-ID Match)",
+                "Layer 2 (CWE-312 Open Standard DB Match)",
+                "Layer 1/2 (CWE-798 Direct Match)"
             ]
         },
         {
@@ -71,10 +84,10 @@
             "severity": "CRITICAL",
             "file": "testing/gitleaks/test_secrets.txt",
             "line": 1,
-            "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)",
+            "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: RED...TED)",
             "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
             "status": "OPEN",
-            "scan_time": "2026-08-04T19:30:00.733393",
+            "scan_time": "2026-08-08T20:20:01.427076",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -109,8 +122,8 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 1 (Rule-ID Direct Match)",
-                "Layer 1/2 (CWE-798 Rule Match)"
+                "Layer 1 (aws-access-token Rule-ID Match)",
+                "Layer 1/2 (CWE-798 Direct Match)"
             ]
         },
         {
@@ -308,9 +321,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A08:2021-Software and Data Integrity Failures",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-7 Software, Firmware, and Information Integrity"
                 }
             ],
             "exploit_available": true,
@@ -318,7 +331,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-354 Open Standard DB Match)"
             ]
         },
         {
@@ -409,9 +422,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
                 }
             ],
             "exploit_available": true,
@@ -419,7 +432,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-1325 Open Standard DB Match)"
             ]
         },
         {
@@ -509,7 +522,7 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A05:2021-Security Misconfiguration",
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
@@ -611,9 +624,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+                    "nist": "SC-13 Cryptographic Protection"
                 }
             ],
             "exploit_available": true,
@@ -621,7 +634,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-325 Open Standard DB Match)"
             ]
         },
         {
@@ -815,9 +828,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A08:2021-Software and Data Integrity Failures",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-7 Software, Firmware, and Information Integrity"
                 }
             ],
             "exploit_available": false,
@@ -825,7 +838,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-354 Open Standard DB Match)"
             ]
         },
         {
@@ -918,7 +931,7 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A05:2021-Security Misconfiguration",
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
@@ -1020,7 +1033,7 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A05:2021-Security Misconfiguration",
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
                     "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
@@ -1121,9 +1134,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-7 Boundary Protection"
                 }
             ],
             "exploit_available": false,
@@ -1131,7 +1144,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-514 Open Standard DB Match)"
             ]
         },
         {
@@ -1324,9 +1337,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+                    "nist": "SC-13 Cryptographic Protection"
                 }
             ],
             "exploit_available": false,
@@ -1334,7 +1347,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-325 Open Standard DB Match)"
             ]
         },
         {
@@ -1426,9 +1439,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+                    "nist": "SC-13 Cryptographic Protection"
                 }
             ],
             "exploit_available": false,
@@ -1436,7 +1449,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-325 Open Standard DB Match)"
             ]
         },
         {
@@ -1648,6 +1661,1538 @@
         {
             "tool": "Trivy",
             "category": "Container Security",
+            "rule_id": "CVE-2026-45447",
+            "severity": "HIGH",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: Heap Use-After-Free in OpenSSL PKCS7_verify()",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 8.1,
+            "cwe": [
+                "CWE-416",
+                "CWE-825"
+            ],
+            "cve": "CVE-2026-45447",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: A specially crafted PKCS#7 or S/MIME signed message could trigger a use-after-free during PKCS#7 signature verification. Impact summary...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25237",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25237",
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/errata/RHSA-2026:26275",
+                "https://access.redhat.com/errata/RHSA-2026:26319",
+                "https://access.redhat.com/errata/RHSA-2026:29197",
+                "https://access.redhat.com/errata/RHSA-2026:34102",
+                "https://access.redhat.com/errata/RHSA-2026:35869",
+                "https://access.redhat.com/errata/RHSA-2026:36215",
+                "https://access.redhat.com/errata/RHSA-2026:36217",
+                "https://access.redhat.com/errata/RHSA-2026:39009",
+                "https://access.redhat.com/errata/RHSA-2026:39012",
+                "https://access.redhat.com/errata/RHSA-2026:39981",
+                "https://access.redhat.com/errata/RHSA-2026:44438",
+                "https://access.redhat.com/errata/RHSA-2026:47735",
+                "https://access.redhat.com/errata/RHSA-2026:47737",
+                "https://access.redhat.com/security/cve/CVE-2026-45447",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-44438.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/3aad5eb7af4de4ee0633c30a8541a54d9bbde63c",
+                "https://github.com/openssl/openssl/commit/7d4a980c62258c5910cc883936e0c8dbab4d75a8",
+                "https://github.com/openssl/openssl/commit/9dfd688ad2290fc5075cacbc9bf0c9a93eefed54",
+                "https://github.com/openssl/openssl/commit/a541ae8bfe849a30cc885e8780715c0f488e496c",
+                "https://github.com/openssl/openssl/commit/c505d7559da5d5f9f2c3913c6883a5562ce7273e",
+                "https://linux.oracle.com/cve/CVE-2026-45447.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-45447",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-45447.json",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://ubuntu.com/security/notices/USN-8414-2",
+                "https://www.cve.org/CVERecord?id=CVE-2026-45447"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": true,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-416 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-34182",
+            "severity": "MEDIUM",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: CMS AuthEnvelopedData Processing May Accept Forged Messages",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 7.4,
+            "cwe": [
+                "CWE-354"
+            ],
+            "cve": "CVE-2026-34182",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue Summary: Cryptographic Message Services (CMS) processing fails to perform sufficient input validation on the cipher and tag length fields of Aut...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-34182",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/03c1f4d45fb963aee7d5833390c507cd290182bc",
+                "https://github.com/openssl/openssl/commit/439ed7d2c0962ce964482727264668bf277c333f",
+                "https://github.com/openssl/openssl/commit/7947e6a81eb8776802f159fb6762cb7fcf7e34c7",
+                "https://github.com/openssl/openssl/commit/9fd97f8cfdc2c0be214998de3b2b55c8edf6c7ac",
+                "https://github.com/openssl/openssl/commit/d2ca86bcd43e4f17d899f347101766b6107676e0",
+                "https://linux.oracle.com/cve/CVE-2026-34182.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-34182",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://ubuntu.com/security/notices/USN-8414-2",
+                "https://www.cve.org/CVERecord?id=CVE-2026-34182"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A08:2021-Software and Data Integrity Failures",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-7 Software, Firmware, and Information Integrity"
+                }
+            ],
+            "exploit_available": true,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-354 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-34183",
+            "severity": "MEDIUM",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: Unbounded Memory Growth in the QUIC PATH_CHALLENGE Handler",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 7.5,
+            "cwe": [
+                "CWE-1325"
+            ],
+            "cve": "CVE-2026-34183",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: Remote peer may exhaust heap memory of the QUIC server or client by flooding it with packets containing PATH_CHALLENGE frames. Impact s...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-34183",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/5b306efb0b3779dfdd0803b4afc9d08c91f11517",
+                "https://github.com/openssl/openssl/commit/7d06955ebe0ecf8adfd4c1e92018586da47ef9ac",
+                "https://github.com/openssl/openssl/commit/d2e9efbe4900a373227deb136e8665401404ffac",
+                "https://github.com/openssl/openssl/commit/fbaa83859c01ad64f497b757aaf51be7d05ed9eb",
+                "https://linux.oracle.com/cve/CVE-2026-34183.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-34183",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-34183"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
+                }
+            ],
+            "exploit_available": true,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-1325 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-42764",
+            "severity": "MEDIUM",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: NULL pointer dereference in QUIC server initial packet handling",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.9,
+            "cwe": [
+                "CWE-476"
+            ],
+            "cve": "CVE-2026-42764",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: Receiving a QUIC initial packet with an invalid token may trigger a NULL pointer dereference in the OpenSSL QUIC server with address va...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-42764",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/5e3ed291b8af0b03d5d3b9e56a1da69a187e9729",
+                "https://github.com/openssl/openssl/commit/a45a0aba8095682c88ff4fc4a784892b8c6f0677",
+                "https://github.com/openssl/openssl/commit/bf29a458c1a231eca87e384c62b9c2553fa57a91",
+                "https://linux.oracle.com/cve/CVE-2026-42764.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-42764",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-42764"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-476 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-45445",
+            "severity": "MEDIUM",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: AES-OCB IV Ignored on EVP_Cipher() Path",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 9.1,
+            "cwe": [
+                "CWE-325"
+            ],
+            "cve": "CVE-2026-45445",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: When an application drives an AES-OCB context through the public EVP_Cipher() one-shot interface, the application-supplied initialisati...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-45445",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/323f0b6e7d530a4cb4336d50c88cb70f3ac2a451",
+                "https://github.com/openssl/openssl/commit/787a6dfba81b7b09c1e05ab31396c0cd7c36b3f7",
+                "https://github.com/openssl/openssl/commit/7ac4715234ee72d9f3c93426a2c08554b5b771af",
+                "https://github.com/openssl/openssl/commit/843c9b94ca9c2ed248bb30127bb4f3d7af0d607c",
+                "https://github.com/openssl/openssl/commit/983d54b5cce8d16147548ed1a37892d1720bbab6",
+                "https://linux.oracle.com/cve/CVE-2026-45445.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-45445",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-45445"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+                    "nist": "SC-13 Cryptographic Protection"
+                }
+            ],
+            "exploit_available": true,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-325 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-34180",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: OpenSSL: Heap buffer over-read in ASN.1 decoding can lead to denial of service or information disclosure.",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5,
+            "cwe": [
+                "CWE-125"
+            ],
+            "cve": "CVE-2026-34180",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: Parsing a crafted DER-encoded ASN.1 structure with a primitive element whose content exceeds 2 gigabytes in length may cause a heap buf...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-34180",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/1c6908e4fa5fa568752221d8eaf561a809751e5d",
+                "https://github.com/openssl/openssl/commit/cbe418ae978539cf14a398a207dba834c0e93e83",
+                "https://github.com/openssl/openssl/commit/d93853c42110d6319e3df07842b488cb9f7ac5ff",
+                "https://github.com/openssl/openssl/commit/da5d62af75f69d6fbf7803743d7c56ac75461e43",
+                "https://github.com/openssl/openssl/commit/f696c73c3e61b8c502d040af62e690c060908a16",
+                "https://linux.oracle.com/cve/CVE-2026-34180.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-34180",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://ubuntu.com/security/notices/USN-8414-2",
+                "https://www.cve.org/CVERecord?id=CVE-2026-34180"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-125 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-34181",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: PKCS#12 Files with PBMAC1 Are Accepted with Short HMAC Keys",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 6.3,
+            "cwe": [
+                "CWE-354"
+            ],
+            "cve": "CVE-2026-34181",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue Summary: The PKCS#12 file processing fails to perform sufficient input validation for files that use Password-Based Message Authentication Code...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-34181",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/0300eb9ddce7a0895bf301a4b0c03a9da2313a0f",
+                "https://github.com/openssl/openssl/commit/79eb76a937e474bb7610a0a3dc57131dc8dc6610",
+                "https://github.com/openssl/openssl/commit/85dcbb3abaa4878af5c8fbbe11bce708fcf984a7",
+                "https://github.com/openssl/openssl/commit/ec36f2417c4ddd8cabce4b4a60a3d7a7365f2d81",
+                "https://linux.oracle.com/cve/CVE-2026-34181.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-34181",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-34181"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A08:2021-Software and Data Integrity Failures",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-7 Software, Firmware, and Information Integrity"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-354 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-42766",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: Possible NULL Dereference in Password-Based CMS Decryption",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.3,
+            "cwe": [
+                "CWE-476"
+            ],
+            "cve": "CVE-2026-42766",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: A specially crafted password-encrypted CMS message can trigger a NULL pointer dereference during CMS decryption. Impact summary: This N...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-42766",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/056d06c1918fafbb98c1c85a02e4c47cc4e199ce",
+                "https://github.com/openssl/openssl/commit/12bc26ffb3a2be728c9b86e1cae277de5b33dfa4",
+                "https://github.com/openssl/openssl/commit/3ff64913615d648cfbb6a6f1cf5529ae7ea829d7",
+                "https://github.com/openssl/openssl/commit/ab52d88cb5374876d59aee3c91f9e4ccce2b7ce4",
+                "https://github.com/openssl/openssl/commit/da26f368732b83e40e9d356fe61c3d3aaab6d2e8",
+                "https://linux.oracle.com/cve/CVE-2026-42766.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-42766",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://ubuntu.com/security/notices/USN-8414-2",
+                "https://www.cve.org/CVERecord?id=CVE-2026-42766"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-476 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-42767",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: NULL Pointer Dereference in CRMF EncryptedValue Decryption",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.3,
+            "cwe": [
+                "CWE-476"
+            ],
+            "cve": "CVE-2026-42767",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: An attacker-controlled CMP (Certificate Management Protocol) server could trigger a NULL pointer dereference in a CMP client applicatio...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-42767",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/61a86a8cd73546c9fea916f3d304c1293e05c046",
+                "https://github.com/openssl/openssl/commit/665d5254083affde9982efca7c41dd01cacc8774",
+                "https://github.com/openssl/openssl/commit/810b722f772652ad48042bcc7ab07e3414b11d0f",
+                "https://github.com/openssl/openssl/commit/b90ff3b1bd33b1c18e6a09936d097c2eddef8873",
+                "https://github.com/openssl/openssl/commit/e6f912907fc2ec82a0fd07aae55172c5e5e3d90d",
+                "https://linux.oracle.com/cve/CVE-2026-42767.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-42767",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-42767"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-476 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-42768",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: Multi-RecipientInfo Bleichenbacher Oracle in CMS_decrypt() and PKCS7_decrypt()",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 6.3,
+            "cwe": [
+                "CWE-514"
+            ],
+            "cve": "CVE-2026-42768",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: The CMS_decrypt and PKCS7_decrypt functions are vulnerable to Bleichenbacher-style attack when an attacker is able to provide the CMS o...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-42768",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/a2ca7b2d73e0ffc1eae183fe6e1741dac767cb4f",
+                "https://github.com/openssl/openssl/commit/bbb151a83041705d9d001ed2f9c12f5523e1b54d",
+                "https://github.com/openssl/openssl/commit/dd68364107a58841c0a2546812518b65d3a23abd",
+                "https://github.com/openssl/openssl/commit/f04b377be3d821741c86d1f4bf84dee09f3d5c3e",
+                "https://linux.oracle.com/cve/CVE-2026-42768.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-42768",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-42768"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-7 Boundary Protection"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-514 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-42769",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: Trust-Anchor Substitution via cert/issuer Typo in CMP rootCaKeyUpdate",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.9,
+            "cwe": [
+                "CWE-295"
+            ],
+            "cve": "CVE-2026-42769",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue Summary: An error in the callback used to verify the certificate provided in a Root CA key update Certificate Management Protocol (CMP) message...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-42769",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/54d0989997e5fc26057009a9782c3441ce3842fb",
+                "https://github.com/openssl/openssl/commit/777b363b16fcf2153bb3ded39dc3838713667c44",
+                "https://github.com/openssl/openssl/commit/d35cd473a271bf3ce7bf3d32af53217fb83ae92c",
+                "https://github.com/openssl/openssl/commit/d531f21c0fe99067a66fc0ff1161ef127f9cd70b",
+                "https://linux.oracle.com/cve/CVE-2026-42769.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-42769",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-42769"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit",
+                    "nist": "SC-8 Transmission Confidentiality and Integrity"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-295 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-42770",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: FFC-DH Peer Validation Uses Attacker-Supplied q",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.9,
+            "cwe": [
+                "CWE-325"
+            ],
+            "cve": "CVE-2026-42770",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: When EVP_PKEY_derive_set_peer() is called with a DHX (X9.42) peer key, the peer key is not properly checked for the subgroup membership...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-42770",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/3da5a516cd2635a320ff748503db2cef7c4b0f02",
+                "https://github.com/openssl/openssl/commit/3ddbb7ab50bd93dfc59cbe08e269a67605aeebdb",
+                "https://github.com/openssl/openssl/commit/5f452bba2c681423d8fcffd120a19b757ee42e3c",
+                "https://github.com/openssl/openssl/commit/7fbfde7677ed8808828bf00ff01c937ca04bdda2",
+                "https://github.com/openssl/openssl/commit/ca2237ab5615641b662183b077f62c08d75e8070",
+                "https://linux.oracle.com/cve/CVE-2026-42770.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-42770",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-42770"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+                    "nist": "SC-13 Cryptographic Protection"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-325 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-45446",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: Incorrect Tag Processing for Empty Messages in AES-GCM-SIV and AES-SIV modes",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 3.7,
+            "cwe": [
+                "CWE-325"
+            ],
+            "cve": "CVE-2026-45446",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: The implementations of AES-SIV (RFC 5297) and AES-GCM-SIV (RFC 8452) mishandle the authentication of AAD (Additional Authenticated Data...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-45446",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/25b32cd9d41d2bc01b6abc425bb4baf2c2236fdc",
+                "https://github.com/openssl/openssl/commit/71e2a5d263518cf5866043bd60ee4994d59e53a3",
+                "https://github.com/openssl/openssl/commit/7fe3f33a3b3a4c487aa4dcdbc87057f66ffd2b85",
+                "https://github.com/openssl/openssl/commit/daca0f48e4a69a2892a62262bad59e62a8a76598",
+                "https://github.com/openssl/openssl/commit/eec5e9bf0d867333b8495e456f5235d225798a68",
+                "https://linux.oracle.com/cve/CVE-2026-45446.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-45446",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://www.cve.org/CVERecord?id=CVE-2026-45446"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A02:2021-Cryptographic Failures",
+                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
+                    "nist": "SC-13 Cryptographic Protection"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-325 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-7383",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: OpenSSL: Heap buffer overflow due to signed integer overflow in Unicode output sizing",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.5,
+            "cwe": [
+                "CWE-787"
+            ],
+            "cve": "CVE-2026-7383",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: A signed integer overflow when sizing the destination buffer for Unicode output in ASN1_mbstring_ncopy() can lead to a heap buffer over...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-7383",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/4f8d2bddaa2c8e06f9c33390ee1717059a6e4be6",
+                "https://github.com/openssl/openssl/commit/80c15faaf78042bbb8654a0e234c50c381732f74",
+                "https://github.com/openssl/openssl/commit/bd17511070fb39a67bfa19682affb765e706a974",
+                "https://github.com/openssl/openssl/commit/c332adaced43bcbb85f97410597e951c11ec3083",
+                "https://github.com/openssl/openssl/commit/d32350ae8ef7426718f5aa9e383d4b51398ee255",
+                "https://linux.oracle.com/cve/CVE-2026-7383.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-7383",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://ubuntu.com/security/notices/USN-8414-2",
+                "https://www.cve.org/CVERecord?id=CVE-2026-7383"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-787 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-9076",
+            "severity": "LOW",
+            "file": "hopegivers-backend:latest (alpine 3.23.4)",
+            "line": null,
+            "message": "openssl: OpenSSL: Denial of Service due to heap out-of-bounds read in CMS password-based decryption",
+            "recommendation": "Upgrade to version 3.5.7-r0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-03T20:37:19.408600335Z",
+            "package_name": "libssl3",
+            "installed_version": "3.5.6-r0",
+            "fixed_version": "3.5.7-r0",
+            "cvss_score": 5.9,
+            "cwe": [
+                "CWE-125"
+            ],
+            "cve": "CVE-2026-9076",
+            "severity_source": "Trivy",
+            "target": "hopegivers-backend:latest (alpine 3.23.4)",
+            "target_class": "os-pkgs",
+            "target_type": "alpine",
+            "description": "Issue summary: When CMS password-based decryption (RFC 3211 / PWRI key unwrap) processes attacker-supplied CMS data, an attacker-chosen stream-mode KE...",
+            "primary_url": "https://access.redhat.com/errata/RHSA-2026:25239",
+            "references": [
+                "https://access.redhat.com/errata/RHSA-2026:25239",
+                "https://access.redhat.com/security/cve/CVE-2026-9076",
+                "https://bugzilla.redhat.com/2481879",
+                "https://bugzilla.redhat.com/2481880",
+                "https://bugzilla.redhat.com/2481881",
+                "https://bugzilla.redhat.com/2481882",
+                "https://bugzilla.redhat.com/2481884",
+                "https://bugzilla.redhat.com/2481885",
+                "https://bugzilla.redhat.com/2481887",
+                "https://bugzilla.redhat.com/2481890",
+                "https://bugzilla.redhat.com/2481891",
+                "https://bugzilla.redhat.com/2481892",
+                "https://bugzilla.redhat.com/2481893",
+                "https://bugzilla.redhat.com/2481894",
+                "https://bugzilla.redhat.com/2481896",
+                "https://bugzilla.redhat.com/2481897",
+                "https://bugzilla.redhat.com/2481898",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481879",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481880",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481881",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481882",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481884",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481885",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481887",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481890",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481891",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481892",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481893",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481894",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481896",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481897",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481898",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34180",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34181",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34182",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-34183",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42764",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42766",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42767",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42768",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42769",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42770",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45445",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45446",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-45447",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-7383",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9076",
+                "https://errata.almalinux.org/9/ALSA-2026-25239.html",
+                "https://errata.rockylinux.org/RLSA-2026:25239",
+                "https://github.com/openssl/openssl/commit/05b066366842f930fadd9a6e94df98030af431bb",
+                "https://github.com/openssl/openssl/commit/3d8d5bc1056b2f62da9fede23fedbf47e85187b0",
+                "https://github.com/openssl/openssl/commit/715349a1d7c6db970e6815dafb90915f07307f98",
+                "https://github.com/openssl/openssl/commit/77bf00ab13f6ff5e516535432f0328ed70ec0c26",
+                "https://github.com/openssl/openssl/commit/eecbe330977e8d023aae1ca2d9bdbe983ef3fdc6",
+                "https://linux.oracle.com/cve/CVE-2026-9076.html",
+                "https://linux.oracle.com/errata/ELSA-2026-50379.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-9076",
+                "https://openssl-library.org/news/secadv/20260609.txt",
+                "https://ubuntu.com/security/notices/USN-8414-1",
+                "https://ubuntu.com/security/notices/USN-8414-2",
+                "https://www.cve.org/CVERecord?id=CVE-2026-9076"
+            ],
+            "compliance": [
+                {
+                    "owasp": "A06:2021-Vulnerable and Outdated Components",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                    "nist": "SI-2 Flaw Remediation"
+                }
+            ],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false,
+            "compliance_layers": [
+                "Layer 2 (CWE-125 Open Standard DB Match)"
+            ]
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
             "rule_id": "CVE-2026-48758",
             "severity": "MEDIUM",
             "file": "Node.js",
@@ -1682,9 +3227,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A08:2021-Software and Data Integrity Failures",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-7 Software, Firmware, and Information Integrity"
                 }
             ],
             "exploit_available": false,
@@ -1692,7 +3237,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-347 Open Standard DB Match)"
             ]
         },
         {
@@ -1725,7 +3270,7 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
             ],
@@ -1734,7 +3279,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 1 (GHSA-j4mr-9xw3-c9jx Advisory Signature Match)"
             ]
         },
         {
@@ -1766,7 +3311,7 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
             ],
@@ -1775,7 +3320,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 1 (NSWG-ECO-434 Advisory Signature Match)"
             ]
         },
         {
@@ -2105,9 +3650,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
@@ -2115,7 +3660,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-1333 Open Standard DB Match)"
             ]
         },
         {
@@ -2383,9 +3928,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
@@ -2393,7 +3938,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-1333 Open Standard DB Match)"
             ]
         },
         {
@@ -2431,9 +3976,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
@@ -2441,7 +3986,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-407 Open Standard DB Match)"
             ]
         },
         {
@@ -2496,9 +4041,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
@@ -2506,7 +4051,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-1333 Open Standard DB Match)"
             ]
         },
         {
@@ -2545,7 +4090,7 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
             ],
@@ -2554,7 +4099,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 1 (GHSA-664h-wqgq-64gw Advisory Signature Match)"
             ]
         },
         {
@@ -2587,7 +4132,7 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
             ],
@@ -2596,7 +4141,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 1 (GHSA-p6gq-j5cr-w38f Advisory Signature Match)"
             ]
         },
         {
@@ -2637,9 +4182,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A08:2021-Software and Data Integrity Failures",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-7 Software, Firmware, and Information Integrity"
                 }
             ],
             "exploit_available": true,
@@ -2647,7 +4192,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-347 Open Standard DB Match)"
             ]
         },
         {
@@ -2700,9 +4245,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
@@ -2710,7 +4255,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-770 Open Standard DB Match)"
             ]
         },
         {
@@ -3138,9 +4683,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A04:2021-Insecure Design",
+                    "cis": "CIS Controls v8 13.1 - Network Architecture",
+                    "nist": "SC-5 Denial of Service Protection"
                 }
             ],
             "exploit_available": true,
@@ -3148,7 +4693,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-835 Open Standard DB Match)"
             ]
         },
         {
@@ -3185,9 +4730,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
                 }
             ],
             "exploit_available": false,
@@ -3195,7 +4740,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-436 Open Standard DB Match)"
             ]
         },
         {
@@ -3234,9 +4779,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A03:2021-Injection",
+                    "cis": "CIS Controls v8 16.1 - Application Software Security",
+                    "nist": "SI-10 Information Input Validation"
                 }
             ],
             "exploit_available": false,
@@ -3244,7 +4789,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-704 Open Standard DB Match)"
             ]
         },
         {
@@ -3283,9 +4828,9 @@
             ],
             "compliance": [
                 {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
-                    "nist": "SI-2 Flaw Remediation"
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
+                    "nist": "SI-11 Error Handling"
                 }
             ],
             "exploit_available": false,
@@ -3293,7 +4838,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 2 (CWE-248 Open Standard DB Match)"
             ]
         },
         {
@@ -3328,7 +4873,7 @@
             "compliance": [
                 {
                     "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
                     "nist": "SI-2 Flaw Remediation"
                 }
             ],
@@ -3337,7 +4882,7 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 4 (Container Security Heuristic Fallback)"
+                "Layer 1 (GHSA-r292-9mhp-454m Advisory Signature Match)"
             ]
         },
         {
@@ -3350,7 +4895,7 @@
             "message": "Content Security Policy (CSP) Header Not Set - <p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attack",
             "recommendation": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
             "status": "OPEN",
-            "scan_time": "2026-08-03T21:07:01.842165",
+            "scan_time": "2026-08-08T20:20:01.488279",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -3368,9 +4913,14 @@
             "references": null,
             "compliance": [
                 {
-                    "owasp": "A03:2021-Injection",
+                    "owasp": "A05:2021-Security Misconfiguration",
                     "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
+                    "nist": "CM-6 Configuration Settings"
+                },
+                {
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
+                    "nist": "CM-6 Configuration Settings"
                 }
             ],
             "exploit_available": null,
@@ -3378,7 +4928,8 @@
             "epss_score": null,
             "kev": null,
             "compliance_layers": [
-                "Layer 4 (DAST Heuristic Fallback)"
+                "Layer 1 (ZAP-10038 Rule-ID Match)",
+                "Layer 2 (CWE-693 Open Standard DB Match)"
             ]
         },
         {
@@ -3391,7 +4942,7 @@
             "message": "Missing Anti-clickjacking Header - <p>The response does not protect against 'ClickJacking' attacks. It should include either Content-Security-Policy with '",
             "recommendation": "<p>Modern Web browsers support the Content-Security-Policy and X-Frame-Options HTTP headers. Ensure one of them is set on all web pages returned by your site/app.</p><p>If you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. Alternatively consider implementing Content Security Policy's \"frame-ancestors\" directive.</p>",
             "status": "OPEN",
-            "scan_time": "2026-08-03T21:07:01.842165",
+            "scan_time": "2026-08-08T20:20:01.488279",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -3409,9 +4960,9 @@
             "references": null,
             "compliance": [
                 {
-                    "owasp": "A03:2021-Injection",
+                    "owasp": "A05:2021-Security Misconfiguration",
                     "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
+                    "nist": "SC-7 Boundary Protection"
                 }
             ],
             "exploit_available": null,
@@ -3419,7 +4970,7 @@
             "epss_score": null,
             "kev": null,
             "compliance_layers": [
-                "Layer 4 (DAST Heuristic Fallback)"
+                "Layer 1 (ZAP-10020 Rule-ID Match)"
             ]
         },
         {
@@ -3432,7 +4983,7 @@
             "message": "X-Content-Type-Options Header Missing - <p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet",
             "recommendation": "<p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p>",
             "status": "OPEN",
-            "scan_time": "2026-08-03T21:07:01.842165",
+            "scan_time": "2026-08-08T20:20:01.488279",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
@@ -3450,9 +5001,9 @@
             "references": null,
             "compliance": [
                 {
-                    "owasp": "A03:2021-Injection",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
+                    "owasp": "A05:2021-Security Misconfiguration",
+                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
+                    "nist": "CM-6 Configuration Settings"
                 }
             ],
             "exploit_available": null,
@@ -3460,7 +5011,7 @@
             "epss_score": null,
             "kev": null,
             "compliance_layers": [
-                "Layer 4 (DAST Heuristic Fallback)"
+                "Layer 1 (ZAP-10021 Rule-ID Match)"
             ]
         },
         {
@@ -3473,13 +5024,13 @@
             "message": "Modern Web Application - <p>The application appears to be a modern web application. If you need to explore it automatically then the Ajax Spider ",
             "recommendation": "<p>This is an informational alert and so no changes are required.</p>",
             "status": "OPEN",
-            "scan_time": "2026-08-03T21:07:01.842165",
+            "scan_time": "2026-08-08T20:20:01.488279",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
             "cvss_score": null,
             "cwe": [
-                "CWE--1"
+                "CWE-200"
             ],
             "cve": null,
             "severity_source": null,
@@ -3491,9 +5042,9 @@
             "references": null,
             "compliance": [
                 {
-                    "owasp": "A03:2021-Injection",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
+                    "owasp": "A01:2021-Broken Access Control",
+                    "cis": "CIS Controls v8 3.1 - Data Classification",
+                    "nist": "SC-28 Protection of Information at Rest"
                 }
             ],
             "exploit_available": null,
@@ -3501,7 +5052,7 @@
             "epss_score": null,
             "kev": null,
             "compliance_layers": [
-                "Layer 4 (DAST Heuristic Fallback)"
+                "Layer 1 (ZAP-10109 Rule-ID Match)"
             ]
         },
         {
@@ -3514,12 +5065,14 @@
             "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
             "recommendation": "Include a standardized image creation timestamp.",
             "status": "OPEN",
-            "scan_time": "2026-08-04T17:19:54.404258",
+            "scan_time": "2026-08-08T20:20:01.446887",
             "package_name": null,
             "installed_version": null,
             "fixed_version": null,
             "cvss_score": null,
-            "cwe": null,
+            "cwe": [
+                "CWE-1059"
+            ],
             "cve": null,
             "severity_source": "Hadolint",
             "target": "/workspace/app/client/Dockerfile",
@@ -3542,54 +5095,63 @@
             "epss_score": null,
             "kev": false,
             "compliance_layers": [
-                "Layer 1 (Rule-ID Direct Match)"
+                "Layer 1 (DL3059 Rule-ID Match)"
             ]
         }
     ],
     "compliance_summary": {
         "owasp_top_10_2021": {
             "total_controls_baseline": 10,
-            "controls_passed": 4,
-            "controls_failed": 6,
-            "compliance_percentage": 40.0,
+            "controls_passed": 3,
+            "controls_failed": 7,
+            "compliance_percentage": 30.0,
             "failed_controls_breakdown": {
-                "A02:2021-Cryptographic Failures": 4,
-                "A06:2021-Vulnerable and Outdated Components": 27,
-                "A05:2021-Security Misconfiguration": 4,
-                "A04:2021-Insecure Design": 6,
-                "A03:2021-Injection": 6,
-                "A01:2021-Broken Access Control": 6
+                "A02:2021-Cryptographic Failures": 13,
+                "A06:2021-Vulnerable and Outdated Components": 19,
+                "A08:2021-Software and Data Integrity Failures": 6,
+                "A03:2021-Injection": 5,
+                "A04:2021-Insecure Design": 14,
+                "A01:2021-Broken Access Control": 7,
+                "A05:2021-Security Misconfiguration": 7
             }
         },
         "cis_benchmarks": {
             "total_controls_baseline": 15,
-            "controls_passed": 7,
-            "controls_failed": 8,
-            "compliance_percentage": 46.7,
+            "controls_passed": 4,
+            "controls_failed": 11,
+            "compliance_percentage": 26.7,
             "failed_controls_breakdown": {
+                "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest": 2,
                 "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 2,
                 "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-                "CIS Controls v8 7.1 - Vulnerability Management": 7,
-                "CIS Docker Benchmark 4.0 - Container Hardening": 23,
-                "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit": 1,
-                "CIS Controls v8 13.1 - Network Architecture": 6,
-                "CIS Controls v8 16.1 - Application Software Security": 12,
+                "CIS Controls v8 7.1 - Vulnerability Management": 19,
+                "CIS Controls v8 16.1 - Application Software Security": 20,
+                "CIS Controls v8 3.11 - Encrypt Sensitive Data": 6,
+                "CIS Controls v8 13.1 - Network Architecture": 14,
+                "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit": 2,
+                "CIS Controls v8 4.1 - Secure Configuration": 3,
+                "CIS Controls v8 3.1 - Data Classification": 1,
                 "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
             }
         },
         "nist_sp_800_53": {
             "total_controls_baseline": 20,
-            "controls_passed": 13,
-            "controls_failed": 7,
-            "compliance_percentage": 65.0,
+            "controls_passed": 8,
+            "controls_failed": 12,
+            "compliance_percentage": 40.0,
             "failed_controls_breakdown": {
-                "IA-5 Authenticator Management": 3,
-                "SI-2 Flaw Remediation": 30,
-                "SC-8 Transmission Confidentiality and Integrity": 1,
-                "SC-5 Denial of Service Protection": 6,
+                "IA-5 Authenticator Management": 4,
+                "SC-28 Protection of Information at Rest": 2,
+                "SI-2 Flaw Remediation": 19,
+                "SI-7 Software, Firmware, and Information Integrity": 6,
                 "SI-10 Information Input Validation": 6,
+                "SC-13 Cryptographic Protection": 6,
+                "SC-7 Boundary Protection": 3,
+                "SC-8 Transmission Confidentiality and Integrity": 2,
+                "SC-5 Denial of Service Protection": 12,
                 "AC-3 Access Enforcement": 6,
-                "CM-6 Configuration Settings": 1
+                "SI-11 Error Handling": 1,
+                "CM-6 Configuration Settings": 4
             }
         }
     }

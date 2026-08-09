@@ -1445,3 +1445,1857 @@ security.core.exceptions.ReportNotFoundError: No raw reports found in compliance
 2026-08-09 00:54:10 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
 2026-08-09 00:54:10 | INFO | Evaluating Security Gate policy from policy.yaml...
 2026-08-09 00:54:10 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260808192410)
+2026-08-09 01:37:41 | INFO | Registered parser: hadolint
+2026-08-09 01:37:41 | INFO | Registered parser: trivy
+2026-08-09 01:37:41 | INFO | Registered parser: gitleaks
+2026-08-09 01:37:41 | INFO | Registered parser: zap
+2026-08-09 01:37:41 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Running all registered parsers...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Starting gitleaks
+2026-08-09 01:37:41 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Starting Gitleaks Parser
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:37:41 | INFO | Reading report: gitleaks_20260806_001140.json
+2026-08-09 01:37:41 | INFO | Successfully loaded gitleaks_20260806_001140.json
+2026-08-09 01:37:41 | INFO | [Gitleaks] Processing gitleaks_20260806_001140.json...
+2026-08-09 01:37:41 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:37:41 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:37:41 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:37:41 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:37:41 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:37:41 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:37:41 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:37:41 | INFO | Writing report: gitleaks_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | Report written successfully: gitleaks_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:37:41 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Gitleaks Scan Summary
+2026-08-09 01:37:41 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:37:41 | INFO | Status         : FAIL
+2026-08-09 01:37:41 | INFO | Total          : 4
+2026-08-09 01:37:41 | INFO | Critical       : 4
+2026-08-09 01:37:41 | INFO | High           : 0
+2026-08-09 01:37:41 | INFO | Medium         : 0
+2026-08-09 01:37:41 | INFO | Low            : 0
+2026-08-09 01:37:41 | INFO | Info           : 0
+2026-08-09 01:37:41 | INFO | Unknown        : 0
+2026-08-09 01:37:41 | INFO | Fixable        : 0
+2026-08-09 01:37:41 | INFO | Exploitable    : 0
+2026-08-09 01:37:41 | INFO | Compliance     : 0.0%
+2026-08-09 01:37:41 | INFO | Duration       : 0.12 sec
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Gitleaks Parser Completed
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:37:41 | INFO | gitleaks completed successfully.
+2026-08-09 01:37:41 | INFO | Starting hadolint
+2026-08-09 01:37:41 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Starting Hadolint Parser
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:37:41 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:37:41 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:37:41 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:37:41 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:37:41 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:37:41 | INFO | [Hadolint] Validating report...
+2026-08-09 01:37:41 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:37:41 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:37:41 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:37:41 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:37:41 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:37:41 | INFO | [Hadolint] Saving report...
+2026-08-09 01:37:41 | INFO | Writing report: hadolint_frontend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | Report written successfully: hadolint_frontend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:37:41 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:37:41 | INFO | [Hadolint] Validating report...
+2026-08-09 01:37:41 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:37:41 | WARNING | Hadolint report is empty.
+2026-08-09 01:37:41 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:37:41 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:37:41 | INFO | [Hadolint] Saving report...
+2026-08-09 01:37:41 | INFO | Writing report: hadolint_backend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | Report written successfully: hadolint_backend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:37:41 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Hadolint Scan Summary
+2026-08-09 01:37:41 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:37:41 | INFO | Status         : PASS
+2026-08-09 01:37:41 | INFO | Total          : 1
+2026-08-09 01:37:41 | INFO | Critical       : 0
+2026-08-09 01:37:41 | INFO | High           : 0
+2026-08-09 01:37:41 | INFO | Medium         : 0
+2026-08-09 01:37:41 | INFO | Low            : 0
+2026-08-09 01:37:41 | INFO | Info           : 1
+2026-08-09 01:37:41 | INFO | Unknown        : 0
+2026-08-09 01:37:41 | INFO | Fixable        : 0
+2026-08-09 01:37:41 | INFO | Exploitable    : 0
+2026-08-09 01:37:41 | INFO | Compliance     : 100.0%
+2026-08-09 01:37:41 | INFO | Duration       : 0.02 sec
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Hadolint Parser Completed
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:37:41 | INFO | hadolint completed successfully.
+2026-08-09 01:37:41 | INFO | Starting trivy
+2026-08-09 01:37:41 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Starting Trivy Parser
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:37:41 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:37:41 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:37:41 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:37:41 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:37:41 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:37:41 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:37:41 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:37:41 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:37:41 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:37:41 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:37:41 | INFO | [Trivy] Saving report...
+2026-08-09 01:37:41 | INFO | Writing report: trivy_backend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | Report written successfully: trivy_backend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:37:41 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:37:41 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:37:41 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:37:41 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:37:41 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:37:41 | INFO | [Trivy] Saving report...
+2026-08-09 01:37:41 | INFO | Writing report: trivy_frontend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | Report written successfully: trivy_frontend_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:37:41 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Trivy Scan Summary
+2026-08-09 01:37:41 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:37:41 | INFO | Status         : PASS
+2026-08-09 01:37:41 | INFO | Total          : 64
+2026-08-09 01:37:41 | INFO | Critical       : 1
+2026-08-09 01:37:41 | INFO | High           : 25
+2026-08-09 01:37:41 | INFO | Medium         : 16
+2026-08-09 01:37:41 | INFO | Low            : 22
+2026-08-09 01:37:41 | INFO | Info           : 0
+2026-08-09 01:37:41 | INFO | Unknown        : 0
+2026-08-09 01:37:41 | INFO | Fixable        : 64
+2026-08-09 01:37:41 | INFO | Exploitable    : 25
+2026-08-09 01:37:41 | INFO | Compliance     : 34.38%
+2026-08-09 01:37:41 | INFO | Duration       : 0.08 sec
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Trivy Parser Completed
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:37:41 | INFO | trivy completed successfully.
+2026-08-09 01:37:41 | INFO | Starting zap
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | Starting zap Parser
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | [zap] Loading report(s)...
+2026-08-09 01:37:41 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:37:41 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:37:41 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:37:41 | INFO | [zap] Generating metadata...
+2026-08-09 01:37:41 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:37:41 | INFO | [zap] Calculating statistics...
+2026-08-09 01:37:41 | INFO | [zap] Building normalized report...
+2026-08-09 01:37:41 | INFO | [zap] Saving report...
+2026-08-09 01:37:41 | INFO | Writing report: zap_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | Report written successfully: zap_20260809_013741_normalized.json
+2026-08-09 01:37:41 | INFO | [zap] Report saved successfully.
+2026-08-09 01:37:41 | INFO | [zap] Calculating statistics...
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | zap Scan Summary
+2026-08-09 01:37:41 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:37:41 | INFO | Status         : WARN
+2026-08-09 01:37:41 | INFO | Total          : 4
+2026-08-09 01:37:41 | INFO | Critical       : 0
+2026-08-09 01:37:41 | INFO | High           : 0
+2026-08-09 01:37:41 | INFO | Medium         : 2
+2026-08-09 01:37:41 | INFO | Low            : 1
+2026-08-09 01:37:41 | INFO | Info           : 1
+2026-08-09 01:37:41 | INFO | Unknown        : 0
+2026-08-09 01:37:41 | INFO | Fixable        : 0
+2026-08-09 01:37:41 | INFO | Exploitable    : 0
+2026-08-09 01:37:41 | INFO | Compliance     : 50.0%
+2026-08-09 01:37:41 | INFO | Duration       : 0.01 sec
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | zap Parser Completed
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | zap completed successfully.
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | All parsers completed successfully.
+2026-08-09 01:37:41 | INFO | ======================================================================
+2026-08-09 01:37:41 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:37:41 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:37:41 | INFO | Risk Engine Computed: Total Risk Score=171, Level=CRITICAL
+2026-08-09 01:37:41 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:37:41 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:37:41 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 35.6% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:37:41 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:37:41 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:38:43 | INFO | Registered parser: hadolint
+2026-08-09 01:38:43 | INFO | Registered parser: trivy
+2026-08-09 01:38:43 | INFO | Registered parser: gitleaks
+2026-08-09 01:38:43 | INFO | Registered parser: zap
+2026-08-09 01:38:43 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Running all registered parsers...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Starting gitleaks
+2026-08-09 01:38:43 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Starting Gitleaks Parser
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:38:43 | INFO | Reading report: gitleaks_20260806_001140.json
+2026-08-09 01:38:43 | INFO | Successfully loaded gitleaks_20260806_001140.json
+2026-08-09 01:38:43 | INFO | [Gitleaks] Processing gitleaks_20260806_001140.json...
+2026-08-09 01:38:43 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:38:43 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:38:43 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:38:43 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:38:43 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:38:43 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:38:43 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:38:43 | INFO | Writing report: gitleaks_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | Report written successfully: gitleaks_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:38:43 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Gitleaks Scan Summary
+2026-08-09 01:38:43 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:38:43 | INFO | Status         : FAIL
+2026-08-09 01:38:43 | INFO | Total          : 4
+2026-08-09 01:38:43 | INFO | Critical       : 4
+2026-08-09 01:38:43 | INFO | High           : 0
+2026-08-09 01:38:43 | INFO | Medium         : 0
+2026-08-09 01:38:43 | INFO | Low            : 0
+2026-08-09 01:38:43 | INFO | Info           : 0
+2026-08-09 01:38:43 | INFO | Unknown        : 0
+2026-08-09 01:38:43 | INFO | Fixable        : 0
+2026-08-09 01:38:43 | INFO | Exploitable    : 0
+2026-08-09 01:38:43 | INFO | Compliance     : 0.0%
+2026-08-09 01:38:43 | INFO | Duration       : 0.04 sec
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Gitleaks Parser Completed
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:38:43 | INFO | gitleaks completed successfully.
+2026-08-09 01:38:43 | INFO | Starting hadolint
+2026-08-09 01:38:43 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Starting Hadolint Parser
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:38:43 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:38:43 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:38:43 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:38:43 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:38:43 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:38:43 | INFO | [Hadolint] Validating report...
+2026-08-09 01:38:43 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:38:43 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:38:43 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:38:43 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:38:43 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:38:43 | INFO | [Hadolint] Saving report...
+2026-08-09 01:38:43 | INFO | Writing report: hadolint_frontend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | Report written successfully: hadolint_frontend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:38:43 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:38:43 | INFO | [Hadolint] Validating report...
+2026-08-09 01:38:43 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:38:43 | WARNING | Hadolint report is empty.
+2026-08-09 01:38:43 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:38:43 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:38:43 | INFO | [Hadolint] Saving report...
+2026-08-09 01:38:43 | INFO | Writing report: hadolint_backend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | Report written successfully: hadolint_backend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:38:43 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Hadolint Scan Summary
+2026-08-09 01:38:43 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:38:43 | INFO | Status         : PASS
+2026-08-09 01:38:43 | INFO | Total          : 1
+2026-08-09 01:38:43 | INFO | Critical       : 0
+2026-08-09 01:38:43 | INFO | High           : 0
+2026-08-09 01:38:43 | INFO | Medium         : 0
+2026-08-09 01:38:43 | INFO | Low            : 0
+2026-08-09 01:38:43 | INFO | Info           : 1
+2026-08-09 01:38:43 | INFO | Unknown        : 0
+2026-08-09 01:38:43 | INFO | Fixable        : 0
+2026-08-09 01:38:43 | INFO | Exploitable    : 0
+2026-08-09 01:38:43 | INFO | Compliance     : 100.0%
+2026-08-09 01:38:43 | INFO | Duration       : 0.02 sec
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Hadolint Parser Completed
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:38:43 | INFO | hadolint completed successfully.
+2026-08-09 01:38:43 | INFO | Starting trivy
+2026-08-09 01:38:43 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Starting Trivy Parser
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:38:43 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:38:43 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:38:43 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:38:43 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:38:43 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:38:43 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:38:43 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:38:43 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:38:43 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:38:43 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:38:43 | INFO | [Trivy] Saving report...
+2026-08-09 01:38:43 | INFO | Writing report: trivy_backend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | Report written successfully: trivy_backend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:38:43 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:38:43 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:38:43 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:38:43 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:38:43 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:38:43 | INFO | [Trivy] Saving report...
+2026-08-09 01:38:43 | INFO | Writing report: trivy_frontend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | Report written successfully: trivy_frontend_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:38:43 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Trivy Scan Summary
+2026-08-09 01:38:43 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:38:43 | INFO | Status         : PASS
+2026-08-09 01:38:43 | INFO | Total          : 64
+2026-08-09 01:38:43 | INFO | Critical       : 1
+2026-08-09 01:38:43 | INFO | High           : 25
+2026-08-09 01:38:43 | INFO | Medium         : 16
+2026-08-09 01:38:43 | INFO | Low            : 22
+2026-08-09 01:38:43 | INFO | Info           : 0
+2026-08-09 01:38:43 | INFO | Unknown        : 0
+2026-08-09 01:38:43 | INFO | Fixable        : 64
+2026-08-09 01:38:43 | INFO | Exploitable    : 25
+2026-08-09 01:38:43 | INFO | Compliance     : 34.38%
+2026-08-09 01:38:43 | INFO | Duration       : 0.03 sec
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Trivy Parser Completed
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:38:43 | INFO | trivy completed successfully.
+2026-08-09 01:38:43 | INFO | Starting zap
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | Starting zap Parser
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | [zap] Loading report(s)...
+2026-08-09 01:38:43 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:38:43 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:38:43 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:38:43 | INFO | [zap] Generating metadata...
+2026-08-09 01:38:43 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:38:43 | INFO | [zap] Calculating statistics...
+2026-08-09 01:38:43 | INFO | [zap] Building normalized report...
+2026-08-09 01:38:43 | INFO | [zap] Saving report...
+2026-08-09 01:38:43 | INFO | Writing report: zap_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | Report written successfully: zap_20260809_013843_normalized.json
+2026-08-09 01:38:43 | INFO | [zap] Report saved successfully.
+2026-08-09 01:38:43 | INFO | [zap] Calculating statistics...
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | zap Scan Summary
+2026-08-09 01:38:43 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:38:43 | INFO | Status         : WARN
+2026-08-09 01:38:43 | INFO | Total          : 4
+2026-08-09 01:38:43 | INFO | Critical       : 0
+2026-08-09 01:38:43 | INFO | High           : 0
+2026-08-09 01:38:43 | INFO | Medium         : 2
+2026-08-09 01:38:43 | INFO | Low            : 1
+2026-08-09 01:38:43 | INFO | Info           : 1
+2026-08-09 01:38:43 | INFO | Unknown        : 0
+2026-08-09 01:38:43 | INFO | Fixable        : 0
+2026-08-09 01:38:43 | INFO | Exploitable    : 0
+2026-08-09 01:38:43 | INFO | Compliance     : 50.0%
+2026-08-09 01:38:43 | INFO | Duration       : 0.01 sec
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | zap Parser Completed
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | zap completed successfully.
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | All parsers completed successfully.
+2026-08-09 01:38:43 | INFO | ======================================================================
+2026-08-09 01:38:43 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:38:43 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:38:43 | INFO | Risk Engine Computed: Total Risk Score=171, Level=CRITICAL
+2026-08-09 01:38:43 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:38:43 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:38:43 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 32.2% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:38:43 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:38:43 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:38:50 | INFO | Registered parser: hadolint
+2026-08-09 01:38:50 | INFO | Registered parser: trivy
+2026-08-09 01:38:50 | INFO | Registered parser: gitleaks
+2026-08-09 01:38:50 | INFO | Registered parser: zap
+2026-08-09 01:38:50 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:38:50 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:38:50 | INFO | Risk Engine Computed: Total Risk Score=171, Level=CRITICAL
+2026-08-09 01:38:50 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:38:50 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:38:50 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 32.2% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:38:50 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:38:50 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:38:50 | INFO | Evaluating Security Gate policy from policy.yaml...
+2026-08-09 01:38:50 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260808200850)
+2026-08-09 01:44:48 | INFO | Registered parser: hadolint
+2026-08-09 01:44:48 | INFO | Registered parser: trivy
+2026-08-09 01:44:48 | INFO | Registered parser: gitleaks
+2026-08-09 01:44:48 | INFO | Registered parser: zap
+2026-08-09 01:44:48 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Running all registered parsers...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Starting gitleaks
+2026-08-09 01:44:48 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Starting Gitleaks Parser
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:44:48 | INFO | Reading report: gitleaks_20260806_001140.json
+2026-08-09 01:44:48 | INFO | Successfully loaded gitleaks_20260806_001140.json
+2026-08-09 01:44:48 | INFO | [Gitleaks] Processing gitleaks_20260806_001140.json...
+2026-08-09 01:44:48 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:44:48 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:44:48 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:44:48 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:44:48 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:44:48 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:44:48 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:44:48 | INFO | Writing report: gitleaks_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | Report written successfully: gitleaks_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:44:48 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Gitleaks Scan Summary
+2026-08-09 01:44:48 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:44:48 | INFO | Status         : FAIL
+2026-08-09 01:44:48 | INFO | Total          : 4
+2026-08-09 01:44:48 | INFO | Critical       : 4
+2026-08-09 01:44:48 | INFO | High           : 0
+2026-08-09 01:44:48 | INFO | Medium         : 0
+2026-08-09 01:44:48 | INFO | Low            : 0
+2026-08-09 01:44:48 | INFO | Info           : 0
+2026-08-09 01:44:48 | INFO | Unknown        : 0
+2026-08-09 01:44:48 | INFO | Fixable        : 0
+2026-08-09 01:44:48 | INFO | Exploitable    : 0
+2026-08-09 01:44:48 | INFO | Compliance     : 0.0%
+2026-08-09 01:44:48 | INFO | Duration       : 0.05 sec
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Gitleaks Parser Completed
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:44:48 | INFO | gitleaks completed successfully.
+2026-08-09 01:44:48 | INFO | Starting hadolint
+2026-08-09 01:44:48 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Starting Hadolint Parser
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:44:48 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:44:48 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:44:48 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:44:48 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:44:48 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:44:48 | INFO | [Hadolint] Validating report...
+2026-08-09 01:44:48 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:44:48 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:44:48 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:44:48 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:44:48 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:44:48 | INFO | [Hadolint] Saving report...
+2026-08-09 01:44:48 | INFO | Writing report: hadolint_frontend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | Report written successfully: hadolint_frontend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:44:48 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:44:48 | INFO | [Hadolint] Validating report...
+2026-08-09 01:44:48 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:44:48 | WARNING | Hadolint report is empty.
+2026-08-09 01:44:48 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:44:48 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:44:48 | INFO | [Hadolint] Saving report...
+2026-08-09 01:44:48 | INFO | Writing report: hadolint_backend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | Report written successfully: hadolint_backend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:44:48 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Hadolint Scan Summary
+2026-08-09 01:44:48 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:44:48 | INFO | Status         : PASS
+2026-08-09 01:44:48 | INFO | Total          : 1
+2026-08-09 01:44:48 | INFO | Critical       : 0
+2026-08-09 01:44:48 | INFO | High           : 0
+2026-08-09 01:44:48 | INFO | Medium         : 0
+2026-08-09 01:44:48 | INFO | Low            : 0
+2026-08-09 01:44:48 | INFO | Info           : 1
+2026-08-09 01:44:48 | INFO | Unknown        : 0
+2026-08-09 01:44:48 | INFO | Fixable        : 0
+2026-08-09 01:44:48 | INFO | Exploitable    : 0
+2026-08-09 01:44:48 | INFO | Compliance     : 100.0%
+2026-08-09 01:44:48 | INFO | Duration       : 0.02 sec
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Hadolint Parser Completed
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:44:48 | INFO | hadolint completed successfully.
+2026-08-09 01:44:48 | INFO | Starting trivy
+2026-08-09 01:44:48 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Starting Trivy Parser
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:44:48 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:44:48 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:44:48 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:44:48 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:44:48 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:44:48 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:44:48 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:44:48 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:44:48 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:44:48 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:44:48 | INFO | [Trivy] Saving report...
+2026-08-09 01:44:48 | INFO | Writing report: trivy_backend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | Report written successfully: trivy_backend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:44:48 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:44:48 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:44:48 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:44:48 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:44:48 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:44:48 | INFO | [Trivy] Saving report...
+2026-08-09 01:44:48 | INFO | Writing report: trivy_frontend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | Report written successfully: trivy_frontend_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:44:48 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Trivy Scan Summary
+2026-08-09 01:44:48 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:44:48 | INFO | Status         : PASS
+2026-08-09 01:44:48 | INFO | Total          : 64
+2026-08-09 01:44:48 | INFO | Critical       : 1
+2026-08-09 01:44:48 | INFO | High           : 25
+2026-08-09 01:44:48 | INFO | Medium         : 16
+2026-08-09 01:44:48 | INFO | Low            : 22
+2026-08-09 01:44:48 | INFO | Info           : 0
+2026-08-09 01:44:48 | INFO | Unknown        : 0
+2026-08-09 01:44:48 | INFO | Fixable        : 64
+2026-08-09 01:44:48 | INFO | Exploitable    : 25
+2026-08-09 01:44:48 | INFO | Compliance     : 34.38%
+2026-08-09 01:44:48 | INFO | Duration       : 0.03 sec
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Trivy Parser Completed
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:44:48 | INFO | trivy completed successfully.
+2026-08-09 01:44:48 | INFO | Starting zap
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | Starting zap Parser
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | [zap] Loading report(s)...
+2026-08-09 01:44:48 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:44:48 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:44:48 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:44:48 | INFO | [zap] Generating metadata...
+2026-08-09 01:44:48 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:44:48 | INFO | [zap] Calculating statistics...
+2026-08-09 01:44:48 | INFO | [zap] Building normalized report...
+2026-08-09 01:44:48 | INFO | [zap] Saving report...
+2026-08-09 01:44:48 | INFO | Writing report: zap_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | Report written successfully: zap_20260809_014448_normalized.json
+2026-08-09 01:44:48 | INFO | [zap] Report saved successfully.
+2026-08-09 01:44:48 | INFO | [zap] Calculating statistics...
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | zap Scan Summary
+2026-08-09 01:44:48 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:44:48 | INFO | Status         : WARN
+2026-08-09 01:44:48 | INFO | Total          : 4
+2026-08-09 01:44:48 | INFO | Critical       : 0
+2026-08-09 01:44:48 | INFO | High           : 0
+2026-08-09 01:44:48 | INFO | Medium         : 2
+2026-08-09 01:44:48 | INFO | Low            : 1
+2026-08-09 01:44:48 | INFO | Info           : 1
+2026-08-09 01:44:48 | INFO | Unknown        : 0
+2026-08-09 01:44:48 | INFO | Fixable        : 0
+2026-08-09 01:44:48 | INFO | Exploitable    : 0
+2026-08-09 01:44:48 | INFO | Compliance     : 50.0%
+2026-08-09 01:44:48 | INFO | Duration       : 0.01 sec
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | zap Parser Completed
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | zap completed successfully.
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | All parsers completed successfully.
+2026-08-09 01:44:48 | INFO | ======================================================================
+2026-08-09 01:44:48 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:44:48 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260805_010000_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014448_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260804_020726_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014448_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014448_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/zap/zap_20260804_023701_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014448_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260804_224954_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:44:48 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:44:48 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:44:48 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:44:48 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 100.0% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:44:48 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:44:48 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:45:03 | INFO | Registered parser: gitleaks
+2026-08-09 01:45:03 | INFO | Registered parser: hadolint
+2026-08-09 01:45:03 | INFO | Registered parser: trivy
+2026-08-09 01:45:03 | INFO | Registered parser: zap
+2026-08-09 01:45:03 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Starting Gitleaks Parser
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:45:03 | INFO | Reading report: gitleaks_20260806_001140.json
+2026-08-09 01:45:03 | INFO | Successfully loaded gitleaks_20260806_001140.json
+2026-08-09 01:45:03 | INFO | [Gitleaks] Processing gitleaks_20260806_001140.json...
+2026-08-09 01:45:03 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:45:03 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:45:03 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:45:03 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:45:03 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:45:03 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:45:03 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:45:03 | INFO | Writing report: gitleaks_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | Report written successfully: gitleaks_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:45:03 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Gitleaks Scan Summary
+2026-08-09 01:45:03 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:03 | INFO | Status         : FAIL
+2026-08-09 01:45:03 | INFO | Total          : 4
+2026-08-09 01:45:03 | INFO | Critical       : 4
+2026-08-09 01:45:03 | INFO | High           : 0
+2026-08-09 01:45:03 | INFO | Medium         : 0
+2026-08-09 01:45:03 | INFO | Low            : 0
+2026-08-09 01:45:03 | INFO | Info           : 0
+2026-08-09 01:45:03 | INFO | Unknown        : 0
+2026-08-09 01:45:03 | INFO | Fixable        : 0
+2026-08-09 01:45:03 | INFO | Exploitable    : 0
+2026-08-09 01:45:03 | INFO | Compliance     : 0.0%
+2026-08-09 01:45:03 | INFO | Duration       : 0.05 sec
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Gitleaks Parser Completed
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:45:03 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Starting Hadolint Parser
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:45:03 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:45:03 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:45:03 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:45:03 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:45:03 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:45:03 | INFO | [Hadolint] Validating report...
+2026-08-09 01:45:03 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:45:03 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:45:03 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:45:03 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:45:03 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:45:03 | INFO | [Hadolint] Saving report...
+2026-08-09 01:45:03 | INFO | Writing report: hadolint_frontend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | Report written successfully: hadolint_frontend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:45:03 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:45:03 | INFO | [Hadolint] Validating report...
+2026-08-09 01:45:03 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:45:03 | WARNING | Hadolint report is empty.
+2026-08-09 01:45:03 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:45:03 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:45:03 | INFO | [Hadolint] Saving report...
+2026-08-09 01:45:03 | INFO | Writing report: hadolint_backend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | Report written successfully: hadolint_backend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:45:03 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Hadolint Scan Summary
+2026-08-09 01:45:03 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:03 | INFO | Status         : PASS
+2026-08-09 01:45:03 | INFO | Total          : 1
+2026-08-09 01:45:03 | INFO | Critical       : 0
+2026-08-09 01:45:03 | INFO | High           : 0
+2026-08-09 01:45:03 | INFO | Medium         : 0
+2026-08-09 01:45:03 | INFO | Low            : 0
+2026-08-09 01:45:03 | INFO | Info           : 1
+2026-08-09 01:45:03 | INFO | Unknown        : 0
+2026-08-09 01:45:03 | INFO | Fixable        : 0
+2026-08-09 01:45:03 | INFO | Exploitable    : 0
+2026-08-09 01:45:03 | INFO | Compliance     : 100.0%
+2026-08-09 01:45:03 | INFO | Duration       : 0.01 sec
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Hadolint Parser Completed
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:45:03 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Starting Trivy Parser
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:45:03 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:45:03 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:45:03 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:45:03 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:45:03 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:45:03 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:45:03 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:45:03 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:45:03 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:45:03 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:45:03 | INFO | [Trivy] Saving report...
+2026-08-09 01:45:03 | INFO | Writing report: trivy_backend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | Report written successfully: trivy_backend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:45:03 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:45:03 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:45:03 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:45:03 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:45:03 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:45:03 | INFO | [Trivy] Saving report...
+2026-08-09 01:45:03 | INFO | Writing report: trivy_frontend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | Report written successfully: trivy_frontend_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:45:03 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Trivy Scan Summary
+2026-08-09 01:45:03 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:03 | INFO | Status         : PASS
+2026-08-09 01:45:03 | INFO | Total          : 64
+2026-08-09 01:45:03 | INFO | Critical       : 1
+2026-08-09 01:45:03 | INFO | High           : 25
+2026-08-09 01:45:03 | INFO | Medium         : 16
+2026-08-09 01:45:03 | INFO | Low            : 22
+2026-08-09 01:45:03 | INFO | Info           : 0
+2026-08-09 01:45:03 | INFO | Unknown        : 0
+2026-08-09 01:45:03 | INFO | Fixable        : 64
+2026-08-09 01:45:03 | INFO | Exploitable    : 25
+2026-08-09 01:45:03 | INFO | Compliance     : 34.38%
+2026-08-09 01:45:03 | INFO | Duration       : 0.02 sec
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Trivy Parser Completed
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | Starting zap Parser
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | [zap] Loading report(s)...
+2026-08-09 01:45:03 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:45:03 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:45:03 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:45:03 | INFO | [zap] Generating metadata...
+2026-08-09 01:45:03 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:45:03 | INFO | [zap] Calculating statistics...
+2026-08-09 01:45:03 | INFO | [zap] Building normalized report...
+2026-08-09 01:45:03 | INFO | [zap] Saving report...
+2026-08-09 01:45:03 | INFO | Writing report: zap_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | Report written successfully: zap_20260809_014503_normalized.json
+2026-08-09 01:45:03 | INFO | [zap] Report saved successfully.
+2026-08-09 01:45:03 | INFO | [zap] Calculating statistics...
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | zap Scan Summary
+2026-08-09 01:45:03 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:03 | INFO | Status         : WARN
+2026-08-09 01:45:03 | INFO | Total          : 4
+2026-08-09 01:45:03 | INFO | Critical       : 0
+2026-08-09 01:45:03 | INFO | High           : 0
+2026-08-09 01:45:03 | INFO | Medium         : 2
+2026-08-09 01:45:03 | INFO | Low            : 1
+2026-08-09 01:45:03 | INFO | Info           : 1
+2026-08-09 01:45:03 | INFO | Unknown        : 0
+2026-08-09 01:45:03 | INFO | Fixable        : 0
+2026-08-09 01:45:03 | INFO | Exploitable    : 0
+2026-08-09 01:45:03 | INFO | Compliance     : 50.0%
+2026-08-09 01:45:03 | INFO | Duration       : 0.01 sec
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:03 | INFO | zap Parser Completed
+2026-08-09 01:45:03 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Registered parser: hadolint
+2026-08-09 01:45:31 | INFO | Registered parser: trivy
+2026-08-09 01:45:31 | INFO | Registered parser: gitleaks
+2026-08-09 01:45:31 | INFO | Registered parser: zap
+2026-08-09 01:45:31 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Running all registered parsers...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Starting gitleaks
+2026-08-09 01:45:31 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Starting Gitleaks Parser
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:45:31 | INFO | Reading report: gitleaks_20260806_001140.json
+2026-08-09 01:45:31 | INFO | Successfully loaded gitleaks_20260806_001140.json
+2026-08-09 01:45:31 | INFO | [Gitleaks] Processing gitleaks_20260806_001140.json...
+2026-08-09 01:45:31 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:45:31 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:45:31 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:45:31 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:45:31 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:45:31 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:45:31 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:45:31 | INFO | Writing report: gitleaks_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | Report written successfully: gitleaks_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:45:31 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Gitleaks Scan Summary
+2026-08-09 01:45:31 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:31 | INFO | Status         : FAIL
+2026-08-09 01:45:31 | INFO | Total          : 4
+2026-08-09 01:45:31 | INFO | Critical       : 4
+2026-08-09 01:45:31 | INFO | High           : 0
+2026-08-09 01:45:31 | INFO | Medium         : 0
+2026-08-09 01:45:31 | INFO | Low            : 0
+2026-08-09 01:45:31 | INFO | Info           : 0
+2026-08-09 01:45:31 | INFO | Unknown        : 0
+2026-08-09 01:45:31 | INFO | Fixable        : 0
+2026-08-09 01:45:31 | INFO | Exploitable    : 0
+2026-08-09 01:45:31 | INFO | Compliance     : 0.0%
+2026-08-09 01:45:31 | INFO | Duration       : 0.05 sec
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Gitleaks Parser Completed
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:45:31 | INFO | gitleaks completed successfully.
+2026-08-09 01:45:31 | INFO | Starting hadolint
+2026-08-09 01:45:31 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Starting Hadolint Parser
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:45:31 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:45:31 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:45:31 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:45:31 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:45:31 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:45:31 | INFO | [Hadolint] Validating report...
+2026-08-09 01:45:31 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:45:31 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:45:31 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:45:31 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:45:31 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:45:31 | INFO | [Hadolint] Saving report...
+2026-08-09 01:45:31 | INFO | Writing report: hadolint_frontend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | Report written successfully: hadolint_frontend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:45:31 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:45:31 | INFO | [Hadolint] Validating report...
+2026-08-09 01:45:31 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:45:31 | WARNING | Hadolint report is empty.
+2026-08-09 01:45:31 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:45:31 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:45:31 | INFO | [Hadolint] Saving report...
+2026-08-09 01:45:31 | INFO | Writing report: hadolint_backend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | Report written successfully: hadolint_backend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:45:31 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Hadolint Scan Summary
+2026-08-09 01:45:31 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:31 | INFO | Status         : PASS
+2026-08-09 01:45:31 | INFO | Total          : 1
+2026-08-09 01:45:31 | INFO | Critical       : 0
+2026-08-09 01:45:31 | INFO | High           : 0
+2026-08-09 01:45:31 | INFO | Medium         : 0
+2026-08-09 01:45:31 | INFO | Low            : 0
+2026-08-09 01:45:31 | INFO | Info           : 1
+2026-08-09 01:45:31 | INFO | Unknown        : 0
+2026-08-09 01:45:31 | INFO | Fixable        : 0
+2026-08-09 01:45:31 | INFO | Exploitable    : 0
+2026-08-09 01:45:31 | INFO | Compliance     : 100.0%
+2026-08-09 01:45:31 | INFO | Duration       : 0.01 sec
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Hadolint Parser Completed
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:45:31 | INFO | hadolint completed successfully.
+2026-08-09 01:45:31 | INFO | Starting trivy
+2026-08-09 01:45:31 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Starting Trivy Parser
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:45:31 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:45:31 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:45:31 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:45:31 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:45:31 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:45:31 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:45:31 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:45:31 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:45:31 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:45:31 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:45:31 | INFO | [Trivy] Saving report...
+2026-08-09 01:45:31 | INFO | Writing report: trivy_backend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | Report written successfully: trivy_backend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:45:31 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:45:31 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:45:31 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:45:31 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:45:31 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:45:31 | INFO | [Trivy] Saving report...
+2026-08-09 01:45:31 | INFO | Writing report: trivy_frontend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | Report written successfully: trivy_frontend_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:45:31 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Trivy Scan Summary
+2026-08-09 01:45:31 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:31 | INFO | Status         : PASS
+2026-08-09 01:45:31 | INFO | Total          : 64
+2026-08-09 01:45:31 | INFO | Critical       : 1
+2026-08-09 01:45:31 | INFO | High           : 25
+2026-08-09 01:45:31 | INFO | Medium         : 16
+2026-08-09 01:45:31 | INFO | Low            : 22
+2026-08-09 01:45:31 | INFO | Info           : 0
+2026-08-09 01:45:31 | INFO | Unknown        : 0
+2026-08-09 01:45:31 | INFO | Fixable        : 64
+2026-08-09 01:45:31 | INFO | Exploitable    : 25
+2026-08-09 01:45:31 | INFO | Compliance     : 34.38%
+2026-08-09 01:45:31 | INFO | Duration       : 0.03 sec
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Trivy Parser Completed
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:45:31 | INFO | trivy completed successfully.
+2026-08-09 01:45:31 | INFO | Starting zap
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | Starting zap Parser
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | [zap] Loading report(s)...
+2026-08-09 01:45:31 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:45:31 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:45:31 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:45:31 | INFO | [zap] Generating metadata...
+2026-08-09 01:45:31 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:45:31 | INFO | [zap] Calculating statistics...
+2026-08-09 01:45:31 | INFO | [zap] Building normalized report...
+2026-08-09 01:45:31 | INFO | [zap] Saving report...
+2026-08-09 01:45:31 | INFO | Writing report: zap_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | Report written successfully: zap_20260809_014531_normalized.json
+2026-08-09 01:45:31 | INFO | [zap] Report saved successfully.
+2026-08-09 01:45:31 | INFO | [zap] Calculating statistics...
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | zap Scan Summary
+2026-08-09 01:45:31 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:45:31 | INFO | Status         : WARN
+2026-08-09 01:45:31 | INFO | Total          : 4
+2026-08-09 01:45:31 | INFO | Critical       : 0
+2026-08-09 01:45:31 | INFO | High           : 0
+2026-08-09 01:45:31 | INFO | Medium         : 2
+2026-08-09 01:45:31 | INFO | Low            : 1
+2026-08-09 01:45:31 | INFO | Info           : 1
+2026-08-09 01:45:31 | INFO | Unknown        : 0
+2026-08-09 01:45:31 | INFO | Fixable        : 0
+2026-08-09 01:45:31 | INFO | Exploitable    : 0
+2026-08-09 01:45:31 | INFO | Compliance     : 50.0%
+2026-08-09 01:45:31 | INFO | Duration       : 0.01 sec
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | zap Parser Completed
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | zap completed successfully.
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | All parsers completed successfully.
+2026-08-09 01:45:31 | INFO | ======================================================================
+2026-08-09 01:45:31 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:45:31 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:45:31 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:31 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:31 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:31 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:31 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:45:31 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:45:31 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:45:31 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 100.0% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:45:31 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:45:31 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:45:45 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:45:45 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:45 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:45 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:45 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014531_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:45:45 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:45:45 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:46:17 | INFO | Registered parser: hadolint
+2026-08-09 01:46:17 | INFO | Registered parser: trivy
+2026-08-09 01:46:17 | INFO | Registered parser: gitleaks
+2026-08-09 01:46:17 | INFO | Registered parser: zap
+2026-08-09 01:46:17 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:46:17 | INFO | ======================================================================
+2026-08-09 01:46:17 | INFO | Running all registered parsers...
+2026-08-09 01:46:17 | INFO | ======================================================================
+2026-08-09 01:46:17 | INFO | Starting gitleaks
+2026-08-09 01:46:17 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:46:17 | INFO | ======================================================================
+2026-08-09 01:46:17 | INFO | Starting Gitleaks Parser
+2026-08-09 01:46:17 | INFO | ======================================================================
+2026-08-09 01:46:17 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:46:17 | INFO | Reading report: gitleaks_20260806_001140.json
+2026-08-09 01:46:18 | INFO | Successfully loaded gitleaks_20260806_001140.json
+2026-08-09 01:46:18 | INFO | [Gitleaks] Processing gitleaks_20260806_001140.json...
+2026-08-09 01:46:18 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:46:18 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:46:18 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:46:18 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:46:18 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:46:18 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:46:18 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:46:18 | INFO | Writing report: gitleaks_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | Report written successfully: gitleaks_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:46:18 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Gitleaks Scan Summary
+2026-08-09 01:46:18 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:46:18 | INFO | Status         : FAIL
+2026-08-09 01:46:18 | INFO | Total          : 4
+2026-08-09 01:46:18 | INFO | Critical       : 4
+2026-08-09 01:46:18 | INFO | High           : 0
+2026-08-09 01:46:18 | INFO | Medium         : 0
+2026-08-09 01:46:18 | INFO | Low            : 0
+2026-08-09 01:46:18 | INFO | Info           : 0
+2026-08-09 01:46:18 | INFO | Unknown        : 0
+2026-08-09 01:46:18 | INFO | Fixable        : 0
+2026-08-09 01:46:18 | INFO | Exploitable    : 0
+2026-08-09 01:46:18 | INFO | Compliance     : 0.0%
+2026-08-09 01:46:18 | INFO | Duration       : 0.05 sec
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Gitleaks Parser Completed
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:46:18 | INFO | gitleaks completed successfully.
+2026-08-09 01:46:18 | INFO | Starting hadolint
+2026-08-09 01:46:18 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Starting Hadolint Parser
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:46:18 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:46:18 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:46:18 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:46:18 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:46:18 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:46:18 | INFO | [Hadolint] Validating report...
+2026-08-09 01:46:18 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:46:18 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:46:18 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:46:18 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:46:18 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:46:18 | INFO | [Hadolint] Saving report...
+2026-08-09 01:46:18 | INFO | Writing report: hadolint_frontend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | Report written successfully: hadolint_frontend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:46:18 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:46:18 | INFO | [Hadolint] Validating report...
+2026-08-09 01:46:18 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:46:18 | WARNING | Hadolint report is empty.
+2026-08-09 01:46:18 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:46:18 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:46:18 | INFO | [Hadolint] Saving report...
+2026-08-09 01:46:18 | INFO | Writing report: hadolint_backend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | Report written successfully: hadolint_backend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:46:18 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Hadolint Scan Summary
+2026-08-09 01:46:18 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:46:18 | INFO | Status         : PASS
+2026-08-09 01:46:18 | INFO | Total          : 1
+2026-08-09 01:46:18 | INFO | Critical       : 0
+2026-08-09 01:46:18 | INFO | High           : 0
+2026-08-09 01:46:18 | INFO | Medium         : 0
+2026-08-09 01:46:18 | INFO | Low            : 0
+2026-08-09 01:46:18 | INFO | Info           : 1
+2026-08-09 01:46:18 | INFO | Unknown        : 0
+2026-08-09 01:46:18 | INFO | Fixable        : 0
+2026-08-09 01:46:18 | INFO | Exploitable    : 0
+2026-08-09 01:46:18 | INFO | Compliance     : 100.0%
+2026-08-09 01:46:18 | INFO | Duration       : 0.01 sec
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Hadolint Parser Completed
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:46:18 | INFO | hadolint completed successfully.
+2026-08-09 01:46:18 | INFO | Starting trivy
+2026-08-09 01:46:18 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Starting Trivy Parser
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:46:18 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:46:18 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:46:18 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:46:18 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:46:18 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:46:18 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:46:18 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:46:18 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:46:18 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:46:18 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:46:18 | INFO | [Trivy] Saving report...
+2026-08-09 01:46:18 | INFO | Writing report: trivy_backend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | Report written successfully: trivy_backend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:46:18 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:46:18 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:46:18 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:46:18 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:46:18 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:46:18 | INFO | [Trivy] Saving report...
+2026-08-09 01:46:18 | INFO | Writing report: trivy_frontend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | Report written successfully: trivy_frontend_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:46:18 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Trivy Scan Summary
+2026-08-09 01:46:18 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:46:18 | INFO | Status         : PASS
+2026-08-09 01:46:18 | INFO | Total          : 64
+2026-08-09 01:46:18 | INFO | Critical       : 1
+2026-08-09 01:46:18 | INFO | High           : 25
+2026-08-09 01:46:18 | INFO | Medium         : 16
+2026-08-09 01:46:18 | INFO | Low            : 22
+2026-08-09 01:46:18 | INFO | Info           : 0
+2026-08-09 01:46:18 | INFO | Unknown        : 0
+2026-08-09 01:46:18 | INFO | Fixable        : 64
+2026-08-09 01:46:18 | INFO | Exploitable    : 25
+2026-08-09 01:46:18 | INFO | Compliance     : 34.38%
+2026-08-09 01:46:18 | INFO | Duration       : 0.03 sec
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Trivy Parser Completed
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:46:18 | INFO | trivy completed successfully.
+2026-08-09 01:46:18 | INFO | Starting zap
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | Starting zap Parser
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | [zap] Loading report(s)...
+2026-08-09 01:46:18 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:46:18 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:46:18 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:46:18 | INFO | [zap] Generating metadata...
+2026-08-09 01:46:18 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:46:18 | INFO | [zap] Calculating statistics...
+2026-08-09 01:46:18 | INFO | [zap] Building normalized report...
+2026-08-09 01:46:18 | INFO | [zap] Saving report...
+2026-08-09 01:46:18 | INFO | Writing report: zap_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | Report written successfully: zap_20260809_014618_normalized.json
+2026-08-09 01:46:18 | INFO | [zap] Report saved successfully.
+2026-08-09 01:46:18 | INFO | [zap] Calculating statistics...
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | zap Scan Summary
+2026-08-09 01:46:18 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:46:18 | INFO | Status         : WARN
+2026-08-09 01:46:18 | INFO | Total          : 4
+2026-08-09 01:46:18 | INFO | Critical       : 0
+2026-08-09 01:46:18 | INFO | High           : 0
+2026-08-09 01:46:18 | INFO | Medium         : 2
+2026-08-09 01:46:18 | INFO | Low            : 1
+2026-08-09 01:46:18 | INFO | Info           : 1
+2026-08-09 01:46:18 | INFO | Unknown        : 0
+2026-08-09 01:46:18 | INFO | Fixable        : 0
+2026-08-09 01:46:18 | INFO | Exploitable    : 0
+2026-08-09 01:46:18 | INFO | Compliance     : 50.0%
+2026-08-09 01:46:18 | INFO | Duration       : 0.01 sec
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | zap Parser Completed
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | zap completed successfully.
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | All parsers completed successfully.
+2026-08-09 01:46:18 | INFO | ======================================================================
+2026-08-09 01:46:18 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:46:18 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:46:18 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:46:18 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:46:18 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:46:18 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:46:18 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:46:18 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:46:18 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:46:18 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 100.0% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:46:18 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:46:18 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:46:53 | INFO | Registered parser: hadolint
+2026-08-09 01:46:53 | INFO | Registered parser: trivy
+2026-08-09 01:46:53 | INFO | Registered parser: gitleaks
+2026-08-09 01:46:53 | INFO | Registered parser: zap
+2026-08-09 01:46:53 | INFO | === STAGE 1: Pre-flight Checks ===
+2026-08-09 01:46:54 | INFO | Pre-flight Checks Passed.
+2026-08-09 01:46:54 | INFO | === STAGE 2: Running Scanners ===
+2026-08-09 01:46:54 | INFO | Running Gitleaks scanner (security/secrets/gitleaks.sh)...
+2026-08-09 01:47:15 | WARNING | Gitleaks scanner exited with code 1
+2026-08-09 01:47:15 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:47:15 | INFO | Running parser for tool: gitleaks
+2026-08-09 01:47:15 | INFO | Running parser: gitleaks
+2026-08-09 01:47:15 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:47:15 | INFO | ======================================================================
+2026-08-09 01:47:15 | INFO | Starting Gitleaks Parser
+2026-08-09 01:47:15 | INFO | ======================================================================
+2026-08-09 01:47:15 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:47:15 | INFO | Reading report: gitleaks_20260809_014655.json
+2026-08-09 01:47:15 | INFO | Successfully loaded gitleaks_20260809_014655.json
+2026-08-09 01:47:15 | INFO | [Gitleaks] Processing gitleaks_20260809_014655.json...
+2026-08-09 01:47:15 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:47:15 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:47:15 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:47:15 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:47:15 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:47:15 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:47:15 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:47:15 | INFO | Writing report: gitleaks_20260809_014715_normalized.json
+2026-08-09 01:47:15 | INFO | Report written successfully: gitleaks_20260809_014715_normalized.json
+2026-08-09 01:47:15 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:47:15 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:47:15 | INFO | ======================================================================
+2026-08-09 01:47:15 | INFO | Gitleaks Scan Summary
+2026-08-09 01:47:15 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:47:15 | INFO | Status         : FAIL
+2026-08-09 01:47:15 | INFO | Total          : 4
+2026-08-09 01:47:15 | INFO | Critical       : 4
+2026-08-09 01:47:15 | INFO | High           : 0
+2026-08-09 01:47:15 | INFO | Medium         : 0
+2026-08-09 01:47:15 | INFO | Low            : 0
+2026-08-09 01:47:15 | INFO | Info           : 0
+2026-08-09 01:47:15 | INFO | Unknown        : 0
+2026-08-09 01:47:15 | INFO | Fixable        : 0
+2026-08-09 01:47:15 | INFO | Exploitable    : 0
+2026-08-09 01:47:15 | INFO | Compliance     : 0.0%
+2026-08-09 01:47:15 | INFO | Duration       : 0.13 sec
+2026-08-09 01:47:15 | INFO | ======================================================================
+2026-08-09 01:47:15 | INFO | Gitleaks Parser Completed
+2026-08-09 01:47:15 | INFO | ======================================================================
+2026-08-09 01:47:15 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:47:24 | INFO | Registered parser: hadolint
+2026-08-09 01:47:24 | INFO | Registered parser: trivy
+2026-08-09 01:47:24 | INFO | Registered parser: gitleaks
+2026-08-09 01:47:24 | INFO | Registered parser: zap
+2026-08-09 01:47:24 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:47:24 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:47:24 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014715_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:47:24 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:47:24 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:47:24 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014618_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:47:24 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:47:24 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:47:24 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:47:24 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 100.0% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:47:24 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:47:24 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:47:24 | INFO | Evaluating Security Gate policy from policy.yaml...
+2026-08-09 01:47:24 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260808201724)
+2026-08-09 01:48:06 | INFO | Registered parser: hadolint
+2026-08-09 01:48:06 | INFO | Registered parser: trivy
+2026-08-09 01:48:06 | INFO | Registered parser: gitleaks
+2026-08-09 01:48:06 | INFO | Registered parser: zap
+2026-08-09 01:48:06 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Running all registered parsers...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Starting gitleaks
+2026-08-09 01:48:06 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Starting Gitleaks Parser
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:48:06 | INFO | Reading report: gitleaks_20260809_014655.json
+2026-08-09 01:48:06 | INFO | Successfully loaded gitleaks_20260809_014655.json
+2026-08-09 01:48:06 | INFO | [Gitleaks] Processing gitleaks_20260809_014655.json...
+2026-08-09 01:48:06 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:48:06 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:48:06 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:48:06 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:48:06 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:48:06 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:48:06 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:48:06 | INFO | Writing report: gitleaks_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | Report written successfully: gitleaks_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:48:06 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Gitleaks Scan Summary
+2026-08-09 01:48:06 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:06 | INFO | Status         : FAIL
+2026-08-09 01:48:06 | INFO | Total          : 4
+2026-08-09 01:48:06 | INFO | Critical       : 4
+2026-08-09 01:48:06 | INFO | High           : 0
+2026-08-09 01:48:06 | INFO | Medium         : 0
+2026-08-09 01:48:06 | INFO | Low            : 0
+2026-08-09 01:48:06 | INFO | Info           : 0
+2026-08-09 01:48:06 | INFO | Unknown        : 0
+2026-08-09 01:48:06 | INFO | Fixable        : 0
+2026-08-09 01:48:06 | INFO | Exploitable    : 0
+2026-08-09 01:48:06 | INFO | Compliance     : 0.0%
+2026-08-09 01:48:06 | INFO | Duration       : 0.13 sec
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Gitleaks Parser Completed
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:48:06 | INFO | gitleaks completed successfully.
+2026-08-09 01:48:06 | INFO | Starting hadolint
+2026-08-09 01:48:06 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Starting Hadolint Parser
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:48:06 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:48:06 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:48:06 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:48:06 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:48:06 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:48:06 | INFO | [Hadolint] Validating report...
+2026-08-09 01:48:06 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:48:06 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:48:06 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:48:06 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:48:06 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:48:06 | INFO | [Hadolint] Saving report...
+2026-08-09 01:48:06 | INFO | Writing report: hadolint_frontend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | Report written successfully: hadolint_frontend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:48:06 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:48:06 | INFO | [Hadolint] Validating report...
+2026-08-09 01:48:06 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:48:06 | WARNING | Hadolint report is empty.
+2026-08-09 01:48:06 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:48:06 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:48:06 | INFO | [Hadolint] Saving report...
+2026-08-09 01:48:06 | INFO | Writing report: hadolint_backend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | Report written successfully: hadolint_backend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:48:06 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Hadolint Scan Summary
+2026-08-09 01:48:06 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:06 | INFO | Status         : PASS
+2026-08-09 01:48:06 | INFO | Total          : 1
+2026-08-09 01:48:06 | INFO | Critical       : 0
+2026-08-09 01:48:06 | INFO | High           : 0
+2026-08-09 01:48:06 | INFO | Medium         : 0
+2026-08-09 01:48:06 | INFO | Low            : 0
+2026-08-09 01:48:06 | INFO | Info           : 1
+2026-08-09 01:48:06 | INFO | Unknown        : 0
+2026-08-09 01:48:06 | INFO | Fixable        : 0
+2026-08-09 01:48:06 | INFO | Exploitable    : 0
+2026-08-09 01:48:06 | INFO | Compliance     : 100.0%
+2026-08-09 01:48:06 | INFO | Duration       : 0.01 sec
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Hadolint Parser Completed
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:48:06 | INFO | hadolint completed successfully.
+2026-08-09 01:48:06 | INFO | Starting trivy
+2026-08-09 01:48:06 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Starting Trivy Parser
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:48:06 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:48:06 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:48:06 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:48:06 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:48:06 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:48:06 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:48:06 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:48:06 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:48:06 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:48:06 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:48:06 | INFO | [Trivy] Saving report...
+2026-08-09 01:48:06 | INFO | Writing report: trivy_backend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | Report written successfully: trivy_backend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:48:06 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:48:06 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:48:06 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:48:06 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:48:06 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:48:06 | INFO | [Trivy] Saving report...
+2026-08-09 01:48:06 | INFO | Writing report: trivy_frontend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | Report written successfully: trivy_frontend_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:48:06 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Trivy Scan Summary
+2026-08-09 01:48:06 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:06 | INFO | Status         : PASS
+2026-08-09 01:48:06 | INFO | Total          : 64
+2026-08-09 01:48:06 | INFO | Critical       : 1
+2026-08-09 01:48:06 | INFO | High           : 25
+2026-08-09 01:48:06 | INFO | Medium         : 16
+2026-08-09 01:48:06 | INFO | Low            : 22
+2026-08-09 01:48:06 | INFO | Info           : 0
+2026-08-09 01:48:06 | INFO | Unknown        : 0
+2026-08-09 01:48:06 | INFO | Fixable        : 64
+2026-08-09 01:48:06 | INFO | Exploitable    : 25
+2026-08-09 01:48:06 | INFO | Compliance     : 34.38%
+2026-08-09 01:48:06 | INFO | Duration       : 0.03 sec
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Trivy Parser Completed
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:48:06 | INFO | trivy completed successfully.
+2026-08-09 01:48:06 | INFO | Starting zap
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | Starting zap Parser
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | [zap] Loading report(s)...
+2026-08-09 01:48:06 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:48:06 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:48:06 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:48:06 | INFO | [zap] Generating metadata...
+2026-08-09 01:48:06 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:48:06 | INFO | [zap] Calculating statistics...
+2026-08-09 01:48:06 | INFO | [zap] Building normalized report...
+2026-08-09 01:48:06 | INFO | [zap] Saving report...
+2026-08-09 01:48:06 | INFO | Writing report: zap_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | Report written successfully: zap_20260809_014806_normalized.json
+2026-08-09 01:48:06 | INFO | [zap] Report saved successfully.
+2026-08-09 01:48:06 | INFO | [zap] Calculating statistics...
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | zap Scan Summary
+2026-08-09 01:48:06 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:06 | INFO | Status         : WARN
+2026-08-09 01:48:06 | INFO | Total          : 4
+2026-08-09 01:48:06 | INFO | Critical       : 0
+2026-08-09 01:48:06 | INFO | High           : 0
+2026-08-09 01:48:06 | INFO | Medium         : 2
+2026-08-09 01:48:06 | INFO | Low            : 1
+2026-08-09 01:48:06 | INFO | Info           : 1
+2026-08-09 01:48:06 | INFO | Unknown        : 0
+2026-08-09 01:48:06 | INFO | Fixable        : 0
+2026-08-09 01:48:06 | INFO | Exploitable    : 0
+2026-08-09 01:48:06 | INFO | Compliance     : 50.0%
+2026-08-09 01:48:06 | INFO | Duration       : 0.01 sec
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | zap Parser Completed
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | zap completed successfully.
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | All parsers completed successfully.
+2026-08-09 01:48:06 | INFO | ======================================================================
+2026-08-09 01:48:06 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:48:06 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:48:06 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014806_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:48:06 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014806_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:48:06 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014806_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:48:06 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014806_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:48:06 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:48:06 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:48:06 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:48:06 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 100.0% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:48:06 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:48:06 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:48:06 | INFO | Evaluating Security Gate policy from policy.yaml...
+2026-08-09 01:48:06 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260808201806)
+2026-08-09 01:48:33 | INFO | Registered parser: gitleaks
+2026-08-09 01:48:33 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:48:33 | INFO | ======================================================================
+2026-08-09 01:48:33 | INFO | Starting Gitleaks Parser
+2026-08-09 01:48:33 | INFO | ======================================================================
+2026-08-09 01:48:33 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:48:33 | INFO | Reading report: gitleaks_20260809_014655.json
+2026-08-09 01:48:33 | INFO | Successfully loaded gitleaks_20260809_014655.json
+2026-08-09 01:48:33 | INFO | [Gitleaks] Processing gitleaks_20260809_014655.json...
+2026-08-09 01:48:33 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:48:33 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:48:34 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:48:34 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:48:34 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:48:34 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:48:34 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:48:34 | INFO | Writing report: gitleaks_20260809_014834_normalized.json
+2026-08-09 01:48:34 | INFO | Report written successfully: gitleaks_20260809_014834_normalized.json
+2026-08-09 01:48:34 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:48:34 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:48:34 | INFO | ======================================================================
+2026-08-09 01:48:34 | INFO | Gitleaks Scan Summary
+2026-08-09 01:48:34 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:34 | INFO | Status         : FAIL
+2026-08-09 01:48:34 | INFO | Total          : 4
+2026-08-09 01:48:34 | INFO | Critical       : 4
+2026-08-09 01:48:34 | INFO | High           : 0
+2026-08-09 01:48:34 | INFO | Medium         : 0
+2026-08-09 01:48:34 | INFO | Low            : 0
+2026-08-09 01:48:34 | INFO | Info           : 0
+2026-08-09 01:48:34 | INFO | Unknown        : 0
+2026-08-09 01:48:34 | INFO | Fixable        : 0
+2026-08-09 01:48:34 | INFO | Exploitable    : 0
+2026-08-09 01:48:34 | INFO | Compliance     : 0.0%
+2026-08-09 01:48:34 | INFO | Duration       : 0.12 sec
+2026-08-09 01:48:34 | INFO | ======================================================================
+2026-08-09 01:48:34 | INFO | Gitleaks Parser Completed
+2026-08-09 01:48:34 | INFO | ======================================================================
+2026-08-09 01:48:34 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:48:51 | INFO | Registered parser: hadolint
+2026-08-09 01:48:51 | INFO | Registered parser: trivy
+2026-08-09 01:48:51 | INFO | Registered parser: zap
+2026-08-09 01:48:51 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Starting Hadolint Parser
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:48:51 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:48:51 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:48:51 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:48:51 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:48:51 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:48:51 | INFO | [Hadolint] Validating report...
+2026-08-09 01:48:51 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:48:51 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:48:51 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:48:51 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:48:51 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:48:51 | INFO | [Hadolint] Saving report...
+2026-08-09 01:48:51 | INFO | Writing report: hadolint_frontend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | Report written successfully: hadolint_frontend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:48:51 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:48:51 | INFO | [Hadolint] Validating report...
+2026-08-09 01:48:51 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:48:51 | WARNING | Hadolint report is empty.
+2026-08-09 01:48:51 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:48:51 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:48:51 | INFO | [Hadolint] Saving report...
+2026-08-09 01:48:51 | INFO | Writing report: hadolint_backend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | Report written successfully: hadolint_backend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:48:51 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Hadolint Scan Summary
+2026-08-09 01:48:51 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:51 | INFO | Status         : PASS
+2026-08-09 01:48:51 | INFO | Total          : 1
+2026-08-09 01:48:51 | INFO | Critical       : 0
+2026-08-09 01:48:51 | INFO | High           : 0
+2026-08-09 01:48:51 | INFO | Medium         : 0
+2026-08-09 01:48:51 | INFO | Low            : 0
+2026-08-09 01:48:51 | INFO | Info           : 1
+2026-08-09 01:48:51 | INFO | Unknown        : 0
+2026-08-09 01:48:51 | INFO | Fixable        : 0
+2026-08-09 01:48:51 | INFO | Exploitable    : 0
+2026-08-09 01:48:51 | INFO | Compliance     : 100.0%
+2026-08-09 01:48:51 | INFO | Duration       : 0.01 sec
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Hadolint Parser Completed
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:48:51 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Starting Trivy Parser
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:48:51 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:48:51 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:48:51 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:48:51 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:48:51 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:48:51 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:48:51 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:48:51 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:48:51 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:48:51 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:48:51 | INFO | [Trivy] Saving report...
+2026-08-09 01:48:51 | INFO | Writing report: trivy_backend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | Report written successfully: trivy_backend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:48:51 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:48:51 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:48:51 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:48:51 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:48:51 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:48:51 | INFO | [Trivy] Saving report...
+2026-08-09 01:48:51 | INFO | Writing report: trivy_frontend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | Report written successfully: trivy_frontend_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:48:51 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Trivy Scan Summary
+2026-08-09 01:48:51 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:51 | INFO | Status         : PASS
+2026-08-09 01:48:51 | INFO | Total          : 64
+2026-08-09 01:48:51 | INFO | Critical       : 1
+2026-08-09 01:48:51 | INFO | High           : 25
+2026-08-09 01:48:51 | INFO | Medium         : 16
+2026-08-09 01:48:51 | INFO | Low            : 22
+2026-08-09 01:48:51 | INFO | Info           : 0
+2026-08-09 01:48:51 | INFO | Unknown        : 0
+2026-08-09 01:48:51 | INFO | Fixable        : 64
+2026-08-09 01:48:51 | INFO | Exploitable    : 25
+2026-08-09 01:48:51 | INFO | Compliance     : 34.38%
+2026-08-09 01:48:51 | INFO | Duration       : 0.03 sec
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Trivy Parser Completed
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | Starting zap Parser
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | [zap] Loading report(s)...
+2026-08-09 01:48:51 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:48:51 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:48:51 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:48:51 | INFO | [zap] Generating metadata...
+2026-08-09 01:48:51 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:48:51 | INFO | [zap] Calculating statistics...
+2026-08-09 01:48:51 | INFO | [zap] Building normalized report...
+2026-08-09 01:48:51 | INFO | [zap] Saving report...
+2026-08-09 01:48:51 | INFO | Writing report: zap_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | Report written successfully: zap_20260809_014851_normalized.json
+2026-08-09 01:48:51 | INFO | [zap] Report saved successfully.
+2026-08-09 01:48:51 | INFO | [zap] Calculating statistics...
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | zap Scan Summary
+2026-08-09 01:48:51 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:48:51 | INFO | Status         : WARN
+2026-08-09 01:48:51 | INFO | Total          : 4
+2026-08-09 01:48:51 | INFO | Critical       : 0
+2026-08-09 01:48:51 | INFO | High           : 0
+2026-08-09 01:48:51 | INFO | Medium         : 2
+2026-08-09 01:48:51 | INFO | Low            : 1
+2026-08-09 01:48:51 | INFO | Info           : 1
+2026-08-09 01:48:51 | INFO | Unknown        : 0
+2026-08-09 01:48:51 | INFO | Fixable        : 0
+2026-08-09 01:48:51 | INFO | Exploitable    : 0
+2026-08-09 01:48:51 | INFO | Compliance     : 50.0%
+2026-08-09 01:48:51 | INFO | Duration       : 0.01 sec
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:48:51 | INFO | zap Parser Completed
+2026-08-09 01:48:51 | INFO | ======================================================================
+2026-08-09 01:49:00 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:49:00 | ERROR | Error reading report compliance/normalized/gitleaks/gitleaks_20260809_014834_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:49:00 | ERROR | Error reading report compliance/normalized/trivy/trivy_backend_20260809_014851_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:49:00 | ERROR | Error reading report compliance/normalized/zap/zap_20260809_014851_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:49:00 | ERROR | Error reading report compliance/normalized/hadolint/hadolint_frontend_20260809_014851_normalized.json: name 'rule_id' is not defined
+2026-08-09 01:49:00 | INFO | Risk Engine Computed: Total Risk Score=0, Level=NONE
+2026-08-09 01:49:00 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:49:00 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:49:00 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 100.0% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:49:46 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:49:46 | INFO | Risk Engine Computed: Total Risk Score=194, Level=CRITICAL
+2026-08-09 01:49:46 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:49:46 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:49:46 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 32.2% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:50:01 | INFO | Registered parser: hadolint
+2026-08-09 01:50:01 | INFO | Registered parser: trivy
+2026-08-09 01:50:01 | INFO | Registered parser: gitleaks
+2026-08-09 01:50:01 | INFO | Registered parser: zap
+2026-08-09 01:50:01 | INFO | === STAGE 3: Running Parsers ===
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Running all registered parsers...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Starting gitleaks
+2026-08-09 01:50:01 | INFO | [Gitleaks] Preparing parser...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Starting Gitleaks Parser
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [Gitleaks] Loading report(s)...
+2026-08-09 01:50:01 | INFO | Reading report: gitleaks_20260809_014655.json
+2026-08-09 01:50:01 | INFO | Successfully loaded gitleaks_20260809_014655.json
+2026-08-09 01:50:01 | INFO | [Gitleaks] Processing gitleaks_20260809_014655.json...
+2026-08-09 01:50:01 | INFO | [Gitleaks] Validating report...
+2026-08-09 01:50:01 | INFO | [Gitleaks] Generating metadata...
+2026-08-09 01:50:01 | INFO | Loaded 8 rules for gitleaks.
+2026-08-09 01:50:01 | INFO | Parsed 4 Gitleaks findings enriched with CWEs.
+2026-08-09 01:50:01 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:50:01 | INFO | [Gitleaks] Building normalized report...
+2026-08-09 01:50:01 | INFO | [Gitleaks] Saving report...
+2026-08-09 01:50:01 | INFO | Writing report: gitleaks_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | Report written successfully: gitleaks_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | [Gitleaks] Report saved successfully.
+2026-08-09 01:50:01 | INFO | [Gitleaks] Calculating statistics...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Gitleaks Scan Summary
+2026-08-09 01:50:01 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:50:01 | INFO | Status         : FAIL
+2026-08-09 01:50:01 | INFO | Total          : 4
+2026-08-09 01:50:01 | INFO | Critical       : 4
+2026-08-09 01:50:01 | INFO | High           : 0
+2026-08-09 01:50:01 | INFO | Medium         : 0
+2026-08-09 01:50:01 | INFO | Low            : 0
+2026-08-09 01:50:01 | INFO | Info           : 0
+2026-08-09 01:50:01 | INFO | Unknown        : 0
+2026-08-09 01:50:01 | INFO | Fixable        : 0
+2026-08-09 01:50:01 | INFO | Exploitable    : 0
+2026-08-09 01:50:01 | INFO | Compliance     : 0.0%
+2026-08-09 01:50:01 | INFO | Duration       : 0.12 sec
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Gitleaks Parser Completed
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [Gitleaks] Parser completed successfully.
+2026-08-09 01:50:01 | INFO | gitleaks completed successfully.
+2026-08-09 01:50:01 | INFO | Starting hadolint
+2026-08-09 01:50:01 | INFO | [Hadolint] Preparing parser...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Starting Hadolint Parser
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [Hadolint] Loading report(s)...
+2026-08-09 01:50:01 | INFO | Reading report: frontend_20260806_001157.json
+2026-08-09 01:50:01 | INFO | Successfully loaded frontend_20260806_001157.json
+2026-08-09 01:50:01 | INFO | Reading report: backend_20260806_001157.json
+2026-08-09 01:50:01 | INFO | Successfully loaded backend_20260806_001157.json
+2026-08-09 01:50:01 | INFO | [Hadolint] Processing frontend_20260806_001157.json...
+2026-08-09 01:50:01 | INFO | [Hadolint] Validating report...
+2026-08-09 01:50:01 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:50:01 | INFO | Loaded 66 rules for hadolint.
+2026-08-09 01:50:01 | INFO | Parsed 1 Hadolint findings enriched with CWEs.
+2026-08-09 01:50:01 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:50:01 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:50:01 | INFO | [Hadolint] Saving report...
+2026-08-09 01:50:01 | INFO | Writing report: hadolint_frontend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | Report written successfully: hadolint_frontend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:50:01 | INFO | [Hadolint] Processing backend_20260806_001157.json...
+2026-08-09 01:50:01 | INFO | [Hadolint] Validating report...
+2026-08-09 01:50:01 | INFO | [Hadolint] Generating metadata...
+2026-08-09 01:50:01 | WARNING | Hadolint report is empty.
+2026-08-09 01:50:01 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:50:01 | INFO | [Hadolint] Building normalized report...
+2026-08-09 01:50:01 | INFO | [Hadolint] Saving report...
+2026-08-09 01:50:01 | INFO | Writing report: hadolint_backend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | Report written successfully: hadolint_backend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | [Hadolint] Report saved successfully.
+2026-08-09 01:50:01 | INFO | [Hadolint] Calculating statistics...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Hadolint Scan Summary
+2026-08-09 01:50:01 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:50:01 | INFO | Status         : PASS
+2026-08-09 01:50:01 | INFO | Total          : 1
+2026-08-09 01:50:01 | INFO | Critical       : 0
+2026-08-09 01:50:01 | INFO | High           : 0
+2026-08-09 01:50:01 | INFO | Medium         : 0
+2026-08-09 01:50:01 | INFO | Low            : 0
+2026-08-09 01:50:01 | INFO | Info           : 1
+2026-08-09 01:50:01 | INFO | Unknown        : 0
+2026-08-09 01:50:01 | INFO | Fixable        : 0
+2026-08-09 01:50:01 | INFO | Exploitable    : 0
+2026-08-09 01:50:01 | INFO | Compliance     : 100.0%
+2026-08-09 01:50:01 | INFO | Duration       : 0.02 sec
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Hadolint Parser Completed
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [Hadolint] Parser completed successfully.
+2026-08-09 01:50:01 | INFO | hadolint completed successfully.
+2026-08-09 01:50:01 | INFO | Starting trivy
+2026-08-09 01:50:01 | INFO | [Trivy] Preparing parser...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Starting Trivy Parser
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [Trivy] Loading report(s)...
+2026-08-09 01:50:01 | INFO | Reading report: backend_20260804_020702.json
+2026-08-09 01:50:01 | INFO | Successfully loaded backend_20260804_020702.json
+2026-08-09 01:50:01 | INFO | Reading report: frontend_20260804_020702.json
+2026-08-09 01:50:01 | INFO | Successfully loaded frontend_20260804_020702.json
+2026-08-09 01:50:01 | INFO | [Trivy] Processing backend_20260804_020702.json...
+2026-08-09 01:50:01 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:50:01 | INFO | Loaded 2 rules for trivy.
+2026-08-09 01:50:01 | INFO | Parsed 64 Trivy findings.
+2026-08-09 01:50:01 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:50:01 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:50:01 | INFO | [Trivy] Saving report...
+2026-08-09 01:50:01 | INFO | Writing report: trivy_backend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | Report written successfully: trivy_backend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:50:01 | INFO | [Trivy] Processing frontend_20260804_020702.json...
+2026-08-09 01:50:01 | INFO | [Trivy] Generating metadata...
+2026-08-09 01:50:01 | INFO | Parsed 0 Trivy findings.
+2026-08-09 01:50:01 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:50:01 | INFO | [Trivy] Building normalized report...
+2026-08-09 01:50:01 | INFO | [Trivy] Saving report...
+2026-08-09 01:50:01 | INFO | Writing report: trivy_frontend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | Report written successfully: trivy_frontend_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | [Trivy] Report saved successfully.
+2026-08-09 01:50:01 | INFO | [Trivy] Calculating statistics...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Trivy Scan Summary
+2026-08-09 01:50:01 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:50:01 | INFO | Status         : PASS
+2026-08-09 01:50:01 | INFO | Total          : 64
+2026-08-09 01:50:01 | INFO | Critical       : 1
+2026-08-09 01:50:01 | INFO | High           : 25
+2026-08-09 01:50:01 | INFO | Medium         : 16
+2026-08-09 01:50:01 | INFO | Low            : 22
+2026-08-09 01:50:01 | INFO | Info           : 0
+2026-08-09 01:50:01 | INFO | Unknown        : 0
+2026-08-09 01:50:01 | INFO | Fixable        : 64
+2026-08-09 01:50:01 | INFO | Exploitable    : 25
+2026-08-09 01:50:01 | INFO | Compliance     : 34.38%
+2026-08-09 01:50:01 | INFO | Duration       : 0.02 sec
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Trivy Parser Completed
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [Trivy] Parser completed successfully.
+2026-08-09 01:50:01 | INFO | trivy completed successfully.
+2026-08-09 01:50:01 | INFO | Starting zap
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | Starting zap Parser
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | [zap] Loading report(s)...
+2026-08-09 01:50:01 | INFO | Reading report: zap_20260804_023516.json
+2026-08-09 01:50:01 | INFO | Successfully loaded zap_20260804_023516.json
+2026-08-09 01:50:01 | INFO | [zap] Processing zap_20260804_023516.json...
+2026-08-09 01:50:01 | INFO | [zap] Generating metadata...
+2026-08-09 01:50:01 | INFO | Parsed 4 OWASP ZAP findings enriched with CWEs.
+2026-08-09 01:50:01 | INFO | [zap] Calculating statistics...
+2026-08-09 01:50:01 | INFO | [zap] Building normalized report...
+2026-08-09 01:50:01 | INFO | [zap] Saving report...
+2026-08-09 01:50:01 | INFO | Writing report: zap_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | Report written successfully: zap_20260809_015001_normalized.json
+2026-08-09 01:50:01 | INFO | [zap] Report saved successfully.
+2026-08-09 01:50:01 | INFO | [zap] Calculating statistics...
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | zap Scan Summary
+2026-08-09 01:50:01 | INFO | ----------------------------------------------------------------------
+2026-08-09 01:50:01 | INFO | Status         : WARN
+2026-08-09 01:50:01 | INFO | Total          : 4
+2026-08-09 01:50:01 | INFO | Critical       : 0
+2026-08-09 01:50:01 | INFO | High           : 0
+2026-08-09 01:50:01 | INFO | Medium         : 2
+2026-08-09 01:50:01 | INFO | Low            : 1
+2026-08-09 01:50:01 | INFO | Info           : 1
+2026-08-09 01:50:01 | INFO | Unknown        : 0
+2026-08-09 01:50:01 | INFO | Fixable        : 0
+2026-08-09 01:50:01 | INFO | Exploitable    : 0
+2026-08-09 01:50:01 | INFO | Compliance     : 50.0%
+2026-08-09 01:50:01 | INFO | Duration       : 0.01 sec
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | zap Parser Completed
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | zap completed successfully.
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | All parsers completed successfully.
+2026-08-09 01:50:01 | INFO | ======================================================================
+2026-08-09 01:50:01 | INFO | === STAGE 4: Aggregating Results ===
+2026-08-09 01:50:01 | INFO | Starting master report aggregation with Risk Engine...
+2026-08-09 01:50:01 | INFO | Risk Engine Computed: Total Risk Score=194, Level=CRITICAL
+2026-08-09 01:50:01 | INFO | Master report saved at: compliance/master_reports/master_report.json
+2026-08-09 01:50:01 | INFO | Processing 4-Layer Universal Compliance Engine mappings...
+2026-08-09 01:50:01 | INFO | Saved 4-Layer Universal Compliance Matrix with Score: 32.2% to compliance/reports/compliance/compliance_matrix.json
+2026-08-09 01:50:01 | INFO | Generated Executive HTML Report at compliance/reports/executive_reports/security_report.html
+2026-08-09 01:50:01 | INFO | Generated Executive PDF Report at compliance/reports/executive_reports/security_report.pdf
+2026-08-09 01:50:01 | INFO | Evaluating Security Gate policy from policy.yaml...
+2026-08-09 01:50:01 | INFO | Database Ingestion Successful (Scan ID: SCAN-20260808202001)

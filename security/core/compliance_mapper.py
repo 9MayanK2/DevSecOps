@@ -34,6 +34,7 @@ class ComplianceMapper:
 
     # Layer 1: Rule-ID & Tool Specific Signature Mappings
     RULE_MAPPINGS = {
+        # Secrets Detection Rules
         "CWE-798": {
             "owasp": "A02:2021-Cryptographic Failures",
             "cis": "CIS Controls v8 3.12 - Rekey or Revoke Credentials",
@@ -44,17 +45,49 @@ class ComplianceMapper:
             "cis": "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials",
             "nist": "IA-5 Authenticator Management"
         },
+        "aws-secret-access-key": {
+            "owasp": "A02:2021-Cryptographic Failures",
+            "cis": "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials",
+            "nist": "IA-5 Authenticator Management"
+        },
         "generic-api-key": {
             "owasp": "A02:2021-Cryptographic Failures",
             "cis": "CIS Controls v8 3.12 - Avoid Hardcoded API Keys",
             "nist": "IA-5 Authenticator Management"
         },
-        "DL3059": {
+        "private-key": {
+            "owasp": "A02:2021-Cryptographic Failures",
+            "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest",
+            "nist": "IA-5 Authenticator Management"
+        },
+        "github-pat": {
+            "owasp": "A02:2021-Cryptographic Failures",
+            "cis": "CIS Controls v8 3.12 - Protect Sensitive Data",
+            "nist": "IA-5 Authenticator Management"
+        },
+        "slack-web-hook": {
+            "owasp": "A02:2021-Cryptographic Failures",
+            "cis": "CIS Controls v8 3.12 - Protect Sensitive Data",
+            "nist": "IA-5 Authenticator Management"
+        },
+
+        # Hadolint Dockerfile Rules
+        "DL3000": {
             "owasp": "A05:2021-Security Misconfiguration",
-            "cis": "CIS Docker Benchmark 4.6 - Healthcheck Instruction",
+            "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
             "nist": "CM-6 Configuration Settings"
         },
         "DL3002": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Docker Benchmark 4.1 - Non-root Container User",
+            "nist": "AC-6 Least Privilege"
+        },
+        "DL3003": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+            "nist": "CM-6 Configuration Settings"
+        },
+        "DL3004": {
             "owasp": "A05:2021-Security Misconfiguration",
             "cis": "CIS Docker Benchmark 4.1 - Non-root Container User",
             "nist": "AC-6 Least Privilege"
@@ -64,10 +97,77 @@ class ComplianceMapper:
             "cis": "CIS Docker Benchmark 4.2 - Base Image Tagging",
             "nist": "CM-6 Configuration Settings"
         },
+        "DL3007": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Docker Benchmark 4.2 - Base Image Tagging",
+            "nist": "CM-6 Configuration Settings"
+        },
+        "DL3008": {
+            "owasp": "A06:2021-Vulnerable and Outdated Components",
+            "cis": "CIS Docker Benchmark 4.3 - Pin Package Versions",
+            "nist": "SI-2 Flaw Remediation"
+        },
+        "DL3013": {
+            "owasp": "A06:2021-Vulnerable and Outdated Components",
+            "cis": "CIS Docker Benchmark 4.3 - Pin Package Versions",
+            "nist": "SI-2 Flaw Remediation"
+        },
         "DL3018": {
             "owasp": "A06:2021-Vulnerable and Outdated Components",
             "cis": "CIS Docker Benchmark 4.3 - Pin Package Versions",
             "nist": "SI-2 Flaw Remediation"
+        },
+        "DL3020": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Docker Benchmark 4.0 - Container Hardening",
+            "nist": "CM-6 Configuration Settings"
+        },
+        "DL3059": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Docker Benchmark 4.6 - Healthcheck Instruction",
+            "nist": "CM-6 Configuration Settings"
+        },
+
+        # OWASP ZAP DAST Rules
+        "ZAP-10020": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Controls v8 16.1 - Application Software Security",
+            "nist": "SC-7 Boundary Protection"
+        },
+        "ZAP-10021": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Controls v8 4.1 - Secure Configuration",
+            "nist": "CM-6 Configuration Settings"
+        },
+        "ZAP-10038": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Controls v8 16.1 - Application Software Security",
+            "nist": "CM-6 Configuration Settings"
+        },
+        "ZAP-10055": {
+            "owasp": "A05:2021-Security Misconfiguration",
+            "cis": "CIS Controls v8 16.1 - Application Software Security",
+            "nist": "CM-6 Configuration Settings"
+        },
+        "ZAP-10096": {
+            "owasp": "A01:2021-Broken Access Control",
+            "cis": "CIS Controls v8 3.1 - Data Classification",
+            "nist": "SC-28 Protection of Information at Rest"
+        },
+        "ZAP-10109": {
+            "owasp": "A01:2021-Broken Access Control",
+            "cis": "CIS Controls v8 3.1 - Data Classification",
+            "nist": "SC-28 Protection of Information at Rest"
+        },
+        "ZAP-10035": {
+            "owasp": "A02:2021-Cryptographic Failures",
+            "cis": "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit",
+            "nist": "SC-8 Transmission Confidentiality and Integrity"
+        },
+        "ZAP-40012": {
+            "owasp": "A01:2021-Broken Access Control",
+            "cis": "CIS Controls v8 16.1 - Application Software Security",
+            "nist": "AC-3 Access Enforcement"
         }
     }
 
@@ -85,7 +185,6 @@ class ComplianceMapper:
 
     def _load_cwe_db(self) -> Dict[str, dict]:
         if not self.cwe_db_path.exists():
-            # If not present, attempt dynamic generation
             try:
                 from security.knowledge.generate_cwe_db import generate_database
                 generate_database()
@@ -118,19 +217,29 @@ class ComplianceMapper:
         # -------------------------------------------------------------
         if rule_id in self.RULE_MAPPINGS:
             compliance_entries.append(self.RULE_MAPPINGS[rule_id])
-            matched_layers.append("Layer 1 (Rule-ID Direct Match)")
+            matched_layers.append(f"Layer 1 ({rule_id} Rule-ID Match)")
+
+        elif rule_id.startswith("GHSA-") or rule_id.startswith("NSWG-"):
+            compliance_entries.append({
+                "owasp": "A06:2021-Vulnerable and Outdated Components",
+                "cis": "CIS Controls v8 7.1 - Vulnerability Management",
+                "nist": "SI-2 Flaw Remediation"
+            })
+            matched_layers.append(f"Layer 1 ({rule_id} Advisory Signature Match)")
 
         # -------------------------------------------------------------
         # LAYER 2: Direct CWE Lookup via Auto-Generated Open Standards DB
         # -------------------------------------------------------------
         for cwe in cwes:
-            cwe_norm = cwe.upper().strip()
+            if not cwe:
+                continue
+            cwe_norm = str(cwe).upper().strip()
             if not cwe_norm.startswith("CWE-"):
                 cwe_norm = f"CWE-{cwe_norm}"
 
             if cwe_norm in self.RULE_MAPPINGS and self.RULE_MAPPINGS[cwe_norm] not in compliance_entries:
                 compliance_entries.append(self.RULE_MAPPINGS[cwe_norm])
-                matched_layers.append(f"Layer 1/2 ({cwe_norm} Rule Match)")
+                matched_layers.append(f"Layer 1/2 ({cwe_norm} Direct Match)")
 
             if cwe_norm in self.cwe_db:
                 db_entry = self.cwe_db[cwe_norm]

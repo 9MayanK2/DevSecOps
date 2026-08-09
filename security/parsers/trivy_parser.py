@@ -31,6 +31,7 @@ from security.core.parser_registry import registry
 from security.schemas.finding import Finding
 
 from security.common.logger import logger
+from security.core.nvd_enrichment import NVDEnricher
 from security.common.metadata import generate_metadata
 from security.common.recommendation import (
     get_recommendation,
@@ -446,7 +447,15 @@ class TrivyParser(BaseParser):
 
                     cve=vulnerability_id,
 
-                    cwe=vulnerability.get("CweIDs"),
+                    cwe=(
+                        vulnerability.get("CweIDs")
+                        if vulnerability.get("CweIDs")
+                        else (
+                            NVDEnricher().fetch_cwes_for_cve(vulnerability_id)
+                            if vulnerability_id and vulnerability_id.upper().startswith("CVE-")
+                            else None
+                        )
+                    ),
 
                     severity_source = (
                         vulnerability.get("SeveritySource")
