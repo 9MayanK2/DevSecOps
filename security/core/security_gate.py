@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import List, Dict, Any
 
 from security.common.logger import logger
+from security.common.notifier import send_gate_alert
 
 POLICY_YAML_PATH = Path("security/config/policy.yaml")
 
@@ -119,6 +120,12 @@ class SecurityGate:
         passed = len(reasons) == 0
         scanners = ", ".join(self.report.get("scanners_executed", [])) or "None"
 
+        # Trigger Webhook Alert if configured
+        try:
+            send_gate_alert(self.report, reasons, passed)
+        except Exception:
+            pass
+
         print("\n" + "=" * 70)
         print("             DEVSECOPS SECURITY GATE & RISK SUMMARY")
         print("=" * 70)
@@ -158,4 +165,3 @@ class SecurityGate:
                 print(" ⚠️  [WARNING] SOFT-FAIL MODE ACTIVE: Gate failed policy checks, but returning Exit Code 0 for downstream pipeline testing.\n")
                 return True
             return False
-

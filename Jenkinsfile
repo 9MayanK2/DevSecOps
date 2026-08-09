@@ -21,6 +21,13 @@ pipeline {
     FRONTEND_REPOSITORY = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/sentinelops-frontend"
     BACKEND_IMAGE = "${BACKEND_REPOSITORY}:${IMAGE_TAG}"
     FRONTEND_IMAGE = "${FRONTEND_REPOSITORY}:${IMAGE_TAG}"
+
+    // Cloud Database & Security Framework Controls
+    DB_TYPE = "mysql"
+    DB_HOST = "devsecops-db.c3xyz.us-east-1.rds.amazonaws.com"
+    DB_PORT = "3306"
+    DB_NAME = "devsecops"
+    DB_USER = "admin"
     }
 
     stages {
@@ -286,7 +293,7 @@ EOF
          /********************************************************************
          * Stage 16 : Deploy to Amazon EKS (Reserved)
          ********************************************************************/
-        
+
         stage('Deploy to Amazon EKS') {
 
             steps {
@@ -306,7 +313,7 @@ EOF
         /********************************************************************
          * Stage 17 : Verify kubernetes to rollout
          ********************************************************************/
-        
+
         stage('Verify Kubernetes Rollout') {
 
             steps {
@@ -338,7 +345,7 @@ EOF
 
             docker-compose down --remove-orphans || true
             docker image prune -f || true
-            
+
             '''
             echo '========== ARCHIVING REPORTS & SIGNATURES =========='
             archiveArtifacts artifacts: 'compliance/reports/**/*', allowEmptyArchive: true
