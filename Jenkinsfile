@@ -22,9 +22,9 @@ pipeline {
 
         // Cloud Database & Security Framework Controls
         DB_TYPE = "mysql"
-        DB_HOST = "devsecops-db.c3xyz.us-east-1.rds.amazonaws.com"
+        DB_HOST = "sentinelops-dev-mysql.ccxs8u0gof49.us-east-1.rds.amazonaws.com"
         DB_PORT = "3306"
-        DB_NAME = "devsecops"
+        DB_NAME = "sentinelops"
         DB_USER = "admin"
     }
 

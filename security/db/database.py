@@ -42,27 +42,51 @@ class DatabaseManager:
             return conn
 
         elif self.db_type in ("mysql", "mariadb"):
+            host = os.getenv("DB_HOST", "localhost")
+            port = int(os.getenv("DB_PORT", 3306))
+            db_name = os.getenv("DB_NAME", "devsecops")
+            user = os.getenv("DB_USER", "root")
+            password = os.getenv("DB_PASSWORD", "")
+
             try:
                 import pymysql
-                return pymysql.connect(
-                    host=os.getenv("DB_HOST", "localhost"),
-                    port=int(os.getenv("DB_PORT", 3306)),
-                    database=os.getenv("DB_NAME", "devsecops"),
-                    user=os.getenv("DB_USER", "root"),
-                    password=os.getenv("DB_PASSWORD", ""),
-                    cursorclass=pymysql.cursors.DictCursor,
-                    autocommit=True
-                )
+                try:
+                    return pymysql.connect(
+                        host=host, port=port, database=db_name,
+                        user=user, password=password,
+                        cursorclass=pymysql.cursors.DictCursor, autocommit=True
+                    )
+                except pymysql.err.OperationalError as op_err:
+                    if len(op_err.args) > 0 and op_err.args[0] in (1049, 1044):
+                        logger.info(f"Database '{db_name}' missing on MySQL server. Creating database automatically...")
+                        raw_conn = pymysql.connect(host=host, port=port, user=user, password=password, autocommit=True)
+                        with raw_conn.cursor() as cur:
+                            cur.execute(f"CREATE DATABASE IF NOT EXISTS `{db_name}`;")
+                        raw_conn.close()
+                        return pymysql.connect(
+                            host=host, port=port, database=db_name,
+                            user=user, password=password,
+                            cursorclass=pymysql.cursors.DictCursor, autocommit=True
+                        )
+                    raise op_err
             except ImportError:
                 try:
                     import mysql.connector
-                    return mysql.connector.connect(
-                        host=os.getenv("DB_HOST", "localhost"),
-                        port=int(os.getenv("DB_PORT", 3306)),
-                        database=os.getenv("DB_NAME", "devsecops"),
-                        user=os.getenv("DB_USER", "root"),
-                        password=os.getenv("DB_PASSWORD", "")
-                    )
+                    try:
+                        return mysql.connector.connect(
+                            host=host, port=port, database=db_name,
+                            user=user, password=password
+                        )
+                    except Exception:
+                        logger.info(f"Database '{db_name}' missing on MySQL server. Creating database automatically...")
+                        raw_conn = mysql.connector.connect(host=host, port=port, user=user, password=password)
+                        cur = raw_conn.cursor()
+                        cur.execute(f"CREATE DATABASE IF NOT EXISTS `{db_name}`;")
+                        raw_conn.close()
+                        return mysql.connector.connect(
+                            host=host, port=port, database=db_name,
+                            user=user, password=password
+                        )
                 except ImportError:
                     raise RuntimeError(
                         "MySQL driver missing. Please install PyMySQL or mysql-connector-python: "
@@ -505,6 +529,13 @@ class DatabaseManager:
 
         except Exception as ex:
             logger.error(f"Database Ingestion Error ({self.db_type}): {ex}")
+            if self.db_type != "sqlite":
+                logger.info("Attempting automatic fallback ingestion to local SQLite database...")
+                try:
+                    fallback_db = DatabaseManager(db_type="sqlite")
+                    return fallback_db.save_master_report(master_report, project_name=project_name, verdict=verdict)
+                except Exception as fallback_ex:
+                    logger.error(f"Fallback SQLite Ingestion Error: {fallback_ex}")
             raise ex
         finally:
             conn.close()
@@ -516,16 +547,27 @@ class DatabaseManager:
         """
         Updates the security gate verdict (PASS / FAIL) for a scan record.
         """
-        conn = self.get_connection()
+        conn = None
         try:
+            conn = self.get_connection()
             cursor = conn.cursor()
             cursor.execute(self._ph("UPDATE scans SET verdict = ? WHERE scan_id = ?"), (verdict, scan_id))
             if self.db_type == "sqlite":
                 conn.commit()
         except Exception as ex:
-            logger.warning(f"Could not update scan verdict: {ex}")
+            logger.warning(f"Could not update scan verdict in primary DB ({self.db_type}): {ex}")
+            if self.db_type != "sqlite":
+                try:
+                    fallback_db = DatabaseManager(db_type="sqlite")
+                    fallback_db.update_scan_verdict(scan_id, verdict)
+                except Exception:
+                    pass
         finally:
-            conn.close()
+            if conn:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
 
     def save_report_artifact(self, scan_id: str, report_type: str, title: str, file_path: str | Path) -> str:
         """
@@ -550,8 +592,18 @@ class DatabaseManager:
                 conn.commit()
         except Exception as ex:
             logger.warning(f"Could not save report artifact metadata ({self.db_type}): {ex}")
+            if self.db_type != "sqlite":
+                try:
+                    fallback_db = DatabaseManager(db_type="sqlite")
+                    return fallback_db.save_report_artifact(scan_id, report_type, title, file_path)
+                except Exception:
+                    pass
         finally:
-            conn.close()
+            if conn:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
 
         logger.info(f"Saved report artifact metadata [{report_type.upper()}] (Report ID: {report_id})")
         return report_id
