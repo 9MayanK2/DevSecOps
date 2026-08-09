@@ -298,8 +298,11 @@ db = DatabaseManager()
 scans = db.get_recent_scans(1)
 if not scans:
     raise RuntimeError("No scan records found in database!")
-print(f"[SUCCESS] Connected to {db.db_type.upper()} ({db.db_path if db.db_type == \"sqlite\" else \"RDS\"}). Latest scan persisted: {scans[0]}")
-'
+print(
+    f"[SUCCESS] Connected to {db.db_type.upper()} "
+    f"({'RDS' if db.db_type != 'sqlite' else db.db_path}). "
+    f"Latest scan persisted: {scans[0]}"
+)
                 '''
             }
         }
