@@ -104,6 +104,16 @@ class TrivyParser(BaseParser):
             input_directory=REPORT_DIR,
             output_directory=OUTPUT_DIR
         )
+        self.nvd_enricher = NVDEnricher()
+
+    def enrich_cve_from_nvd(self, cve_id: str) -> dict:
+        """
+        Queries NVD API for CVEs where Trivy provided no CweIDs.
+        """
+        if not cve_id or not cve_id.upper().startswith("CVE-"):
+            return {"cwes": []}
+        cwes = self.nvd_enricher.fetch_cwes_for_cve(cve_id)
+        return {"cwes": cwes}
 
 
     def load_report(self) -> None:
@@ -450,11 +460,7 @@ class TrivyParser(BaseParser):
                     cwe=(
                         vulnerability.get("CweIDs")
                         if vulnerability.get("CweIDs")
-                        else (
-                            NVDEnricher().fetch_cwes_for_cve(vulnerability_id)
-                            if vulnerability_id and vulnerability_id.upper().startswith("CVE-")
-                            else None
-                        )
+                        else self.enrich_cve_from_nvd(vulnerability_id).get("cwes")
                     ),
 
                     severity_source = (

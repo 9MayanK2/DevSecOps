@@ -28,6 +28,15 @@ def determine_zap_cwe(alert: dict) -> list[str]:
     if cweid and str(cweid).isdigit() and int(cweid) > 0:
         return [f"CWE-{cweid}"]
 
+    alert_name = str(alert.get("alert") or alert.get("name") or "").lower()
+
+    if "xss" in alert_name or "cross-site scripting" in alert_name:
+        return ["CWE-79"]
+    elif "sql" in alert_name or "sqli" in alert_name or "injection" in alert_name:
+        return ["CWE-89"]
+    elif "csrf" in alert_name or "cross-site request forgery" in alert_name:
+        return ["CWE-352"]
+
     plugin_id = str(alert.get("pluginid", ""))
     plugin_cwe_map = {
         "10020": ["CWE-1021"],  # X-Frame-Options Clickjacking
