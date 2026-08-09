@@ -1,132 +1,50 @@
 {
-    "title": "Master DevSecOps Security Report",
-    "generated_at": "2026-08-09T08:02:10.855604",
-    "scanners_executed": [
-        "Gitleaks",
-        "Hadolint",
-        "Trivy",
-        "zap"
-    ],
+    "tool": "Trivy",
+    "category": "Container Security",
+    "scanner_type": "Static",
+    "scan_time": "2026-08-09T07:56:45.770601",
+    "status": "FAIL",
     "summary": {
-        "total_findings": 64,
-        "critical": 3,
-        "high": 22,
+        "total": 65,
+        "critical": 1,
+        "high": 26,
         "medium": 16,
         "low": 22,
-        "info": 1,
-        "compliance_score": 43.3
+        "info": 0,
+        "unknown": 0,
+        "fixable": 65,
+        "exploitable": 36,
+        "suppressed": 0,
+        "scanned_targets": 1,
+        "scanned_packages": 382,
+        "scanned_files": 2,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "compliance_score": 33.85
     },
-    "risk_summary": {
-        "total_risk_score": 194,
-        "risk_level": "CRITICAL"
+    "metadata": {
+        "project_name": "HopeGivers",
+        "scanner": "Trivy",
+        "scanner_version": "latest",
+        "parser_version": "1.0.0",
+        "hostname": "JagguDA",
+        "username": "jaggu",
+        "operating_system": "alpine",
+        "os_version": "6.8.0-136-generic",
+        "python_version": "3.10.12",
+        "git_branch": "features",
+        "git_commit": "8bccad2",
+        "scan_id": "TRIVY-20260809075645-4489C0",
+        "generated_at": "2026-08-09T07:56:45.770578",
+        "artifact_name": "sentinelops-backend:latest",
+        "artifact_type": "container_image",
+        "artifact_id": "sha256:57804443d914bf2cbe1ef03766120e0691a82192e3fa91fdc2df9e94aace92f5",
+        "image_id": "sha256:86da75c297fcc1a246fd26ebc286eb3ab312ee1ac8de76491bb2f4f57ffee484",
+        "image_size": 342269952,
+        "operating_system_version": "3.23.4"
     },
     "findings": [
         {
-            "tool": "Gitleaks",
-            "category": "Secrets Detection",
-            "rule_id": "private-key",
-            "severity": "CRITICAL",
-            "file": "security/config/keys/cosign.key",
-            "line": 1,
-            "message": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: RED...TED)",
-            "recommendation": "Immediately revoke and replace the compromised private key. Remove key files from source control and store in encrypted vault.",
-            "status": "OPEN",
-            "scan_time": "2026-08-09T08:02:10.797775",
-            "package_name": null,
-            "installed_version": null,
-            "fixed_version": null,
-            "cvss_score": null,
-            "cwe": [
-                "CWE-798",
-                "CWE-311"
-            ],
-            "cve": null,
-            "severity_source": "Gitleaks",
-            "target": "security/config/keys/cosign.key",
-            "target_class": "Secret",
-            "target_type": "Code/Config",
-            "description": "An unencrypted private key (RSA, SSH, PGP, etc.) was detected.",
-            "primary_url": "https://owasp.org/www-community/vulnerabilities/Use_of_hard-coded_cryptographic_key",
-            "references": [
-                "https://owasp.org/www-community/vulnerabilities/Use_of_hard-coded_cryptographic_key"
-            ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest",
-                    "nist": "IA-5 Authenticator Management"
-                },
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                },
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
-            "exploit_available": false,
-            "fix_available": false,
-            "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (private-key Rule Override)",
-                "Layer 2 (CWE-798 Database Match)",
-                "Layer 2 (CWE-311 Database Match)"
-            ]
-        },
-        {
-            "tool": "Gitleaks",
-            "category": "Secrets Detection",
-            "rule_id": "aws-access-token",
-            "severity": "CRITICAL",
-            "file": "testing/gitleaks/test_secrets.txt",
-            "line": 1,
-            "message": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: RED...TED)",
-            "recommendation": "Revoke the exposed AWS key immediately in AWS IAM, rotate credentials, and remove it from repository history using git-filter-repo or BFG Repo-Cleaner.",
-            "status": "OPEN",
-            "scan_time": "2026-08-09T08:02:10.797775",
-            "package_name": null,
-            "installed_version": null,
-            "fixed_version": null,
-            "cvss_score": null,
-            "cwe": [
-                "CWE-798"
-            ],
-            "cve": null,
-            "severity_source": "Gitleaks",
-            "target": "testing/gitleaks/test_secrets.txt",
-            "target_class": "Secret",
-            "target_type": "Code/Config",
-            "description": "An AWS Access Key ID was detected in source code or configuration.",
-            "primary_url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html",
-            "references": [
-                "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html"
-            ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials",
-                    "nist": "IA-5 Authenticator Management"
-                },
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
-            "exploit_available": false,
-            "fix_available": false,
-            "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (aws-access-token Rule Override)",
-                "Layer 2 (CWE-798 Database Match)"
-            ]
-        },
-        {
             "tool": "Trivy",
             "category": "Container Security",
             "rule_id": "CVE-2026-45447",
@@ -136,7 +54,7 @@
             "message": "openssl: Heap Use-After-Free in OpenSSL PKCS7_verify()",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -222,20 +140,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-45447"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-416 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -247,7 +156,7 @@
             "message": "openssl: CMS AuthEnvelopedData Processing May Accept Forged Messages",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -331,20 +240,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34182"
             ],
-            "compliance": [
-                {
-                    "owasp": "A08:2021-Software and Data Integrity Failures",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-7 Software, Firmware, and Information Integrity, IR-4 Incident Handling"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-354 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -356,7 +256,7 @@
             "message": "openssl: Unbounded Memory Growth in the QUIC PATH_CHALLENGE Handler",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -437,20 +337,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34183"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-1325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -462,7 +353,7 @@
             "message": "openssl: NULL pointer dereference in QUIC server initial packet handling",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -541,20 +432,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42764"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-476 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -566,7 +448,7 @@
             "message": "openssl: AES-OCB IV Ignored on EVP_Cipher() Path",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -649,20 +531,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-45445"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -674,7 +547,7 @@
             "message": "openssl: OpenSSL: Heap buffer over-read in ASN.1 decoding can lead to denial of service or information disclosure.",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -758,20 +631,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34180"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-125 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -783,7 +647,7 @@
             "message": "openssl: PKCS#12 Files with PBMAC1 Are Accepted with Short HMAC Keys",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -864,20 +728,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34181"
             ],
-            "compliance": [
-                {
-                    "owasp": "A08:2021-Software and Data Integrity Failures",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-7 Software, Firmware, and Information Integrity"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-354 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -889,7 +744,7 @@
             "message": "openssl: Possible NULL Dereference in Password-Based CMS Decryption",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -973,20 +828,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42766"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-476 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -998,7 +844,7 @@
             "message": "openssl: NULL Pointer Dereference in CRMF EncryptedValue Decryption",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1081,20 +927,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42767"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-476 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1106,7 +943,7 @@
             "message": "openssl: Multi-RecipientInfo Bleichenbacher Oracle in CMS_decrypt() and PKCS7_decrypt()",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1187,20 +1024,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42768"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-514 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1212,7 +1040,7 @@
             "message": "openssl: Trust-Anchor Substitution via cert/issuer Typo in CMP rootCaKeyUpdate",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1293,20 +1121,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42769"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-295 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1318,7 +1137,7 @@
             "message": "openssl: FFC-DH Peer Validation Uses Attacker-Supplied q",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1401,20 +1220,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42770"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1426,7 +1236,7 @@
             "message": "openssl: Incorrect Tag Processing for Empty Messages in AES-GCM-SIV and AES-SIV modes",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1509,20 +1319,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-45446"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1534,7 +1335,7 @@
             "message": "openssl: OpenSSL: Heap buffer overflow due to signed integer overflow in Unicode output sizing",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1618,20 +1419,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-7383"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-787 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1643,7 +1435,7 @@
             "message": "openssl: OpenSSL: Denial of Service due to heap out-of-bounds read in CMS password-based decryption",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libcrypto3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1727,20 +1519,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-9076"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-125 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1752,7 +1535,7 @@
             "message": "openssl: Heap Use-After-Free in OpenSSL PKCS7_verify()",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1838,20 +1621,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-45447"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-416 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1863,7 +1637,7 @@
             "message": "openssl: CMS AuthEnvelopedData Processing May Accept Forged Messages",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -1947,20 +1721,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34182"
             ],
-            "compliance": [
-                {
-                    "owasp": "A08:2021-Software and Data Integrity Failures",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-7 Software, Firmware, and Information Integrity, IR-4 Incident Handling"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-354 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -1972,7 +1737,7 @@
             "message": "openssl: Unbounded Memory Growth in the QUIC PATH_CHALLENGE Handler",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2053,20 +1818,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34183"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-1325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2078,7 +1834,7 @@
             "message": "openssl: NULL pointer dereference in QUIC server initial packet handling",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2157,20 +1913,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42764"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-476 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2182,7 +1929,7 @@
             "message": "openssl: AES-OCB IV Ignored on EVP_Cipher() Path",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2265,20 +2012,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-45445"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2290,7 +2028,7 @@
             "message": "openssl: OpenSSL: Heap buffer over-read in ASN.1 decoding can lead to denial of service or information disclosure.",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2374,20 +2112,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34180"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-125 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2399,7 +2128,7 @@
             "message": "openssl: PKCS#12 Files with PBMAC1 Are Accepted with Short HMAC Keys",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2480,20 +2209,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-34181"
             ],
-            "compliance": [
-                {
-                    "owasp": "A08:2021-Software and Data Integrity Failures",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-7 Software, Firmware, and Information Integrity"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-354 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2505,7 +2225,7 @@
             "message": "openssl: Possible NULL Dereference in Password-Based CMS Decryption",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2589,20 +2309,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42766"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-476 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2614,7 +2325,7 @@
             "message": "openssl: NULL Pointer Dereference in CRMF EncryptedValue Decryption",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2697,20 +2408,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42767"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-476 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2722,7 +2424,7 @@
             "message": "openssl: Multi-RecipientInfo Bleichenbacher Oracle in CMS_decrypt() and PKCS7_decrypt()",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2803,20 +2505,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42768"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-514 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2828,7 +2521,7 @@
             "message": "openssl: Trust-Anchor Substitution via cert/issuer Typo in CMP rootCaKeyUpdate",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -2909,20 +2602,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42769"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-295 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -2934,7 +2618,7 @@
             "message": "openssl: FFC-DH Peer Validation Uses Attacker-Supplied q",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -3017,20 +2701,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42770"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3042,7 +2717,7 @@
             "message": "openssl: Incorrect Tag Processing for Empty Messages in AES-GCM-SIV and AES-SIV modes",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -3125,20 +2800,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-1",
                 "https://www.cve.org/CVERecord?id=CVE-2026-45446"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-325 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3150,7 +2816,7 @@
             "message": "openssl: OpenSSL: Heap buffer overflow due to signed integer overflow in Unicode output sizing",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -3234,20 +2900,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-7383"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-787 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3259,7 +2916,7 @@
             "message": "openssl: OpenSSL: Denial of Service due to heap out-of-bounds read in CMS password-based decryption",
             "recommendation": "Upgrade to version 3.5.7-r0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "libssl3",
             "installed_version": "3.5.6-r0",
             "fixed_version": "3.5.7-r0",
@@ -3343,20 +3000,11 @@
                 "https://ubuntu.com/security/notices/USN-8414-2",
                 "https://www.cve.org/CVERecord?id=CVE-2026-9076"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-125 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3368,7 +3016,7 @@
             "message": "sigstore-core: @sigstore/core: Signature bypass due to incorrect encoding in preAuthEncoding",
             "recommendation": "Upgrade to version 3.2.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "@sigstore/core",
             "installed_version": "1.1.0",
             "fixed_version": "3.2.1",
@@ -3393,20 +3041,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-48758",
                 "https://www.cve.org/CVERecord?id=CVE-2026-48758"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-347 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3418,7 +3057,7 @@
             "message": "Out-of-bounds Read in base64-url",
             "recommendation": "Upgrade to version 2.0.0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "base64-url",
             "installed_version": "1.2.1",
             "fixed_version": "2.0.0",
@@ -3435,20 +3074,11 @@
                 "https://hackerone.com/reports/321692",
                 "https://www.npmjs.com/advisories/660"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (GHSA-j4mr-9xw3-c9jx Advisory Override)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3460,7 +3090,7 @@
             "message": "Out-of-bounds Read",
             "recommendation": "Upgrade to version >=2.0.0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "base64-url",
             "installed_version": "1.2.1",
             "fixed_version": ">=2.0.0",
@@ -3476,20 +3106,76 @@
             "references": [
                 "https://hackerone.com/reports/321692"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (NSWG-ECO-434 Advisory Override)"
-            ]
+            "kev": false
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "GHSA-j4mr-9xw3-c9jx",
+            "severity": "HIGH",
+            "file": "Node.js",
+            "line": null,
+            "message": "Out-of-bounds Read in base64-url",
+            "recommendation": "Upgrade to version 2.0.0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
+            "package_name": "base64-url",
+            "installed_version": "1.3.3",
+            "fixed_version": "2.0.0",
+            "cvss_score": null,
+            "cwe": [],
+            "cve": "GHSA-j4mr-9xw3-c9jx",
+            "severity_source": "ghsa",
+            "target": "Node.js",
+            "target_class": "lang-pkgs",
+            "target_type": "node-pkg",
+            "description": "Versions of `base64-url` before 2.0.0 are vulnerable to out-of-bounds read as it allocates uninitialized Buffers when number is passed in input. ## Re...",
+            "primary_url": "https://hackerone.com/reports/321692",
+            "references": [
+                "https://hackerone.com/reports/321692",
+                "https://www.npmjs.com/advisories/660"
+            ],
+            "compliance": [],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "NSWG-ECO-434",
+            "severity": "HIGH",
+            "file": "Node.js",
+            "line": null,
+            "message": "Out-of-bounds Read",
+            "recommendation": "Upgrade to version >=2.0.0 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
+            "package_name": "base64-url",
+            "installed_version": "1.3.3",
+            "fixed_version": ">=2.0.0",
+            "cvss_score": null,
+            "cwe": [],
+            "cve": "NSWG-ECO-434",
+            "severity_source": "nodejs-security-wg",
+            "target": "Node.js",
+            "target_class": "lang-pkgs",
+            "target_type": "node-pkg",
+            "description": "`base64-url` below 2.0 allocates uninitialized Buffers when number is passed in input",
+            "primary_url": "https://hackerone.com/reports/321692",
+            "references": [
+                "https://hackerone.com/reports/321692"
+            ],
+            "compliance": [],
+            "exploit_available": false,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3501,7 +3187,7 @@
             "message": "brace-expansion: Brace-expansion: Denial of Service due to exponential-time complexity",
             "recommendation": "Upgrade to version 5.0.7, 1.1.16, 2.1.2 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.1",
             "fixed_version": "5.0.7, 1.1.16, 2.1.2",
@@ -3547,26 +3233,11 @@
                 "https://www.cve.org/CVERecord?id=CVE-2026-13149",
                 "https://www.npmjs.com/package/brace-expansion"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                },
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-400 Database Match)",
-                "Layer 2 (CWE-407 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3578,7 +3249,7 @@
             "message": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function",
             "recommendation": "Upgrade to version 5.0.8, 3.0.3, 2.1.3, 1.1.17 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.1",
             "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
@@ -3609,20 +3280,11 @@
                 "https://www.cve.org/CVERecord?id=CVE-2026-14257",
                 "https://www.npmjs.com/package/brace-expansion"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-400 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3634,7 +3296,7 @@
             "message": "brace-expansion: brace-expansion: Denial of Service via unbounded intermediate arrays",
             "recommendation": "Upgrade to version 1.1.18, 2.1.4, 3.0.6, 5.0.9 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.1",
             "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
@@ -3661,20 +3323,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-69152",
                 "https://www.cve.org/CVERecord?id=CVE-2026-69152"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-400 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3686,7 +3339,7 @@
             "message": "brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern",
             "recommendation": "Upgrade to version 5.0.5, 3.0.2, 2.0.3, 1.1.13 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.1",
             "fixed_version": "5.0.5, 3.0.2, 2.0.3, 1.1.13",
@@ -3717,20 +3370,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-33750",
                 "https://www.cve.org/CVERecord?id=CVE-2026-33750"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-400 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3742,7 +3386,7 @@
             "message": "brace-expansion: juliangruber brace-expansion index.js expand redos",
             "recommendation": "Upgrade to version 2.0.2, 1.1.12, 3.0.1, 4.0.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "brace-expansion",
             "installed_version": "2.0.1",
             "fixed_version": "2.0.2, 1.1.12, 3.0.1, 4.0.1",
@@ -3774,26 +3418,101 @@
                 "https://vuldb.com/?submit.585717",
                 "https://www.cve.org/CVERecord?id=CVE-2025-5889"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                },
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-400 Database Match)",
-                "Layer 2 (CWE-1333 Database Match)"
-            ]
+            "kev": false
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-14257",
+            "severity": "HIGH",
+            "file": "Node.js",
+            "line": null,
+            "message": "brace-expansion: Brace-expansion: Denial of Service via memory exhaustion in expand() function",
+            "recommendation": "Upgrade to version 5.0.8, 3.0.3, 2.1.3, 1.1.17 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
+            "package_name": "brace-expansion",
+            "installed_version": "5.0.7",
+            "fixed_version": "5.0.8, 3.0.3, 2.1.3, 1.1.17",
+            "cvss_score": 7.5,
+            "cwe": [
+                "CWE-400",
+                "CWE-770"
+            ],
+            "cve": "CVE-2026-14257",
+            "severity_source": "ghsa",
+            "target": "Node.js",
+            "target_class": "lang-pkgs",
+            "target_type": "node-pkg",
+            "description": "brace-expansion through 5.0.7 is vulnerable to denial of service via memory exhaustion. The expand() function limits the number of results with a max...",
+            "primary_url": "https://access.redhat.com/security/cve/CVE-2026-14257",
+            "references": [
+                "https://access.redhat.com/security/cve/CVE-2026-14257",
+                "https://github.com/juliangruber/brace-expansion",
+                "https://github.com/juliangruber/brace-expansion/commit/139d015104e71433ad52a41d19467c48ecbb2c7d",
+                "https://github.com/juliangruber/brace-expansion/commit/a1bd33999ea75262c4749fff3bbb0d1372bd07b5",
+                "https://github.com/juliangruber/brace-expansion/commit/cb4b9e47cc2ec777c14b2b4492fb431a56f6a031",
+                "https://github.com/juliangruber/brace-expansion/commit/d13ff455a58b0d56704f0111e3c2a0b16ceb06eb",
+                "https://github.com/juliangruber/brace-expansion/pull/129",
+                "https://github.com/juliangruber/brace-expansion/pull/130",
+                "https://github.com/juliangruber/brace-expansion/pull/136",
+                "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-mh99-v99m-4gvg",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-14257",
+                "https://www.cve.org/CVERecord?id=CVE-2026-14257",
+                "https://www.npmjs.com/package/brace-expansion"
+            ],
+            "compliance": [],
+            "exploit_available": true,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false
+        },
+        {
+            "tool": "Trivy",
+            "category": "Container Security",
+            "rule_id": "CVE-2026-69152",
+            "severity": "HIGH",
+            "file": "Node.js",
+            "line": null,
+            "message": "brace-expansion: brace-expansion: Denial of Service via unbounded intermediate arrays",
+            "recommendation": "Upgrade to version 1.1.18, 2.1.4, 3.0.6, 5.0.9 or later.",
+            "status": "OPEN",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
+            "package_name": "brace-expansion",
+            "installed_version": "5.0.7",
+            "fixed_version": "1.1.18, 2.1.4, 3.0.6, 5.0.9",
+            "cvss_score": 7.5,
+            "cwe": [
+                "CWE-400",
+                "CWE-770"
+            ],
+            "cve": "CVE-2026-69152",
+            "severity_source": "ghsa",
+            "target": "Node.js",
+            "target_class": "lang-pkgs",
+            "target_type": "node-pkg",
+            "description": "The brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.18, 2.1.4, 3.0.6, and 5.0.9, expand() does...",
+            "primary_url": "https://access.redhat.com/security/cve/CVE-2026-69152",
+            "references": [
+                "https://access.redhat.com/security/cve/CVE-2026-69152",
+                "https://github.com/juliangruber/brace-expansion",
+                "https://github.com/juliangruber/brace-expansion/commit/139d015104e71433ad52a41d19467c48ecbb2c7d",
+                "https://github.com/juliangruber/brace-expansion/commit/1e30c930238d7162802d88a94189182def178dac",
+                "https://github.com/juliangruber/brace-expansion/commit/688a99eeaab02627c2b89ba8ba4821fecfa659cf",
+                "https://github.com/juliangruber/brace-expansion/commit/cb4b9e47cc2ec777c14b2b4492fb431a56f6a031",
+                "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-rgw5-rvv9-x895",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-69152",
+                "https://www.cve.org/CVERecord?id=CVE-2026-69152"
+            ],
+            "compliance": [],
+            "exploit_available": true,
+            "fix_available": true,
+            "epss_score": null,
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3805,7 +3524,7 @@
             "message": "cross-spawn: regular expression denial of service",
             "recommendation": "Upgrade to version 7.0.5, 6.0.6 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "cross-spawn",
             "installed_version": "7.0.3",
             "fixed_version": "7.0.5, 6.0.6",
@@ -3833,20 +3552,11 @@
                 "https://security.snyk.io/vuln/SNYK-JS-CROSSSPAWN-8303230",
                 "https://www.cve.org/CVERecord?id=CVE-2024-21538"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-1333 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3858,7 +3568,7 @@
             "message": "jsdiff: denial of service vulnerability in parsePatch and applyPatch",
             "recommendation": "Upgrade to version 8.0.3, 5.2.2, 4.0.4, 3.5.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "diff",
             "installed_version": "5.2.0",
             "fixed_version": "8.0.3, 5.2.2, 4.0.4, 3.5.1",
@@ -3886,26 +3596,11 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-24001.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-24001"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                },
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-400 Database Match)",
-                "Layer 2 (CWE-1333 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3917,7 +3612,7 @@
             "message": "glob: glob: Command Injection Vulnerability via Malicious Filenames",
             "recommendation": "Upgrade to version 11.1.0, 10.5.0 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "glob",
             "installed_version": "10.4.2",
             "fixed_version": "11.1.0, 10.5.0",
@@ -3941,20 +3636,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2025-64756",
                 "https://www.cve.org/CVERecord?id=CVE-2025-64756"
             ],
-            "compliance": [
-                {
-                    "owasp": "A03:2021-Injection",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-78 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -3966,7 +3652,7 @@
             "message": "ip-address: ip-address: Inconsistent IP address parsing leads to Server-Side Request Forgery (SSRF) and trust-boundary bypass",
             "recommendation": "Upgrade to version 10.3.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "ip-address",
             "installed_version": "9.0.5",
             "fixed_version": "10.3.1",
@@ -3991,26 +3677,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-69192",
                 "https://www.cve.org/CVERecord?id=CVE-2026-69192"
             ],
-            "compliance": [
-                {
-                    "owasp": "A03:2021-Injection",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
-                },
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-20 Database Match)",
-                "Layer 2 (CWE-918 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4022,7 +3693,7 @@
             "message": "ip-address: ip-address: Cross-site scripting via improper HTML escaping of untrusted input",
             "recommendation": "Upgrade to version 10.1.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "ip-address",
             "installed_version": "9.0.5",
             "fixed_version": "10.1.1",
@@ -4109,20 +3780,11 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-42338.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-42338"
             ],
-            "compliance": [
-                {
-                    "owasp": "A03:2021-Injection",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-79 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4134,7 +3796,7 @@
             "message": "minimatch: minimatch: Denial of Service via specially crafted glob patterns",
             "recommendation": "Upgrade to version 10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "minimatch",
             "installed_version": "9.0.5",
             "fixed_version": "10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3",
@@ -4174,20 +3836,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-26996",
                 "https://www.cve.org/CVERecord?id=CVE-2026-26996"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-1333 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4199,7 +3852,7 @@
             "message": "minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns",
             "recommendation": "Upgrade to version 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "minimatch",
             "installed_version": "9.0.5",
             "fixed_version": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3",
@@ -4222,20 +3875,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-27903",
                 "https://www.cve.org/CVERecord?id=CVE-2026-27903"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-407 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4247,7 +3891,7 @@
             "message": "minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions",
             "recommendation": "Upgrade to version 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "minimatch",
             "installed_version": "9.0.5",
             "fixed_version": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4",
@@ -4287,20 +3931,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-27904",
                 "https://www.cve.org/CVERecord?id=CVE-2026-27904"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-1333 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4312,7 +3947,7 @@
             "message": "Mongoose: Prototype pollution in mongoose update casting via __proto__-prefixed dotted path (Schema._getSchema/path getter)",
             "recommendation": "Upgrade to version 6.13.10, 7.8.10, 8.24.1, 9.7.2 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "mongoose",
             "installed_version": "8.23.0",
             "fixed_version": "6.13.10, 7.8.10, 8.24.1, 9.7.2",
@@ -4335,20 +3970,11 @@
                 "https://github.com/Automattic/mongoose/releases/tag/9.7.2",
                 "https://github.com/Automattic/mongoose/security/advisories/GHSA-664h-wqgq-64gw"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (GHSA-664h-wqgq-64gw Advisory Override)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4360,7 +3986,7 @@
             "message": "Nodemailer: Message-level raw option bypasses disableFileAccess/disableUrlAccess, enabling arbitrary file read and full-response SSRF in the delivered message",
             "recommendation": "Upgrade to version 9.0.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "nodemailer",
             "installed_version": "8.0.11",
             "fixed_version": "9.0.1",
@@ -4377,20 +4003,11 @@
                 "https://github.com/nodemailer/nodemailer",
                 "https://github.com/nodemailer/nodemailer/security/advisories/GHSA-p6gq-j5cr-w38f"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (GHSA-p6gq-j5cr-w38f Advisory Override)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4402,7 +4019,7 @@
             "message": "sigstore: Sigstore: Unauthorized certificates accepted due to ignored `certificateOIDs` verification option",
             "recommendation": "Upgrade to version 4.1.1 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "sigstore",
             "installed_version": "2.3.1",
             "fixed_version": "4.1.1",
@@ -4428,20 +4045,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-48815",
                 "https://www.cve.org/CVERecord?id=CVE-2026-48815"
             ],
-            "compliance": [
-                {
-                    "owasp": "A02:2021-Cryptographic Failures",
-                    "cis": "CIS Controls v8 3.11 - Encrypt Sensitive Data",
-                    "nist": "IA-5 Authenticator Management"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-347 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4453,7 +4061,7 @@
             "message": "tar: node-tar: Denial of Service via crafted gzip bomb",
             "recommendation": "Upgrade to version 7.5.19 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.19",
@@ -4491,20 +4099,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59873",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59873"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-770 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4516,7 +4115,7 @@
             "message": "node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
             "recommendation": "Upgrade to version 7.5.3 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.3",
@@ -4568,20 +4167,11 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-23745.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-23745"
             ],
-            "compliance": [
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-22 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4593,7 +4183,7 @@
             "message": "node-tar: tar: node-tar: Arbitrary file overwrite via Unicode path collision race condition",
             "recommendation": "Upgrade to version 7.5.4 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.4",
@@ -4643,32 +4233,11 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-23950.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-23950"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                },
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                },
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-176 Database Match)",
-                "Layer 2 (CWE-352 Database Match)",
-                "Layer 2 (CWE-367 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4680,7 +4249,7 @@
             "message": "node-tar: tar: node-tar: Arbitrary file creation via path traversal bypass in hardlink security check",
             "recommendation": "Upgrade to version 7.5.7 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.7",
@@ -4730,26 +4299,11 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-24842.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-24842"
             ],
-            "compliance": [
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                },
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-22 Database Match)",
-                "Layer 2 (CWE-59 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4761,7 +4315,7 @@
             "message": "node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation",
             "recommendation": "Upgrade to version 7.5.8 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.8",
@@ -4785,20 +4339,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-26960",
                 "https://www.cve.org/CVERecord?id=CVE-2026-26960"
             ],
-            "compliance": [
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-22 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4810,7 +4355,7 @@
             "message": "node-tar: hardlink path traversal via drive-relative linkpath",
             "recommendation": "Upgrade to version 7.5.10 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.10",
@@ -4836,26 +4381,11 @@
                 "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-29786.json",
                 "https://www.cve.org/CVERecord?id=CVE-2026-29786"
             ],
-            "compliance": [
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                },
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-22 Database Match)",
-                "Layer 2 (CWE-59 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4867,7 +4397,7 @@
             "message": "tar: tar: File overwrite via drive-relative symlink traversal",
             "recommendation": "Upgrade to version 7.5.11 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.11",
@@ -4890,20 +4420,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-31802",
                 "https://www.cve.org/CVERecord?id=CVE-2026-31802"
             ],
-            "compliance": [
-                {
-                    "owasp": "A01:2021-Broken Access Control",
-                    "cis": "CIS Controls v8 5.2 - Access Control Management",
-                    "nist": "AC-3 Access Enforcement"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-22 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4915,7 +4436,7 @@
             "message": "tar: Node-tar: Denial of Service via malformed tar archive header",
             "recommendation": "Upgrade to version 7.5.18 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.18",
@@ -4953,20 +4474,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59874",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59874"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": true,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-835 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -4978,7 +4490,7 @@
             "message": "node-tar: node-tar: File smuggling due to inconsistent tar archive parsing",
             "recommendation": "Upgrade to version 7.5.16 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.16",
@@ -5000,20 +4512,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-53655",
                 "https://www.cve.org/CVERecord?id=CVE-2026-53655"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-436 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -5025,7 +4528,7 @@
             "message": "node-tar: node-tar: Denial of Service due to incorrect PAX path handling",
             "recommendation": "Upgrade to version 7.5.18 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.18",
@@ -5049,20 +4552,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59871",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59871"
             ],
-            "compliance": [
-                {
-                    "owasp": "A04:2021-Insecure Design",
-                    "cis": "CIS Controls v8 13.1 - Network Architecture",
-                    "nist": "SC-5 Denial of Service Protection"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-704 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -5074,7 +4568,7 @@
             "message": "node-tar: node-tar: Denial of Service via crafted archive with NUL bytes in metadata",
             "recommendation": "Upgrade to version 7.5.17 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.17",
@@ -5098,20 +4592,11 @@
                 "https://nvd.nist.gov/vuln/detail/CVE-2026-59875",
                 "https://www.cve.org/CVERecord?id=CVE-2026-59875"
             ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Controls v8 4.1 - Secure Configuration",
-                    "nist": "CM-6 Configuration Settings"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 2 (CWE-248 Database Match)"
-            ]
+            "kev": false
         },
         {
             "tool": "Trivy",
@@ -5123,7 +4608,7 @@
             "message": "node-tar: Uncontrolled recursion in mapHas/filesFilter allows uncatchable stack-overflow DoS via crafted long-path tar with member selection",
             "recommendation": "Upgrade to version 7.5.21 or later.",
             "status": "OPEN",
-            "scan_time": "2026-08-09T08:00:40.933501321Z",
+            "scan_time": "2026-08-09T06:59:03.06323117Z",
             "package_name": "tar",
             "installed_version": "6.2.1",
             "fixed_version": "7.5.21",
@@ -5142,122 +4627,11 @@
                 "https://github.com/isaacs/node-tar/releases/tag/v7.5.21",
                 "https://github.com/isaacs/node-tar/security/advisories/GHSA-r292-9mhp-454m"
             ],
-            "compliance": [
-                {
-                    "owasp": "A06:2021-Vulnerable and Outdated Components",
-                    "cis": "CIS Controls v8 7.1 - Vulnerability Management",
-                    "nist": "SI-2 Flaw Remediation"
-                }
-            ],
+            "compliance": [],
             "exploit_available": false,
             "fix_available": true,
             "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (GHSA-r292-9mhp-454m Advisory Override)"
-            ]
-        },
-        {
-            "tool": "Hadolint",
-            "category": "Container Security",
-            "rule_id": "DL3059",
-            "severity": "INFO",
-            "file": "/workspace/app/client/Dockerfile",
-            "line": 60,
-            "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
-            "recommendation": "Include a standardized image creation timestamp.",
-            "status": "OPEN",
-            "scan_time": "2026-08-09T08:02:10.816697",
-            "package_name": null,
-            "installed_version": null,
-            "fixed_version": null,
-            "cvss_score": null,
-            "cwe": [
-                "CWE-20"
-            ],
-            "cve": null,
-            "severity_source": "Hadolint",
-            "target": "/workspace/app/client/Dockerfile",
-            "target_class": "Dockerfile",
-            "target_type": "Container",
-            "description": "Multiple consecutive RUN instructions increase the number of image layers and can make Dockerfiles harder to maintain.",
-            "primary_url": "https://github.com/hadolint/hadolint/wiki/DL3059",
-            "references": [
-                "https://github.com/hadolint/hadolint/wiki/DL3059"
-            ],
-            "compliance": [
-                {
-                    "owasp": "A05:2021-Security Misconfiguration",
-                    "cis": "CIS Docker Benchmark 4.6 - Healthcheck Instruction",
-                    "nist": "CM-6 Configuration Settings"
-                },
-                {
-                    "owasp": "A03:2021-Injection",
-                    "cis": "CIS Controls v8 16.1 - Application Software Security",
-                    "nist": "SI-10 Information Input Validation"
-                }
-            ],
-            "exploit_available": false,
-            "fix_available": false,
-            "epss_score": null,
-            "kev": false,
-            "compliance_layers": [
-                "Layer 1 (DL3059 Rule Override)",
-                "Layer 2 (CWE-20 Database Match)"
-            ]
+            "kev": false
         }
-    ],
-    "compliance_summary": {
-        "owasp_top_10_2021": {
-            "total_controls_baseline": 10,
-            "controls_tested": 9,
-            "controls_passed": 3,
-            "controls_failed": 7,
-            "compliance_percentage": 30.0,
-            "failed_controls_breakdown": {
-                "A02:2021-Cryptographic Failures": 14,
-                "A05:2021-Security Misconfiguration": 12,
-                "A06:2021-Vulnerable and Outdated Components": 21,
-                "A08:2021-Software and Data Integrity Failures": 4,
-                "A04:2021-Insecure Design": 14,
-                "A03:2021-Injection": 4,
-                "A01:2021-Broken Access Control": 7
-            }
-        },
-        "cis_benchmarks": {
-            "total_controls_baseline": 15,
-            "controls_tested": 11,
-            "controls_passed": 6,
-            "controls_failed": 9,
-            "compliance_percentage": 40.0,
-            "failed_controls_breakdown": {
-                "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest": 1,
-                "CIS Controls v8 3.11 - Encrypt Sensitive Data": 12,
-                "CIS Controls v8 4.1 - Secure Configuration": 11,
-                "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-                "CIS Controls v8 7.1 - Vulnerability Management": 21,
-                "CIS Controls v8 16.1 - Application Software Security": 8,
-                "CIS Controls v8 13.1 - Network Architecture": 14,
-                "CIS Controls v8 5.2 - Access Control Management": 7,
-                "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
-            }
-        },
-        "nist_sp_800_53": {
-            "total_controls_baseline": 20,
-            "controls_tested": 10,
-            "controls_passed": 12,
-            "controls_failed": 8,
-            "compliance_percentage": 60.0,
-            "failed_controls_breakdown": {
-                "IA-5 Authenticator Management": 14,
-                "CM-6 Configuration Settings": 12,
-                "SI-2 Flaw Remediation": 21,
-                "SI-7 Software, Firmware, and Information Integrity, IR-4 Incident Handling": 2,
-                "SI-7 Software, Firmware, and Information Integrity": 2,
-                "SC-5 Denial of Service Protection": 14,
-                "SI-10 Information Input Validation": 4,
-                "AC-3 Access Enforcement": 7
-            }
-        }
-    }
+    ]
 }
