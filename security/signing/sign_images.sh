@@ -15,10 +15,15 @@ SIGNING_OUTPUT_DIR="$PROJECT_ROOT/compliance/reports/signing"
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 COSIGN_IMAGE="${COSIGN_IMAGE:-ghcr.io/sigstore/cosign/cosign:v2.2.4}"
-COSIGN_PASSWORD="${COSIGN_PASSWORD:-devsecops123}"
+COSIGN_PASSWORD="${COSIGN_PASSWORD:-}"
 
-BACKEND_IMAGE="${BACKEND_IMAGE:-hopegivers-backend:latest}"
-FRONTEND_IMAGE="${FRONTEND_IMAGE:-hopegivers-frontend:latest}"
+if [ -z "$COSIGN_PASSWORD" ]; then
+    echo "[ERROR] COSIGN_PASSWORD environment variable is not set."
+    exit 1
+fi
+
+BACKEND_IMAGE="${BACKEND_IMAGE:-sentinelops-backend:latest}"
+FRONTEND_IMAGE="${FRONTEND_IMAGE:-sentinelops-frontend:latest}"
 
 mkdir -p "$SIGNING_OUTPUT_DIR"
 

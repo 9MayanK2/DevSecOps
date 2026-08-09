@@ -40,10 +40,10 @@
         </div>
 
         <div class="cards">
-            <div class="card"><div>Total Findings</div><div class="val">52</div></div>
-            <div class="card"><div>Total Risk Score</div><div class="val">171 Pts</div></div>
-            <div class="card"><div>Framework Compliance</div><div class="val" style="color:#38bdf8;">50.6%</div></div>
-            <div class="card"><div>Critical / High</div><div class="val" style="color:#ef4444;">3 / 20</div></div>
+            <div class="card"><div>Total Findings</div><div class="val">67</div></div>
+            <div class="card"><div>Total Risk Score</div><div class="val">194 Pts</div></div>
+            <div class="card"><div>Framework Compliance</div><div class="val" style="color:#38bdf8;">32.2%</div></div>
+            <div class="card"><div>Critical / High</div><div class="val" style="color:#ef4444;">3 / 21</div></div>
         </div>
 
         <div class="system-info">
@@ -55,25 +55,25 @@
             <div class="fw-item">
                 <div class="fw-header">
                     <span>OWASP TOP 10 2021</span>
-                    <span>40.0% (4/10 Controls Passed)</span>
+                    <span>30.0% (3/10 Controls Passed)</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 40.0%;"></div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 30.0%;"></div></div>
             </div>
             
             <div class="fw-item">
                 <div class="fw-header">
                     <span>CIS BENCHMARKS</span>
-                    <span>46.7% (7/15 Controls Passed)</span>
+                    <span>26.7% (4/15 Controls Passed)</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 46.7%;"></div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 26.7%;"></div></div>
             </div>
             
             <div class="fw-item">
                 <div class="fw-header">
                     <span>NIST SP 800 53</span>
-                    <span>65.0% (13/20 Controls Passed)</span>
+                    <span>40.0% (8/20 Controls Passed)</span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" style="width: 65.0%;"></div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 40.0%;"></div></div>
             </div>
             
 
@@ -89,8 +89,8 @@
                 <td><strong>Gitleaks</strong></td>
                 <td><code>private-key</code></td>
                 <td><code>security/config/keys/cosign.key:1</code></td>
-                <td>Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: ---...---)</td>
-                <td><small>Layer 1/2 (CWE-798 Rule Match)</small></td>
+                <td>Identified a Private Key, which may compromise cryptographic security and sensitive data encryption. (Match: RED...TED)</td>
+                <td><small>Layer 1 (private-key Rule-ID Match), Layer 2 (CWE-312 Open Standard DB Match), Layer 1/2 (CWE-798 Direct Match)</small></td>
             </tr>
             
             <tr>
@@ -98,8 +98,8 @@
                 <td><strong>Gitleaks</strong></td>
                 <td><code>aws-access-token</code></td>
                 <td><code>testing/gitleaks/test_secrets.txt:1</code></td>
-                <td>Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: AKI...PLA)</td>
-                <td><small>Layer 1 (Rule-ID Direct Match), Layer 1/2 (CWE-798 Rule Match)</small></td>
+                <td>Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms. (Match: RED...TED)</td>
+                <td><small>Layer 1 (aws-access-token Rule-ID Match), Layer 1/2 (CWE-798 Direct Match)</small></td>
             </tr>
             
             <tr>
@@ -117,7 +117,7 @@
                 <td><code>CVE-2026-34182</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: CMS AuthEnvelopedData Processing May Accept Forged Messages</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-354 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -126,7 +126,7 @@
                 <td><code>CVE-2026-34183</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: Unbounded Memory Growth in the QUIC PATH_CHALLENGE Handler</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-1325 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -144,7 +144,7 @@
                 <td><code>CVE-2026-45445</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: AES-OCB IV Ignored on EVP_Cipher() Path</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-325 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -162,7 +162,7 @@
                 <td><code>CVE-2026-34181</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: PKCS#12 Files with PBMAC1 Are Accepted with Short HMAC Keys</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-354 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -189,7 +189,7 @@
                 <td><code>CVE-2026-42768</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: Multi-RecipientInfo Bleichenbacher Oracle in CMS_decrypt() and PKCS7_decrypt()</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-514 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -207,7 +207,7 @@
                 <td><code>CVE-2026-42770</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: FFC-DH Peer Validation Uses Attacker-Supplied q</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-325 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -216,7 +216,142 @@
                 <td><code>CVE-2026-45446</code></td>
                 <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
                 <td>openssl: Incorrect Tag Processing for Empty Messages in AES-GCM-SIV and AES-SIV modes</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-325 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-7383</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: OpenSSL: Heap buffer overflow due to signed integer overflow in Unicode output sizing</td>
+                <td><small>Layer 2 (CWE-787 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-9076</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: OpenSSL: Denial of Service due to heap out-of-bounds read in CMS password-based decryption</td>
+                <td><small>Layer 2 (CWE-125 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-high">HIGH</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-45447</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: Heap Use-After-Free in OpenSSL PKCS7_verify()</td>
+                <td><small>Layer 2 (CWE-416 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-34182</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: CMS AuthEnvelopedData Processing May Accept Forged Messages</td>
+                <td><small>Layer 2 (CWE-354 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-34183</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: Unbounded Memory Growth in the QUIC PATH_CHALLENGE Handler</td>
+                <td><small>Layer 2 (CWE-1325 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42764</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: NULL pointer dereference in QUIC server initial packet handling</td>
+                <td><small>Layer 2 (CWE-476 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-medium">MEDIUM</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-45445</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: AES-OCB IV Ignored on EVP_Cipher() Path</td>
+                <td><small>Layer 2 (CWE-325 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-34180</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: OpenSSL: Heap buffer over-read in ASN.1 decoding can lead to denial of service or information disclosure.</td>
+                <td><small>Layer 2 (CWE-125 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-34181</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: PKCS#12 Files with PBMAC1 Are Accepted with Short HMAC Keys</td>
+                <td><small>Layer 2 (CWE-354 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42766</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: Possible NULL Dereference in Password-Based CMS Decryption</td>
+                <td><small>Layer 2 (CWE-476 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42767</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: NULL Pointer Dereference in CRMF EncryptedValue Decryption</td>
+                <td><small>Layer 2 (CWE-476 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42768</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: Multi-RecipientInfo Bleichenbacher Oracle in CMS_decrypt() and PKCS7_decrypt()</td>
+                <td><small>Layer 2 (CWE-514 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42769</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: Trust-Anchor Substitution via cert/issuer Typo in CMP rootCaKeyUpdate</td>
+                <td><small>Layer 2 (CWE-295 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-42770</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: FFC-DH Peer Validation Uses Attacker-Supplied q</td>
+                <td><small>Layer 2 (CWE-325 Open Standard DB Match)</small></td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-low">LOW</span></td>
+                <td><strong>Trivy</strong></td>
+                <td><code>CVE-2026-45446</code></td>
+                <td><code>hopegivers-backend:latest (alpine 3.23.4)</code></td>
+                <td>openssl: Incorrect Tag Processing for Empty Messages in AES-GCM-SIV and AES-SIV modes</td>
+                <td><small>Layer 2 (CWE-325 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -243,7 +378,7 @@
                 <td><code>CVE-2026-48758</code></td>
                 <td><code>Node.js</code></td>
                 <td>sigstore-core: @sigstore/core: Signature bypass due to incorrect encoding in preAuthEncoding</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-347 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -252,7 +387,7 @@
                 <td><code>GHSA-j4mr-9xw3-c9jx</code></td>
                 <td><code>Node.js</code></td>
                 <td>Out-of-bounds Read in base64-url</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (GHSA-j4mr-9xw3-c9jx Advisory Signature Match)</small></td>
             </tr>
             
             <tr>
@@ -261,7 +396,7 @@
                 <td><code>NSWG-ECO-434</code></td>
                 <td><code>Node.js</code></td>
                 <td>Out-of-bounds Read</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (NSWG-ECO-434 Advisory Signature Match)</small></td>
             </tr>
             
             <tr>
@@ -315,7 +450,7 @@
                 <td><code>CVE-2024-21538</code></td>
                 <td><code>Node.js</code></td>
                 <td>cross-spawn: regular expression denial of service</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-1333 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -351,7 +486,7 @@
                 <td><code>CVE-2026-26996</code></td>
                 <td><code>Node.js</code></td>
                 <td>minimatch: minimatch: Denial of Service via specially crafted glob patterns</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-1333 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -360,7 +495,7 @@
                 <td><code>CVE-2026-27903</code></td>
                 <td><code>Node.js</code></td>
                 <td>minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-407 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -369,7 +504,7 @@
                 <td><code>CVE-2026-27904</code></td>
                 <td><code>Node.js</code></td>
                 <td>minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-1333 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -378,7 +513,7 @@
                 <td><code>GHSA-664h-wqgq-64gw</code></td>
                 <td><code>Node.js</code></td>
                 <td>Mongoose: Prototype pollution in mongoose update casting via __proto__-prefixed dotted path (Schema._getSchema/path getter)</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (GHSA-664h-wqgq-64gw Advisory Signature Match)</small></td>
             </tr>
             
             <tr>
@@ -387,7 +522,7 @@
                 <td><code>GHSA-p6gq-j5cr-w38f</code></td>
                 <td><code>Node.js</code></td>
                 <td>Nodemailer: Message-level raw option bypasses disableFileAccess/disableUrlAccess, enabling arbitrary file read and full-response SSRF in the delivered message</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (GHSA-p6gq-j5cr-w38f Advisory Signature Match)</small></td>
             </tr>
             
             <tr>
@@ -396,7 +531,7 @@
                 <td><code>CVE-2026-48815</code></td>
                 <td><code>Node.js</code></td>
                 <td>sigstore: Sigstore: Unauthorized certificates accepted due to ignored `certificateOIDs` verification option</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-347 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -405,7 +540,7 @@
                 <td><code>CVE-2026-59873</code></td>
                 <td><code>Node.js</code></td>
                 <td>tar: node-tar: Denial of Service via crafted gzip bomb</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-770 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -468,7 +603,7 @@
                 <td><code>CVE-2026-59874</code></td>
                 <td><code>Node.js</code></td>
                 <td>tar: Node-tar: Denial of Service via malformed tar archive header</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-835 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -477,7 +612,7 @@
                 <td><code>CVE-2026-53655</code></td>
                 <td><code>Node.js</code></td>
                 <td>node-tar: node-tar: File smuggling due to inconsistent tar archive parsing</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-436 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -486,7 +621,7 @@
                 <td><code>CVE-2026-59871</code></td>
                 <td><code>Node.js</code></td>
                 <td>node-tar: node-tar: Denial of Service due to incorrect PAX path handling</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-704 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -495,7 +630,7 @@
                 <td><code>CVE-2026-59875</code></td>
                 <td><code>Node.js</code></td>
                 <td>node-tar: node-tar: Denial of Service via crafted archive with NUL bytes in metadata</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 2 (CWE-248 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -504,7 +639,7 @@
                 <td><code>GHSA-r292-9mhp-454m</code></td>
                 <td><code>Node.js</code></td>
                 <td>node-tar: Uncontrolled recursion in mapHas/filesFilter allows uncatchable stack-overflow DoS via crafted long-path tar with member selection</td>
-                <td><small>Layer 4 (Container Security Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (GHSA-r292-9mhp-454m Advisory Signature Match)</small></td>
             </tr>
             
             <tr>
@@ -513,7 +648,7 @@
                 <td><code>ZAP-10038</code></td>
                 <td><code>Content Security Policy (CSP) Header Not Set</code></td>
                 <td>Content Security Policy (CSP) Header Not Set - <p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attack</td>
-                <td><small>Layer 4 (DAST Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (ZAP-10038 Rule-ID Match), Layer 2 (CWE-693 Open Standard DB Match)</small></td>
             </tr>
             
             <tr>
@@ -522,7 +657,7 @@
                 <td><code>ZAP-10020</code></td>
                 <td><code>Missing Anti-clickjacking Header</code></td>
                 <td>Missing Anti-clickjacking Header - <p>The response does not protect against 'ClickJacking' attacks. It should include either Content-Security-Policy with '</td>
-                <td><small>Layer 4 (DAST Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (ZAP-10020 Rule-ID Match)</small></td>
             </tr>
             
             <tr>
@@ -531,7 +666,7 @@
                 <td><code>ZAP-10021</code></td>
                 <td><code>X-Content-Type-Options Header Missing</code></td>
                 <td>X-Content-Type-Options Header Missing - <p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet</td>
-                <td><small>Layer 4 (DAST Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (ZAP-10021 Rule-ID Match)</small></td>
             </tr>
             
             <tr>
@@ -540,7 +675,7 @@
                 <td><code>ZAP-10109</code></td>
                 <td><code>Modern Web Application</code></td>
                 <td>Modern Web Application - <p>The application appears to be a modern web application. If you need to explore it automatically then the Ajax Spider </td>
-                <td><small>Layer 4 (DAST Heuristic Fallback)</small></td>
+                <td><small>Layer 1 (ZAP-10109 Rule-ID Match)</small></td>
             </tr>
             
             <tr>
@@ -549,7 +684,7 @@
                 <td><code>DL3059</code></td>
                 <td><code>/workspace/app/client/Dockerfile:60</code></td>
                 <td>Multiple consecutive `RUN` instructions. Consider consolidation.</td>
-                <td><small>Layer 1 (Rule-ID Direct Match)</small></td>
+                <td><small>Layer 1 (DL3059 Rule-ID Match)</small></td>
             </tr>
             
             </tbody>

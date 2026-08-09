@@ -13,8 +13,8 @@ KEYS_DIR="$PROJECT_ROOT/security/config/keys"
 PUB_KEY_FILE="$KEYS_DIR/cosign.pub"
 COSIGN_IMAGE="${COSIGN_IMAGE:-ghcr.io/sigstore/cosign/cosign:v2.2.4}"
 
-BACKEND_IMAGE="${BACKEND_IMAGE:-hopegivers-backend:latest}"
-FRONTEND_IMAGE="${FRONTEND_IMAGE:-hopegivers-frontend:latest}"
+BACKEND_IMAGE="${BACKEND_IMAGE:-sentinelops-backend:latest}"
+FRONTEND_IMAGE="${FRONTEND_IMAGE:-sentinelops-frontend:latest}"
 
 echo "=================================================="
 echo "       DIGITAL IMAGE SIGNATURE VERIFICATION"

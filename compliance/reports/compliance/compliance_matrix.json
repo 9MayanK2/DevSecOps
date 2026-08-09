@@ -1,52 +1,61 @@
 {
     "title": "DevSecOps Enterprise Universal Compliance Matrix",
-    "generated_at": "2026-08-08T19:24:10.609505",
-    "overall_compliance_score": 50.6,
-    "total_findings": 52,
+    "generated_at": "2026-08-08T20:20:01.492233",
+    "overall_compliance_score": 32.2,
+    "total_findings": 67,
     "framework_summaries": {
         "owasp_top_10_2021": {
             "total_controls_baseline": 10,
-            "controls_passed": 4,
-            "controls_failed": 6,
-            "compliance_percentage": 40.0,
+            "controls_passed": 3,
+            "controls_failed": 7,
+            "compliance_percentage": 30.0,
             "failed_controls_breakdown": {
-                "A02:2021-Cryptographic Failures": 4,
-                "A06:2021-Vulnerable and Outdated Components": 27,
-                "A05:2021-Security Misconfiguration": 4,
-                "A04:2021-Insecure Design": 6,
-                "A03:2021-Injection": 6,
-                "A01:2021-Broken Access Control": 6
+                "A02:2021-Cryptographic Failures": 13,
+                "A06:2021-Vulnerable and Outdated Components": 19,
+                "A08:2021-Software and Data Integrity Failures": 6,
+                "A03:2021-Injection": 5,
+                "A04:2021-Insecure Design": 14,
+                "A01:2021-Broken Access Control": 7,
+                "A05:2021-Security Misconfiguration": 7
             }
         },
         "cis_benchmarks": {
             "total_controls_baseline": 15,
-            "controls_passed": 7,
-            "controls_failed": 8,
-            "compliance_percentage": 46.7,
+            "controls_passed": 4,
+            "controls_failed": 11,
+            "compliance_percentage": 26.7,
             "failed_controls_breakdown": {
+                "CIS Controls v8 3.11 - Encrypt Sensitive Data at Rest": 2,
                 "CIS Controls v8 3.12 - Rekey or Revoke Credentials": 2,
                 "CIS Controls v8 3.12 - Protect Sensitive Cloud Credentials": 1,
-                "CIS Controls v8 7.1 - Vulnerability Management": 7,
-                "CIS Docker Benchmark 4.0 - Container Hardening": 23,
-                "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit": 1,
-                "CIS Controls v8 13.1 - Network Architecture": 6,
-                "CIS Controls v8 16.1 - Application Software Security": 12,
+                "CIS Controls v8 7.1 - Vulnerability Management": 19,
+                "CIS Controls v8 16.1 - Application Software Security": 20,
+                "CIS Controls v8 3.11 - Encrypt Sensitive Data": 6,
+                "CIS Controls v8 13.1 - Network Architecture": 14,
+                "CIS Controls v8 3.10 - Encrypt Sensitive Data in Transit": 2,
+                "CIS Controls v8 4.1 - Secure Configuration": 3,
+                "CIS Controls v8 3.1 - Data Classification": 1,
                 "CIS Docker Benchmark 4.6 - Healthcheck Instruction": 1
             }
         },
         "nist_sp_800_53": {
             "total_controls_baseline": 20,
-            "controls_passed": 13,
-            "controls_failed": 7,
-            "compliance_percentage": 65.0,
+            "controls_passed": 8,
+            "controls_failed": 12,
+            "compliance_percentage": 40.0,
             "failed_controls_breakdown": {
-                "IA-5 Authenticator Management": 3,
-                "SI-2 Flaw Remediation": 30,
-                "SC-8 Transmission Confidentiality and Integrity": 1,
-                "SC-5 Denial of Service Protection": 6,
+                "IA-5 Authenticator Management": 4,
+                "SC-28 Protection of Information at Rest": 2,
+                "SI-2 Flaw Remediation": 19,
+                "SI-7 Software, Firmware, and Information Integrity": 6,
                 "SI-10 Information Input Validation": 6,
+                "SC-13 Cryptographic Protection": 6,
+                "SC-7 Boundary Protection": 3,
+                "SC-8 Transmission Confidentiality and Integrity": 2,
+                "SC-5 Denial of Service Protection": 12,
                 "AC-3 Access Enforcement": 6,
-                "CM-6 Configuration Settings": 1
+                "SI-11 Error Handling": 1,
+                "CM-6 Configuration Settings": 4
             }
         }
     }

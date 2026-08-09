@@ -49,7 +49,8 @@ then
     log_error "Backend image not found."
     echo
     echo "Build it using:"
-    echo "docker build -t hopegivers-backend:latest ./app/server"
+    echo "docker build -t sentinelops-backend:latest ./app/server"
+    echo "or run docker compose build"
     echo
     exit 1
 fi
@@ -65,7 +66,8 @@ then
     log_error "Frontend image not found."
     echo
     echo "Build it using:"
-    echo "docker build -t hopegivers-frontend:latest ./app/client"
+    echo "docker build -t sentinelops-frontend:latest ./app/client"
+    echo "or run docker compose build"
     echo
     exit 1
 fi

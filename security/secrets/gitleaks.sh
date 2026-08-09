@@ -83,7 +83,8 @@ docker run --rm \
   --source="/workspace" \
   --report-format=json \
   --report-path="$REPORT_CONTAINER" \
-  --exit-code=0 || SCAN_EXIT=$?
+  --redact \
+  --exit-code=1 || SCAN_EXIT=$?
 
 
 log_success "Gitleaks scan completed."

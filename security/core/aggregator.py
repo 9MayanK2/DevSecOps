@@ -45,10 +45,16 @@ class Aggregator:
                 json_files = list(subdir.glob("*_normalized.json"))
                 grouped: Dict[str, Path] = {}
                 for fpath in json_files:
-                    parts = fpath.name.split("_")
-                    prefix = "_".join(parts[:-2]) if len(parts) >= 3 else fpath.stem
-                    mtime = fpath.stat().st_mtime
+                    # Strip _<date>_<time>_normalized.json or _normalized.json to get true target prefix
+                    name_stem = fpath.name.rsplit("_normalized.json", 1)[0]
+                    parts = name_stem.split("_")
+                    # If ends with timestamp like YYYYMMDD_HHMMSS (2 numeric tokens), strip them
+                    if len(parts) >= 3 and parts[-1].isdigit() and parts[-2].isdigit():
+                        prefix = "_".join(parts[:-2])
+                    else:
+                        prefix = name_stem
 
+                    mtime = fpath.stat().st_mtime
                     if prefix not in grouped or mtime > grouped[prefix].stat().st_mtime:
                         grouped[prefix] = fpath
 
@@ -76,10 +82,11 @@ class Aggregator:
                 for finding in data.get("findings", []):
                     tool = finding.get("tool", tool_name)
                     rule_id = finding.get("rule_id", "")
-                    file_path = finding.get("file", "")
-                    line = finding.get("line", "")
-
-                    key = f"{tool}:{rule_id}:{file_path}:{line}"
+                    cve = finding.get("cve") or ""
+                    package_name = finding.get("package_name") or ""
+                    file_path = finding.get("file") or ""
+                    line = finding.get("line") or ""
+                    key = f"{tool}:{rule_id}:{cve}:{package_name}:{file_path}:{line}"
                     if key in seen_keys:
                         continue
                     seen_keys.add(key)

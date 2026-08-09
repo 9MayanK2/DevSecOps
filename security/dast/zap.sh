@@ -37,12 +37,12 @@ fi
 DOCKER_NET=""
 if docker network inspect devsecops_devsecops-network &>/dev/null; then
     DOCKER_NET="devsecops_devsecops-network"
-elif docker network inspect hopegivers-network &>/dev/null; then
-    DOCKER_NET="hopegivers-network"
+elif docker network inspect sentinelops-network &>/dev/null; then
+    DOCKER_NET="sentinelops-network"
 fi
 
 if [ -n "$DOCKER_NET" ]; then
-    TARGET_URL="${ZAP_TARGET_URL:-http://hopegivers-frontend:8080}"
+    TARGET_URL="${ZAP_TARGET_URL:-http://sentinelops-frontend:8080}"
     NET_FLAG="--network=$DOCKER_NET"
     echo "[INFO] Detected container network: $DOCKER_NET"
 else
