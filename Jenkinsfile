@@ -286,41 +286,12 @@ EOF
         }
 
         /********************************************************************
-         * STAGE 17 : VERIFY AMAZON RDS CONNECTIVITY & INGESTION
+         * STAGE 17 & 18 : VERIFY AMAZON RDS CONNECTIVITY & INGESTION
          ********************************************************************/
-        stage('Stage 17 : Verify RDS Database Persistence') {
+        stage('Stage 17 & 18 : Verify RDS Database Persistence') {
             steps {
-                echo '========== STAGE 17 : VERIFYING RDS MYSQL CONNECTION & INGESTED SCAN RECORDS =========='
-                sh '''
-                PYTHONPATH=. python3 -c '
-from security.db.database import DatabaseManager
-db = DatabaseManager()
-scans = db.get_recent_scans(1)
-if not scans:
-    raise RuntimeError("No scan records found in database!")
-print(
-    f"[SUCCESS] Connected to {db.db_type.upper()} "
-    f"({'RDS' if db.db_type != 'sqlite' else db.db_path}). "
-    f"Latest scan persisted: {scans[0]}"
-)
-                '''
-            }
-        }
-
-        /********************************************************************
-         * STAGE 18 : VERIFY DATABASE RECORDS
-         ********************************************************************/
-        stage('Stage 18 : Verify Database Records') {
-            steps {
-                echo '========== STAGE 18 : VERIFYING DATABASE INGESTION =========='
-                sh '''
-                PYTHONPATH=. python3 -c '
-from security.db.database import DatabaseManager
-db = DatabaseManager()
-scans = db.get_recent_scans(1)
-print("[SUCCESS] Verified DB Record:", scans)
-'
-                '''
+                echo '========== STAGE 17 & 18 : VERIFYING RDS MYSQL CONNECTION & INGESTED SCAN RECORDS =========='
+                sh 'PYTHONPATH=. python3 security/scripts/verify_db.py'
             }
         }
 
