@@ -3,6 +3,7 @@ database.py
 
 Cloud-Ready Database Persistence Layer for DevSecOps Framework.
 Supports Local SQLite, AWS EC2 / RDS PostgreSQL, and AWS RDS MySQL.
+Normalizes risk summaries and control-level compliance results into dedicated tables.
 """
 
 from __future__ import annotations
@@ -92,7 +93,7 @@ class DatabaseManager:
 
     def init_db(self) -> None:
         """
-        Creates projects, scans, and findings tables if missing.
+        Creates projects, scans, risk_summary, findings, and compliance_results tables if missing.
         """
         id_auto = "INTEGER PRIMARY KEY AUTOINCREMENT" if self.db_type == "sqlite" else "INT AUTO_INCREMENT PRIMARY KEY"
         txt_type = "TEXT" if self.db_type == "sqlite" else "LONGTEXT"
@@ -142,7 +143,23 @@ class DatabaseManager:
                 );
             """))
 
-            # 3. Findings Table
+            # 3. Risk Summary Table
+            cursor.execute(self._ph("""
+                CREATE TABLE IF NOT EXISTS risk_summary (
+                    scan_id VARCHAR(64) PRIMARY KEY,
+                    project_id VARCHAR(64),
+                    critical_score INT DEFAULT 0,
+                    high_score INT DEFAULT 0,
+                    medium_score INT DEFAULT 0,
+                    low_score INT DEFAULT 0,
+                    info_score INT DEFAULT 0,
+                    overall_score INT DEFAULT 0,
+                    risk_level VARCHAR(32) DEFAULT 'UNKNOWN',
+                    created_at VARCHAR(64)
+                );
+            """))
+
+            # 4. Findings Table
             cursor.execute(self._ph(f"""
                 CREATE TABLE IF NOT EXISTS findings (
                     id {id_auto},
@@ -176,6 +193,81 @@ class DatabaseManager:
                     fix_available INT DEFAULT 0,
                     epss_score FLOAT,
                     kev INT DEFAULT 0,
+                    created_at VARCHAR(64)
+                );
+            """))
+
+            # 5. Compliance Results Table (Normalized 1-row-per-control table)
+            cursor.execute(self._ph(f"""
+                CREATE TABLE IF NOT EXISTS compliance_results (
+                    id {id_auto},
+                    scan_id VARCHAR(64) NOT NULL,
+                    project_id VARCHAR(64),
+                    finding_rule_id VARCHAR(128),
+                    tool VARCHAR(64),
+                    severity VARCHAR(32),
+                    framework VARCHAR(128) NOT NULL,
+                    control_id VARCHAR(255) NOT NULL,
+                    matched_layer VARCHAR(128),
+                    status VARCHAR(32) DEFAULT 'FAILED',
+                    created_at VARCHAR(64)
+                );
+            """))
+
+            # Column Migration for existing tables
+            cols_to_add_scans = [
+                ("project_id", "VARCHAR(64)"),
+                ("fixable_count", "INT DEFAULT 0"),
+                ("exploitable_count", "INT DEFAULT 0"),
+                ("scanned_targets", "INT DEFAULT 0"),
+                ("scanned_packages", "INT DEFAULT 0"),
+                ("scanned_files", "INT DEFAULT 0"),
+                ("owasp_score", "FLOAT DEFAULT 0.0"),
+                ("cis_score", "FLOAT DEFAULT 0.0"),
+                ("nist_score", "FLOAT DEFAULT 0.0")
+            ]
+            for col_name, col_def in cols_to_add_scans:
+                try:
+                    cursor.execute(f"ALTER TABLE scans ADD COLUMN {col_name} {col_def};")
+                except Exception:
+                    pass
+
+            cols_to_add_findings = [
+                ("project_id", "VARCHAR(64)"),
+                ("scan_time", "VARCHAR(64)"),
+                ("package_name", "VARCHAR(255)"),
+                ("installed_version", "VARCHAR(100)"),
+                ("fixed_version", "VARCHAR(100)"),
+                ("cvss_score", "FLOAT"),
+                ("severity_source", "VARCHAR(64)"),
+                ("target_class", "VARCHAR(64)"),
+                ("target_type", "VARCHAR(64)"),
+                ("description", txt_type),
+                ("primary_url", txt_type),
+                ("references_json", txt_type),
+                ("compliance_json", txt_type),
+                ("exploit_available", "INT DEFAULT 0"),
+                ("fix_available", "INT DEFAULT 0"),
+                ("epss_score", "FLOAT"),
+                ("kev", "INT DEFAULT 0"),
+                ("created_at", "VARCHAR(64)")
+            ]
+            for col_name, col_def in cols_to_add_findings:
+                try:
+                    cursor.execute(f"ALTER TABLE findings ADD COLUMN {col_name} {col_def};")
+                except Exception:
+                    pass
+
+            # 6. Reports Table (Tracks generated PDF/HTML/JSON report artifacts)
+            cursor.execute(self._ph(f"""
+                CREATE TABLE IF NOT EXISTS reports (
+                    report_id VARCHAR(64) PRIMARY KEY,
+                    scan_id VARCHAR(64) NOT NULL,
+                    project_id VARCHAR(64),
+                    report_type VARCHAR(32) NOT NULL,
+                    title VARCHAR(255),
+                    file_path {txt_type} NOT NULL,
+                    file_size_bytes INT DEFAULT 0,
                     created_at VARCHAR(64)
                 );
             """))
@@ -232,21 +324,39 @@ class DatabaseManager:
         finally:
             conn.close()
 
-    def save_master_report(self, master_report: dict, project_name: str = "DevSecOps Pipeline", verdict: str = "UNKNOWN") -> str:
+    def save_master_report(self, master_report: dict, project_name: Optional[str] = None, verdict: str = "UNKNOWN") -> str:
         """
-        Ingests master_report.json into projects, scans, and findings tables.
+        Ingests master_report.json into projects, scans, risk_summary, findings, compliance_results, and reports tables.
+        Dynamic project_name, repository_url, and branch are sourced from environment variables.
         """
+        resolved_project_name = project_name or os.getenv("PROJECT_NAME") or os.getenv("JOB_NAME") or "DevSecOps Pipeline"
+        repo_url = os.getenv("REPOSITORY_URL") or os.getenv("GIT_URL") or "https://github.com/9MayanK2/DevSecOps"
+        branch = os.getenv("BRANCH_NAME") or os.getenv("GIT_BRANCH") or "main"
+
         summary = master_report.get("summary", {})
         risk_summary = master_report.get("risk_summary", {})
         compliance_summary = master_report.get("compliance_summary", {})
         now_iso = datetime.utcnow().isoformat()
         scan_id = f"SCAN-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
-        project_id = f"PRJ-{project_name.lower().replace(' ', '-')}"
+        project_id = f"PRJ-{resolved_project_name.lower().replace(' ', '-')}"
         scanners_str = json.dumps(master_report.get("scanners_executed", []))
 
         owasp_score = compliance_summary.get("owasp_top_10_2021", {}).get("compliance_percentage", 0.0)
         cis_score = compliance_summary.get("cis_benchmarks", {}).get("compliance_percentage", 0.0)
         nist_score = compliance_summary.get("nist_sp_800_53", {}).get("compliance_percentage", 0.0)
+
+        crit_cnt = summary.get("critical", 0)
+        high_cnt = summary.get("high", 0)
+        med_cnt = summary.get("medium", 0)
+        low_cnt = summary.get("low", 0)
+        info_cnt = summary.get("info", 0)
+
+        crit_score = crit_cnt * 10
+        high_score = high_cnt * 5
+        med_score = med_cnt * 2
+        low_score = low_cnt * 1
+        overall_risk = risk_summary.get("total_risk_score", crit_score + high_score + med_score + low_score)
+        risk_lvl = risk_summary.get("risk_level", "UNKNOWN")
 
         conn = self.get_connection()
         try:
@@ -256,12 +366,12 @@ class DatabaseManager:
             cursor.execute(self._ph("""
                 INSERT INTO projects (project_id, name, repository_url, branch, created_at)
                 VALUES (?, ?, ?, ?, ?)
-                ON CONFLICT(project_id) DO UPDATE SET created_at = excluded.created_at;
+                ON CONFLICT(project_id) DO UPDATE SET name = excluded.name, repository_url = excluded.repository_url, branch = excluded.branch, created_at = excluded.created_at;
             """ if self.db_type == "sqlite" else """
                 INSERT INTO projects (project_id, name, repository_url, branch, created_at)
                 VALUES (?, ?, ?, ?, ?)
-                ON DUPLICATE KEY UPDATE name=VALUES(name);
-            """), (project_id, project_name, "https://github.com/9MayanK2/DevSecOps", "main", now_iso))
+                ON DUPLICATE KEY UPDATE name=VALUES(name), repository_url=VALUES(repository_url), branch=VALUES(branch);
+            """), (project_id, resolved_project_name, repo_url, branch, now_iso))
 
             # 2. Insert Scan Record
             cursor.execute(self._ph("""
@@ -278,28 +388,47 @@ class DatabaseManager:
                 master_report.get("title", "Master DevSecOps Security Report"),
                 scanners_str,
                 summary.get("total_findings", len(master_report.get("findings", []))),
-                summary.get("critical", 0),
-                summary.get("high", 0),
-                summary.get("medium", 0),
-                summary.get("low", 0),
-                summary.get("info", 0),
+                crit_cnt, high_cnt, med_cnt, low_cnt, info_cnt,
                 summary.get("fixable", 0),
                 summary.get("exploitable", 0),
                 summary.get("scanned_targets", 1),
                 summary.get("scanned_packages", 0),
                 summary.get("scanned_files", 0),
-                risk_summary.get("total_risk_score", 0),
-                risk_summary.get("risk_level", "UNKNOWN"),
+                overall_risk, risk_lvl,
                 summary.get("compliance_score", 100.0),
                 owasp_score, cis_score, nist_score,
                 verdict, now_iso
             ))
 
-            # 3. Insert Findings
+            # 3. Insert Risk Summary Record
+            cursor.execute(self._ph("""
+                INSERT INTO risk_summary (
+                    scan_id, project_id, critical_score, high_score, medium_score, low_score, info_score,
+                    overall_score, risk_level, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(scan_id) DO UPDATE SET overall_score = excluded.overall_score;
+            """ if self.db_type == "sqlite" else """
+                INSERT INTO risk_summary (
+                    scan_id, project_id, critical_score, high_score, medium_score, low_score, info_score,
+                    overall_score, risk_level, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON DUPLICATE KEY UPDATE overall_score=VALUES(overall_score);
+            """), (
+                scan_id, project_id,
+                crit_score, high_score, med_score, low_score, 0,
+                overall_risk, risk_lvl, now_iso
+            ))
+
+            # 4. Insert Findings & Compliance Results
             for finding in master_report.get("findings", []):
                 cwe_str = json.dumps(finding.get("cwe", []))
                 ref_str = json.dumps(finding.get("references", []))
-                comp_str = json.dumps(finding.get("compliance", []))
+                comp_list = finding.get("compliance", []) or []
+                comp_str = json.dumps(comp_list)
+                rule_id = finding.get("rule_id", "")
+                tool = finding.get("tool", "Unknown")
+                severity = finding.get("severity", "UNKNOWN")
+                matched_layers = ", ".join(finding.get("compliance_layers", []))
 
                 cursor.execute(self._ph("""
                     INSERT INTO findings (
@@ -312,10 +441,9 @@ class DatabaseManager:
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """), (
                     scan_id, project_id,
-                    finding.get("tool", "Unknown"),
+                    tool,
                     finding.get("category", "General"),
-                    finding.get("rule_id", ""),
-                    finding.get("severity", "UNKNOWN"),
+                    rule_id, severity,
                     finding.get("file", ""),
                     finding.get("line"),
                     finding.get("message", ""),
@@ -341,6 +469,36 @@ class DatabaseManager:
                     1 if finding.get("kev") else 0,
                     now_iso
                 ))
+
+                # Insert Normalized Compliance Control Rows
+                for comp in comp_list:
+                    owasp = comp.get("owasp")
+                    cis = comp.get("cis")
+                    nist = comp.get("nist")
+
+                    if owasp:
+                        cursor.execute(self._ph("""
+                            INSERT INTO compliance_results (
+                                scan_id, project_id, finding_rule_id, tool, severity,
+                                framework, control_id, matched_layer, status, created_at
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """), (scan_id, project_id, rule_id, tool, severity, "OWASP Top 10 2021", owasp, matched_layers, "FAILED", now_iso))
+
+                    if cis:
+                        cursor.execute(self._ph("""
+                            INSERT INTO compliance_results (
+                                scan_id, project_id, finding_rule_id, tool, severity,
+                                framework, control_id, matched_layer, status, created_at
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """), (scan_id, project_id, rule_id, tool, severity, "CIS Benchmarks", cis, matched_layers, "FAILED", now_iso))
+
+                    if nist:
+                        cursor.execute(self._ph("""
+                            INSERT INTO compliance_results (
+                                scan_id, project_id, finding_rule_id, tool, severity,
+                                framework, control_id, matched_layer, status, created_at
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """), (scan_id, project_id, rule_id, tool, severity, "NIST SP 800-53", nist, matched_layers, "FAILED", now_iso))
 
             if self.db_type == "sqlite":
                 conn.commit()
@@ -368,6 +526,35 @@ class DatabaseManager:
             logger.warning(f"Could not update scan verdict: {ex}")
         finally:
             conn.close()
+
+    def save_report_artifact(self, scan_id: str, report_type: str, title: str, file_path: str | Path) -> str:
+        """
+        Ingests a generated report artifact (HTML, PDF, JSON) into the reports table.
+        """
+        p = Path(file_path)
+        file_size = p.stat().st_size if p.exists() else 0
+        now_iso = datetime.utcnow().isoformat()
+        report_id = f"RPT-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}-{report_type.upper()}"
+        project_name = os.getenv("PROJECT_NAME") or os.getenv("JOB_NAME") or "DevSecOps Pipeline"
+        project_id = f"PRJ-{project_name.lower().replace(' ', '-')}"
+
+        conn = self.get_connection()
+        try:
+            cursor = conn.cursor()
+            cursor.execute(self._ph("""
+                INSERT INTO reports (
+                    report_id, scan_id, project_id, report_type, title, file_path, file_size_bytes, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """), (report_id, scan_id, project_id, report_type.upper(), title, str(p), file_size, now_iso))
+            if self.db_type == "sqlite":
+                conn.commit()
+        except Exception as ex:
+            logger.warning(f"Could not save report artifact metadata ({self.db_type}): {ex}")
+        finally:
+            conn.close()
+
+        logger.info(f"Saved report artifact metadata [{report_type.upper()}] (Report ID: {report_id})")
+        return report_id
 
     def get_recent_scans(self, limit: int = 10) -> List[dict]:
         """
