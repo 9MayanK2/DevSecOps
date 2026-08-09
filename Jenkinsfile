@@ -9,6 +9,7 @@ pipeline {
     environment {
         PROJECT_NAME = "SentinelOps"
         PYTHONPATH = "."
+        PATH = "${WORKSPACE}/.venv/bin:${env.PATH}"
 
         AWS_REGION = "us-east-1"
         AWS_ACCOUNT_ID = "284064534086"
@@ -130,8 +131,8 @@ DB_PASSWORD=${DB_PASSWORD}
 NVD_API_KEY=${NVD_API_KEY}
 COSIGN_PASSWORD=${COSIGN_PASSWORD}
 PROJECT_NAME=${PROJECT_NAME}
-REPOSITORY_URL=${GIT_URL}
-BRANCH_NAME=${GIT_BRANCH}
+REPOSITORY_URL=${GIT_URL:-https://github.com/9MayanK2/DevSecOps}
+BRANCH_NAME=${GIT_BRANCH:-main}
 SOFT_FAIL=false
 EOF
                     '''
