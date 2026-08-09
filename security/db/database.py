@@ -44,7 +44,7 @@ class DatabaseManager:
         elif self.db_type in ("mysql", "mariadb"):
             host = os.getenv("DB_HOST", "localhost")
             port = int(os.getenv("DB_PORT", 3306))
-            db_name = os.getenv("DB_NAME", "devsecops")
+            db_name = os.getenv("DB_NAME", "sentinelops")
             user = os.getenv("DB_USER", "root")
             password = os.getenv("DB_PASSWORD", "")
 
@@ -99,7 +99,7 @@ class DatabaseManager:
             conn = psycopg2.connect(
                 host=os.getenv("DB_HOST", "localhost"),
                 port=int(os.getenv("DB_PORT", 5432)),
-                dbname=os.getenv("DB_NAME", "devsecops"),
+                dbname=os.getenv("DB_NAME", "sentinelops"),
                 user=os.getenv("DB_USER", "postgres"),
                 password=os.getenv("DB_PASSWORD", "")
             )
