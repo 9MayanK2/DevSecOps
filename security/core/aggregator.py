@@ -86,7 +86,7 @@ class Aggregator:
                     package_name = finding.get("package_name") or ""
                     file_path = finding.get("file") or ""
                     line = finding.get("line") or ""
-                    key = f"{tool}:{rule_id}:{cve}:{package_name}:{file_path}:{line}"
+                    key = f"{tool}:{rule_id}:{file_path}:{line}:{cve}:{package_name}"
                     if key in seen_keys:
                         continue
                     seen_keys.add(key)

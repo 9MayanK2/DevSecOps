@@ -41,10 +41,10 @@ FRONTEND_DOCKERFILE="$PROJECT_ROOT/app/client/Dockerfile"
 # Backend Image
 ##################################################
 
-BACKEND_IMAGE="hopegivers-backend:latest"
+BACKEND_IMAGE="sentinelops-backend:latest"
 
 ##################################################
 # Frontend Image
 ##################################################
 
-FRONTEND_IMAGE="hopegivers-frontend:latest"
+FRONTEND_IMAGE="sentinelops-frontend:latest"

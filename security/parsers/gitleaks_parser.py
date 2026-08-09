@@ -32,12 +32,14 @@ GITLEAKS_CWE_MAP = {
     "aws-secret-access-key": ["CWE-798"],
     "generic-api-key": ["CWE-798"],
     "github-pat": ["CWE-798"],
-    "private-key": ["CWE-312", "CWE-798"],
-    "rsa-private-key": ["CWE-312", "CWE-798"],
-    "ssh-private-key": ["CWE-312", "CWE-798"],
+    "private-key": ["CWE-798", "CWE-311"],
+    "rsa-private-key": ["CWE-798", "CWE-311"],
+    "ssh-private-key": ["CWE-798", "CWE-311"],
+    "pgp-private-key": ["CWE-798", "CWE-311"],
     "slack-web-hook": ["CWE-798"],
     "stripe-api-key": ["CWE-798"],
-    "jwt": ["CWE-522"]
+    "jwt": ["CWE-798", "CWE-347"],
+    "jwt-token": ["CWE-798", "CWE-347"]
 }
 
 
