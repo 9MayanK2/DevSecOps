@@ -348,10 +348,23 @@ class ReportGenerator:
 
     def generate_all(self, master_report: dict) -> Dict[str, Path]:
         """
-        Generates both HTML and PDF executive reports.
+        Generates both HTML and PDF executive reports and persists report metadata to database.
         """
         html_p = self.generate_html(master_report)
         pdf_p = self.generate_pdf(master_report)
+
+        scan_id = master_report.get("scan_id")
+        if scan_id:
+            try:
+                from security.db.database import DatabaseManager
+                db = DatabaseManager()
+                if html_p and html_p.exists():
+                    db.save_report_artifact(scan_id, "HTML", "Executive Security HTML Report", html_p)
+                if pdf_p and pdf_p.exists():
+                    db.save_report_artifact(scan_id, "PDF", "Executive Security PDF Report", pdf_p)
+            except Exception as ex:
+                logger.warning(f"Could not log report metadata to database: {ex}")
+
         return {"html": html_p, "pdf": pdf_p}
 
 

@@ -14,13 +14,15 @@ source "$SECURITY_DIR/scripts/logger.sh"
 source "$SECURITY_DIR/scripts/docker.sh"
 source "$SECURITY_DIR/scripts/utils.sh"
 
+TARGET="${1:-all}"
+
 ##############################################################
 # Banner
 ##############################################################
 
 echo
 echo "=================================================="
-echo "               TRIVY SECURITY SCAN"
+echo "               TRIVY SECURITY SCAN ($TARGET)"
 echo "=================================================="
 echo
 
@@ -38,78 +40,25 @@ check_docker
 log_info "Checking Trivy image..."
 pull_image_if_missing "$TRIVY_IMAGE"
 
-##############################################################
-# Validate Backend Image
-##############################################################
-
-log_info "Checking Backend Docker image..."
-
-if ! docker image inspect "$BACKEND_IMAGE" >/dev/null 2>&1
-then
-    log_error "Backend image not found."
-    echo
-    echo "Build it using:"
-    echo "docker build -t sentinelops-backend:latest ./app/server"
-    echo "or run docker compose build"
-    echo
-    exit 1
-fi
-
-##############################################################
-# Validate Frontend Image
-##############################################################
-
-log_info "Checking Frontend Docker image..."
-
-if ! docker image inspect "$FRONTEND_IMAGE" >/dev/null 2>&1
-then
-    log_error "Frontend image not found."
-    echo
-    echo "Build it using:"
-    echo "docker build -t sentinelops-frontend:latest ./app/client"
-    echo "or run docker compose build"
-    echo
-    exit 1
-fi
-
-##############################################################
-# Create Report Directory
-##############################################################
-
 create_report_directory "$TRIVY_REPORT_DIR"
-
-##############################################################
-# Timestamp
-##############################################################
-
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-
-# Host paths
-BACKEND_JSON_HOST="$TRIVY_REPORT_DIR/backend_${TIMESTAMP}.json"
-FRONTEND_JSON_HOST="$TRIVY_REPORT_DIR/frontend_${TIMESTAMP}.json"
-
-# Container paths
-BACKEND_JSON_CONTAINER="/workspace/compliance/reports/trivy/backend_${TIMESTAMP}.json"
-FRONTEND_JSON_CONTAINER="/workspace/compliance/reports/trivy/frontend_${TIMESTAMP}.json"
 
 ##############################################################
 # Backend Scan
 ##############################################################
 
-log_info "Scanning Backend Image..."
+if [ "$TARGET" == "backend" ] || [ "$TARGET" == "all" ]; then
+    log_info "Checking Backend Docker image..."
+    if ! docker image inspect "$BACKEND_IMAGE" >/dev/null 2>&1; then
+        log_error "Backend image not found."
+        exit 1
+    fi
 
-BACKEND_SCAN_STATUS=0
-if ! docker run --rm \
-  --net=host \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v "$HOME/.cache/trivy:/root/.cache/trivy" \
-  -v "$PWD":/workspace \
-  "$TRIVY_IMAGE" \
-  image \
-  --format json \
-  -o "$BACKEND_JSON_CONTAINER" \
-  "$BACKEND_IMAGE"; then
-    log_warning "Backend scan with DB update failed. Retrying with --skip-db-update..."
+    BACKEND_JSON_HOST="$TRIVY_REPORT_DIR/backend_${TIMESTAMP}.json"
+    BACKEND_JSON_CONTAINER="/workspace/compliance/reports/trivy/backend_${TIMESTAMP}.json"
+
+    log_info "Scanning Backend Image..."
+    BACKEND_SCAN_STATUS=0
     if ! docker run --rm \
       --net=host \
       -v /var/run/docker.sock:/var/run/docker.sock \
@@ -117,40 +66,50 @@ if ! docker run --rm \
       -v "$PWD":/workspace \
       "$TRIVY_IMAGE" \
       image \
-      --skip-db-update \
       --format json \
       -o "$BACKEND_JSON_CONTAINER" \
       "$BACKEND_IMAGE"; then
-        log_error "Backend Trivy scan failed completely."
-        BACKEND_SCAN_STATUS=1
+        log_warning "Backend scan with DB update failed. Retrying with --skip-db-update..."
+        if ! docker run --rm \
+          --net=host \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v "$HOME/.cache/trivy:/root/.cache/trivy" \
+          -v "$PWD":/workspace \
+          "$TRIVY_IMAGE" \
+          image \
+          --skip-db-update \
+          --format json \
+          -o "$BACKEND_JSON_CONTAINER" \
+          "$BACKEND_IMAGE"; then
+            log_error "Backend Trivy scan failed completely."
+            BACKEND_SCAN_STATUS=1
+        fi
     fi
-fi
 
-if [ $BACKEND_SCAN_STATUS -eq 0 ]; then
-    log_success "Backend scan completed."
-else
-    log_error "Backend scan ended with errors."
-    exit 1
+    if [ $BACKEND_SCAN_STATUS -eq 0 ]; then
+        log_success "Backend scan completed: $BACKEND_JSON_HOST"
+    else
+        log_error "Backend scan ended with errors."
+        exit 1
+    fi
 fi
 
 ##############################################################
 # Frontend Scan
 ##############################################################
 
-log_info "Scanning Frontend Image..."
+if [ "$TARGET" == "frontend" ] || [ "$TARGET" == "all" ]; then
+    log_info "Checking Frontend Docker image..."
+    if ! docker image inspect "$FRONTEND_IMAGE" >/dev/null 2>&1; then
+        log_error "Frontend image not found."
+        exit 1
+    fi
 
-FRONTEND_SCAN_STATUS=0
-if ! docker run --rm \
-  --net=host \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v "$HOME/.cache/trivy:/root/.cache/trivy" \
-  -v "$PWD":/workspace \
-  "$TRIVY_IMAGE" \
-  image \
-  --format json \
-  -o "$FRONTEND_JSON_CONTAINER" \
-  "$FRONTEND_IMAGE"; then
-    log_warning "Frontend scan with DB update failed. Retrying with --skip-db-update..."
+    FRONTEND_JSON_HOST="$TRIVY_REPORT_DIR/frontend_${TIMESTAMP}.json"
+    FRONTEND_JSON_CONTAINER="/workspace/compliance/reports/trivy/frontend_${TIMESTAMP}.json"
+
+    log_info "Scanning Frontend Image..."
+    FRONTEND_SCAN_STATUS=0
     if ! docker run --rm \
       --net=host \
       -v /var/run/docker.sock:/var/run/docker.sock \
@@ -158,33 +117,35 @@ if ! docker run --rm \
       -v "$PWD":/workspace \
       "$TRIVY_IMAGE" \
       image \
-      --skip-db-update \
       --format json \
       -o "$FRONTEND_JSON_CONTAINER" \
       "$FRONTEND_IMAGE"; then
-        log_error "Frontend Trivy scan failed completely."
-        FRONTEND_SCAN_STATUS=1
+        log_warning "Frontend scan with DB update failed. Retrying with --skip-db-update..."
+        if ! docker run --rm \
+          --net=host \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v "$HOME/.cache/trivy:/root/.cache/trivy" \
+          -v "$PWD":/workspace \
+          "$TRIVY_IMAGE" \
+          image \
+          --skip-db-update \
+          --format json \
+          -o "$FRONTEND_JSON_CONTAINER" \
+          "$FRONTEND_IMAGE"; then
+            log_error "Frontend Trivy scan failed completely."
+            FRONTEND_SCAN_STATUS=1
+        fi
+    fi
+
+    if [ $FRONTEND_SCAN_STATUS -eq 0 ]; then
+        log_success "Frontend scan completed: $FRONTEND_JSON_HOST"
+    else
+        log_error "Frontend scan ended with errors."
+        exit 1
     fi
 fi
 
-if [ $FRONTEND_SCAN_STATUS -eq 0 ]; then
-    log_success "Frontend scan completed."
-else
-    log_error "Frontend scan ended with errors."
-    exit 1
-fi
-
-##############################################################
-# Summary
-##############################################################
-
 echo
 echo "=================================================="
-echo "           TRIVY SCAN COMPLETED"
-echo "=================================================="
-echo
-echo "Reports Generated:"
-echo "$BACKEND_JSON_HOST"
-echo "$FRONTEND_JSON_HOST"
-echo
+echo "           TRIVY SCAN COMPLETED ($TARGET)"
 echo "=================================================="
