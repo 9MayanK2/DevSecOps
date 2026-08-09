@@ -21,6 +21,13 @@ pipeline {
     FRONTEND_REPOSITORY = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/sentinelops-frontend"
     BACKEND_IMAGE = "${BACKEND_REPOSITORY}:${IMAGE_TAG}"
     FRONTEND_IMAGE = "${FRONTEND_REPOSITORY}:${IMAGE_TAG}"
+
+    // Cloud Database & Security Framework Controls
+    DB_TYPE = "mysql"
+    DB_HOST = "devsecops-db.c3xyz.us-east-1.rds.amazonaws.com"
+    DB_PORT = "3306"
+    DB_NAME = "devsecops"
+    DB_USER = "admin"
     }
 
     stages {

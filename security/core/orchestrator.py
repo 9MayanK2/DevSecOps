@@ -23,6 +23,23 @@ import subprocess
 from pathlib import Path
 from typing import List, Tuple, Optional
 
+def load_env_file():
+    env_path = Path(".env")
+    if env_path.exists():
+        try:
+            with open(env_path, "r", encoding="utf-8") as fp:
+                for line in fp:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        k, v = k.strip(), v.strip()
+                        if k and k not in os.environ:
+                            os.environ[k] = v
+        except Exception:
+            pass
+
+load_env_file()
+
 from security.common.logger import logger
 from security.core.parser_registry import registry
 from security.core.aggregator import Aggregator
@@ -167,6 +184,15 @@ class SecurityOrchestrator:
         except Exception as ex:
             logger.warning(f"Compliance Mapper Warning: {ex}")
 
+        # Step 3.5: Persist to Database (MySQL / SQLite / PostgreSQL) BEFORE report generation
+        scan_id = None
+        try:
+            db_mgr = DatabaseManager()
+            scan_id = db_mgr.save_master_report(master_report, verdict="PENDING")
+            master_report["scan_id"] = scan_id
+        except Exception as ex:
+            logger.warning(f"Database Ingestion Warning: {ex}")
+
         # Step 4: Generate Executive HTML & PDF Security Reports
         try:
             reporter = ReportGenerator()
@@ -175,8 +201,6 @@ class SecurityOrchestrator:
             logger.warning(f"Report Generator Warning: {ex}")
 
         return master_report
-
-
 
     def stage_5_security_gate(self, master_report: Optional[Dict[str, Any]] = None) -> bool:
         """
@@ -196,12 +220,17 @@ class SecurityOrchestrator:
         gate = SecurityGate(master_report)
         passed = gate.evaluate(soft_fail=self.soft_fail)
 
-        # Ingest into Database (SQLite for local, PostgreSQL for AWS EC2/RDS)
+        # Update Security Gate Verdict in Database
         try:
             db_mgr = DatabaseManager()
-            db_mgr.save_master_report(master_report, verdict="PASS" if passed else "FAIL")
+            scan_id = master_report.get("scan_id")
+            verdict_str = "PASS" if passed else "FAIL"
+            if scan_id:
+                db_mgr.update_scan_verdict(scan_id, verdict=verdict_str)
+            else:
+                db_mgr.save_master_report(master_report, verdict=verdict_str)
         except Exception as ex:
-            logger.warning(f"Database Ingestion Warning: {ex}")
+            logger.warning(f"Database Verdict Update Warning: {ex}")
 
         return passed
 
