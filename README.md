@@ -778,8 +778,6 @@ Every commit is automatically screened before it enters the repository:
 | **Prometheus** | Metrics | Scrape node-exporter, kube-state-metrics, app endpoints |
 | **Grafana** | Visualization | Cluster health, pod restarts, network traffic, security events |
 | **ELK Stack** | Log Aggregation | Logstash → Elasticsearch → Kibana with correlation rules |
-| **Wazuh** | HIDS | File integrity monitoring, rootkit detection, compliance |
-| **Snort** | NIDS | Port scan detection, exploit attempts, C2 traffic |
 
 **Alert Channels:** PagerDuty | Email | Slack
 
