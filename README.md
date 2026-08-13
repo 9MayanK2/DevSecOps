@@ -1,6 +1,6 @@
-# 🚀 SentinelOps — Enterprise DevSecOps Automated Security Pipeline
+# 🚀 SentinelAI-Ops — Enterprise DevSecOps Security Orchestrator Framework with AI remediation Pipeline
 
-> **Project Codename:** SentinelOps  
+> **Project Codename:** SentinelAI-Ops  
 > **Application Name:** HopeGivers — A Real-Time Blood Donation & Recipient Matching Platform  
 > **Status:** Production-Grade | 29-Stage CI/CD | Multi-Cloud Ready | AI-Powered Security Remediation
 
